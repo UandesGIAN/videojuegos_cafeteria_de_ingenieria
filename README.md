@@ -143,9 +143,9 @@ cafeteria_de_ingenieria/Assets/
 
 ### 1.5 Instalación y ejecución del proyecto
 
-1. Clonar el repositorio: https://github.com/UandesGIAN/videojuegos_cafeteria_de_ingenieria
+1. Clonar el repositorio **en la rama actual**: `git clone --branch entregaX --single-branch https://github.com/UandesGIAN/videojuegos_cafeteria_de_ingenieria`
 2. Abrir Unity Hub y seleccionar **Add project**, apuntando a la carpeta raíz.
-3. Abrir la escena principal: `Assets/Scenes/SampleScene.unity`.
+3. Abrir la escena principal (por defecto): `Assets/Scenes/SampleScene.unity`.
 4. Verificar que los paquetes necesarios estén instalados:
    - TextMeshPro
    - Input System
