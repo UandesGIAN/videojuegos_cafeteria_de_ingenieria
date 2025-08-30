@@ -9,24 +9,16 @@ Grupo 3:
 - Vicente Rey
 - Lucas Reyes
 
-# índice
-
-[1. Idea general del proyecto](#1-idea-general-del-proyecto)
-- [1.1 Mecánicas principales](#11-mecánicas-principales)
-- [1.2 Temática](#12-temática)
-- [1.3 Flujo del juego en detalle](#13-flujo-del-juego-en-detalle)
-- [1.4 Estructura del proyecto](#14-estructura-del-proyecto)
-
-[2. Entrega 2](#2-entrega-2)
+# Índice
 - [NOS TRAICIONARON Y ENCERRARON EN LA CAFETERÍA DE INGENIERÍA POR 100 AÑOS!!](#nos-traicionaron-y-encerraron-en-la-cafetería-de-ingeniería-por-100-años)
-- [índice](#índice)
+- [Índice](#índice)
   - [1. Idea general del proyecto](#1-idea-general-del-proyecto)
     - [1.1 Mecánicas principales](#11-mecánicas-principales)
     - [1.2 Temática](#12-temática)
     - [1.3 Flujo del juego en detalle](#13-flujo-del-juego-en-detalle)
     - [1.4 Estructura del proyecto](#14-estructura-del-proyecto)
     - [1.5 Instalación y ejecución del proyecto](#15-instalación-y-ejecución-del-proyecto)
-  - [2. ENTREGA 2](#2-entrega-2)
+  - [2. Entrega 2](#2-entrega-2)
     - [2.1 Avance parcial 1](#21-avance-parcial-1)
       - [Gianfranco Bobadilla](#gianfranco-bobadilla)
       - [Borja Manterola](#borja-manterola)
@@ -160,7 +152,7 @@ cafeteria_de_ingenieria/Assets/
 5. Presionar Play en Unity para probar el juego.
 6. Para compilar, ir a **File → Build Settings**, seleccionar la plataforma deseada y luego **Build**.
 
-## 2. ENTREGA 2
+## 2. Entrega 2
 
 Aquí se describe y deja constancia de los avances realizados para la entrega 2 del proyecto.
 
