@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+
 
 public class BattleManager : MonoBehaviour
 {
@@ -72,6 +74,21 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    // Manejo del mouse
+    public void SetSelectedOption(int index)
+    {
+        if (isPopupActive) return;
+        selectedOption = index;
+        UpdateHighlight();
+    }
+
+    public void OnClickOption(int index)
+    {
+        if (isPopupActive && (index == 0 || index == 3)) return;
+        ActivateOption(index);
+    }
+
+
     void UpdateHighlight()
     {
         for (int i = 0; i < actionOptions.Length; i++)
@@ -79,6 +96,7 @@ public class BattleManager : MonoBehaviour
             actionOptions[i].color = (i == selectedOption) ? new Color(0.5f, 1f, 1f) : Color.white;
         }
     }
+    
 
     void ActivateOption(int option)
     {
@@ -100,14 +118,18 @@ public class BattleManager : MonoBehaviour
     void ShowSkills()
     {
         Debug.Log("Mostrar popup de habilidades");
-        skillPopup.SetActive(true);
+        skillPopup.SetActive(!skillPopup.activeSelf);
+        if (skillPopup.activeSelf)
+            itemPopup.SetActive(false);
         // SkillSystem y SkillData
     }
 
     void ShowItems()
     {
         Debug.Log("Mostrar popup de objetos");
-        itemPopup.SetActive(true);
+        itemPopup.SetActive(!itemPopup.activeSelf);
+        if (itemPopup.activeSelf)
+            skillPopup.SetActive(false);
         // ItemData y ItemSystem
     }
 
