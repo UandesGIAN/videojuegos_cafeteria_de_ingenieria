@@ -24,7 +24,7 @@ Grupo 3:
       - [Borja Manterola](#borja-manterola)
       - [Matias Pedemonte](#matias-pedemonte)
       - [Vicente Rey y Lucas Reyes](#vicente-rey-y-lucas-reyes)
-      - [Flujo esperado](#flujo-esperado)
+    - [2.2 Flujo esperado](#22-flujo-esperado)
 
 ## 1. Idea general del proyecto
 
@@ -218,7 +218,7 @@ Scripts involucrados:
 - `EnemyController.cs` (lógica de ataques enemigos).
 
 
-#### Flujo esperado
+### 2.2 Flujo esperado
 
 Player elige opción → BattleManager → (Attack / Skill / Item / Talk)
 
