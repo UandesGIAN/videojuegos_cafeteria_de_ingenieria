@@ -1,0 +1,20 @@
+using UnityEngine;
+
+public static class BattleConstants
+{
+    
+
+    // para evitar magic strings xd
+    public enum CharacterRole
+    {
+        Player,
+        Enemy
+    }
+
+    // nombres que las subfunciones de BattleManager.ActivateOption() pasan a FighterAction
+    public enum MenuAttackOptions
+    {
+        Melee,
+        Ability
+    }
+}
