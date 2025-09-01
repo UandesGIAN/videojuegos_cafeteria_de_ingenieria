@@ -2,13 +2,12 @@ using UnityEngine;
 
 public static class BattleConstants
 {
-    
-
     // para evitar magic strings xd
     public enum CharacterRole
     {
         Player,
-        Enemy
+        Enemy,
+        Dead
     }
 
     // nombres que las subfunciones de BattleManager.ActivateOption() pasan a FighterAction
