@@ -2056,7 +2056,7 @@ GameObject:
   - component: {fileID: 955582171}
   m_Layer: 5
   m_Name: EnemySprite
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3881,9 +3881,10 @@ GameObject:
   - component: {fileID: 1786806660}
   - component: {fileID: 1786806662}
   - component: {fileID: 1786806661}
+  - component: {fileID: 1786806663}
   m_Layer: 5
   m_Name: PlayerSprite
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3945,6 +3946,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786806659}
   m_CullTransparentMesh: 1
+--- !u!114 &1786806663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786806659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16d66bad7c4af1d419aea53a5f1e786b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleePrefab: {fileID: 0}
+  abilityPrefab: {fileID: 0}
 --- !u!1 &1937272112
 GameObject:
   m_ObjectHideFlags: 0
