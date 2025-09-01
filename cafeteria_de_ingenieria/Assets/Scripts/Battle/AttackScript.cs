@@ -1,3 +1,5 @@
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class AttackScript : MonoBehaviour
@@ -47,6 +49,7 @@ public class AttackScript : MonoBehaviour
 
         float targetDefenseMult = Random.Range(minDefenseMult, maxDefenseMult);
         damage = Mathf.Max(0, damage - (targetDefenseMult * targetStats.defense));
+
         targetStats.ReceiveDamage(damage);
     }
 

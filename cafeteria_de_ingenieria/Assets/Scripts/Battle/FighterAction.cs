@@ -20,7 +20,7 @@ public class FighterAction : MonoBehaviour
     private GameObject abilityAttack;
     private GameObject abilityModifier; //e.g., para una habilidad q sube el ataque
 
-    public void Start()
+    public void Awake()
     {
         player = GameObject.FindGameObjectWithTag(BattleConstants.CharacterRole.Player.ToString());
         enemy = GameObject.FindGameObjectWithTag(BattleConstants.CharacterRole.Enemy.ToString());
@@ -29,15 +29,14 @@ public class FighterAction : MonoBehaviour
     public void SelectOption(string option_name)
     {
         // recibe el nombre de la opcion elegida en el ActionMenu desde los metodos llamados por BattleManager.ActivateOption()
-
-        GameObject target = CompareTag(BattleConstants.CharacterRole.Player.ToString()) ? enemy : player;
-        Debug.Log("Target is " + target.tag);
+        GameObject target = gameObject.CompareTag(BattleConstants.CharacterRole.Player.ToString()) ? enemy : player;
+        Debug.Log("Target is " + target.tag + ":");
 
         // ataque melee (normal)
         if (option_name.CompareTo(BattleConstants.MenuAttackOptions.Melee.ToString()) == 0)
         {
             meleePrefab.GetComponent<AttackScript>().Attack(target);
-            Debug.Log(BattleConstants.MenuAttackOptions.Melee.ToString() + " attack made to " + target.tag);
+            Debug.Log("\t\t" + BattleConstants.MenuAttackOptions.Melee.ToString() + " attack made to " + target.tag);
         } //else if (###quizas logica de habilidades si te parece!! aunque hay que equilibrarlo con lo q hizo el gian de habilidades en BattleManager
     }
 }
