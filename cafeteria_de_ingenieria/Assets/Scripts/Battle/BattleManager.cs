@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
+    private GameObject player;
+
     [Header("Action Menu")]
     public TextMeshProUGUI attackText;
     public TextMeshProUGUI skillText;
@@ -37,6 +39,7 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag(BattleConstants.CharacterRole.Player.ToString());
         actionOptions = new TextMeshProUGUI[] { attackText, skillText, itemText, talkText };
         UpdateHighlight();
     }
@@ -111,7 +114,8 @@ public class BattleManager : MonoBehaviour
 
     void Attack()
     {
-        Debug.Log("Jugador ataca al enemigo");
+        //Debug.Log("Jugador ataca al enemigo");
+        player.GetComponent<FighterAction>().SelectOption(BattleConstants.MenuAttackOptions.Melee.ToString());
         // PlayerController
     }
 
