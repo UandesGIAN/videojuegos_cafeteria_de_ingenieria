@@ -14,8 +14,7 @@ public class FighterAction : MonoBehaviour
     private GameObject abilityPrefab; //para posible futuro uso de habilidades
 
     private GameObject currentAttack;
-    private GameObject meleeAttack;
-
+    
     // propiedades de abilidades (estoy asumiendo weas asi q cambia lo q creas necesario)
     private GameObject abilityType;
     private GameObject abilityAttack;
@@ -34,9 +33,11 @@ public class FighterAction : MonoBehaviour
         GameObject target = CompareTag(BattleConstants.CharacterRole.Player.ToString()) ? enemy : player;
         Debug.Log("Target is " + target.tag);
 
+        // ataque melee (normal)
         if (option_name.CompareTo(BattleConstants.MenuAttackOptions.Melee.ToString()) == 0)
         {
+            meleePrefab.GetComponent<AttackScript>().Attack(target);
             Debug.Log(BattleConstants.MenuAttackOptions.Melee.ToString() + " attack made to " + target.tag);
-        } //else if (###quizas logica de habilidades si te parece!! igual es mejor avanzar sobre lo q el gian hizo en abilidades en BattleManager yo creo)
+        } //else if (###quizas logica de habilidades si te parece!! aunque hay que equilibrarlo con lo q hizo el gian de habilidades en BattleManager
     }
 }
