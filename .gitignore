@@ -19,3 +19,4 @@ UserSettings/
 *.VC.db
 .vscode/
 .idea/
+.vsconfig
