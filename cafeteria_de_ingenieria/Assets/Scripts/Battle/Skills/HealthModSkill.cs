@@ -19,11 +19,11 @@ public class HealthModSkill : Skill
 
         if(this.selfinflicted)
         {
-            this.targetStats.ReceiveDamage(amount);
+            this.targetStats.Heal(amount);
         }
         else
         {
-            this.targetStats.Heal(amount);
+            this.targetStats.ReceiveDamage(amount);
         }
     }
 

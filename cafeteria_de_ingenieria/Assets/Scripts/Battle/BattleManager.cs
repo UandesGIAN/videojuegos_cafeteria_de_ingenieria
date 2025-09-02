@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class BattleManager : MonoBehaviour
 {
     private GameObject player;
+    private GameObject enemy;
 
     [Header("Action Menu")]
     public TextMeshProUGUI attackText;
@@ -138,7 +139,8 @@ public class BattleManager : MonoBehaviour
     void ExecuteSkill(int index)
     {
         if (index < 0 || index >= skillButtons.Length) return;
-        Debug.Log("Ejecutar habilidad: " + skillButtonLabels[index].text);
+        Debug.Log("Ejecutar habilidad: " + skillButtonLabels[index].text); 
+        enemy = GameObject.FindGameObjectWithTag(BattleConstants.CharacterRole.Enemy.ToString());
 
         // Obtener las habilidades del jugador
         FighterStats playerStats = player.GetComponent<FighterStats>();
@@ -146,9 +148,9 @@ public class BattleManager : MonoBehaviour
 
         if (index < playerSkills.Length)
         {
-            //Skill skillSelected = playerSkills[index];
-            //skillSelected.SetTargetanduser(playerStats, enemy.GetComponent<FighterStats>());
-            //skillSelected.Run();
+            Skill skillSelected = playerSkills[index];
+            skillSelected.SetTargetanduser(playerStats, enemy.GetComponent<FighterStats>());
+            skillSelected.Run();
             // Cerrar el popup después de usar la habilidad
             skillPopup.SetActive(false);
         }

@@ -171,7 +171,6 @@ MonoBehaviour:
   description: 
   animationDuration: 0
   selfinflicted: 0
-  effectPrfb: {fileID: 0}
   amount: 15
   modType: 0
 --- !u!1 &59324049
@@ -487,7 +486,6 @@ MonoBehaviour:
   description: 
   animationDuration: 0
   selfinflicted: 0
-  effectPrfb: {fileID: 0}
   amount: 20
   modType: 0
 --- !u!1001 &130372549
@@ -1912,6 +1910,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573986589}
   m_CullTransparentMesh: 1
+--- !u!1 &630289898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 630289900}
+  - component: {fileID: 630289899}
+  m_Layer: 0
+  m_Name: TurnControllerObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &630289899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630289898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b848619da523e1c43b95912f94183f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleMenu: {fileID: 1497824552}
+  doesEnemyMoveFirst: 0
+--- !u!4 &630289900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630289898}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.87048, y: 0.39809, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &650751464
 GameObject:
   m_ObjectHideFlags: 0
@@ -2286,7 +2330,6 @@ MonoBehaviour:
   description: 
   animationDuration: 0
   selfinflicted: 1
-  effectPrfb: {fileID: 0}
   amount: 10
   modType: 0
 --- !u!1 &832575517
@@ -4652,16 +4695,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c29db9d0c7af842a389adc9a96676c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillButtons:
-  - {fileID: 1871933532}
-  - {fileID: 968287185}
-  - {fileID: 1249538732}
-  - {fileID: 1999362174}
-  skillButtonLabels:
-  - {fileID: 541071707}
-  - {fileID: 1673243575}
-  - {fileID: 1760131325}
-  - {fileID: 1772950769}
 --- !u!114 &1639300631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4969,8 +5002,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 711.86, y: -548.88}
-  m_SizeDelta: {x: 1423.7, y: 250.45}
+  m_AnchoredPosition: {x: 683.49945, y: -548.88}
+  m_SizeDelta: {x: 1367, y: 250.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1731427781
 MonoBehaviour:
@@ -6096,3 +6129,4 @@ SceneRoots:
   - {fileID: 1613380988}
   - {fileID: 524664676}
   - {fileID: 89438268}
+  - {fileID: 630289900}
