@@ -17,6 +17,9 @@ public class BattleManager : MonoBehaviour
     [Header("Popups")]
     public GameObject skillPopup;
     public GameObject itemPopup;
+    public GameObject[] skillButtons; // Array de botones para las habilidades
+    public TextMeshProUGUI[] skillButtonLabels; // Array de textos para los botones de habilidades
+
 
     [Header("Player & Enemy Panels")]
     public Image playerSprite;
@@ -41,7 +44,20 @@ public class BattleManager : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag(BattleConstants.CharacterRole.Player.ToString());
         actionOptions = new TextMeshProUGUI[] { attackText, skillText, itemText, talkText };
-        UpdateHighlight();
+    }
+    
+    public void SetUpSkillButtons()
+    {
+        for (int i = 0; i < skillButtons.Length; i++)
+        {
+            skillButtons[i].SetActive(false); // Oculta todos los botones al inicio
+        }
+    }
+
+    public void ConfigureSkillButtons(int index, string skillName)
+    {
+        this.skillButtons[index].SetActive(true);
+        this.skillButtonLabels[index].text = skillName;
     }
 
     void Update()
@@ -99,11 +115,11 @@ public class BattleManager : MonoBehaviour
             actionOptions[i].color = (i == selectedOption) ? new Color(0.5f, 1f, 1f) : Color.white;
         }
     }
-    
+
 
     void ActivateOption(int option)
     {
-        switch(option)
+        switch (option)
         {
             case 0: Attack(); break;
             case 1: ShowSkills(); break;
@@ -119,13 +135,31 @@ public class BattleManager : MonoBehaviour
         // PlayerController
     }
 
+    void ExecuteSkill(int index)
+    {
+        if (index < 0 || index >= skillButtons.Length) return;
+        Debug.Log("Ejecutar habilidad: " + skillButtonLabels[index].text);
+
+        // Obtener las habilidades del jugador
+        FighterStats playerStats = player.GetComponent<FighterStats>();
+        Skill[] playerSkills = playerStats.GetSkills();
+
+        if (index < playerSkills.Length)
+        {
+            //Skill skillSelected = playerSkills[index];
+            //skillSelected.SetTargetanduser(playerStats, enemy.GetComponent<FighterStats>());
+            //skillSelected.Run();
+            // Cerrar el popup después de usar la habilidad
+            skillPopup.SetActive(false);
+        }
+    }
+
     void ShowSkills()
     {
         Debug.Log("Mostrar popup de habilidades");
         skillPopup.SetActive(!skillPopup.activeSelf);
         if (skillPopup.activeSelf)
             itemPopup.SetActive(false);
-        // SkillSystem y SkillData
     }
 
     void ShowItems()
@@ -142,4 +176,5 @@ public class BattleManager : MonoBehaviour
         Debug.Log("Inicia conversación");
         // Dialogue System
     }
+
 }
