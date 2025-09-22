@@ -75,6 +75,14 @@ public class BattleManager : MonoBehaviour
     {
         this.skillButtons[index].SetActive(true);
         this.skillButtonLabels[index].text = skillName;
+        
+        Button button = this.skillButtons[index].GetComponent<Button>();
+        if (button != null)
+        {
+            button.onClick.RemoveAllListeners();
+            int capturedIndex = index;
+            button.onClick.AddListener(() => ExecuteSkill(capturedIndex));
+        }
     }
 
     public void ConfigureItemButtons(int index, string itemName)
@@ -88,9 +96,16 @@ public class BattleManager : MonoBehaviour
         this.itemButtons[buttonIndex].SetActive(true);
         this.itemButtonLabels[buttonIndex].text = itemName;
         
-        // Inicializar el mapeo si no existe
         if (buttonToItemIndex == null) buttonToItemIndex = new int[itemButtons.Length];
         buttonToItemIndex[buttonIndex] = realItemIndex;
+        
+        Button button = this.itemButtons[buttonIndex].GetComponent<Button>();
+        if (button != null)
+        {
+            button.onClick.RemoveAllListeners();
+            int capturedIndex = buttonIndex;
+            button.onClick.AddListener(() => ExecuteItem(capturedIndex));
+        }
     }
 
     void Update()
