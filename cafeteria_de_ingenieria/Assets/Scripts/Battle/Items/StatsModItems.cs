@@ -29,14 +29,23 @@ public class StatsModItems : Item
     {
         if (userStats == null) return;
 
-        string fieldName = statType.ToString().ToLower();
-        FieldInfo field = typeof(FighterStats).GetField(fieldName);
-        
-        if (field != null && field.FieldType == typeof(float))
+        switch (statType)
         {
-            float currentValue = (float)field.GetValue(userStats);
-            float newValue = CalculateNewValue(currentValue, modificationAmount);
-            field.SetValue(userStats, newValue);
+            case StatsType.Attack:
+                userStats.attack = CalculateNewValue(userStats.attack, modificationAmount);
+                break;
+            case StatsType.Defense:
+                userStats.defense = CalculateNewValue(userStats.defense, modificationAmount);
+                break;
+            case StatsType.Health:
+                userStats.health = CalculateNewValue(userStats.health, modificationAmount);
+                break;
+            case StatsType.Mana:
+                userStats.magic = CalculateNewValue(userStats.magic, modificationAmount);
+                break;
+            default:
+                Debug.LogWarning($"Stat type {statType} not handled.");
+                break;
         }
     }
 

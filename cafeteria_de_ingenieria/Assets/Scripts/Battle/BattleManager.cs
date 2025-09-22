@@ -155,7 +155,7 @@ public class BattleManager : MonoBehaviour
 
     public void OnClickOption(int index)
     {
-        if (isPopupActive && (index == 0 || index == 3)) return;
+        if (isPopupActive) return;
         ActivateOption(index);
     }
 
