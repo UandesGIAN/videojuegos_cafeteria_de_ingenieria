@@ -8,6 +8,9 @@ public class BattleManager : MonoBehaviour
 {
     private GameObject player;
     private GameObject enemy;
+    
+    // Mapeo simple: qué item del array corresponde a cada botón
+    private int[] buttonToItemIndex;
 
     [Header("Action Menu")]
     public TextMeshProUGUI attackText;
@@ -18,9 +21,14 @@ public class BattleManager : MonoBehaviour
     [Header("Popups")]
     public GameObject skillPopup;
     public GameObject itemPopup;
-    public GameObject[] skillButtons; // Array de botones para las habilidades
-    public TextMeshProUGUI[] skillButtonLabels; // Array de textos para los botones de habilidades
 
+    [Header("Skill Buttons")]
+    public GameObject[] skillButtons;
+    public TextMeshProUGUI[] skillButtonLabels;
+
+    [Header("Item Buttons")]
+    public GameObject[] itemButtons;
+    public TextMeshProUGUI[] itemButtonLabels;
 
     [Header("Player & Enemy Panels")]
     public Image playerSprite;
@@ -51,7 +59,15 @@ public class BattleManager : MonoBehaviour
     {
         for (int i = 0; i < skillButtons.Length; i++)
         {
-            skillButtons[i].SetActive(false); // Oculta todos los botones al inicio
+            skillButtons[i].SetActive(false);
+        }
+    }
+
+    public void SetUpItemButtons()
+    {
+        for (int i = 0; i < itemButtons.Length; i++)
+        {
+            itemButtons[i].SetActive(false);
         }
     }
 
@@ -59,6 +75,22 @@ public class BattleManager : MonoBehaviour
     {
         this.skillButtons[index].SetActive(true);
         this.skillButtonLabels[index].text = skillName;
+    }
+
+    public void ConfigureItemButtons(int index, string itemName)
+    {
+        this.itemButtons[index].SetActive(true);
+        this.itemButtonLabels[index].text = itemName;
+    }
+    
+    public void ConfigureItemButtons(int buttonIndex, string itemName, int realItemIndex)
+    {
+        this.itemButtons[buttonIndex].SetActive(true);
+        this.itemButtonLabels[buttonIndex].text = itemName;
+        
+        // Inicializar el mapeo si no existe
+        if (buttonToItemIndex == null) buttonToItemIndex = new int[itemButtons.Length];
+        buttonToItemIndex[buttonIndex] = realItemIndex;
     }
 
     void Update()
@@ -156,6 +188,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+
     void ShowSkills()
     {
         Debug.Log("Mostrar popup de habilidades");
@@ -164,13 +197,29 @@ public class BattleManager : MonoBehaviour
             itemPopup.SetActive(false);
     }
 
+    void ExecuteItem(int index)
+    {
+        if (index < 0 || index >= itemButtons.Length || buttonToItemIndex == null) return;
+        Debug.Log("Usar objeto: " + itemButtonLabels[index].text); 
+
+        FighterStats playerStats = player.GetComponent<FighterStats>();
+        Item[] playerItems = playerStats.GetItems();
+
+        int realItemIndex = buttonToItemIndex[index];
+        if (realItemIndex >= 0 && realItemIndex < playerItems.Length)
+        {
+            Item itemSelected = playerItems[realItemIndex];
+            itemSelected.Run();
+            itemPopup.SetActive(false);
+        }
+    }
+
     void ShowItems()
     {
         Debug.Log("Mostrar popup de objetos");
         itemPopup.SetActive(!itemPopup.activeSelf);
         if (itemPopup.activeSelf)
             skillPopup.SetActive(false);
-        // ItemData y ItemSystem
     }
 
     void Talk()
