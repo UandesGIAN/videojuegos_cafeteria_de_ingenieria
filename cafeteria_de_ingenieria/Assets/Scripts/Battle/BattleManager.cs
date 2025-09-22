@@ -85,14 +85,10 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void ConfigureItemButtons(int index, string itemName)
-    {
-        this.itemButtons[index].SetActive(true);
-        this.itemButtonLabels[index].text = itemName;
-    }
-    
     public void ConfigureItemButtons(int buttonIndex, string itemName, int realItemIndex)
     {
+        Debug.Log($"Configurando item button {buttonIndex}: {itemName} -> realIndex: {realItemIndex}");
+        
         this.itemButtons[buttonIndex].SetActive(true);
         this.itemButtonLabels[buttonIndex].text = itemName;
         
@@ -104,7 +100,15 @@ public class BattleManager : MonoBehaviour
         {
             button.onClick.RemoveAllListeners();
             int capturedIndex = buttonIndex;
-            button.onClick.AddListener(() => ExecuteItem(capturedIndex));
+            button.onClick.AddListener(() => {
+                Debug.Log($"Item button {capturedIndex} clicked - calling ExecuteItem");
+                ExecuteItem(capturedIndex);
+            });
+            Debug.Log($"Event listener configurado para botón {buttonIndex}");
+        }
+        else
+        {
+            Debug.LogError($"No se encontró componente Button en itemButtons[{buttonIndex}]");
         }
     }
 
@@ -185,6 +189,7 @@ public class BattleManager : MonoBehaviour
 
     void ExecuteSkill(int index)
     {
+        Debug.Log($"*** ExecuteSkill called with index: {index} ***");
         if (index < 0 || index >= skillButtons.Length) return;
         Debug.Log("Ejecutar habilidad: " + skillButtonLabels[index].text); 
         enemy = GameObject.FindGameObjectWithTag(BattleConstants.CharacterRole.Enemy.ToString());
@@ -214,18 +219,32 @@ public class BattleManager : MonoBehaviour
 
     void ExecuteItem(int index)
     {
-        if (index < 0 || index >= itemButtons.Length || buttonToItemIndex == null) return;
+        Debug.Log($"*** ExecuteItem called with index: {index} ***");
+        
+        if (index < 0 || index >= itemButtons.Length || buttonToItemIndex == null) 
+        {
+            Debug.LogError($"ExecuteItem: Invalid parameters - index:{index}, buttonsLength:{itemButtons?.Length}, mapExists:{buttonToItemIndex != null}");
+            return;
+        }
+        
         Debug.Log("Usar objeto: " + itemButtonLabels[index].text); 
 
         FighterStats playerStats = player.GetComponent<FighterStats>();
         Item[] playerItems = playerStats.GetItems();
 
         int realItemIndex = buttonToItemIndex[index];
+        Debug.Log($"Real item index: {realItemIndex}");
+        
         if (realItemIndex >= 0 && realItemIndex < playerItems.Length)
         {
             Item itemSelected = playerItems[realItemIndex];
+            Debug.Log($"Ejecutando item: {itemSelected.itemName}");
             itemSelected.Run();
             itemPopup.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError($"Real item index out of bounds: {realItemIndex} (array length: {playerItems?.Length})");
         }
     }
 
