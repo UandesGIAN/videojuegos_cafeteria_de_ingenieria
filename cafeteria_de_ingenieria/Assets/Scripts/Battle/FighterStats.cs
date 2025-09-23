@@ -1,5 +1,112 @@
 using System.Threading;
 using UnityEngine;
+using System.Collections.Generic;
+
+public enum ElementType
+{
+    AGUA,
+    CEMENTO,
+    ELECTRONICO,
+    FUEGO,
+    NORMAL,
+    PLANTA
+}
+
+public static class TypeEffectiveness
+{
+    private static readonly Dictionary<ElementType, Dictionary<ElementType, float>> effectivenessTable = 
+        new Dictionary<ElementType, Dictionary<ElementType, float>>
+        {
+            {
+                ElementType.ELECTRONICO, new Dictionary<ElementType, float>
+                {
+                    { ElementType.ELECTRONICO, 0.5f },
+                    { ElementType.PLANTA, 1f },
+                    { ElementType.CEMENTO, 0.5f },
+                    { ElementType.NORMAL, 1f },
+                    { ElementType.AGUA, 2f },
+                    { ElementType.FUEGO, 1f }
+                }
+            },
+            {
+                ElementType.PLANTA, new Dictionary<ElementType, float>
+                {
+                    { ElementType.ELECTRONICO, 1f },
+                    { ElementType.PLANTA, 0.5f },
+                    { ElementType.CEMENTO, 2f },
+                    { ElementType.NORMAL, 0.5f },
+                    { ElementType.AGUA, 2f },
+                    { ElementType.FUEGO, 0.5f }
+                }
+            },
+            {
+                ElementType.CEMENTO, new Dictionary<ElementType, float>
+                {
+                    { ElementType.ELECTRONICO, 2f },
+                    { ElementType.PLANTA, 0.5f },
+                    { ElementType.CEMENTO, 2f },
+                    { ElementType.NORMAL, 2f },
+                    { ElementType.AGUA, 0.5f },
+                    { ElementType.FUEGO, 2f }
+                }
+            },
+            {
+                ElementType.NORMAL, new Dictionary<ElementType, float>
+                {
+                    { ElementType.ELECTRONICO, 0.5f },
+                    { ElementType.PLANTA, 1f },
+                    { ElementType.CEMENTO, 1f },
+                    { ElementType.NORMAL, 1f },
+                    { ElementType.AGUA, 2f },
+                    { ElementType.FUEGO, 1f }
+                }
+            },
+            {
+                ElementType.AGUA, new Dictionary<ElementType, float>
+                {
+                    { ElementType.ELECTRONICO, 2f },
+                    { ElementType.PLANTA, 0.5f },
+                    { ElementType.CEMENTO, 2f },
+                    { ElementType.NORMAL, 0.5f },
+                    { ElementType.AGUA, 1f },
+                    { ElementType.FUEGO, 2f }
+                }
+            },
+            {
+                ElementType.FUEGO, new Dictionary<ElementType, float>
+                {
+                    { ElementType.ELECTRONICO, 1f },
+                    { ElementType.PLANTA, 2f },
+                    { ElementType.CEMENTO, 0.5f },
+                    { ElementType.NORMAL, 2f },
+                    { ElementType.AGUA, 0.5f },
+                    { ElementType.FUEGO, 0.5f }
+                }
+            }
+        };
+
+
+    public static float GetTypeMultiplier(ElementType attackerType, ElementType defenderType)
+    {
+        if (effectivenessTable.ContainsKey(attackerType) && 
+            effectivenessTable[attackerType].ContainsKey(defenderType))
+        {
+            return effectivenessTable[attackerType][defenderType];
+        }
+        return 1f; 
+    }
+
+
+    public static string GetEffectivenessMessage(float multiplier)
+    {
+        if (multiplier >= 2f)
+            return "¡Es súper efectivo!";
+        else if (multiplier <= 0.5f)
+            return "No es muy efectivo...";
+        else
+            return "";
+    }
+}
 
 public class FighterStats : MonoBehaviour
 {
@@ -11,22 +118,33 @@ public class FighterStats : MonoBehaviour
     [SerializeField]
     private GameObject currentMagicObject;
 
-    [Header("Stats")]
+    [Header("Stats del Luchador")]
+    public ElementType elementType = ElementType.NORMAL;
     public float health;
     public float magic;
     public float attack;
-    public float defense;
-
+    public float physicalArmor = 1f;
+    public float magicalArmor = 1f;
     public float experience;
+    public int level = 1;
+
+    [HideInInspector]
+    public float defense;
 
     private float startHealth;
     private float startMagic;
 
     protected Skill[] skills;
+    protected Item[] items;
 
     public Skill[] GetSkills()
     {
         return skills;
+    }
+
+    public Item[] GetItems()
+    {
+        return items;
     }
 
     [Header("UI")]
@@ -41,7 +159,6 @@ public class FighterStats : MonoBehaviour
     private float healthBarNewHorizontalValue;
     private float magicBarNewHorizontalValue;
 
-
     private void Awake()
     {
         // currentHealthObject y Magic son establecidos en el editor xd
@@ -50,11 +167,28 @@ public class FighterStats : MonoBehaviour
         startHealth = health;
         startMagic = magic;
         skills = this.GetComponentsInChildren<Skill>();
-        battleManager = FindFirstObjectByType<BattleManager>();
+        items = this.GetComponentsInChildren<Item>();
+        
+        // Asegurar valores mínimos de armadura
+        if (physicalArmor <= 0) physicalArmor = 1f;
+        if (magicalArmor <= 0) magicalArmor = 1f;
+        
+        battleManager = FindObjectOfType<BattleManager>();
         battleManager.SetUpSkillButtons();
-       for (int i = 0; i < skills.Length; i++)
+        for (int i = 0; i < skills.Length; i++)
         {
             battleManager.ConfigureSkillButtons(i, skills[i].skillName);
+        }
+        
+        battleManager.SetUpItemButtons();
+        int itemButtonIndex = 0;
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i].amount > 0) // Me preocupo que no haya items con 0 cantidad
+            {
+                battleManager.ConfigureItemButtons(itemButtonIndex, $"{items[i].itemName} ({items[i].amount})", i);
+                itemButtonIndex++;
+            }
         }
     }
 
@@ -63,13 +197,12 @@ public class FighterStats : MonoBehaviour
         if (damage <= 0) return; // si no hizo daño, no actualizar nada
 
         health -= damage;
-        Debug.Log("\t\tCurrent Health: " + health);
-        //TODO: reproducir animacion de recibimiento de daño en unos meses xd
+        Debug.Log($"\t\t{gameObject.name} recibió {damage} de daño. HP actual: {health}");
 
         if (health <= 0)
         {
             dead = true;
-            gameObject.tag = BattleConstants.CharacterRole.Dead.ToString();
+            gameObject.tag = "Dead";
             Destroy(currentHealthObject);
             Destroy(currentMagicObject);
             Destroy(gameObject);
@@ -81,13 +214,56 @@ public class FighterStats : MonoBehaviour
         healthBarNewHorizontalValue = healthBarDimensions.x * (health / startHealth);
         currentHealthObject.transform.localScale = new Vector2(healthBarNewHorizontalValue, healthBarDimensions.y);
 
-        if (gameObject.CompareTag(BattleConstants.CharacterRole.Player.ToString()))
+        if (gameObject.CompareTag("Player"))
         {
             // si player recibe daño, se espera un segundo para q no pase tan rapido el ataque xd
             Invoke(nameof(ContinueGame), 1);
         }
         else ContinueGame(); // se sigue al turno del enemigo de inmediato para evitar que jugador spamee botones
     }
+
+    public void ReceiveDamageWithType(FighterStats attacker, bool isMagical = false)
+    {
+        float damage = CalculateDamage(attacker, this, isMagical);
+        ReceiveDamage(damage); 
+    }
+
+    public float CalculateDamage(FighterStats attacker, FighterStats defender, bool isMagical = false)
+    {
+        // Daño base del ataque (por ahora estándar = 1)
+        float baseDamage = 1f;
+        
+        // Multiplicador = attack o magic del atacante
+        float multiplier = isMagical ? attacker.magic : attacker.attack;
+        
+        // Armadura del defensor
+        float armor = isMagical ? defender.magicalArmor : defender.physicalArmor;
+        
+        // Asegurar que armadura mínima sea 1 para evitar división por 0
+        if (armor <= 0) armor = 1;
+        
+        // Obtener multiplicador de tipo
+        float typeMultiplier = TypeEffectiveness.GetTypeMultiplier(attacker.elementType, defender.elementType);
+        
+        // Aplicar tu fórmula: (Base × (multiplicador ÷ armadura)) × Tipo
+        float finalDamage = (baseDamage * (multiplier / armor)) * typeMultiplier;
+        
+        // Log para debug y mostrar efectividad
+        string effectiveness = TypeEffectiveness.GetEffectivenessMessage(typeMultiplier);
+        string attackTypeText = isMagical ? "MÁGICO" : "FÍSICO";
+        
+        Debug.Log($"=== CÁLCULO DE DAÑO ===");
+        Debug.Log($"Atacante: {attacker.name} ({attacker.elementType}) - {attackTypeText}");
+        Debug.Log($"Base: {baseDamage}, Multiplicador: {multiplier}, Armadura: {armor}");
+        Debug.Log($"Multiplicador de tipo: {typeMultiplier}x");
+        Debug.Log($"Fórmula: ({baseDamage} × ({multiplier} ÷ {armor})) × {typeMultiplier} = {finalDamage}");
+        
+        if (!string.IsNullOrEmpty(effectiveness))
+            Debug.Log($">>> {effectiveness} <<<");
+            
+        return Mathf.Max(1f, finalDamage); // Mínimo 1 de daño
+    }
+
     public void Heal(float healAmount)
     {
         if (healAmount <= 0) return; // si no hizo nada, no actualizar nada
@@ -100,7 +276,7 @@ public class FighterStats : MonoBehaviour
         healthBarNewHorizontalValue = healthBarDimensions.x * (health / startHealth);
         currentHealthObject.transform.localScale = new Vector2(healthBarNewHorizontalValue, healthBarDimensions.y);
 
-        if (gameObject.CompareTag(BattleConstants.CharacterRole.Player.ToString()))
+        if (gameObject.CompareTag("Player"))
         {
             // si player se cura, se espera un segundo para q no pase tan rapido el ataque xd
             Invoke(nameof(ContinueGame), 1);
@@ -117,7 +293,4 @@ public class FighterStats : MonoBehaviour
     {
         GameObject.Find("TurnControllerObject").GetComponent<TurnController>().NextTurn();
     }
-
-    // falta funcion para updatear magic bar pero eso solo pasa luego de usar una habilidad!
-    // ademas quizas sea mejor aislar la logica de receivedamage y updatemagicbar a un nuevo script pq quizas no tienen mucho q ver aqui
 }
