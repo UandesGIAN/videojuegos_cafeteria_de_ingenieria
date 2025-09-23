@@ -39,18 +39,11 @@ public class AttackScript : MonoBehaviour
 
     public void Attack(GameObject target)
     {
-        // obtener estadisticas de atacante y target desde el componente fighterstats de cada uno
-        attackerStats = owner.GetComponent<FighterStats>();
-        targetStats = target.GetComponent<FighterStats>();
-
-        // calcular y aplicar daño
-        float attackMult = Random.Range(minAttackMult, maxAttackMult);
-        damage = attackMult * attackerStats.attack;
-
-        float targetDefenseMult = Random.Range(minDefenseMult, maxDefenseMult);
-        damage = Mathf.Max(0, damage - (targetDefenseMult * targetStats.defense));
-
-        targetStats.ReceiveDamage(damage);
+    	// obtener estadisticas de atacante y target desde el componente fighterstats de cada uno
+    	attackerStats = owner.GetComponent<FighterStats>();
+    	targetStats = target.GetComponent<FighterStats>();
+    
+    	// NUEVO SISTEMA - usar el cálculo de daño con tipos
+    	targetStats.ReceiveDamageWithType(attackerStats, false); // false = ataque físico
     }
-
 }
