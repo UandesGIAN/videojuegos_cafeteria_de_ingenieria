@@ -50,7 +50,7 @@ public class FighterStats : MonoBehaviour
         startHealth = health;
         startMagic = magic;
         skills = this.GetComponentsInChildren<Skill>();
-        battleManager = FindObjectOfType<BattleManager>();
+        battleManager = FindFirstObjectByType<BattleManager>();
         battleManager.SetUpSkillButtons();
        for (int i = 0; i < skills.Length; i++)
         {
