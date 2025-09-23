@@ -135,10 +135,16 @@ public class FighterStats : MonoBehaviour
     private float startMagic;
 
     protected Skill[] skills;
+    protected Item[] items;
 
     public Skill[] GetSkills()
     {
         return skills;
+    }
+
+    public Item[] GetItems()
+    {
+        return items;
     }
 
     [Header("UI")]
@@ -161,16 +167,29 @@ public class FighterStats : MonoBehaviour
         startHealth = health;
         startMagic = magic;
         skills = this.GetComponentsInChildren<Skill>();
+        items = this.GetComponentsInChildren<Item>();
+        
+        // Asegurar valores mínimos de armadura
+        if (physicalArmor <= 0) physicalArmor = 1f;
+        if (magicalArmor <= 0) magicalArmor = 1f;
+        
         battleManager = FindObjectOfType<BattleManager>();
         battleManager.SetUpSkillButtons();
         for (int i = 0; i < skills.Length; i++)
         {
             battleManager.ConfigureSkillButtons(i, skills[i].skillName);
         }
-
-        // Asegurar valores mínimos de armadura
-        if (physicalArmor <= 0) physicalArmor = 1f;
-        if (magicalArmor <= 0) magicalArmor = 1f;
+        
+        battleManager.SetUpItemButtons();
+        int itemButtonIndex = 0;
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i].amount > 0) // Me preocupo que no haya items con 0 cantidad
+            {
+                battleManager.ConfigureItemButtons(itemButtonIndex, $"{items[i].itemName} ({items[i].amount})", i);
+                itemButtonIndex++;
+            }
+        }
     }
 
     public void ReceiveDamage(float damage)
