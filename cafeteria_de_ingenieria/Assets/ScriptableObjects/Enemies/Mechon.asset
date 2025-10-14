@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cae085451e648443b23d174c7366378, type: 3}
   m_Name: Mechon
   m_EditorClassIdentifier: 
-  enemyName: 
-  sprite: {fileID: 0}
+  enemyName: Mechon
+  sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   maxHP: 100
   attack: 10
   defense: 5
-  intellect: 5
