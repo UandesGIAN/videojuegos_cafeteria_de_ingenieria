@@ -3270,11 +3270,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealthObject: {fileID: 1190189886}
   currentMagicObject: {fileID: 416544923}
+  elementType: 4
   health: 50
   magic: 10
   attack: 20
-  defense: 10
+  physicalArmor: 1
+  magicalArmor: 1
   experience: 0
+  level: 1
+  defense: 10
   battleManager: {fileID: 0}
 --- !u!114 &955582174
 MonoBehaviour:
@@ -5333,8 +5337,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.24, y: 11.53}
-  m_SizeDelta: {x: 1540.75, y: 669.06}
+  m_AnchoredPosition: {x: 2.7726173, y: 11.529968}
+  m_SizeDelta: {x: 1543.8, y: 869.06}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1590376802
 MonoBehaviour:
@@ -5553,7 +5557,7 @@ MonoBehaviour:
   playerSprite: {fileID: 1786806661}
   playerName: {fileID: 762405140}
   playerHP: {fileID: 227798144}
-  playerIQ: {fileID: 0}
+  playerIQ: {fileID: 1590504282}
   enemySprite: {fileID: 955582171}
   enemyName: {fileID: 2107433848}
   enemyHP: {fileID: 1190189888}
@@ -6322,8 +6326,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 707.33026, y: -548.88}
-  m_SizeDelta: {x: 1414.7, y: 250.45}
+  m_AnchoredPosition: {x: 642.77264, y: -603.33}
+  m_SizeDelta: {x: 1414.7, y: 359.34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1731427781
 MonoBehaviour:
@@ -6987,11 +6991,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealthObject: {fileID: 227798142}
   currentMagicObject: {fileID: 1590504280}
+  elementType: 4
   health: 100
   magic: 10
   attack: 20
-  defense: 5
+  physicalArmor: 1
+  magicalArmor: 1
   experience: 0
+  level: 1
+  defense: 5
   battleManager: {fileID: 0}
 --- !u!1 &1871933532
 GameObject:
