@@ -7,7 +7,7 @@ public class TurnController : MonoBehaviour
     private List<FighterStats> fightersTurnOrder;
 
     [SerializeField]
-    private GameObject battleMenu; //ActionMenu en el editor
+    private GameObject battleMenu; // ActionMenu en el editor
 
     [SerializeField]
     private bool doesEnemyMoveFirst = false;
@@ -59,7 +59,7 @@ public class TurnController : MonoBehaviour
             battleMenu.SetActive(false);
 
             // reemplazar limite superior por 2 cuando esten hechas las skills
-            // igual obviamente habria que hacer la pega de que FighterAction.SelectOption() soporte abilidades
+            // igual obviamente habria que hacer la pega de que FighterAction.SelectOption() soporte habilidades
             string attackType = Random.Range(0, 1) == 0 ? BattleConstants.MenuAttackOptions.Melee.ToString() : BattleConstants.MenuAttackOptions.Ability.ToString();
             currentFighterObject.GetComponent<FighterAction>().SelectOption(attackType);
         }
