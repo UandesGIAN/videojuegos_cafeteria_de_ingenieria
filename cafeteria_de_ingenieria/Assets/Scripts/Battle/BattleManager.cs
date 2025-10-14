@@ -6,6 +6,12 @@ using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
+    private GameObject player;
+    private GameObject enemy;
+    
+    // Mapeo simple: qué item del array corresponde a cada botón
+    private int[] buttonToItemIndex;
+
     [Header("Action Menu")]
     public TextMeshProUGUI attackText;
     public TextMeshProUGUI skillText;
@@ -15,6 +21,14 @@ public class BattleManager : MonoBehaviour
     [Header("Popups")]
     public GameObject skillPopup;
     public GameObject itemPopup;
+
+    [Header("Skill Buttons")]
+    public GameObject[] skillButtons;
+    public TextMeshProUGUI[] skillButtonLabels;
+
+    [Header("Item Buttons")]
+    public GameObject[] itemButtons;
+    public TextMeshProUGUI[] itemButtonLabels;
 
     [Header("Player & Enemy Panels")]
     public Image playerSprite;
@@ -37,8 +51,65 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag(BattleConstants.CharacterRole.Player.ToString());
         actionOptions = new TextMeshProUGUI[] { attackText, skillText, itemText, talkText };
-        UpdateHighlight();
+    }
+    
+    public void SetUpSkillButtons()
+    {
+        for (int i = 0; i < skillButtons.Length; i++)
+        {
+            skillButtons[i].SetActive(false);
+        }
+    }
+
+    public void SetUpItemButtons()
+    {
+        for (int i = 0; i < itemButtons.Length; i++)
+        {
+            itemButtons[i].SetActive(false);
+        }
+    }
+
+    public void ConfigureSkillButtons(int index, string skillName)
+    {
+        this.skillButtons[index].SetActive(true);
+        this.skillButtonLabels[index].text = skillName;
+        
+        Button button = this.skillButtons[index].GetComponent<Button>();
+        if (button != null)
+        {
+            button.onClick.RemoveAllListeners();
+            int capturedIndex = index;
+            button.onClick.AddListener(() => ExecuteSkill(capturedIndex));
+        }
+    }
+
+    public void ConfigureItemButtons(int buttonIndex, string itemName, int realItemIndex)
+    {
+        Debug.Log($"Configurando item button {buttonIndex}: {itemName} -> realIndex: {realItemIndex}");
+        
+        this.itemButtons[buttonIndex].SetActive(true);
+        this.itemButtonLabels[buttonIndex].text = itemName;
+        
+        if (buttonToItemIndex == null) buttonToItemIndex = new int[itemButtons.Length];
+        buttonToItemIndex[buttonIndex] = realItemIndex;
+        
+        Button button = this.itemButtons[buttonIndex].GetComponent<Button>();
+        if (button != null)
+        {
+            button.onClick.RemoveAllListeners();
+            int capturedIndex = buttonIndex;
+            button.onClick.AddListener(() => {
+                Debug.Log($"Item button {capturedIndex} clicked - calling ExecuteItem");
+                ExecuteItem(capturedIndex);
+            });
+            Debug.Log($"Event listener configurado para botón {buttonIndex}");
+        }
+        else
+        {
+            Debug.LogError($"No se encontró componente Button en itemButtons[{buttonIndex}]");
+        }
     }
 
     void Update()
@@ -84,7 +155,7 @@ public class BattleManager : MonoBehaviour
 
     public void OnClickOption(int index)
     {
-        if (isPopupActive && (index == 0 || index == 3)) return;
+        if (isPopupActive) return;
         ActivateOption(index);
     }
 
@@ -96,11 +167,11 @@ public class BattleManager : MonoBehaviour
             actionOptions[i].color = (i == selectedOption) ? new Color(0.5f, 1f, 1f) : Color.white;
         }
     }
-    
+
 
     void ActivateOption(int option)
     {
-        switch(option)
+        switch (option)
         {
             case 0: Attack(); break;
             case 1: ShowSkills(); break;
@@ -111,9 +182,32 @@ public class BattleManager : MonoBehaviour
 
     void Attack()
     {
-        Debug.Log("Jugador ataca al enemigo");
+        //Debug.Log("Jugador ataca al enemigo");
+        player.GetComponent<FighterAction>().SelectOption(BattleConstants.MenuAttackOptions.Melee.ToString());
         // PlayerController
     }
+
+    void ExecuteSkill(int index)
+    {
+        Debug.Log($"*** ExecuteSkill called with index: {index} ***");
+        if (index < 0 || index >= skillButtons.Length) return;
+        Debug.Log("Ejecutar habilidad: " + skillButtonLabels[index].text); 
+        enemy = GameObject.FindGameObjectWithTag(BattleConstants.CharacterRole.Enemy.ToString());
+
+        // Obtener las habilidades del jugador
+        FighterStats playerStats = player.GetComponent<FighterStats>();
+        Skill[] playerSkills = playerStats.GetSkills();
+
+        if (index < playerSkills.Length)
+        {
+            Skill skillSelected = playerSkills[index];
+            skillSelected.SetTargetanduser(playerStats, enemy.GetComponent<FighterStats>());
+            skillSelected.Run();
+            // Cerrar el popup después de usar la habilidad
+            skillPopup.SetActive(false);
+        }
+    }
+
 
     void ShowSkills()
     {
@@ -121,7 +215,37 @@ public class BattleManager : MonoBehaviour
         skillPopup.SetActive(!skillPopup.activeSelf);
         if (skillPopup.activeSelf)
             itemPopup.SetActive(false);
-        // SkillSystem y SkillData
+    }
+
+    void ExecuteItem(int index)
+    {
+        Debug.Log($"*** ExecuteItem called with index: {index} ***");
+        
+        if (index < 0 || index >= itemButtons.Length || buttonToItemIndex == null) 
+        {
+            Debug.LogError($"ExecuteItem: Invalid parameters - index:{index}, buttonsLength:{itemButtons?.Length}, mapExists:{buttonToItemIndex != null}");
+            return;
+        }
+        
+        Debug.Log("Usar objeto: " + itemButtonLabels[index].text); 
+
+        FighterStats playerStats = player.GetComponent<FighterStats>();
+        Item[] playerItems = playerStats.GetItems();
+
+        int realItemIndex = buttonToItemIndex[index];
+        Debug.Log($"Real item index: {realItemIndex}");
+        
+        if (realItemIndex >= 0 && realItemIndex < playerItems.Length)
+        {
+            Item itemSelected = playerItems[realItemIndex];
+            Debug.Log($"Ejecutando item: {itemSelected.itemName}");
+            itemSelected.Run();
+            itemPopup.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError($"Real item index out of bounds: {realItemIndex} (array length: {playerItems?.Length})");
+        }
     }
 
     void ShowItems()
@@ -130,7 +254,6 @@ public class BattleManager : MonoBehaviour
         itemPopup.SetActive(!itemPopup.activeSelf);
         if (itemPopup.activeSelf)
             skillPopup.SetActive(false);
-        // ItemData y ItemSystem
     }
 
     void Talk()
@@ -138,4 +261,5 @@ public class BattleManager : MonoBehaviour
         Debug.Log("Inicia conversación");
         // Dialogue System
     }
+
 }
