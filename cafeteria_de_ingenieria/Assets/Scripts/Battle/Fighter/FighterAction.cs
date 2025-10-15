@@ -30,6 +30,12 @@ public class FighterAction : MonoBehaviour
     {
         // recibe el nombre de la opcion elegida en el ActionMenu desde los metodos llamados por BattleManager.ActivateOption()
         GameObject target = gameObject.CompareTag(BattleConstants.CharacterRole.Player.ToString()) ? enemy : player;
+        if (target == null)
+        {
+            Debug.LogWarning("Target ya no existe, no se puede atacar.");
+            return; // No hay objetivo
+        }
+    
         Debug.Log("Target is " + target.tag + ":");
 
         // ataque melee (normal)

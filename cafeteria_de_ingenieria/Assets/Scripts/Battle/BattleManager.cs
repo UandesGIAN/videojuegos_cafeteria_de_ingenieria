@@ -2,114 +2,111 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using System.Linq;
 
 public class BattleManager : MonoBehaviour
 {
-    private GameObject player;
-    private GameObject enemy;
-    
-    // Mapeo simple: qué item del array corresponde a cada botón
-    private int[] buttonToItemIndex;
+    [Header("Referencias externas")]
+    public BattleUI ui;
+    public FighterStats enemy;
+    public TurnController turnController;
+    public FighterStats player;
+    public FighterAction playerAction;
 
-    [Header("Action Menu")]
-    public TextMeshProUGUI attackText;
-    public TextMeshProUGUI skillText;
-    public TextMeshProUGUI itemText;
-    public TextMeshProUGUI talkText;
-
-    [Header("Popups")]
-    public GameObject skillPopup;
-    public GameObject itemPopup;
-
-    [Header("Skill Buttons")]
-    public GameObject[] skillButtons;
-    public TextMeshProUGUI[] skillButtonLabels;
-
-    [Header("Item Buttons")]
-    public GameObject[] itemButtons;
-    public TextMeshProUGUI[] itemButtonLabels;
-
-    [Header("Player & Enemy Panels")]
-    public Image playerSprite;
-    public TMP_Text playerName;
-    public Slider playerHP;
-    public Slider playerIQ;
-
-    public Image enemySprite;
-    public TMP_Text enemyName;
-    public Slider enemyHP;
-
-    [Header("Message Log")]
-    public TMP_Text messageLog;
 
     private int selectedOption = 0;
     private TextMeshProUGUI[] actionOptions;
 
     // Flag para saber si un popup está activo
-    private bool isPopupActive => skillPopup.activeSelf || itemPopup.activeSelf;
+    private bool isPopupActive => ui.skillPopup.activeSelf || ui.itemPopup.activeSelf;
+
+    // Al terminar la batalla
+    private System.Action onBattleEnd;
+    private bool battleActive = false;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag(BattleConstants.CharacterRole.Player.ToString());
-        actionOptions = new TextMeshProUGUI[] { attackText, skillText, itemText, talkText };
+        actionOptions = new TextMeshProUGUI[] { ui.attackText, ui.skillText, ui.itemText };
+        SetupUI();
     }
-    
-    public void SetUpSkillButtons()
+
+    private void SetupUI()
     {
-        for (int i = 0; i < skillButtons.Length; i++)
+        ui.OnSkillSelected += ExecuteSkill;
+        ui.OnItemSelected += ExecuteItem;
+
+        ui.SetupSkillButtons(player);
+        ui.SetupItemList(player);
+
+        // Desactivamos popups al inicio
+        ui.skillPopup.SetActive(false);
+        ui.itemPopup.SetActive(false);
+    }
+
+    public void SetEnemy(FighterStats newEnemy)
+    {
+        if (enemy != null)
+            ui.ClearEnemy();
+
+        enemy = newEnemy;
+        ui.SetupEnemy(enemy);
+    }
+
+    public void AttackEnemy(float damage)
+    {
+        if (enemy != null)
         {
-            skillButtons[i].SetActive(false);
+            enemy.ReceiveDamage(damage);
         }
     }
 
-    public void SetUpItemButtons()
+    public void StartBattle(System.Action onBattleEnd)
     {
-        for (int i = 0; i < itemButtons.Length; i++)
+        if (enemy == null)
         {
-            itemButtons[i].SetActive(false);
+            Debug.LogError("No hay enemigo asignado para la batalla");
+            onBattleEnd?.Invoke();
+            return;
         }
+
+        battleActive = true;
+        ui.gameObject.SetActive(true);
+        ResetBattle();
+
+        this.onBattleEnd = onBattleEnd;
+
+        turnController.SetupTurnOrder(player, enemy);
     }
 
-    public void ConfigureSkillButtons(int index, string skillName)
+    public void ResetBattle()
     {
-        this.skillButtons[index].SetActive(true);
-        this.skillButtonLabels[index].text = skillName;
-        
-        Button button = this.skillButtons[index].GetComponent<Button>();
-        if (button != null)
+        // Inicializar opciones de accion
+        if (actionOptions == null || actionOptions.Length == 0)
         {
-            button.onClick.RemoveAllListeners();
-            int capturedIndex = index;
-            button.onClick.AddListener(() => ExecuteSkill(capturedIndex));
+            actionOptions = new TextMeshProUGUI[] { ui.attackText, ui.skillText, ui.itemText };
         }
-    }
 
-    public void ConfigureItemButtons(int buttonIndex, string itemName, int realItemIndex)
-    {
-        Debug.Log($"Configurando item button {buttonIndex}: {itemName} -> realIndex: {realItemIndex}");
-        
-        this.itemButtons[buttonIndex].SetActive(true);
-        this.itemButtonLabels[buttonIndex].text = itemName;
-        
-        if (buttonToItemIndex == null) buttonToItemIndex = new int[itemButtons.Length];
-        buttonToItemIndex[buttonIndex] = realItemIndex;
-        
-        Button button = this.itemButtons[buttonIndex].GetComponent<Button>();
-        if (button != null)
-        {
-            button.onClick.RemoveAllListeners();
-            int capturedIndex = buttonIndex;
-            button.onClick.AddListener(() => {
-                Debug.Log($"Item button {capturedIndex} clicked - calling ExecuteItem");
-                ExecuteItem(capturedIndex);
-            });
-            Debug.Log($"Event listener configurado para botón {buttonIndex}");
-        }
-        else
-        {
-            Debug.LogError($"No se encontró componente Button en itemButtons[{buttonIndex}]");
-        }
+        // Reiniciar enemigo
+        enemy.health = enemy.startHealth;
+        enemy.IQ = enemy.startIQ;
+        enemy.gameObject.SetActive(true);
+
+        enemy.OnDeath -= OnEnemyDeath;
+        enemy.OnDeath += OnEnemyDeath;
+
+        // Reiniciar jugador
+        player.health = player.startHealth;
+        player.IQ = player.startIQ;
+
+        // Reiniciar UI
+        ui.ResetUI(player, enemy);
+
+        // Limpiar y setear popup
+        ui.skillPopup.SetActive(false);
+        ui.itemPopup.SetActive(false);
+
+        selectedOption = 0;
+        UpdateHighlight();
     }
 
     void Update()
@@ -117,10 +114,10 @@ public class BattleManager : MonoBehaviour
         // Cerrar popup con ESC
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (skillPopup.activeSelf)
-                skillPopup.SetActive(false);
-            if (itemPopup.activeSelf)
-                itemPopup.SetActive(false);
+            if (ui.skillPopup.activeSelf)
+                ui.skillPopup.SetActive(false);
+            if (ui.itemPopup.activeSelf)
+                ui.itemPopup.SetActive(false);
         }
 
         // Solo navegar si no hay popup abierto
@@ -168,7 +165,6 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-
     void ActivateOption(int option)
     {
         switch (option)
@@ -176,23 +172,21 @@ public class BattleManager : MonoBehaviour
             case 0: Attack(); break;
             case 1: ShowSkills(); break;
             case 2: ShowItems(); break;
-            case 3: Talk(); break;
         }
     }
 
     void Attack()
     {
         //Debug.Log("Jugador ataca al enemigo");
-        player.GetComponent<FighterAction>().SelectOption(BattleConstants.MenuAttackOptions.Melee.ToString());
-        // PlayerController
+        playerAction.SelectOption(BattleConstants.MenuAttackOptions.Melee.ToString());
+        turnController.EndTurn();
     }
 
-    void ExecuteSkill(int index)
+    public void ExecuteSkill(int index)
     {
         Debug.Log($"*** ExecuteSkill called with index: {index} ***");
-        if (index < 0 || index >= skillButtons.Length) return;
-        Debug.Log("Ejecutar habilidad: " + skillButtonLabels[index].text); 
-        enemy = GameObject.FindGameObjectWithTag(BattleConstants.CharacterRole.Enemy.ToString());
+        if (index < 0 || index >= ui.skillButtons.Length) return;
+        Debug.Log("Ejecutar habilidad: " + ui.skillButtonLabels[index].text);
 
         // Obtener las habilidades del jugador
         FighterStats playerStats = player.GetComponent<FighterStats>();
@@ -204,62 +198,56 @@ public class BattleManager : MonoBehaviour
             skillSelected.SetTargetanduser(playerStats, enemy.GetComponent<FighterStats>());
             skillSelected.Run();
             // Cerrar el popup después de usar la habilidad
-            skillPopup.SetActive(false);
+            ui.skillPopup.SetActive(false);
         }
+        turnController.EndTurn();
     }
 
+    public void ExecuteItem(Item item)
+    {
+        item.Run();
+        ui.itemPopup.SetActive(false);
+        turnController.EndTurn();
+    }
 
     void ShowSkills()
     {
         Debug.Log("Mostrar popup de habilidades");
-        skillPopup.SetActive(!skillPopup.activeSelf);
-        if (skillPopup.activeSelf)
-            itemPopup.SetActive(false);
-    }
-
-    void ExecuteItem(int index)
-    {
-        Debug.Log($"*** ExecuteItem called with index: {index} ***");
-        
-        if (index < 0 || index >= itemButtons.Length || buttonToItemIndex == null) 
-        {
-            Debug.LogError($"ExecuteItem: Invalid parameters - index:{index}, buttonsLength:{itemButtons?.Length}, mapExists:{buttonToItemIndex != null}");
-            return;
-        }
-        
-        Debug.Log("Usar objeto: " + itemButtonLabels[index].text); 
-
-        FighterStats playerStats = player.GetComponent<FighterStats>();
-        Item[] playerItems = playerStats.GetItems();
-
-        int realItemIndex = buttonToItemIndex[index];
-        Debug.Log($"Real item index: {realItemIndex}");
-        
-        if (realItemIndex >= 0 && realItemIndex < playerItems.Length)
-        {
-            Item itemSelected = playerItems[realItemIndex];
-            Debug.Log($"Ejecutando item: {itemSelected.itemName}");
-            itemSelected.Run();
-            itemPopup.SetActive(false);
-        }
-        else
-        {
-            Debug.LogError($"Real item index out of bounds: {realItemIndex} (array length: {playerItems?.Length})");
-        }
+        ui.skillPopup.SetActive(!ui.skillPopup.activeSelf);
+        if (ui.skillPopup.activeSelf)
+            ui.itemPopup.SetActive(false);
     }
 
     void ShowItems()
     {
         Debug.Log("Mostrar popup de objetos");
-        itemPopup.SetActive(!itemPopup.activeSelf);
-        if (itemPopup.activeSelf)
-            skillPopup.SetActive(false);
+        ui.itemPopup.SetActive(!ui.itemPopup.activeSelf);
+        if (ui.itemPopup.activeSelf)
+            ui.skillPopup.SetActive(false);
     }
 
-    void Talk()
+    private void OnEnemyDeath(FighterStats deadEnemy)
     {
-        Debug.Log("Inicia conversación");
-        // Dialogue System
+        Debug.Log("Enemigo muerto: " + deadEnemy.name);
+
+        // Elimina al enemigo
+        deadEnemy.gameObject.SetActive(false);
+
+        // Termina la batalla
+        EndBattle();
     }
 
+    public void EndBattle()
+    {
+        if (!battleActive) return;
+        battleActive = false;
+
+        turnController.BattleEnded();
+
+        // Desactivar UI de batalla
+        ui.gameObject.SetActive(false);
+
+        // Avisar a RoomController
+        onBattleEnd?.Invoke();
+    }
 }
