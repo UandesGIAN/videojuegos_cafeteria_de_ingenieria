@@ -9,7 +9,7 @@ public enum StatsModType
 
 public enum StatsType
 {
-    Attack, Defense, Speed, Health, Mana
+    Attack, Health, IQ
 }
 
 // Versión alternativa usando Reflection (más automática)
@@ -34,14 +34,11 @@ public class StatsModItems : Item
             case StatsType.Attack:
                 userStats.attack = CalculateNewValue(userStats.attack, modificationAmount);
                 break;
-            case StatsType.Defense:
-                userStats.defense = CalculateNewValue(userStats.defense, modificationAmount);
-                break;
             case StatsType.Health:
                 userStats.health = CalculateNewValue(userStats.health, modificationAmount);
                 break;
-            case StatsType.Mana:
-                userStats.magic = CalculateNewValue(userStats.magic, modificationAmount);
+            case StatsType.IQ:
+                userStats.IQ = CalculateNewValue(userStats.IQ, modificationAmount);
                 break;
             default:
                 Debug.LogWarning($"Stat type {statType} not handled.");

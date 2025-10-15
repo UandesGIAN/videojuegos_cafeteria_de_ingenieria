@@ -1,9 +1,11 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TurnController : MonoBehaviour
 {
+    public FighterStats currentPlayer;
+    public FighterAction enemyAction;
+
     private List<FighterStats> fightersTurnOrder;
 
     [SerializeField]
@@ -11,47 +13,51 @@ public class TurnController : MonoBehaviour
 
     [SerializeField]
     private bool doesEnemyMoveFirst = false;
+    private int currentIndex = 0;
 
-    private void Start()
+    private bool battleActive = false;
+
+    private void Awake() {
+    }
+
+    public void SetupTurnOrder(FighterStats player, FighterStats enemy, bool enemyFirst = false)
     {
-        // por default, player va primero y luego el enemigo
         fightersTurnOrder = new List<FighterStats>();
-        GameObject player = GameObject.FindGameObjectWithTag(BattleConstants.CharacterRole.Player.ToString());
-        FighterStats currentPlayerStats = player.GetComponent<FighterStats>();
-        fightersTurnOrder.Add(currentPlayerStats);
+        fightersTurnOrder.Add(player);
+        fightersTurnOrder.Add(enemy);
 
-        GameObject enemy = GameObject.FindGameObjectWithTag(BattleConstants.CharacterRole.Enemy.ToString());
-        FighterStats currentEnemyStats = enemy.GetComponent<FighterStats>();
-        fightersTurnOrder.Add(currentEnemyStats);
+        if (enemyFirst)
+            fightersTurnOrder.Reverse();
 
-        // si el enemigo se mueve primero, invertir la lista
-        if (doesEnemyMoveFirst) fightersTurnOrder.Reverse();
-
+        currentIndex = 0;
+        battleActive = true;
+        
         NextTurn();
     }
 
     public void NextTurn()
     {
-        FighterStats currentFighterStats = fightersTurnOrder[0];
-        fightersTurnOrder.Remove(currentFighterStats);
+        if (!battleActive || fightersTurnOrder.Count == 0) return;
+        FighterStats currentFighter = fightersTurnOrder[currentIndex];
 
         //PrintTurnOrder();
 
-        if (currentFighterStats.IsDead())
+        if (currentFighter.IsDead())
         {
-            Debug.Log(currentFighterStats.gameObject.tag + " is Dead!!!!!!");
+            Debug.Log(currentFighter.gameObject.tag + " is Dead!!!!!!");
+            currentIndex = (currentIndex + 1) % fightersTurnOrder.Count;
             NextTurn();
             return;
         }
 
         // si el character actual no esta muerto:
-        GameObject currentFighterObject = currentFighterStats.gameObject;
-        fightersTurnOrder.Add(currentFighterStats);
+        GameObject currentFighterObject = currentFighter.gameObject;
+        fightersTurnOrder.Add(currentFighter);
 
         // determinar a quien le toca atacar
         if (currentFighterObject.CompareTag(BattleConstants.CharacterRole.Player.ToString()))
         {
-            battleMenu.SetActive(true); //ActionMenu se activa y se espera a que se aprete algo
+            battleMenu.SetActive(true); //ActionMenu
         }
         else
         {
@@ -60,9 +66,19 @@ public class TurnController : MonoBehaviour
 
             // reemplazar limite superior por 2 cuando esten hechas las skills
             // igual obviamente habria que hacer la pega de que FighterAction.SelectOption() soporte habilidades
-            string attackType = Random.Range(0, 1) == 0 ? BattleConstants.MenuAttackOptions.Melee.ToString() : BattleConstants.MenuAttackOptions.Ability.ToString();
-            currentFighterObject.GetComponent<FighterAction>().SelectOption(attackType);
+            string attackType = Random.Range(0, 2) == 0 ?
+                BattleConstants.MenuAttackOptions.Melee.ToString() :
+                BattleConstants.MenuAttackOptions.Ability.ToString();
+
+            enemyAction.SelectOption(attackType);
         }
+    }
+
+    public void EndTurn()
+    {
+        if (!battleActive) return;
+        currentIndex = (currentIndex + 1) % fightersTurnOrder.Count;
+        NextTurn();
     }
 
     private void PrintTurnOrder()
@@ -72,5 +88,13 @@ public class TurnController : MonoBehaviour
         {
             Debug.Log("\t\t" + fighter);
         }
+    }
+
+    public void BattleEnded()
+    {
+        battleActive = false;
+        currentIndex = 0;
+        fightersTurnOrder.Clear();
+        battleMenu.SetActive(false);
     }
 }
