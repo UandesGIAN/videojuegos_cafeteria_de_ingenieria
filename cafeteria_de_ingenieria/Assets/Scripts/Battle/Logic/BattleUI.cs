@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class BattleUI : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class BattleUI : MonoBehaviour
 
     [Header("Mensajes")]
     public TMP_Text message;
-    
+
     // Jugador
     public FighterStats currentPlayer;
 
@@ -137,6 +138,8 @@ public class BattleUI : MonoBehaviour
         currentEnemy = enemyStats;
 
         enemySprite.sprite = enemyStats.img;
+        //AssignEnemyNewComponents(enemyStats);
+
         enemyName.text = enemyStats.fightername;
         enemyHP.maxValue = enemyStats.health;
         enemyHP.value = enemyStats.health;
@@ -218,5 +221,22 @@ public class BattleUI : MonoBehaviour
         // Skills y items
         SetupSkillButtons(currentPlayer);
         SetupItemList(currentPlayer);
+    }
+
+    // asigna nuevos componentes desde enemigo de una room hacia el enemigo "interfaz" de battlehud
+    // me di cuenta que es inutil tener esto pero lo dejo escrito porsiacaso
+    private void AssignEnemyNewComponents(FighterStats enemyStats)
+    {
+        // obtener viejos componentes
+        FighterAction oldEnemyAction = enemySprite.GetComponent<FighterAction>();
+        FighterStats oldEnemyStats = enemySprite.GetComponent<FighterStats>();
+
+        // destruir originales si es que existen
+        if (oldEnemyAction != null) Destroy(oldEnemyAction);
+        if (oldEnemyStats != null) Destroy(oldEnemyStats);
+
+        // asignar nuevos componentes!!
+        FighterStats newEnemyStats = enemySprite.AddComponent<FighterStats>();
+        newEnemyStats.CopyFrom(enemyStats);
     }
 }
