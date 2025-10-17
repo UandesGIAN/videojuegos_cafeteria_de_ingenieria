@@ -45,8 +45,7 @@ public class BattleManager : MonoBehaviour
 
     public void SetEnemy(FighterStats newEnemy)
     {
-        if (enemy != null)
-            ui.ClearEnemy();
+        if (enemy != null) ui.ClearEnemy();
 
         enemy = newEnemy;
         ui.SetupEnemy(enemy);
@@ -70,6 +69,8 @@ public class BattleManager : MonoBehaviour
         }
 
         battleActive = true;
+        turnController.SetBattleActive(battleActive);
+
         ui.gameObject.SetActive(true);
         ResetBattle();
 
@@ -179,7 +180,7 @@ public class BattleManager : MonoBehaviour
     {
         //Debug.Log("Jugador ataca al enemigo");
         playerAction.SelectOption(BattleConstants.MenuAttackOptions.Melee.ToString());
-        turnController.EndTurn();
+        turnController.NextTurn();
     }
 
     public void ExecuteSkill(int index)
@@ -200,14 +201,14 @@ public class BattleManager : MonoBehaviour
             // Cerrar el popup después de usar la habilidad
             ui.skillPopup.SetActive(false);
         }
-        turnController.EndTurn();
+        turnController.NextTurn();
     }
 
     public void ExecuteItem(Item item)
     {
         item.Run();
         ui.itemPopup.SetActive(false);
-        turnController.EndTurn();
+        turnController.NextTurn();
     }
 
     void ShowSkills()
