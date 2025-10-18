@@ -135,7 +135,9 @@ public class BattleUI : MonoBehaviour
     // Asignar enemigo
     public void SetupEnemy(FighterStats enemyStats)
     {
+        Debug.Log("Setting up enemy in BattleUI");
         currentEnemy = enemyStats;
+        Debug.Log("New enemy assigned: " + currentEnemy.fightername);
 
         enemySprite.sprite = enemyStats.img;
         //AssignEnemyNewComponents(enemyStats);
@@ -146,6 +148,9 @@ public class BattleUI : MonoBehaviour
 
         // Suscribirse a cambios de vida
         currentEnemy.OnHealthChanged += UpdateEnemyHealth;
+
+        Debug.Log("Enemy setup complete in BattleUI:\n");
+        currentEnemy.PrintStats();
     }
 
     private void UpdateEnemyHealth(float current, float max)

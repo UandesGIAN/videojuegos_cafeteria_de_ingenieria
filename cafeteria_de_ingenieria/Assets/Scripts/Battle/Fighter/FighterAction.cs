@@ -35,8 +35,9 @@ public class FighterAction : MonoBehaviour
             Debug.LogWarning("Target ya no existe, no se puede atacar.");
             return; // No hay objetivo
         }
-    
-        Debug.Log("Target is " + target.tag + ":");
+
+        Debug.Log("Current Fighter: " + gameObject.tag);
+        Debug.Log("Target is " + target.GetComponent<FighterStats>().fightername + ":");
 
         // ataque melee (normal)
         if (option_name.CompareTo(BattleConstants.MenuAttackOptions.Melee.ToString()) == 0)
