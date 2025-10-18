@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TurnController : MonoBehaviour
@@ -8,6 +9,7 @@ public class TurnController : MonoBehaviour
 
     private List<FighterStats> fightersTurnOrder;
     private bool battleActive = false;
+    private bool canPlayerAct = true;
 
     public void SetupTurnOrder(FighterStats player, FighterStats enemy, bool enemyFirst = false)
     {
@@ -21,7 +23,7 @@ public class TurnController : MonoBehaviour
         // si el enemigo se mueve primero, invertir la lista
         if (enemyFirst || doesEnemyMoveFirst) fightersTurnOrder.Reverse();
 
-        //PrintTurnOrder();
+        PrintTurnOrder();
 
         NextTurn();
     }
@@ -51,11 +53,12 @@ public class TurnController : MonoBehaviour
         // determinar a quien le toca atacar
         if (currentFighterObject.CompareTag(BattleConstants.CharacterRole.Player.ToString()))
         {
+            canPlayerAct = true;
             battleMenu.SetActive(true); //ActionMenu del jugador se activa y se espera que aprete algo
         }
         else // es el turno del enemigo!
         {
-            Debug.Log("Turno del enemigo.. ocultando menu de batalla");
+            canPlayerAct = false;
             // ocultar ActionMenu para evitar q player ataque cuando no es su turno
             battleMenu.SetActive(false);
 
@@ -83,7 +86,7 @@ public class TurnController : MonoBehaviour
         Debug.Log("List of turn order:");
         foreach (FighterStats fighter in fightersTurnOrder)
         {
-            Debug.Log("\t\t" + fighter);
+            Debug.Log("\t\t" + fighter + " (" + fighter.fightername + ", Tag: " + fighter.gameObject.tag +")");
         }
     }
 
@@ -94,6 +97,11 @@ public class TurnController : MonoBehaviour
         battleMenu.SetActive(false);
     }
 
+    public bool GetCanPlayerAct()
+    {
+        return this.canPlayerAct;
+    }
+    
     public void SetBattleActive(bool isBattleActive)
     {
         this.battleActive = isBattleActive;

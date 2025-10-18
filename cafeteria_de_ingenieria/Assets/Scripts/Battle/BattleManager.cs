@@ -26,6 +26,13 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("BattleManager GameObject Name: " + gameObject.name);
+
+        // actualizar enemy de player.FighterAction
+        // PROBABLEMENTE MEJOR: Hacer q FighterAction reciba enemy desde BattleManager en vez de buscarlo en Awake()
+        playerAction = player.GetComponent<FighterAction>();
+        playerAction.Awake();
+
         actionOptions = new TextMeshProUGUI[] { ui.attackText, ui.skillText, ui.itemText };
         SetupUI();
     }
@@ -71,6 +78,8 @@ public class BattleManager : MonoBehaviour
         battleActive = true;
         turnController.SetBattleActive(battleActive);
 
+        SetEnemy(enemy);
+        
         ui.gameObject.SetActive(true);
         ResetBattle();
 
@@ -89,7 +98,10 @@ public class BattleManager : MonoBehaviour
 
         // Reiniciar enemigo
         enemy.health = enemy.startHealth;
+        enemy.UpdateHealthBar();
         enemy.IQ = enemy.startIQ;
+        enemy.UpdateIQBar();
+
         enemy.gameObject.SetActive(true);
 
         enemy.OnDeath -= OnEnemyDeath;
@@ -121,8 +133,8 @@ public class BattleManager : MonoBehaviour
                 ui.itemPopup.SetActive(false);
         }
 
-        // Solo navegar si no hay popup abierto
-        if (!isPopupActive)
+        // Solo navegar si no hay popup abierto y si es el turno del jugador
+        if (!isPopupActive && turnController.GetCanPlayerAct())
         {
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
@@ -229,10 +241,11 @@ public class BattleManager : MonoBehaviour
 
     private void OnEnemyDeath(FighterStats deadEnemy)
     {
-        Debug.Log("Enemigo muerto: " + deadEnemy.name);
+        Debug.Log("Enemigo muerto: " + deadEnemy.fightername);
 
         // Elimina al enemigo
         deadEnemy.gameObject.SetActive(false);
+        Destroy(deadEnemy.gameObject);
 
         // Termina la batalla
         EndBattle();

@@ -236,7 +236,7 @@ public class FighterStats : MonoBehaviour
         UpdateHealthBar();
     }
 
-    private void UpdateHealthBar()
+    public void UpdateHealthBar()
     {
         if (healthBarObject != null)
         {
@@ -245,7 +245,7 @@ public class FighterStats : MonoBehaviour
         }
     }
 
-    private void UpdateIQBar()
+    public void UpdateIQBar()
     {
         if (IQBarObject != null)
         {
@@ -259,6 +259,20 @@ public class FighterStats : MonoBehaviour
     {
         return health <= 0;
     }
+
+    public void PrintStats()
+    {
+        Debug.Log($"FighterStats of {fightername}: (Abrir dropdown!!)\n" +
+                  $"- Element Type: {elementType}\n" +
+                  $"- Health: {health}/{startHealth}\n" +
+                  $"- IQ: {IQ}/{startIQ}\n" +
+                  $"- Attack: {attack}\n" +
+                  $"- Physical Armor: {physicalArmor}\n" +
+                  $"- IQ Armor: {IQArmor}\n" +
+                  $"- Experience: {experience}\n" +
+                  $"- Level: {level}");
+    }
+
 
     // para copiar valores desde otra instancia de fighterStats
     public void CopyFrom(FighterStats source)
