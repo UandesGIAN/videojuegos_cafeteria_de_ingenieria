@@ -10,6 +10,7 @@ public class HealthModSkill : Skill
 {
     [Header("Health Mod Skill")]
     public float amount;
+    public float cost;
 
     public HealthModType modType;
 
@@ -17,13 +18,22 @@ public class HealthModSkill : Skill
     {
         float amount = this.GetModification();
 
-        if(this.selfinflicted)
+        if (this.userStats.IQ >= this.cost)
         {
-            this.targetStats.Heal(amount);
+            this.userStats.ModifyIQ(-this.cost);
+            
+            if(this.selfinflicted)
+            {
+                this.targetStats.Heal(amount);
+            }
+            else
+            {
+                this.targetStats.ReceiveDamage(amount);
+            }
         }
         else
         {
-            this.targetStats.ReceiveDamage(amount);
+            Debug.Log("No hay IQ suficiente para usar la skill: " + this.skillName);
         }
     }
 

@@ -200,6 +200,11 @@ public class FighterStats : MonoBehaviour
         UpdateHealthBar();
     }
 
+    public void RefreshSkills()
+    {
+        skills = GetComponentsInChildren<Skill>(true);
+    }
+
     public void ReceiveDamageWithType(FighterStats attacker, bool isIQal = false)
     {
         float damage = CalculateDamage(attacker, this, isIQal);
@@ -234,6 +239,17 @@ public class FighterStats : MonoBehaviour
         OnHealthChanged?.Invoke(health, startHealth);
 
         UpdateHealthBar();
+    }
+
+    public void ModifyIQ(float amount)
+    {
+        IQ += amount;
+        if (IQ > startIQ) IQ = startIQ;
+        if (IQ < 0) IQ = 0;
+
+        OnIQChanged?.Invoke(IQ, startIQ);
+
+        UpdateIQBar();
     }
 
     public void UpdateHealthBar()
