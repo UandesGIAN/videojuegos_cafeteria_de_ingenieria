@@ -74,7 +74,7 @@ public class TurnController : MonoBehaviour
             System.Collections.IEnumerator EnemyWaitsAndActs()
             {
                 yield return new WaitForSeconds(1f);
-                currentFighterAction.SelectOption(attackType);
+                if (currentFighterAction != null) currentFighterAction.SelectOption(attackType);
                 yield return new WaitForSeconds(0.5f); 
                 NextTurn();
             }

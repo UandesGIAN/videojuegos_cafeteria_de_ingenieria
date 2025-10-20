@@ -148,7 +148,7 @@ public class FighterStats : MonoBehaviour
 
     public event Action<FighterStats> OnDeath;
 
-    void Awake()
+    public void Awake()
     {
         startHealth = health;
         startIQ = IQ;

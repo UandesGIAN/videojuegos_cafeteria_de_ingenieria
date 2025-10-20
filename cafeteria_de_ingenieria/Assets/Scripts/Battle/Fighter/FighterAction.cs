@@ -46,4 +46,14 @@ public class FighterAction : MonoBehaviour
             Debug.Log("\t\t" + BattleConstants.MenuAttackOptions.Melee.ToString() + " attack made to " + target.tag);
         } //else if (###quizas logica de habilidades si te parece!! aunque hay que equilibrarlo con lo q hizo el gian de habilidades en BattleManager
     }
+
+    public GameObject GetEnemy()
+    {
+        return this.enemy;
+    }
+
+    public void SetEnemy(GameObject enemy)
+    {
+        this.enemy = enemy;
+    }
 }
