@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using System;
+using System.Collections;
 
 
 public class BattleManager : MonoBehaviour
@@ -11,15 +13,17 @@ public class BattleManager : MonoBehaviour
     public FighterStats player;
     public FighterAction playerAction;
 
-
     private int selectedOption = 0;
     private TextMeshProUGUI[] actionOptions;
 
     // Flag para saber si un popup está activo
     private bool IsPopupActive => ui.skillPopup.activeSelf || ui.itemPopup.activeSelf;
 
+    public Action OnPlayerActionCompleted; // para decirle a TurnController que llame al siguiente turno
+    private bool isHandlingSkill = false;
+
     // Al terminar la batalla
-    private System.Action onBattleEnd;
+    private Action onBattleEnd;
     private bool battleActive = false;
 
     void Start()
@@ -31,27 +35,32 @@ public class BattleManager : MonoBehaviour
         player.PrintStats();
         enemy.PrintStats();
 
+        turnController.SetBattleManager(this);
+
         actionOptions = new TextMeshProUGUI[] { ui.attackText, ui.skillText, ui.itemText };
         SetupUI();
     }
 
     private void SetupUI()
     {
+        // quitar suscripciones previas porsiacaso
+        ui.OnSkillSelected -= ExecuteSkill;
+        ui.OnItemSelected -= ExecuteItem;
+
         ui.OnSkillSelected += ExecuteSkill;
         ui.OnItemSelected += ExecuteItem;
 
         ui.SetupSkillButtons(player);
         ui.SetupItemList(player);
 
-        // Desactivamos popups al inicio
         ui.skillPopup.SetActive(false);
         ui.itemPopup.SetActive(false);
     }
 
     public void SetEnemy(FighterStats newEnemy)
     {
-        Debug.Log("Setting new enemy in BattleManager: " + newEnemy.fightername);
-        Debug.Log("Previous enemy: " + (enemy != null ? enemy.fightername : "null"));
+        //Debug.Log("Setting new enemy in BattleManager: " + newEnemy.fightername);
+        //Debug.Log("Previous enemy: " + (enemy != null ? enemy.fightername : "null"));
         if (enemy != null) ui.ClearEnemy();
 
         enemy = newEnemy;
@@ -79,8 +88,6 @@ public class BattleManager : MonoBehaviour
         turnController.SetBattleActive(battleActive);
 
         SetEnemy(enemy);
-
-        enemy = ui.GetCurrentEnemy();
 
         Debug.Log("Enemy in BattleManager after StartBattle: ");
         enemy.PrintStats();
@@ -174,7 +181,6 @@ public class BattleManager : MonoBehaviour
         ActivateOption(index);
     }
 
-
     void UpdateHighlight()
     {
         for (int i = 0; i < actionOptions.Length; i++)
@@ -197,38 +203,49 @@ public class BattleManager : MonoBehaviour
     {
         //Debug.Log("Jugador ataca al enemigo");
         playerAction.SelectOption(BattleConstants.MenuAttackOptions.Melee.ToString());
-        turnController.NextTurn();
+        OnPlayerActionCompleted?.Invoke();
+        Debug.Log(OnPlayerActionCompleted == null ? "OnPlayerActionCompleted is null" : "OnPlayerActionCompleted has subscribers");
     }
 
     public void ExecuteSkill(int index)
     {
-        Debug.Log($"*** ExecuteSkill called with index: {index} ***");
-        if (index < 0 || index >= ui.skillButtons.Length) return;
-        Debug.Log("Ejecutar habilidad: " + ui.skillButtonLabels[index].text);
-
-        SyncThisEnemyWithUIEnemy(); // hacer que el enemigo en BattleManager sea el mismo que el de UI antes de ejecutar la skill
-
-        player.PrintStats();
-        if (enemy != null) enemy.PrintStats();
-
-        Skill[] playerSkills = player.GetSkills();
-
-        if (index < playerSkills.Length)
+        if (isHandlingSkill)
         {
-            Skill skillSelected = playerSkills[index];
-            skillSelected.SetTargetanduser(player, enemy);
-            skillSelected.Run();
-            // Cerrar el popup después de usar la habilidad
-            ui.skillPopup.SetActive(false);
+            Debug.LogWarning("ExecuteSkill ignored: already handling a skill");
+            return;
         }
-        turnController.NextTurn();
+
+        isHandlingSkill = true;
+        try
+        {
+            Debug.Log($"*** ExecuteSkill called with index: {index} ***");
+            if (index < 0 || index >= ui.skillButtons.Length) return;
+            Debug.Log("Ejecutar habilidad: " + ui.skillButtonLabels[index].text);
+
+            Skill[] playerSkills = player.GetSkills();
+
+            if (index < playerSkills.Length)
+            {
+                Skill skillSelected = playerSkills[index];
+                // enemy por alguna razon no esta synceado con el UI enemy, pero el enemy de playerAction si
+                skillSelected.SetTargetanduser(player, playerAction.GetEnemy().GetComponent<FighterStats>());
+                skillSelected.Run();
+                ui.skillPopup.SetActive(false);
+            }
+
+            StartCoroutine(NotifyTurnControllerAfterSkillOrObjectAction());
+        }
+        finally
+        {
+            isHandlingSkill = false;
+        }
     }
 
     public void ExecuteItem(Item item)
     {
         item.Run();
         ui.itemPopup.SetActive(false);
-        turnController.NextTurn();
+        StartCoroutine(NotifyTurnControllerAfterSkillOrObjectAction());
     }
 
     void ShowSkills()
@@ -273,17 +290,23 @@ public class BattleManager : MonoBehaviour
         onBattleEnd?.Invoke();
     }
 
-    private void SyncThisEnemyWithUIEnemy()
+    void OnDestroy()
     {
-        FighterStats uiCurrentEnemy = ui.GetCurrentEnemy();
-        if (uiCurrentEnemy != null)
+        if (ui != null)
         {
-            if (enemy != uiCurrentEnemy)
-                Debug.Log($"Syncing BattleManager.enemy ({enemy.fightername}) with ui.currentEnemy ({uiCurrentEnemy.fightername})");
-
-            enemy = uiCurrentEnemy;
+            ui.OnSkillSelected -= ExecuteSkill;
+            ui.OnItemSelected -= ExecuteItem;
         }
-        else Debug.LogWarning("ui.currentEnemy is null");
+    }
+
+    private IEnumerator NotifyTurnControllerAfterSkillOrObjectAction()
+    {
+        turnController.SetBattleMenuState(false);
+        turnController.SetCanPlayerAct(false);
+
+        // es necesario agregar este delay para que no se ejecute dos veces el turno del enemigo
+        yield return new WaitForSeconds(0.5f);
+        OnPlayerActionCompleted?.Invoke();
     }
 
 }
