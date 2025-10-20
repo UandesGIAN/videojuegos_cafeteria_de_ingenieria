@@ -204,7 +204,6 @@ public class BattleManager : MonoBehaviour
         //Debug.Log("Jugador ataca al enemigo");
         playerAction.SelectOption(BattleConstants.MenuAttackOptions.Melee.ToString());
         OnPlayerActionCompleted?.Invoke();
-        Debug.Log(OnPlayerActionCompleted == null ? "OnPlayerActionCompleted is null" : "OnPlayerActionCompleted has subscribers");
     }
 
     public void ExecuteSkill(int index)
