@@ -65,7 +65,7 @@ public class SkillManager : MonoBehaviour
             {
                 // Crear una copia de la skill
                 GameObject skillCopy = Instantiate(skillTemplate.gameObject, playerSkillsContainer);
-                skillCopy.name = skillName; // Remover "(Clone)" del nombre
+                skillCopy.name = skillName; 
                 skillCopy.SetActive(true);
 
                 assignedCount++;
@@ -73,11 +73,11 @@ public class SkillManager : MonoBehaviour
                 player.RefreshSkills();
                 battleUI.SetupSkillButtons(player);
 
-                Debug.Log($"✓ Skill '{skillName}' instanciada para {player.fightername}");
+                Debug.Log($"Skill '{skillName}' instanciada para {player.fightername}");
             }
             else
             {
-                Debug.LogWarning($"✗ Skill '{skillName}' no encontrada en el pool. Skills disponibles: {string.Join(", ", allSkills.Select(s => s.skillName))}");
+                Debug.LogWarning($"Skill '{skillName}' no encontrada en el pool. Skills disponibles: {string.Join(", ", allSkills.Select(s => s.skillName))}");
             }
         }
         
@@ -88,11 +88,12 @@ public class SkillManager : MonoBehaviour
     {
         Transform playerSkillsContainer = player.transform.Find("Skills");
         if (playerSkillsContainer == null) return;
-        
+
         Skill[] allSkills = skillPoolContainer.GetComponentsInChildren<Skill>(true);
+        Skill[] playerSkills = player.GetSkills();
         Skill skillTemplate = allSkills.FirstOrDefault(s => s.skillName == skillName);
-        
-        if (skillTemplate != null)
+
+        if (skillTemplate != null && !playerSkills.Any(s => s.skillName == skillName))
         {
             GameObject skillCopy = Instantiate(skillTemplate.gameObject, playerSkillsContainer);
             skillCopy.name = skillName;
@@ -101,11 +102,11 @@ public class SkillManager : MonoBehaviour
             player.RefreshSkills();
             battleUI.SetupSkillButtons(player);
             
-            Debug.Log($"✓ Skill '{skillName}' agregada a {player.fightername}");
+            Debug.Log($"Skill '{skillName}' agregada a {player.fightername}");
         }
         else
         {
-            Debug.LogWarning($"✗ No se pudo agregar la skill '{skillName}' - no existe en el pool");
+            Debug.LogWarning($"No se pudo agregar la skill '{skillName}' - no existe en el pool o ya está asignada");
         }
     }
     
@@ -124,11 +125,11 @@ public class SkillManager : MonoBehaviour
                 player.RefreshSkills();
                 battleUI.SetupSkillButtons(player);
 
-                Debug.Log($"✓ Skill '{skillName}' removida de {player.fightername}");
+                Debug.Log($"Skill '{skillName}' removida de {player.fightername}");
                 return;
             }
         }
         
-        Debug.LogWarning($"✗ Skill '{skillName}' no encontrada en {player.fightername}");
+        Debug.LogWarning($"Skill '{skillName}' no encontrada en {player.fightername}");
     }
 }
