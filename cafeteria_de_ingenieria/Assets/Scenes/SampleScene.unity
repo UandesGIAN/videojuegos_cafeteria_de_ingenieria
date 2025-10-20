@@ -166,11 +166,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementType: 4
-  health: 100
+  health: 200
   IQ: 50
   startHealth: 0
   startIQ: 0
-  attack: 20
+  attack: 300
   physicalArmor: 1
   IQArmor: 1
   experience: 0
@@ -4226,6 +4226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleMenu: {fileID: 1497824552}
   doesEnemyMoveFirst: 0
+  EnemyWaitTime: 0.5
 --- !u!4 &630289900
 Transform:
   m_ObjectHideFlags: 0
