@@ -26,7 +26,6 @@ public class UpgradeSelection : MonoBehaviour
 
     private List<Reward> selectedRewards = new List<Reward>();
 
-    // Clase interna para representar cualquier tipo de recompensa
     public class Reward
     {
         public enum RewardType { Skill, Upgrade }
@@ -47,7 +46,6 @@ public class UpgradeSelection : MonoBehaviour
         
         public Sprite GetIcon()
         {
-            // Por ahora retorna null, puedes agregar iconos a las skills si lo necesitas
             return type == RewardType.Upgrade ? upgrade.icon : null;
         }
     }
@@ -68,16 +66,13 @@ public class UpgradeSelection : MonoBehaviour
             Button button = upgradeButtons[i].GetComponent<Button>();
             if (button != null)
             {
-                // Remover listeners previos para evitar duplicados
+                //remover los listeners previos para evitar duplicados
                 button.onClick.RemoveAllListeners();
-                
-                // Capturar el índice en una variable local
+
                 int index = i;
-                
-                // Agregar el listener
+
+                // Agregar el listener al boton de index i
                 button.onClick.AddListener(() => SelectUpgrade(index));
-                
-                Debug.Log($"UpgradeSelection: Listener configurado para botón {i}");
             }
             else
             {
@@ -108,8 +103,6 @@ public class UpgradeSelection : MonoBehaviour
                 availableRewards.RemoveAt(randomIndex); // Evitar duplicados
             }
         }
-        
-        Debug.Log($"UpgradeSelection: {selectedRewards.Count} recompensas generadas");
     }
 
     private List<Reward> GetAllPossibleRewards()
@@ -128,7 +121,6 @@ public class UpgradeSelection : MonoBehaviour
                     skill = skill 
                 });
             }
-            Debug.Log($"UpgradeSelection: {allSkills.Length} skills encontradas en el pool");
         }
         
         // Obtener todos los upgrades del pool
@@ -143,7 +135,6 @@ public class UpgradeSelection : MonoBehaviour
                     upgrade = upgrade 
                 });
             }
-            Debug.Log($"UpgradeSelection: {allUpgrades.Length} upgrades encontrados en el pool");
         }
         
         return allRewards;
@@ -174,8 +165,6 @@ public class UpgradeSelection : MonoBehaviour
             // Los upgrades siempre están disponibles
             return true;
         }).ToList();
-        
-        Debug.Log($"UpgradeSelection: {availableRewards.Count} recompensas disponibles después de filtrar");
         
         return availableRewards;
     }
@@ -225,13 +214,12 @@ public class UpgradeSelection : MonoBehaviour
         
         if (index < 0 || index >= selectedRewards.Count)
         {
-            Debug.LogError($"UpgradeSelection: Índice inválido {index}. selectedRewards.Count = {selectedRewards.Count}");
             return;
         }
         
         Reward chosenReward = selectedRewards[index];
         Debug.Log($"UpgradeSelection: Recompensa seleccionada - Tipo: {chosenReward.type}, Nombre: {chosenReward.GetName()}");
-        
+
         // Aplicar la recompensa según su tipo
         if (chosenReward.type == Reward.RewardType.Skill)
         {
@@ -241,8 +229,8 @@ public class UpgradeSelection : MonoBehaviour
         {
             ApplyUpgradeReward(chosenReward.upgrade);
         }
-
-        Debug.Log("UpgradeSelection: Ocultando panel y notificando a RoomController");
+        
+        // Ocultar el panel de selección
         gameObject.SetActive(false);
         
         if (currentRoom != null)
@@ -257,8 +245,6 @@ public class UpgradeSelection : MonoBehaviour
 
     private void ApplySkillReward(Skill skill)
     {
-        Debug.Log($"UpgradeSelection: Aplicando skill '{skill.skillName}' al jugador");
-        
         if (skillManager != null)
         {
             skillManager.AddSkillToPlayer(skill.skillName);
@@ -270,9 +256,7 @@ public class UpgradeSelection : MonoBehaviour
     }
 
     private void ApplyUpgradeReward(Upgrade upgrade)
-    {
-        Debug.Log($"UpgradeSelection: Aplicando upgrade '{upgrade.upgradeName}' al jugador");
-        
+    {      
         if (player != null)
         {
             upgrade.Apply(player);

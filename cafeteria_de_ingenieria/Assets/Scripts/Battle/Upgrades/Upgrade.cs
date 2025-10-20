@@ -19,9 +19,6 @@ public class Upgrade : MonoBehaviour
     public UpgradeType upgradeType;
     public float bonusAmount;
 
-    /// <summary>
-    /// Aplica el upgrade al jugador
-    /// </summary>
     public void Apply(FighterStats player)
     {
         if (player == null)
