@@ -1,8 +1,6 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using System.Linq;
+
 
 public class BattleManager : MonoBehaviour
 {
@@ -18,7 +16,7 @@ public class BattleManager : MonoBehaviour
     private TextMeshProUGUI[] actionOptions;
 
     // Flag para saber si un popup está activo
-    private bool isPopupActive => ui.skillPopup.activeSelf || ui.itemPopup.activeSelf;
+    private bool IsPopupActive => ui.skillPopup.activeSelf || ui.itemPopup.activeSelf;
 
     // Al terminar la batalla
     private System.Action onBattleEnd;
@@ -28,10 +26,10 @@ public class BattleManager : MonoBehaviour
     {
         Debug.Log("BattleManager GameObject Name: " + gameObject.name);
 
-        // actualizar enemy de player.FighterAction
-        // PROBABLEMENTE MEJOR: Hacer q FighterAction reciba enemy desde BattleManager en vez de buscarlo en Awake()
-        playerAction = player.GetComponent<FighterAction>();
-        playerAction.Awake();
+        playerAction.SetEnemy(enemy.gameObject);
+
+        player.PrintStats();
+        enemy.PrintStats();
 
         actionOptions = new TextMeshProUGUI[] { ui.attackText, ui.skillText, ui.itemText };
         SetupUI();
@@ -52,6 +50,8 @@ public class BattleManager : MonoBehaviour
 
     public void SetEnemy(FighterStats newEnemy)
     {
+        Debug.Log("Setting new enemy in BattleManager: " + newEnemy.fightername);
+        Debug.Log("Previous enemy: " + (enemy != null ? enemy.fightername : "null"));
         if (enemy != null) ui.ClearEnemy();
 
         enemy = newEnemy;
@@ -79,7 +79,12 @@ public class BattleManager : MonoBehaviour
         turnController.SetBattleActive(battleActive);
 
         SetEnemy(enemy);
-        
+
+        enemy = ui.GetCurrentEnemy();
+
+        Debug.Log("Enemy in BattleManager after StartBattle: ");
+        enemy.PrintStats();
+
         ui.gameObject.SetActive(true);
         ResetBattle();
 
@@ -134,7 +139,7 @@ public class BattleManager : MonoBehaviour
         }
 
         // Solo navegar si no hay popup abierto y si es el turno del jugador
-        if (!isPopupActive && turnController.GetCanPlayerAct())
+        if (!IsPopupActive && turnController.GetCanPlayerAct())
         {
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
@@ -158,14 +163,14 @@ public class BattleManager : MonoBehaviour
     // Manejo del mouse
     public void SetSelectedOption(int index)
     {
-        if (isPopupActive) return;
+        if (IsPopupActive) return;
         selectedOption = index;
         UpdateHighlight();
     }
 
     public void OnClickOption(int index)
     {
-        if (isPopupActive) return;
+        if (IsPopupActive) return;
         ActivateOption(index);
     }
 
@@ -201,14 +206,17 @@ public class BattleManager : MonoBehaviour
         if (index < 0 || index >= ui.skillButtons.Length) return;
         Debug.Log("Ejecutar habilidad: " + ui.skillButtonLabels[index].text);
 
-        // Obtener las habilidades del jugador
-        FighterStats playerStats = player.GetComponent<FighterStats>();
-        Skill[] playerSkills = playerStats.GetSkills();
+        SyncThisEnemyWithUIEnemy(); // hacer que el enemigo en BattleManager sea el mismo que el de UI antes de ejecutar la skill
+
+        player.PrintStats();
+        if (enemy != null) enemy.PrintStats();
+
+        Skill[] playerSkills = player.GetSkills();
 
         if (index < playerSkills.Length)
         {
             Skill skillSelected = playerSkills[index];
-            skillSelected.SetTargetanduser(playerStats, enemy.GetComponent<FighterStats>());
+            skillSelected.SetTargetanduser(player, enemy);
             skillSelected.Run();
             // Cerrar el popup después de usar la habilidad
             ui.skillPopup.SetActive(false);
@@ -264,4 +272,18 @@ public class BattleManager : MonoBehaviour
         // Avisar a RoomController
         onBattleEnd?.Invoke();
     }
+
+    private void SyncThisEnemyWithUIEnemy()
+    {
+        FighterStats uiCurrentEnemy = ui.GetCurrentEnemy();
+        if (uiCurrentEnemy != null)
+        {
+            if (enemy != uiCurrentEnemy)
+                Debug.Log($"Syncing BattleManager.enemy ({enemy.fightername}) with ui.currentEnemy ({uiCurrentEnemy.fightername})");
+
+            enemy = uiCurrentEnemy;
+        }
+        else Debug.LogWarning("ui.currentEnemy is null");
+    }
+
 }

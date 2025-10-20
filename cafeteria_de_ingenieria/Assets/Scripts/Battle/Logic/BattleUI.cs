@@ -244,4 +244,9 @@ public class BattleUI : MonoBehaviour
         FighterStats newEnemyStats = enemySprite.AddComponent<FighterStats>();
         newEnemyStats.CopyFrom(enemyStats);
     }
+
+    public FighterStats GetCurrentEnemy()
+    {
+        return currentEnemy;
+    }
 }
