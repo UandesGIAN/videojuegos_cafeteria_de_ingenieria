@@ -1,60 +1,68 @@
 using UnityEngine;
-using System;
-using System.Reflection;
-
 public enum StatsModType
 {
-    Flat, Percentage
+    Flat,
+    Percentage
 }
 
 public enum StatsType
 {
-    Attack, Defense, Speed, Health, Mana
+    Health,
+    IQ,
+    Attack,
+    PhysicalArmor,
+    IQArmor
 }
 
-// Versión alternativa usando Reflection (más automática)
 public class StatsModItems : Item
 {
+    [Header("Configuración del Objeto")]
+    [Tooltip("stat a modificar")]
     public StatsType statType;
+    [Tooltip("Cantidad de modificación")]
     public float modificationAmount;
+    [Tooltip("De que manera se aplica la modificación")]
     public StatsModType modType;
-    protected FighterStats userStats;
-
+    
     public override void onRun()
     {
-        ApplyStatModification(modificationAmount);
+        FighterStats userStats = GetComponentInParent<FighterStats>();
+
+        if (userStats == null)
+        {
+            Debug.LogError("No se encontro un fighterstat");
+            return;
+        }
+
+        ApplyStatModification(userStats);
     }
 
-    private void ApplyStatModification(float modificationAmount)
+    private void ApplyStatModification(FighterStats stats)
     {
-        if (userStats == null) return;
-
         switch (statType)
         {
-            case StatsType.Attack:
-                userStats.attack = CalculateNewValue(userStats.attack, modificationAmount);
-                break;
-            case StatsType.Defense:
-                userStats.defense = CalculateNewValue(userStats.defense, modificationAmount);
-                break;
             case StatsType.Health:
-                userStats.health = CalculateNewValue(userStats.health, modificationAmount);
+                if (modificationAmount > 0)
+                    stats.Heal(modificationAmount);
+                else
+                    stats.ReceiveDamage(-modificationAmount);
                 break;
-            case StatsType.Mana:
-                userStats.magic = CalculateNewValue(userStats.magic, modificationAmount);
+
+            case StatsType.IQ:
+                stats.ModifyIQ(modificationAmount);
                 break;
-            default:
-                Debug.LogWarning($"Stat type {statType} not handled.");
-                break;
+                
         }
+        
+        Debug.Log($"{stats.fightername} usó {itemName}, modificando {statType} en {modificationAmount} ({modType}).");
     }
 
-    private float CalculateNewValue(float currentValue, float modificationAmount)
+    private float CalculateNewValue(float currentValue)
     {
         return modType switch
         {
             StatsModType.Flat => currentValue + modificationAmount,
-            StatsModType.Percentage => currentValue * (1 + modificationAmount / 100),
+            StatsModType.Percentage => currentValue * (1 + modificationAmount / 100f),
             _ => currentValue
         };
     }
