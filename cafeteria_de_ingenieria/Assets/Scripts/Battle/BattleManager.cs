@@ -142,7 +142,8 @@ public class BattleManager : MonoBehaviour
         battleActive = true;
         turnController.SetBattleActive(battleActive);
 
-        SetEnemy(enemy);
+        FighterStats newEnemy = playerAction.GetEnemy().GetComponent<FighterStats>();
+        SetEnemy(newEnemy);
 
         Debug.Log("Enemy in BattleManager after StartBattle: ");
         enemy.PrintStats();
