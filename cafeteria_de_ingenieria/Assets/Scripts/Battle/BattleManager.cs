@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using System.Collections;
+using System.Runtime.CompilerServices;
 
 public class BattleManager : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class BattleManager : MonoBehaviour
     // Multiplicador de fuerza por preguntas
     private float currentStrengthMultiplier = 1f;
 
-    void Start()
+    public void Start()
     {
         Debug.Log("BattleManager GameObject Name: " + gameObject.name);
 
@@ -286,7 +287,7 @@ public class BattleManager : MonoBehaviour
                 ShowSkills();
             }
 
-            StartCoroutine(NotifyTurnControllerAfterSkillOrObjectAction());
+            NotifyTurnControllerAfterSkillOrItemAction();
         }
         finally
         {
@@ -308,7 +309,7 @@ public class BattleManager : MonoBehaviour
         // Actualiza el HUD
         ui.itemPopup.SetActive(false);
 
-        StartCoroutine(NotifyTurnControllerAfterSkillOrObjectAction());
+        NotifyTurnControllerAfterSkillOrItemAction();
     }
 
     void ShowSkills()
@@ -371,13 +372,18 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private IEnumerator NotifyTurnControllerAfterSkillOrObjectAction()
+    private void NotifyTurnControllerAfterSkillOrItemAction()
     {
         turnController.SetBattleMenuState(false);
         turnController.SetCanPlayerAct(false);
+        
+        StartCoroutine(WaitAndNotify());
 
-        // es necesario agregar este delay para que no se ejecute dos veces el turno del enemigo
-        yield return new WaitForSeconds(0.5f);
-        OnPlayerActionCompleted?.Invoke();
+        IEnumerator WaitAndNotify()
+        {
+            // es necesario agregar este delay para que no se ejecute dos veces el turno del enemigo
+            yield return new WaitForSeconds(0.5f);
+            OnPlayerActionCompleted?.Invoke();
+        }
     }
 }

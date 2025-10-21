@@ -76,6 +76,8 @@ public class RoomController : MonoBehaviour
         {
             Debug.Log($"[RoomController: {transform.parent.gameObject}] Iniciando batalla...");
 
+            battle.Start(); // para que agarre bien el enemy y player
+
             if (battleHUD != null)
                 battleHUD.SetActive(true); // Activar HUD de batalla
 
