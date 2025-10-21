@@ -88,7 +88,6 @@ public class QuestionUI : MonoBehaviour
             }
         }
         
-        // Ocultar feedback
         if (feedbackPanel != null) feedbackPanel.SetActive(false);
     }
     
@@ -111,7 +110,6 @@ public class QuestionUI : MonoBehaviour
     
     private IEnumerator ShowFeedbackAndContinue(bool correct, int selectedIndex)
     {
-        // Mostrar feedback visual
         if (feedbackPanel != null)
         {
             feedbackPanel.SetActive(true);
@@ -123,15 +121,13 @@ public class QuestionUI : MonoBehaviour
             }
             else
             {
-                feedbackText.text = $"INCORRECTO\n\nLa respuesta correcta era:\n{currentQuestion.answers[correctAnswer]}\n\n-50% de Fuerza para esta batalla";
+                feedbackText.text = $"INCORRECTO\n\n-50% de Fuerza para esta batalla";
                 feedbackText.color = Color.red;
             }
         }
         
-        // Esperar antes de continuar
         yield return new WaitForSeconds(feedbackDuration);
         
-        // Ocultar todo
         HideQuestion();
         
         // Notificar resultado
