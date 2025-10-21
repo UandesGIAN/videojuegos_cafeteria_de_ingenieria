@@ -30,80 +30,6 @@ MonoBehaviour:
     - Acero
     - Yeso
     correctAnswerIndex: 1
-  - category: Civil
-    questionText: "\xBFQu\xE9 tipo de suelo es mejor para cimentaciones?"
-    answers:
-    - Suelo arcilloso expansivo
-    - "Suelo org\xE1nico"
-    - Suelo rocoso o granular denso
-    - Suelo pantanoso
-    correctAnswerIndex: 2
-  - category: Civil
-    questionText: "\xBFCu\xE1l es la unidad de medida de la resistencia del concreto?"
-    answers:
-    - Metros
-    - Kilogramos
-    - MPa (Megapascales)
-    - Litros
-    correctAnswerIndex: 2
-  - category: Civil
-    questionText: "\xBFQu\xE9 elemento estructural trabaja principalmente a compresi\xF3n?"
-    answers:
-    - Cable
-    - Viga
-    - Columna
-    - Membrana
-    correctAnswerIndex: 2
-  - category: Civil
-    questionText: "\xBFQu\xE9 es un plano de planta en arquitectura?"
-    answers:
-    - Vista lateral del edificio
-    - "Vista desde arriba mostrando la distribuci\xF3n"
-    - Perspectiva 3D
-    - Detalle de la fachada
-    correctAnswerIndex: 1
-  - category: Civil
-    questionText: "\xBFCu\xE1l es la pendiente m\xEDnima recomendada para el drenaje
-      de techos planos?"
-    answers:
-    - 0%
-    - 2%
-    - 10%
-    - 25%
-    correctAnswerIndex: 1
-  - category: Civil
-    questionText: "\xBFQu\xE9 profesional es responsable de hacer los c\xE1lculos
-      estructurales?"
-    answers:
-    - Arquitecto
-    - Ingeniero Civil Estructural
-    - Maestro constructor
-    - "Top\xF3grafo"
-    correctAnswerIndex: 1
-  - category: Civil
-    questionText: "\xBFQu\xE9 instrumento se usa para medir \xE1ngulos en topograf\xEDa?"
-    answers:
-    - Regla
-    - Nivel
-    - Teodolito
-    - Martillo
-    correctAnswerIndex: 2
-  - category: Civil
-    questionText: "\xBFQu\xE9 es el momento flector en una viga?"
-    answers:
-    - "La velocidad de construcci\xF3n"
-    - El costo del material
-    - La tendencia a doblarse por cargas
-    - El color del acero
-    correctAnswerIndex: 2
-  - category: Computacion
-    questionText: "\xBFQu\xE9 significa CPU?"
-    answers:
-    - Computer Personal Unit
-    - Central Processing Unit
-    - Control Program Utility
-    - Certified Public User
-    correctAnswerIndex: 1
   - category: Computacion
     questionText: "\xBFCu\xE1l es la complejidad temporal de la b\xFAsqueda binaria?"
     answers:
@@ -113,79 +39,12 @@ MonoBehaviour:
     - O(1)
     correctAnswerIndex: 2
   - category: Computacion
-    questionText: "\xBFQu\xE9 protocolo se usa principalmente para transferir p\xE1ginas
-      web?"
-    answers:
-    - FTP
-    - SMTP
-    - HTTP/HTTPS
-    - SSH
-    correctAnswerIndex: 2
-  - category: Computacion
-    questionText: "\xBFCu\xE1l es el lenguaje de marcado est\xE1ndar para crear p\xE1ginas
-      web?"
-    answers:
-    - Python
-    - HTML
-    - Java
-    - SQL
-    correctAnswerIndex: 1
-  - category: Computacion
-    questionText: "\xBFQu\xE9 estructura de datos funciona con LIFO (Last In, First
-      Out)?"
-    answers:
-    - Cola (Queue)
-    - Lista enlazada
-    - Pila (Stack)
-    - "\xC1rbol"
-    correctAnswerIndex: 2
-  - category: Computacion
-    questionText: "\xBFCu\xE1ntos bits tiene un byte?"
-    answers:
-    - 4
-    - 8
-    - 16
-    - 32
-    correctAnswerIndex: 1
-  - category: Computacion
-    questionText: "\xBFQu\xE9 es un algoritmo?"
-    answers:
-    - Un tipo de computadora
-    - Secuencia de pasos para resolver un problema
-    - "Un lenguaje de programaci\xF3n"
-    - Un sistema operativo
-    correctAnswerIndex: 1
-  - category: Computacion
-    questionText: "\xBFCu\xE1l de estos NO es un paradigma de programaci\xF3n?"
-    answers:
-    - Orientado a objetos
-    - Funcional
-    - Procedural
-    - "Alfab\xE9tico"
-    correctAnswerIndex: 3
-  - category: Computacion
-    questionText: "\xBFQu\xE9 es SQL?"
-    answers:
-    - Sistema de procesamiento de texto
-    - Lenguaje para gestionar bases de datos
-    - Un tipo de memoria RAM
-    - "Software de dise\xF1o"
-    correctAnswerIndex: 1
-  - category: Computacion
     questionText: "\xBFQu\xE9 capa del modelo OSI se encarga del enrutamiento?"
     answers:
     - "Capa F\xEDsica"
     - Capa de Enlace
     - Capa de Red
     - "Capa de Aplicaci\xF3n"
-    correctAnswerIndex: 2
-  - category: Ambiental
-    questionText: "\xBFQu\xE9 gas es el principal responsable del efecto invernadero?"
-    answers:
-    - "Ox\xEDgeno"
-    - "Nitr\xF3geno"
-    - "Di\xF3xido de carbono (CO2)"
-    - "Hidr\xF3geno"
     correctAnswerIndex: 2
   - category: Ambiental
     questionText: "\xBFQu\xE9 es la DBO en tratamiento de aguas?"
@@ -196,111 +55,12 @@ MonoBehaviour:
     - "Depuraci\xF3n Biol\xF3gica Oxidativa"
     correctAnswerIndex: 0
   - category: Ambiental
-    questionText: "\xBFCu\xE1l es la capa de la atm\xF3sfera que nos protege de los
-      rayos UV?"
-    answers:
-    - Troposfera
-    - Estratosfera (capa de ozono)
-    - Mesosfera
-    - Termosfera
-    correctAnswerIndex: 1
-  - category: Ambiental
-    questionText: "\xBFQu\xE9 porcentaje aproximado del agua en la Tierra es dulce?"
-    answers:
-    - 50%
-    - 25%
-    - 10%
-    - 3%
-    correctAnswerIndex: 3
-  - category: Ambiental
     questionText: "\xBFQu\xE9 es la eutrofizaci\xF3n?"
     answers:
     - "Exceso de nutrientes que causa proliferaci\xF3n de algas"
     - "Falta de agua en los r\xEDos"
     - "Contaminaci\xF3n por metales pesados"
     - Aumento de la salinidad
-    correctAnswerIndex: 0
-  - category: Ambiental
-    questionText: "\xBFCu\xE1l de estos es un recurso renovable?"
-    answers:
-    - "Petr\xF3leo"
-    - "Carb\xF3n"
-    - "Energ\xEDa solar"
-    - Gas natural
-    correctAnswerIndex: 2
-  - category: Ambiental
-    questionText: "\xBFQu\xE9 significa la regla de las 3R en gesti\xF3n ambiental?"
-    answers:
-    - Regar, Reciclar, Reutilizar
-    - Reducir, Reutilizar, Reciclar
-    - Reforestar, Renovar, Restaurar
-    - Regular, Restringir, Remover
-    correctAnswerIndex: 1
-  - category: Ambiental
-    questionText: "\xBFQu\xE9 es un relleno sanitario?"
-    answers:
-    - Lugar para tratar aguas residuales
-    - "Sitio de disposici\xF3n controlada de residuos s\xF3lidos"
-    - Planta de reciclaje
-    - Centro de compostaje
-    correctAnswerIndex: 1
-  - category: Ambiental
-    questionText: "\xBFCu\xE1l es el pH del agua pura a 25\xB0C?"
-    answers:
-    - 5
-    - 7
-    - 9
-    - 12
-    correctAnswerIndex: 1
-  - category: Ambiental
-    questionText: "\xBFQu\xE9 es la huella de carbono?"
-    answers:
-    - Marca dejada por combustibles
-    - Emisiones totales de gases de efecto invernadero de una actividad
-    - Tipo de suelo contaminado
-    - Rastro de contaminantes en el agua
-    correctAnswerIndex: 1
-  - category: Obras
-    questionText: "\xBFQu\xE9 documento establece las especificaciones t\xE9cnicas
-      de una obra?"
-    answers:
-    - Presupuesto
-    - Carta Gantt
-    - "Especificaciones t\xE9cnicas / Planos"
-    - Contrato laboral
-    correctAnswerIndex: 2
-  - category: Obras
-    questionText: "\xBFQu\xE9 es el fierro de refuerzo en el hormig\xF3n armado?"
-    answers:
-    - "Decoraci\xF3n met\xE1lica"
-    - "Barras de acero que aumentan la resistencia a tracci\xF3n"
-    - "Herramienta de construcci\xF3n"
-    - Material para pintar
-    correctAnswerIndex: 1
-  - category: Obras
-    questionText: "\xBFCu\xE1l es la secuencia correcta en la construcci\xF3n de
-      un edificio?"
-    answers:
-    - Techado, Cimientos, Muros, Terminaciones
-    - Terminaciones, Cimientos, Estructura, Muros
-    - Cimientos, Estructura, Muros, Techado, Terminaciones
-    - Muros, Cimientos, Techado, Estructura
-    correctAnswerIndex: 2
-  - category: Obras
-    questionText: "\xBFQu\xE9 profesional dirige la obra en terreno?"
-    answers:
-    - Arquitecto proyectista
-    - Jefe de obra / Ingeniero residente
-    - Contador
-    - Abogado
-    correctAnswerIndex: 1
-  - category: Obras
-    questionText: "\xBFQu\xE9 es un encofrado?"
-    answers:
-    - "Molde temporal para dar forma al hormig\xF3n"
-    - "Herramienta de medici\xF3n"
-    - Tipo de pintura
-    - Material aislante
     correctAnswerIndex: 0
   - category: Obras
     questionText: "\xBFCu\xE1l es el EPP b\xE1sico en una obra?"
@@ -311,23 +71,6 @@ MonoBehaviour:
     - "Uniforme m\xE9dico"
     correctAnswerIndex: 1
   - category: Obras
-    questionText: "\xBFQu\xE9 es la carta Gantt?"
-    answers:
-    - "Plano arquitect\xF3nico"
-    - Cronograma de actividades del proyecto
-    - Lista de materiales
-    - Presupuesto detallado
-    correctAnswerIndex: 1
-  - category: Obras
-    questionText: "\xBFQu\xE9 prueba se realiza al hormig\xF3n para verificar su
-      resistencia?"
-    answers:
-    - Prueba de color
-    - "Prueba de compresi\xF3n de probetas"
-    - Prueba de sabor
-    - Prueba de sonido
-    correctAnswerIndex: 1
-  - category: Obras
     questionText: "\xBFQu\xE9 es el replanteo en construcci\xF3n?"
     answers:
     - Cambiar el proyecto
@@ -335,91 +78,23 @@ MonoBehaviour:
     - Demoler estructuras
     - Comprar materiales
     correctAnswerIndex: 1
-  - category: Obras
-    questionText: "\xBFQu\xE9 documento autoriza el inicio de una construcci\xF3n?"
+  - category: Industrial
+    questionText: "El takt time en una l\xEDnea de producci\xF3n se define como:"
     answers:
-    - Boleta de compra
-    - "Permiso de edificaci\xF3n municipal"
-    - "Carta de recomendaci\xF3n"
-    - Diploma profesional
-    correctAnswerIndex: 1
-  - category: PlanComun
-    questionText: "\xBFCu\xE1l es la derivada de x\xB2?"
-    answers:
-    - x
-    - 2x
-    - "x\xB2"
-    - "2x\xB2"
-    correctAnswerIndex: 1
-  - category: PlanComun
-    questionText: "\xBFQu\xE9 es la f\xEDsica?"
-    answers:
-    - Estudio de los seres vivos
-    - "Ciencia que estudia la materia, energ\xEDa y sus interacciones"
-    - "Estudio de las reacciones qu\xEDmicas"
-    - "Ciencia de los n\xFAmeros"
-    correctAnswerIndex: 1
-  - category: PlanComun
-    questionText: "\xBFCu\xE1l es la f\xF3rmula de la segunda ley de Newton?"
-    answers:
-    - "E = mc\xB2"
-    - F = ma
-    - V = IR
-    - P = VI
-    correctAnswerIndex: 1
-  - category: PlanComun
-    questionText: "\xBFCu\xE1nto vale \u03C0 (pi) aproximadamente?"
-    answers:
-    - 2.14
-    - 3.14
-    - 4.14
-    - 5.14
-    correctAnswerIndex: 1
-  - category: PlanComun
-    questionText: "\xBFQu\xE9 estudia la termodin\xE1mica?"
-    answers:
-    - El movimiento de los cuerpos
-    - "Las relaciones entre calor, trabajo y energ\xEDa"
-    - Las estructuras de edificios
-    - Los ecosistemas
-    correctAnswerIndex: 1
-  - category: PlanComun
-    questionText: "\xBFCu\xE1l es la unidad de fuerza en el Sistema Internacional?"
-    answers:
-    - Kilogramo
-    - Metro
-    - Newton
-    - Julio
+    - "El tiempo m\xE1ximo permitido para fabricar un producto completo.\r"
+    - "El tiempo de ciclo m\xE1s corto entre dos unidades consecutivas.\r\n"
+    - "El ritmo de producci\xF3n necesario para satisfacer la demanda del cliente.\r\n"
+    - 'El tiempo promedio de espera entre operaciones consecutivas.
+
+'
     correctAnswerIndex: 2
-  - category: PlanComun
-    questionText: "\xBFQu\xE9 representa la integral en c\xE1lculo?"
+  - category: Industrial
+    questionText: "El principio de \u201CJidoka\u201D en el sistema de producci\xF3n
+      Toyota se refiere principalmente a:"
     answers:
-    - "Derivada de una funci\xF3n"
-    - "\xC1rea bajo una curva / operaci\xF3n inversa de la derivada"
-    - "Suma de n\xFAmeros"
-    - "Divisi\xF3n de funciones"
+    - "La estandarizaci\xF3n de tareas repetitivas para reducir variabilidad.\r"
+    - "El dise\xF1o de procesos que se detienen autom\xE1ticamente cuando ocurre
+      un defecto.\r\n"
+    - "La implementaci\xF3n de flujos de trabajo continuos sin interrupciones.\r\n"
+    - "La reducci\xF3n del inventario en proceso para eliminar desperdicios."
     correctAnswerIndex: 1
-  - category: PlanComun
-    questionText: "\xBFCu\xE1l es la f\xF3rmula del \xE1rea de un c\xEDrculo?"
-    answers:
-    - "2\u03C0r"
-    - "\u03C0r\xB2"
-    - "\u03C0d"
-    - "r\xB2"
-    correctAnswerIndex: 1
-  - category: PlanComun
-    questionText: "\xBFQu\xE9 es un vector?"
-    answers:
-    - "Magnitud con direcci\xF3n y sentido"
-    - "Solo un n\xFAmero"
-    - Tipo de bacteria
-    - Unidad de temperatura
-    correctAnswerIndex: 0
-  - category: PlanComun
-    questionText: "\xBFCu\xE1l es la velocidad de la luz en el vac\xEDo aproximadamente?"
-    answers:
-    - 300 m/s
-    - 3,000 km/s
-    - 300,000 km/s
-    - 3,000,000 km/s
-    correctAnswerIndex: 2
