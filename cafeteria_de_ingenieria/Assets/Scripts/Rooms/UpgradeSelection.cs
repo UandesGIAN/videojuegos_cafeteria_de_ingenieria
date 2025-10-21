@@ -171,7 +171,7 @@ public class UpgradeSelection : MonoBehaviour
                 });
             }
         }
-        /*
+        
         // Obtener todos los upgrades del pool
         if (UpgradePoolContainer != null)
         {
@@ -184,7 +184,7 @@ public class UpgradeSelection : MonoBehaviour
                     upgrade = upgrade 
                 });
             }
-        }*/
+        }
         
         return allRewards;
     }

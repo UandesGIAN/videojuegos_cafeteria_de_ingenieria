@@ -291,6 +291,7 @@ public class BattleManager : MonoBehaviour
         finally
         {
             isHandlingSkill = false;
+            ui.skillPopup.SetActive(false);
         }
     }
 

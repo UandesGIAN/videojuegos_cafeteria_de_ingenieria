@@ -6,6 +6,7 @@ public abstract class Skill : MonoBehaviour
     public string skillName;
     public string description;
     public float animationDuration;
+    public ElementType type;
     public Sprite icon;
 
     public bool selfinflicted;
