@@ -12,14 +12,18 @@ public class UpgradeSelection : MonoBehaviour
     public TMP_Text[] upgradeDescriptions;
     public Image[] upgradeIcons;
     public GameObject SkillPoolContainer;
+    public GameObject ItemsPoolContainer;
     public GameObject UpgradePoolContainer;
     public RoomController currentRoom;
     
     [Header("Player Reference")]
     public FighterStats player;
-    
+
     [Header("Skill Manager")]
     public SkillManager skillManager;
+
+    [Header("Items Manager")]
+    public ItemManager ItemsManager;
 
     [Header("Configuración")]
     public int numberOfRewardsToShow = 3;
@@ -28,25 +32,56 @@ public class UpgradeSelection : MonoBehaviour
 
     public class Reward
     {
-        public enum RewardType { Skill, Upgrade }
+        public enum RewardType { Skill, Item, Upgrade }
         
         public RewardType type;
         public Skill skill;
+        public Item item;
         public Upgrade upgrade;
         
-        public string GetName()
+         public string GetName()
         {
-            return type == RewardType.Skill ? skill.skillName : upgrade.upgradeName;
+            switch (type)
+            {
+                case RewardType.Skill:
+                    return skill != null ? skill.skillName : "Unknown Skill";
+                case RewardType.Item:
+                    return item != null ? item.itemName : "Unknown Item";
+                case RewardType.Upgrade:
+                    return upgrade != null ? upgrade.upgradeName : "Unknown Upgrade";
+                default:
+                    return "Unknown Reward";
+            }
         }
-        
+
         public string GetDescription()
         {
-            return type == RewardType.Skill ? skill.description : upgrade.description;
+            switch (type)
+            {
+                case RewardType.Skill:
+                    return skill != null ? skill.description : "";
+                case RewardType.Item:
+                    return item != null ? item.description : "";
+                case RewardType.Upgrade:
+                    return upgrade != null ? upgrade.description : "";
+                default:
+                    return "";
+            }
         }
-        
+
         public Sprite GetIcon()
         {
-            return type == RewardType.Upgrade ? upgrade.icon : null;
+            switch (type)
+            {
+                case RewardType.Skill:
+                    return skill != null ? skill.icon : null;
+                case RewardType.Item:
+                    return item != null ? item.icon : null;
+                case RewardType.Upgrade:
+                    return upgrade != null ? upgrade.icon : null;
+                default:
+                    return null;
+            }
         }
     }
 
@@ -85,7 +120,7 @@ public class UpgradeSelection : MonoBehaviour
     {
         selectedRewards.Clear();
         
-        // Obtener todas las skills y upgrades disponibles
+        // Obtener todas las skills, objetos y upgrades disponibles
         List<Reward> allPossibleRewards = GetAllPossibleRewards();
         
         // Filtrar las que el jugador ya tiene (para skills)
@@ -108,21 +143,35 @@ public class UpgradeSelection : MonoBehaviour
     private List<Reward> GetAllPossibleRewards()
     {
         List<Reward> allRewards = new List<Reward>();
-        
+
         // Obtener todas las skills del pool
         if (SkillPoolContainer != null)
         {
             Skill[] allSkills = SkillPoolContainer.GetComponentsInChildren<Skill>(true);
             foreach (Skill skill in allSkills)
             {
-                allRewards.Add(new Reward 
-                { 
-                    type = Reward.RewardType.Skill, 
-                    skill = skill 
+                allRewards.Add(new Reward
+                {
+                    type = Reward.RewardType.Skill,
+                    skill = skill
                 });
             }
         }
         
+        // Obtener todos los items del pool
+        if (ItemsPoolContainer != null)
+        {
+            Item[] allItems = ItemsPoolContainer.GetComponentsInChildren<Item>(true);
+            foreach (Item it in allItems)
+            {
+                allRewards.Add(new Reward 
+                { 
+                    type = Reward.RewardType.Item, 
+                    item = it
+                });
+            }
+        }
+        /*
         // Obtener todos los upgrades del pool
         if (UpgradePoolContainer != null)
         {
@@ -135,7 +184,7 @@ public class UpgradeSelection : MonoBehaviour
                     upgrade = upgrade 
                 });
             }
-        }
+        }*/
         
         return allRewards;
     }
@@ -162,7 +211,7 @@ public class UpgradeSelection : MonoBehaviour
                 // Solo incluir si el jugador NO tiene esta skill
                 return !playerSkills.Any(ps => ps.skillName == reward.skill.skillName);
             }
-            // Los upgrades siempre están disponibles
+            // Los upgrades y objetos siempre están disponibles
             return true;
         }).ToList();
         
@@ -196,9 +245,11 @@ public class UpgradeSelection : MonoBehaviour
                         upgradeIcons[i].enabled = false;
                     }
                 }
-                
+
                 // Agregar indicador de tipo
-                string typeIndicator = reward.type == Reward.RewardType.Skill ? "[SKILL]" : "[UPGRADE]";
+                string typeIndicator = reward.type == Reward.RewardType.Skill ? "[SKILL]" :
+                       reward.type == Reward.RewardType.Item ? "[ITEM]" :
+                       "[UPGRADE]";
                 upgradeNames[i].text = $"{typeIndicator} {reward.GetName()}";
             }
             else
@@ -224,6 +275,10 @@ public class UpgradeSelection : MonoBehaviour
         if (chosenReward.type == Reward.RewardType.Skill)
         {
             ApplySkillReward(chosenReward.skill);
+        }
+        else if (chosenReward.type == Reward.RewardType.Item)
+        {
+            ApplyItemReward(chosenReward.item);
         }
         else if (chosenReward.type == Reward.RewardType.Upgrade)
         {
@@ -252,6 +307,18 @@ public class UpgradeSelection : MonoBehaviour
         else
         {
             Debug.LogError("UpgradeSelection: SkillManager no asignado, no se puede agregar skill");
+        }
+    }
+
+    private void ApplyItemReward(Item item)
+    {
+        if (ItemsManager != null)
+        {
+            ItemsManager.AddItemToPlayer(item.itemName);
+        }
+        else
+        {
+            Debug.LogError("UpgradeSelection: ItemManager no asignado, no se puede agregar item");
         }
     }
 

@@ -15,10 +15,12 @@ public class BattleUI : MonoBehaviour
     public GameObject skillPopup;
     public GameObject itemPopup;
 
+    public GameObject itemListContainer;
+    public GameObject itemButtonPrefab;
+
     // Se llenan automáticamente desde los popups
     [HideInInspector] public Button[] skillButtons;
     [HideInInspector] public TextMeshProUGUI[] skillButtonLabels;
-    [HideInInspector] public GameObject itemListContainer; // Para la lista de items
 
     [Header("HUD del jugador")]
     public Image playerSprite;
@@ -97,38 +99,50 @@ public class BattleUI : MonoBehaviour
         }
     }
 
-    // Items
+    // items
     public void SetupItemList(FighterStats fighter)
     {
-        if (itemListContainer == null) return;
+        if (itemListContainer == null || fighter == null) return;
 
-        // Limpiar hijos previos
+        // clean list
         foreach (Transform t in itemListContainer.transform)
-        {
             Destroy(t.gameObject);
-        }
+
+        Debug.Log($"[BattleUI] Generando lista de items para: {fighter.fightername}");
 
         Item[] items = fighter.GetItems();
+        if (items == null || items.Length == 0) return;
+
+        Debug.Log($"[BattleUI] Se encontraron {items.Length} ítems.");
 
         foreach (var item in items)
         {
-            GameObject go = new GameObject(item.itemName, typeof(RectTransform));
-            go.transform.SetParent(itemListContainer.transform);
-            go.AddComponent<HorizontalLayoutGroup>();
+            Debug.Log($"[BattleUI] ➕ Creando botón para item: {item.itemName}");
 
-            // Nombre
-            TextMeshProUGUI nameText = new GameObject("Name", typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
+            // Uso del prefab para hacer la lista
+            GameObject itemButton = Instantiate(itemButtonPrefab, itemListContainer.transform);
+
+            TextMeshProUGUI nameText = itemButton.transform.Find("Name").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI amountText = itemButton.transform.Find("Amount").GetComponent<TextMeshProUGUI>();
+            Button button = itemButton.GetComponent<Button>();
+            if (nameText == null || amountText == null || button == null)
+            {
+                Debug.LogError($"[BattleUI] El prefab '{itemButton.name}' no tiene los componentes esperados (Name, Amount, Button).");
+                continue;
+            }
+        
+            // Asignar datos
             nameText.text = item.itemName;
-            nameText.transform.SetParent(go.transform);
+            amountText.text = "x" + fighter.GetItemCount(item.itemName);
+            Debug.Log($"[BattleUI] 🏷️ Item '{item.itemName}' agregado al HUD.");
 
-            // Cantidad
-            TextMeshProUGUI amountText = new GameObject("Amount", typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
-            amountText.text = item.amount.ToString();
-            amountText.transform.SetParent(go.transform);
-
-            // Botón para usar item
-            Button button = go.AddComponent<Button>();
-            button.onClick.AddListener(() => OnItemSelected?.Invoke(item));
+            // Asignar evento
+            button.onClick.RemoveAllListeners();
+            button.onClick.AddListener(() =>
+            {
+                Debug.Log($"[BattleUI] 🎯 Usando item: {item.itemName}");
+                OnItemSelected?.Invoke(item);
+            });
         }
     }
 

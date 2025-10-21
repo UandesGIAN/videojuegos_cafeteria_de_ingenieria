@@ -6,8 +6,7 @@ public abstract class Item : MonoBehaviour
     public string itemName;
     public string description;
     public Sprite icon;
-    public float animationDuration;
-    public int amount;
+    //public float animationDuration;
 
     public void Run()
     {

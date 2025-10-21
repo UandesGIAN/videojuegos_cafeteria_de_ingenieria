@@ -12,6 +12,7 @@ public class BattleManager : MonoBehaviour
     public TurnController turnController;
     public FighterStats player;
     public FighterAction playerAction;
+    public ItemManager itemManager;
 
     private int selectedOption = 0;
     private TextMeshProUGUI[] actionOptions;
@@ -229,7 +230,7 @@ public class BattleManager : MonoBehaviour
                 // enemy por alguna razon no esta synceado con el UI enemy, pero el enemy de playerAction si
                 skillSelected.SetTargetanduser(player, playerAction.GetEnemy().GetComponent<FighterStats>());
                 skillSelected.Run();
-                ui.skillPopup.SetActive(false);
+                ShowSkills();
             }
 
             StartCoroutine(NotifyTurnControllerAfterSkillOrObjectAction());
@@ -242,8 +243,17 @@ public class BattleManager : MonoBehaviour
 
     public void ExecuteItem(Item item)
     {
+        if (item == null) return;
+
+        // Ejecuta el efecto del item
         item.Run();
+
+        // Elimina la instancia del jugador
+        itemManager.RemoveItemFromPlayerInstance(item);
+
+        // Actualiza el HUD
         ui.itemPopup.SetActive(false);
+
         StartCoroutine(NotifyTurnControllerAfterSkillOrObjectAction());
     }
 
@@ -259,6 +269,7 @@ public class BattleManager : MonoBehaviour
     {
         Debug.Log("Mostrar popup de objetos");
         ui.itemPopup.SetActive(!ui.itemPopup.activeSelf);
+        ui.SetupItemList(player);
         if (ui.itemPopup.activeSelf)
             ui.skillPopup.SetActive(false);
     }
