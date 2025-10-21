@@ -1,8 +1,7 @@
-using System.Threading;
 using UnityEngine;
 using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
 using System;
+using System.Linq;
 
 public enum ElementType
 {
@@ -140,7 +139,7 @@ public class FighterStats : MonoBehaviour
     public float defense;
 
     protected Skill[] skills;
-    protected Item[] items;
+    private List<Item> itemList = new List<Item>();
 
     // para modificacion del tamaño de barras de health y IQ
     private Vector2 healthBarScale;
@@ -154,7 +153,6 @@ public class FighterStats : MonoBehaviour
         startIQ = IQ;
 
         skills = GetComponentsInChildren<Skill>();
-        items = GetComponentsInChildren<Item>();
 
         if (physicalArmor <= 0) physicalArmor = 1f;
         if (IQArmor <= 0) IQArmor = 1f;
@@ -173,7 +171,22 @@ public class FighterStats : MonoBehaviour
 
     public Item[] GetItems()
     {
-        return items;
+        return itemList.ToArray();;
+    }
+
+    public int GetItemCount(string itemName)
+    {
+        return itemList.Count(i => i.itemName == itemName);
+    }
+
+    public void AddItem(Item item)
+    {
+        itemList.Add(item);
+    }
+
+    public void RemoveItem(Item item)
+    {
+        itemList.Remove(item);
     }
 
     public void SetupUI()
@@ -288,7 +301,6 @@ public class FighterStats : MonoBehaviour
                   $"- Experience: {experience}\n" +
                   $"- Level: {level}");
     }
-
 
     // para copiar valores desde otra instancia de fighterStats
     public void CopyFrom(FighterStats source)
