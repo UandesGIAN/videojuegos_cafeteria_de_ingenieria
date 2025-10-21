@@ -3,7 +3,6 @@ using TMPro;
 using System;
 using System.Collections;
 
-
 public class BattleManager : MonoBehaviour
 {
     [Header("Referencias externas")]
@@ -12,6 +11,10 @@ public class BattleManager : MonoBehaviour
     public TurnController turnController;
     public FighterStats player;
     public FighterAction playerAction;
+
+    [Header("Sistema de Preguntas")]
+    public QuestionUI questionUI;
+    public bool useQuestionSystem = true;
 
     private int selectedOption = 0;
     private TextMeshProUGUI[] actionOptions;
@@ -26,6 +29,9 @@ public class BattleManager : MonoBehaviour
     private Action onBattleEnd;
     private bool battleActive = false;
 
+    // Multiplicador de fuerza por preguntas
+    private float currentStrengthMultiplier = 1f;
+
     void Start()
     {
         Debug.Log("BattleManager GameObject Name: " + gameObject.name);
@@ -39,6 +45,12 @@ public class BattleManager : MonoBehaviour
 
         actionOptions = new TextMeshProUGUI[] { ui.attackText, ui.skillText, ui.itemText };
         SetupUI();
+
+        // Configurar evento de preguntas
+        if (questionUI != null)
+        {
+            questionUI.OnQuestionAnswered += OnQuestionAnswered;
+        }
     }
 
     private void SetupUI()
@@ -71,7 +83,10 @@ public class BattleManager : MonoBehaviour
     {
         if (enemy != null)
         {
-            enemy.ReceiveDamage(damage);
+            // Aplicar multiplicador de fuerza
+            float modifiedDamage = damage * currentStrengthMultiplier;
+            Debug.Log($"Daño: {damage} x {currentStrengthMultiplier} = {modifiedDamage}");
+            enemy.ReceiveDamage(modifiedDamage);
         }
     }
 
@@ -84,6 +99,45 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
+        this.onBattleEnd = onBattleEnd;
+
+        // Si el sistema de preguntas está activado, mostrar pregunta primero
+        if (useQuestionSystem && questionUI != null)
+        {
+            Debug.Log("Mostrando pregunta antes de la batalla...");
+            questionUI.ShowQuestion();
+            // La batalla se iniciará después de responder en OnQuestionAnswered()
+        }
+        else
+        {
+            // Iniciar batalla directamente sin pregunta
+            currentStrengthMultiplier = 1f;
+            StartBattleDirectly();
+        }
+    }
+
+    private void OnQuestionAnswered(bool correct)
+    {
+        Debug.Log($"Pregunta respondida: {(correct ? "CORRECTA" : "INCORRECTA")}");
+        
+        // Aplicar multiplicador según resultado
+        if (correct)
+        {
+            currentStrengthMultiplier = 1.5f; // +50% de fuerza
+            Debug.Log("¡Bonus de fuerza aplicado! x1.5");
+        }
+        else
+        {
+            currentStrengthMultiplier = 0.5f; // -50% de fuerza
+            Debug.Log("Penalización de fuerza aplicada x0.5");
+        }
+
+        // Ahora sí iniciar la batalla
+        StartBattleDirectly();
+    }
+
+    private void StartBattleDirectly()
+    {
         battleActive = true;
         turnController.SetBattleActive(battleActive);
 
@@ -94,8 +148,6 @@ public class BattleManager : MonoBehaviour
 
         ui.gameObject.SetActive(true);
         ResetBattle();
-
-        this.onBattleEnd = onBattleEnd;
 
         turnController.SetupTurnOrder(player, enemy);
     }
@@ -280,6 +332,9 @@ public class BattleManager : MonoBehaviour
         if (!battleActive) return;
         battleActive = false;
 
+        // Resetear multiplicador
+        currentStrengthMultiplier = 1f;
+
         turnController.BattleEnded();
 
         // Desactivar UI de batalla
@@ -296,6 +351,11 @@ public class BattleManager : MonoBehaviour
             ui.OnSkillSelected -= ExecuteSkill;
             ui.OnItemSelected -= ExecuteItem;
         }
+
+        if (questionUI != null)
+        {
+            questionUI.OnQuestionAnswered -= OnQuestionAnswered;
+        }
     }
 
     private IEnumerator NotifyTurnControllerAfterSkillOrObjectAction()
@@ -307,5 +367,4 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         OnPlayerActionCompleted?.Invoke();
     }
-
 }
