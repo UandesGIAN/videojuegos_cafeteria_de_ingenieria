@@ -71,6 +71,10 @@ public class RoomController : MonoBehaviour
     public void EnterRoom()
     {
         roomSelectionUI.SetActive(false);
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(true);
+        }
 
         if (battle != null)
         {

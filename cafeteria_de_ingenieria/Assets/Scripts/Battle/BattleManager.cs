@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using System.Collections;
-using System.Runtime.CompilerServices;
+using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
@@ -18,9 +18,6 @@ public class BattleManager : MonoBehaviour
     public QuestionUI questionUI;
     public bool useQuestionSystem = true;
 
-    private int selectedOption = 0;
-    private TextMeshProUGUI[] actionOptions;
-
     // Flag para saber si un popup está activo
     private bool IsPopupActive => ui.skillPopup.activeSelf || ui.itemPopup.activeSelf;
 
@@ -30,6 +27,7 @@ public class BattleManager : MonoBehaviour
     // Al terminar la batalla
     private Action onBattleEnd;
     private bool battleActive = false;
+    int selectedOption = 0;
 
     // Multiplicador de fuerza por preguntas
     private float currentStrengthMultiplier = 1f;
@@ -44,8 +42,6 @@ public class BattleManager : MonoBehaviour
         enemy.PrintStats();
 
         turnController.SetBattleManager(this);
-
-        actionOptions = new TextMeshProUGUI[] { ui.attackText, ui.skillText, ui.itemText };
         SetupUI();
 
         // Configurar evento de preguntas
@@ -69,6 +65,9 @@ public class BattleManager : MonoBehaviour
 
         ui.skillPopup.SetActive(false);
         ui.itemPopup.SetActive(false);
+        
+        ui.OnOptionClicked += OnClickOption;
+        ui.OnOptionHovered += OnHoverOption;
     }
 
     public void SetEnemy(FighterStats newEnemy)
@@ -103,19 +102,40 @@ public class BattleManager : MonoBehaviour
 
         this.onBattleEnd = onBattleEnd;
 
-        // Si el sistema de preguntas está activado, mostrar pregunta primero
+        // Si el sistema de preguntas está activado, actualizar UI, luego mostrar pregunta
+        ui.gameObject.SetActive(true);
+        SetupUI();
+        ui.ResetUI(player, enemy);
+
+        // Reiniciar estados del jugador y enemigo
+        player.health = player.startHealth;
+        player.IQ = player.startIQ;
+        enemy.health = enemy.startHealth;
+        enemy.IQ = enemy.startIQ;
+        bool start = true;
+        enemy.UpdateHealthBar(start);
+        enemy.UpdateIQBar();
+
+        // Ahora la pregunta
         if (useQuestionSystem && questionUI != null)
         {
-            Debug.Log("Mostrando pregunta antes de la batalla...");
-            questionUI.ShowQuestion();
-            // La batalla se iniciará después de responder en OnQuestionAnswered()
+            Debug.Log("Cargando UI y mostrando pregunta antes de la batalla...");
+            StartCoroutine(ShowQuestionAfterUIReady());
         }
         else
         {
-            // Iniciar batalla directamente sin pregunta
             currentStrengthMultiplier = 1f;
             StartBattleDirectly();
         }
+    }
+
+    private IEnumerator ShowQuestionAfterUIReady()
+    {
+        // Espera un frame para que Unity actualice visualmente la UI
+        yield return null;
+
+        // Ahora muestra la pregunta sobre la UI ya cargada
+        questionUI.ShowQuestion();
     }
 
     private void OnQuestionAnswered(bool correct)
@@ -157,12 +177,6 @@ public class BattleManager : MonoBehaviour
 
     public void ResetBattle()
     {
-        // Inicializar opciones de accion
-        if (actionOptions == null || actionOptions.Length == 0)
-        {
-            actionOptions = new TextMeshProUGUI[] { ui.attackText, ui.skillText, ui.itemText };
-        }
-
         // Reiniciar enemigo
         enemy.health = enemy.startHealth;
         enemy.UpdateHealthBar();
@@ -186,7 +200,6 @@ public class BattleManager : MonoBehaviour
         ui.itemPopup.SetActive(false);
 
         selectedOption = 0;
-        UpdateHighlight();
     }
 
     void Update()
@@ -199,49 +212,32 @@ public class BattleManager : MonoBehaviour
             if (ui.itemPopup.activeSelf)
                 ui.itemPopup.SetActive(false);
         }
-
-        // Solo navegar si no hay popup abierto y si es el turno del jugador
-        if (!IsPopupActive && turnController.GetCanPlayerAct())
+        if (player != null && player.IsDead())
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                selectedOption = (selectedOption - 1 + actionOptions.Length) % actionOptions.Length;
-                UpdateHighlight();
-            }
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                selectedOption = (selectedOption + 1) % actionOptions.Length;
-                UpdateHighlight();
-            }
-
-            // Confirmar con Enter o Space
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
-            {
-                ActivateOption(selectedOption);
-            }
+            Debug.Log("GAME OVER. Reiniciando juego...");
+            StartCoroutine(RestartGame());
         }
     }
 
-    // Manejo del mouse
-    public void SetSelectedOption(int index)
+    private IEnumerator RestartGame()
     {
-        if (IsPopupActive) return;
-        selectedOption = index;
-        UpdateHighlight();
+        yield return new WaitForSeconds(1f); // pequeña pausa antes del reinicio
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name); // recarga la escena actual
     }
 
-    public void OnClickOption(int index)
+    // Manejo del mouse
+    void OnClickOption(int index)
     {
         if (IsPopupActive) return;
         ActivateOption(index);
     }
 
-    void UpdateHighlight()
+    void OnHoverOption(int index)
     {
-        for (int i = 0; i < actionOptions.Length; i++)
-        {
-            actionOptions[i].color = (i == selectedOption) ? new Color(0.5f, 1f, 1f) : Color.white;
-        }
+        if (IsPopupActive) return;
+        selectedOption = index;
+        ui.SetSelectedOption(index);
     }
 
     void ActivateOption(int option)

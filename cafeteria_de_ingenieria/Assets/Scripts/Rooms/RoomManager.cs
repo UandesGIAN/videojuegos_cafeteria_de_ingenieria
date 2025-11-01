@@ -29,18 +29,33 @@ public class RoomManager : MonoBehaviour
     {
         if (allRoomObjects == null || allRoomObjects.Count == 0) return;
 
-        // Activar solo la primera sala
+        // Activar solo la primera sala = SELECCION DE PERSONAJE
         allRoomObjects[0].SetActive(true);
+    }
 
-        RoomController firstRoom = allRoomObjects[0].GetComponentInChildren<RoomController>(true);
-        if (firstRoom != null)
+    public void GoToNextRoom()
+    {
+        if (allRoomObjects.Count < 2)
         {
-            firstRoom.EnterRoom();
-            MarkRoomVisited(firstRoom);
+            Debug.LogWarning("RoomManager: No hay una segunda sala configurada.");
+            return;
+        }
+
+        // Desactivar la sala de selección
+        allRoomObjects[0].SetActive(false);
+
+        // Activar la siguiente (la cafeteria)
+        allRoomObjects[1].SetActive(true);
+
+        RoomController nextRoom = allRoomObjects[1].GetComponentInChildren<RoomController>(true);
+        if (nextRoom != null)
+        {
+            nextRoom.EnterRoom();
+            MarkRoomVisited(nextRoom);
         }
         else
         {
-            Debug.LogError($"La primera sala ({allRoomObjects[0].name}) no tiene RoomController.");
+            Debug.LogError($"La sala '{allRoomObjects[1].name}' no tiene RoomController.");
         }
     }
 
