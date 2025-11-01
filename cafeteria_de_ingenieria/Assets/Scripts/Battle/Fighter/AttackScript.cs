@@ -14,6 +14,7 @@ public class AttackScript : MonoBehaviour
     //[SerializeField]
     //private float magicCost;
 
+    /*
     [SerializeField]
     private float minAttackMult = 0.8f;
 
@@ -25,10 +26,11 @@ public class AttackScript : MonoBehaviour
 
     [SerializeField]
     private float maxDefenseMult = 1.1f;
+    */
 
     private FighterStats attackerStats;
     private FighterStats targetStats;
-    private float damage = 0.0f;
+    //private float damage = 0.0f;
     //private float magicBarNewHorizontalValue;
     //private Vector2 magicBar; // representa dimensiones en 2D de la barra de magia
 

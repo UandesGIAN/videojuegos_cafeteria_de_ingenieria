@@ -48,11 +48,6 @@ public class Upgrade : MonoBehaviour
                 Debug.Log($"Upgrade aplicado: +{bonusAmount} ataque");
                 break;
 
-            case UpgradeType.Defense:
-                player.defense += bonusAmount;
-                Debug.Log($"Upgrade aplicado: +{bonusAmount} defensa");
-                break;
-
             case UpgradeType.IQArmor:
                 player.IQArmor += bonusAmount;
                 Debug.Log($"Upgrade aplicado: +{bonusAmount} armadura IQ");

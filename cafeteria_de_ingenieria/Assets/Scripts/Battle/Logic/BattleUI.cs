@@ -3,13 +3,15 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using UnityEngine.EventSystems;
 
 public class BattleUI : MonoBehaviour
 {
     [Header("Action Menu")]
-    public TextMeshProUGUI attackText;
-    public TextMeshProUGUI skillText;
-    public TextMeshProUGUI itemText;
+    public TextMeshProUGUI[] actionOptions;
+    public event Action<int> OnOptionClicked;
+    public event Action<int> OnOptionHovered;
+    int selectedOption = 0;
 
     [Header("Popups")]
     public GameObject skillPopup;
@@ -50,6 +52,31 @@ public class BattleUI : MonoBehaviour
 
     void Awake()
     {
+        // Asocia clic y hover a todos los botones automáticamente
+        for (int i = 0; i < actionOptions.Length; i++)
+        {
+            int index = i;
+            var option = actionOptions[i];
+
+            // Asegura que tenga un EventTrigger
+            EventTrigger trigger = option.GetComponent<EventTrigger>();
+            if (trigger == null)
+                trigger = option.gameObject.AddComponent<EventTrigger>();
+
+            // Limpia triggers anteriores
+            trigger.triggers.Clear();
+
+            // Hover
+            var entryHover = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
+            entryHover.callback.AddListener((_) => OnOptionHovered?.Invoke(index));
+            trigger.triggers.Add(entryHover);
+
+            // Click
+            var entryClick = new EventTrigger.Entry { eventID = EventTriggerType.PointerClick };
+            entryClick.callback.AddListener((_) => OnOptionClicked?.Invoke(index));
+            trigger.triggers.Add(entryClick);
+        }
+
         // Buscar dinámicamente todos los botones y labels de skills
         skillButtons = skillPopup.GetComponentsInChildren<Button>(true);
         skillButtonLabels = new TextMeshProUGUI[skillButtons.Length];
@@ -64,8 +91,8 @@ public class BattleUI : MonoBehaviour
         itemListContainer = itemPopup.transform.Find("ItemListContainer")?.gameObject;
 
         // Para el jugador
-        playerSprite.sprite = currentPlayer.img;  
-        playerName.text = currentPlayer.fightername; 
+        playerSprite.sprite = currentPlayer.img;
+        playerName.text = currentPlayer.fightername;
         playerHP.maxValue = currentPlayer.startHealth;
         playerHP.value = currentPlayer.health;
 
@@ -75,6 +102,26 @@ public class BattleUI : MonoBehaviour
         // Suscribirse a los eventos de cambio de salud e IQ
         currentPlayer.OnHealthChanged += UpdatePlayerHealth;
         currentPlayer.OnIQChanged += UpdatePlayerIQ;
+    }
+    
+    // HUD
+    public void SetSelectedOption(int index)
+    {
+        selectedOption = index;
+        UpdateHighlight();
+    }
+
+    public void UpdateHighlight()
+    {
+        if (actionOptions == null || actionOptions.Length == 0) return;
+
+        for (int i = 0; i < actionOptions.Length; i++)
+        {
+            if (actionOptions[i] == null) continue;
+            actionOptions[i].color = (i == selectedOption)
+                ? new Color(0.5f, 1f, 1f)
+                : Color.white;
+        }
     }
 
     // Habilidades
@@ -87,6 +134,10 @@ public class BattleUI : MonoBehaviour
             {
                 skillButtons[i].gameObject.SetActive(true);
                 skillButtonLabels[i].text = skills[i].skillName;
+                if (skills[i] is HealthModSkill healthSkill)
+                {
+                    skillButtonLabels[i].text = $"{skills[i].skillName}. {healthSkill.amount}DAÑO/{healthSkill.cost}IQ.";
+                }
 
                 int capturedIndex = i;
                 skillButtons[i].onClick.RemoveAllListeners();

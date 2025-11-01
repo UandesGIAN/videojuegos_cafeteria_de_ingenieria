@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class FighterStats : MonoBehaviour
 {
@@ -21,18 +22,16 @@ public class FighterStats : MonoBehaviour
     public int level = 1;
     public Sprite img;
     public string fightername;
-    public event System.Action<float, float> OnHealthChanged;
-    public event System.Action<float, float> OnIQChanged;
+
+    public event Action<float, float> OnHealthChanged;
+    public event Action<float, float> OnIQChanged;
 
     [Header("UI")]
     public BattleUI battleUI;
     [SerializeField] private GameObject healthBarObject;
     [SerializeField] private GameObject IQBarObject;
 
-    [HideInInspector]
-    public float defense;
-
-    protected Skill[] skills;
+    public Skill[] skills;
     private List<Item> itemList = new List<Item>();
 
     // para modificacion del tamaño de barras de health y IQ
@@ -43,8 +42,11 @@ public class FighterStats : MonoBehaviour
 
     public void Awake()
     {
-        startHealth = health;
-        startIQ = IQ;
+        // Evitar errores por casos borde
+        if (startHealth <= 0) startHealth = Mathf.Max(1f, health);
+        if (startIQ <= 0) startIQ = Mathf.Max(1f, IQ);
+        health = Mathf.Clamp(health, 0f, startHealth);
+        IQ = Mathf.Clamp(IQ, 0f, startIQ);
 
         skills = GetComponentsInChildren<Skill>();
 
@@ -159,13 +161,16 @@ public class FighterStats : MonoBehaviour
         UpdateIQBar();
     }
 
-    public void UpdateHealthBar()
+    public void UpdateHealthBar(bool start = false)
     {
-        if (healthBarObject != null)
-        {
-            float newX = healthBarScale.x * (health / startHealth);
-            healthBarObject.transform.localScale = new Vector2(newX, healthBarScale.y);
-        }
+        if (healthBarObject == null || startHealth <= 0) return;
+        if (healthBarObject != null && !healthBarObject.activeSelf) healthBarObject.SetActive(true);
+
+        float ratio = Mathf.Clamp01(health / startHealth);
+        Vector3 newScale = new Vector3(ratio, healthBarScale.y, 1f);
+        if (start) newScale = new Vector3(1f, healthBarScale.y, 1f);
+
+        healthBarObject.transform.localScale = newScale;
     }
 
     public void UpdateIQBar()
