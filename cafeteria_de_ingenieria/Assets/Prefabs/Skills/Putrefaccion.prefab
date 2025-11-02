@@ -48,9 +48,16 @@ MonoBehaviour:
   description: "Contamina al enemigo con agua estancada. Costo de 15 IQ. 15 de da\xF1o
     base."
   animationDuration: 0
-  type: 5
+  type: 0
   icon: {fileID: 0}
   selfinflicted: 0
   amount: 15
   cost: 15
   modType: 0
+  useAdvancedDamageFormula: 0
+  attackCategory: 0
+  skillElementType: 4
+  overrideAttackType: 0
+  customAttackType: 4
+  useRandomVariation: 1
+  damageMultiplier: 1
