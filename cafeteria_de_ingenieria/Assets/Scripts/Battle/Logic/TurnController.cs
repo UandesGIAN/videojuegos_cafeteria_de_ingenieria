@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq; // <-- MODIFICADO: Añadido para usar FirstOrDefault y Where en la IA
 
 public class TurnController : MonoBehaviour
 {
@@ -83,15 +83,76 @@ public class TurnController : MonoBehaviour
                 yield return new WaitForSeconds(EnemyWaitTime);
                 if (!battleActive || currentFighterStats == null) yield break;
 
+                // --- INICIO BLOQUE MODIFICADO: Reemplazamos la lógica de ataque simple por la IA del Jefe ---
                 if (currentFighterObject.TryGetComponent<FighterAction>(out var currentFighterAction))
                 {
-                    // hay q hacer q FighterAction.SelectOption() soporte habilidades!
-                    string attackType = Random.Range(0, 2) == 0 ?
-                        BattleConstants.MenuAttackOptions.Melee.ToString() :
-                        BattleConstants.MenuAttackOptions.Melee.ToString(); // cambiar por Ability cuando se cumpla el comentario de arriba
+                    // Obtenemos los stats del enemigo actual (el que ataca)
+                    FighterStats enemyStats = currentFighterStats;
+                    // Obtenemos los stats del jugador (el objetivo)
+                    FighterStats playerStats = battleManager.player; 
 
-                    currentFighterAction.SelectOption(attackType);
+                    bool turnUsed = false; // Flag para saber si el boss ya actuó (ej: se curó)
+
+                    // Verificamos si es un Boss (para no afectar a enemigos normales si los añades después)
+                    if (enemyStats.fighterHierarchy == FighterHierarchy.Boss)
+                    {
+                        float healthPercentage = enemyStats.health / enemyStats.startHealth;
+
+                        // 1. REVISAR SI NECESITA CURARSE (menos de 40% de vida)
+                        if (healthPercentage < 0.4f)
+                        {
+                            // 2. REVISAR SI TIENE UN "Elixir"
+                            // IMPORTANTE: Asegúrate que el item se llame "Elixir"
+                            Item elixirToUse = enemyStats.GetItems().FirstOrDefault(item => item.itemName == "Elixir");
+                            
+                            if (elixirToUse != null)
+                            {
+                                Debug.Log($"¡JEFE {enemyStats.name} está bajo de vida! Usando Elixir.");
+                                
+                                // Ejecutamos el item (que debería curarlo)
+                                elixirToUse.Run(); 
+                                
+                                // Removemos el item del inventario del jefe
+                                enemyStats.RemoveItem(elixirToUse);
+
+                                turnUsed = true; // Marcamos que usó el turno
+                            }
+                        }
+
+                        // 3. SI NO SE CURÓ, ATACAR CON HABILIDAD
+                        if (!turnUsed)
+                        {
+                            Debug.Log($"¡JEFE {enemyStats.name} ataca!");
+                            
+                            // Obtener TODAS las skills del jefe (asumimos que son de ataque)
+                            Skill[] attackSkills = enemyStats.GetSkills();
+
+                            if (attackSkills.Length > 0)
+                            {
+                                // Elige una habilidad de ataque al azar de su lista
+                                int skillIndex = Random.Range(0, attackSkills.Length);
+                                Skill skillToUse = attackSkills[skillIndex];
+                                
+                                // Usar la habilidad contra el jugador
+                                skillToUse.SetTargetanduser(enemyStats, playerStats);
+                                skillToUse.Run();
+                            }
+                            else
+                            {
+                                // Si no tiene skills, usa un ataque base
+                                Debug.LogWarning($"Jefe {enemyStats.name} no tiene skills. Usando ataque base.");
+                                currentFighterAction.SelectOption(BattleConstants.MenuAttackOptions.Melee.ToString());
+                            }
+                        }
+                    }
+                    else // Si es un enemigo Normal (o cualquier otra cosa que no sea Boss)
+                    {
+                        // El enemigo normal solo usa su ataque base (Melee)
+                        Debug.Log($"Enemigo {enemyStats.name} usa ataque base.");
+                        currentFighterAction.SelectOption(BattleConstants.MenuAttackOptions.Melee.ToString());
+                    }
                 }
+                // --- FIN BLOQUE MODIFICADO ---
 
                 yield return new WaitForSeconds(EnemyWaitTime);
                 if (battleActive) NextTurn();

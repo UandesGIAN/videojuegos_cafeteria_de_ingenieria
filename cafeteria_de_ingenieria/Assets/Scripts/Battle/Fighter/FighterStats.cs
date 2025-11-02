@@ -4,6 +4,12 @@ using System;
 using System.Linq;
 using Unity.VisualScripting;
 
+public enum FighterHierarchy // MODIFICADO!!
+{
+    Player,
+    Boss
+}
+
 public class FighterStats : MonoBehaviour
 {
     // estadisticas de player y enemigos
@@ -11,7 +17,7 @@ public class FighterStats : MonoBehaviour
     public ElementType elementType = ElementType.NORMAL;
     public float health;
     public float IQ;
-    
+
     public float startHealth;
     public float startIQ;
 
@@ -22,6 +28,9 @@ public class FighterStats : MonoBehaviour
     public int level = 1;
     public Sprite img;
     public string fightername;
+
+    public FighterHierarchy fighterHierarchy = FighterHierarchy.Player; // MODIFICADO!!: Para definir cual es el tipo del Fighter, normal se refiere a "enemigo comun", 
+                                               // tambien puede ser "player" o "boss"
 
     public event Action<float, float> OnHealthChanged;
     public event Action<float, float> OnIQChanged;
@@ -59,7 +68,7 @@ public class FighterStats : MonoBehaviour
         if (IQBarObject != null)
             IQBarScale = IQBarObject.GetComponent<RectTransform>().localScale;
     }
-    
+
     public Skill[] GetSkills()
     {
         return skills;
@@ -67,7 +76,7 @@ public class FighterStats : MonoBehaviour
 
     public Item[] GetItems()
     {
-        return itemList.ToArray();;
+        return itemList.ToArray(); ;
     }
 
     public int GetItemCount(string itemName)
@@ -218,9 +227,9 @@ public class FighterStats : MonoBehaviour
         this.img = source.img;
         this.fightername = source.fightername;
 
-        
-        this.battleUI = source.battleUI; 
-        
+
+        this.battleUI = source.battleUI;
+
         // copiar el estado de las barras de salud y IQ
         if (source.healthBarObject != null)
             this.healthBarObject = source.healthBarObject;
