@@ -83,7 +83,7 @@ public class TurnController : MonoBehaviour
                 yield return new WaitForSeconds(EnemyWaitTime);
                 if (!battleActive || currentFighterStats == null) yield break;
 
-                // --- INICIO BLOQUE MODIFICADO: Reemplazamos la lógica de ataque simple por la IA del Jefe ---
+                // Si es jefe se reemplaza la lógica de ataque simple por la IA del Jefe
                 if (currentFighterObject.TryGetComponent<FighterAction>(out var currentFighterAction))
                 {
                     // Obtenemos los stats del enemigo actual (el que ataca)

@@ -41,7 +41,7 @@ public class FighterStats : MonoBehaviour
     [SerializeField] private GameObject IQBarObject;
 
     public Skill[] skills;
-    private List<Item> itemList = new List<Item>();
+    public List<Item> itemList = new List<Item>();
 
     // para modificacion del tamaño de barras de health y IQ
     private Vector2 healthBarScale;
