@@ -168,7 +168,7 @@ public class BattleUI : MonoBehaviour
 
         foreach (var item in items)
         {
-            Debug.Log($"[BattleUI] ➕ Creando botón para item: {item.itemName}");
+            Debug.Log($"[BattleUI] Creando botón para item: {item.itemName}");
 
             // Uso del prefab para hacer la lista
             GameObject itemButton = Instantiate(itemButtonPrefab, itemListContainer.transform);
@@ -185,13 +185,13 @@ public class BattleUI : MonoBehaviour
             // Asignar datos
             nameText.text = item.itemName;
             amountText.text = "x" + fighter.GetItemCount(item.itemName);
-            Debug.Log($"[BattleUI] 🏷️ Item '{item.itemName}' agregado al HUD.");
+            Debug.Log($"[BattleUI] Item '{item.itemName}' agregado al HUD.");
 
             // Asignar evento
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(() =>
             {
-                Debug.Log($"[BattleUI] 🎯 Usando item: {item.itemName}");
+                Debug.Log($"[BattleUI] Usando item: {item.itemName}");
                 OnItemSelected?.Invoke(item);
             });
         }
