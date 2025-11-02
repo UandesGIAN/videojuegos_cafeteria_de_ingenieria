@@ -3058,59 +3058,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206560275}
   m_CullTransparentMesh: 1
---- !u!1 &207424212
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 207424213}
-  - component: {fileID: 207424214}
-  m_Layer: 0
-  m_Name: Espora
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &207424213
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 207424212}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2074575149}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &207424214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 207424212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8766ceed7cca036448b6a9ccc8f53ca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: ESPORA
-  description: "Infecta al enemigo con E. Coli. Costo de 20 IQ. 30 de da\xF1o base."
-  animationDuration: 0
-  type: 5
-  icon: {fileID: 0}
-  selfinflicted: 0
-  amount: 30
-  cost: 20
-  modType: 0
 --- !u!1 &213226288
 GameObject:
   m_ObjectHideFlags: 0
@@ -3171,6 +3118,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 227102481}
+  - component: {fileID: 227102482}
   m_Layer: 0
   m_Name: ItemPool
   m_TagString: Untagged
@@ -3190,13 +3138,27 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 367456459}
-  - {fileID: 1115619527}
-  - {fileID: 238860260}
-  - {fileID: 1656390921}
+  m_Children: []
   m_Father: {fileID: 1007895224}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &227102482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227102480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 134406602a51690498fd3866cb696579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabsFolderPath: Prefabs/Items
+  autoDetectFolderFromName: 1
+  manualPrefabsToInclude: []
+  autoPopulateOnStart: 1
+  clearBeforePopulate: 1
+  showDebugInfo: 1
 --- !u!1 &227798142
 GameObject:
   m_ObjectHideFlags: 0
@@ -3390,57 +3352,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &238860259
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 238860260}
-  - component: {fileID: 238860261}
-  m_Layer: 0
-  m_Name: Elixir
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &238860260
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 238860259}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.3586001, y: -0.30948997, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 227102481}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &238860261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 238860259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2b5e47d8acf2bd4eb30f2c65b3e4eba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: Elixir
-  description: "Poci\xF3n que te recupera toda la vitalidad!"
-  icon: {fileID: 0}
-  statType: 0
-  modificationAmount: 100
-  modType: 0
-  currentPlayer: {fileID: 1479219018}
 --- !u!1 &257693704
 GameObject:
   m_ObjectHideFlags: 0
@@ -3552,60 +3463,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 260692643}
   m_CullTransparentMesh: 1
---- !u!1 &267562389
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 267562390}
-  - component: {fileID: 267562391}
-  m_Layer: 0
-  m_Name: Otakuflama
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &267562390
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267562389}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2074575149}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &267562391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267562389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8766ceed7cca036448b6a9ccc8f53ca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: OTAKUFLAMA
-  description: "Quema los ojos del enemigo con un dibujo de anime. Costo de 10 IQ.
-    20 de da\xF1o base."
-  animationDuration: 0
-  type: 5
-  icon: {fileID: 0}
-  selfinflicted: 0
-  amount: 20
-  cost: 10
-  modType: 0
 --- !u!1001 &288118233
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3828,56 +3685,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292161686}
   m_CullTransparentMesh: 1
---- !u!1 &293655678
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 293655679}
-  - component: {fileID: 293655680}
-  m_Layer: 0
-  m_Name: System Power 11
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &293655679
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 293655678}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1116046171}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &293655680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 293655678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eb874a6a8356994aba88641cfe649f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  upgradeName: System Power 11 750W
-  description: Fuente de poder que magicamente incrementa la vida del jugador en
-    30 puntos
-  icon: {fileID: 0}
-  upgradeType: 0
-  bonusAmount: 30
 --- !u!1 &294016930
 GameObject:
   m_ObjectHideFlags: 0
@@ -5009,11 +4816,11 @@ MonoBehaviour:
   - {fileID: 1171492524}
   playerStats: {fileID: 1479219018}
   initialSkills:
-  - {fileID: 2010849655}
-  - {fileID: 207424214}
-  - {fileID: 552387798}
-  - {fileID: 267562391}
-  - {fileID: 1317453695}
+  - {fileID: 1141258531334637979, guid: 73496a41553563740b2bfb613e45b986, type: 3}
+  - {fileID: 7308219812353120230, guid: b34c9f336c75c3e418d2d0407eb8cbbd, type: 3}
+  - {fileID: 2198032776083643941, guid: 57d359dc1c1c0ac40a18f5f0232efcc7, type: 3}
+  - {fileID: 1488835307053690874, guid: 97bf9a34f58f3dc41a73da3bf17f59a9, type: 3}
+  - {fileID: 417699874705281963, guid: b1896ea82e44e2144bd8e910d48e3ca5, type: 3}
 --- !u!1 &361206870
 GameObject:
   m_ObjectHideFlags: 0
@@ -5150,57 +4957,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 361206870}
   m_CullTransparentMesh: 1
---- !u!1 &367456458
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 367456459}
-  - component: {fileID: 367456460}
-  m_Layer: 0
-  m_Name: Monster
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &367456459
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 367456458}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.3586001, y: -0.30948997, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 227102481}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &367456460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 367456458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2b5e47d8acf2bd4eb30f2c65b3e4eba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: Monster
-  description: "Bebida que recupera 10 de IQ por alg\xFAn motivo"
-  icon: {fileID: 0}
-  statType: 1
-  modificationAmount: 10
-  modType: 0
-  currentPlayer: {fileID: 1479219018}
 --- !u!1 &373883433
 GameObject:
   m_ObjectHideFlags: 0
@@ -5629,59 +5385,6 @@ MonoBehaviour:
   skillManager: {fileID: 972281799}
   ItemsManager: {fileID: 992811374}
   numberOfRewardsToShow: 3
---- !u!1 &398109882
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 398109883}
-  - component: {fileID: 398109884}
-  m_Layer: 0
-  m_Name: Headbutt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &398109883
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 398109882}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2074575149}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &398109884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 398109882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8766ceed7cca036448b6a9ccc8f53ca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: Headbutt
-  description: "30 Da\xF1o "
-  animationDuration: 0
-  type: 1
-  icon: {fileID: 0}
-  selfinflicted: 0
-  amount: 40
-  cost: 10
-  modType: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -7769,60 +7472,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542456963}
   m_CullTransparentMesh: 1
---- !u!1 &552387796
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 552387797}
-  - component: {fileID: 552387798}
-  m_Layer: 0
-  m_Name: Distorsion
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &552387797
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 552387796}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2074575149}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &552387798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 552387796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8766ceed7cca036448b6a9ccc8f53ca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: "DISTORSI\xD3N"
-  description: "Modifica el campo magn\xE9tico del enemigo. Costo de 10 IQ. 20 de
-    da\xF1o base."
-  animationDuration: 0
-  type: 5
-  icon: {fileID: 0}
-  selfinflicted: 0
-  amount: 20
-  cost: 10
-  modType: 0
 --- !u!1 &555842364
 GameObject:
   m_ObjectHideFlags: 0
@@ -11028,59 +10677,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &739446495
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 739446496}
-  - component: {fileID: 739446497}
-  m_Layer: 0
-  m_Name: Fireball
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &739446496
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 739446495}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2074575149}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &739446497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 739446495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8766ceed7cca036448b6a9ccc8f53ca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: Fireball
-  description: 
-  animationDuration: 0
-  type: 3
-  icon: {fileID: 0}
-  selfinflicted: 0
-  amount: 60
-  cost: 20
-  modType: 0
 --- !u!1 &741338857
 GameObject:
   m_ObjectHideFlags: 0
@@ -18666,57 +18262,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111797343}
   m_CullTransparentMesh: 1
---- !u!1 &1115619526
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1115619527}
-  - component: {fileID: 1115619528}
-  m_Layer: 0
-  m_Name: Audifonos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1115619527
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1115619526}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.3586001, y: -0.30948997, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 227102481}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1115619528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1115619526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2b5e47d8acf2bd4eb30f2c65b3e4eba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: Audifonos
-  description: "Accesorio que te ayuda a concentrarte. \xA1Aumenta tu IQ al m\xE1ximo!"
-  icon: {fileID: 0}
-  statType: 1
-  modificationAmount: 100
-  modType: 0
-  currentPlayer: {fileID: 1479219018}
 --- !u!1 &1116046170
 GameObject:
   m_ObjectHideFlags: 0
@@ -18726,6 +18271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1116046171}
+  - component: {fileID: 1116046172}
   m_Layer: 0
   m_Name: UpgradePool
   m_TagString: Untagged
@@ -18745,12 +18291,27 @@ Transform:
   m_LocalPosition: {x: -0.85804, y: -0.8437, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 293655679}
-  - {fileID: 1295273488}
-  - {fileID: 1130401069}
+  m_Children: []
   m_Father: {fileID: 1007895224}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1116046172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116046170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 134406602a51690498fd3866cb696579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabsFolderPath: Prefabs/Upgrades
+  autoDetectFolderFromName: 1
+  manualPrefabsToInclude: []
+  autoPopulateOnStart: 1
+  clearBeforePopulate: 1
+  showDebugInfo: 1
 --- !u!1 &1119853658
 GameObject:
   m_ObjectHideFlags: 0
@@ -18786,56 +18347,6 @@ Transform:
   - {fileID: 89438268}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1130401068
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1130401069}
-  - component: {fileID: 1130401070}
-  m_Layer: 0
-  m_Name: Libro Zegarra
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1130401069
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1130401068}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1116046171}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1130401070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1130401068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eb874a6a8356994aba88641cfe649f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  upgradeName: Libro Algebra de Zegarra
-  description: Documento magico que incrementa el conocimiento del usuario de manera
-    extraordinaria, subiendo su IQ en 50 puntos
-  icon: {fileID: 0}
-  upgradeType: 1
-  bonusAmount: 50
 --- !u!1 &1145120610
 GameObject:
   m_ObjectHideFlags: 0
@@ -21114,59 +20625,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216512775}
   m_CullTransparentMesh: 1
---- !u!1 &1218719161
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1218719162}
-  - component: {fileID: 1218719163}
-  m_Layer: 0
-  m_Name: Jab
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1218719162
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218719161}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2074575149}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1218719163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218719161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8766ceed7cca036448b6a9ccc8f53ca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: Jab
-  description: small damage, low cost jab
-  animationDuration: 0
-  type: 1
-  icon: {fileID: 0}
-  selfinflicted: 0
-  amount: 25
-  cost: 5
-  modType: 0
 --- !u!1 &1220073288
 GameObject:
   m_ObjectHideFlags: 0
@@ -22682,7 +22140,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1601368262}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9994956
+  m_Size: 0.9999797
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -22800,56 +22258,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1293692738}
   m_CullTransparentMesh: 1
---- !u!1 &1295273487
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1295273488}
-  - component: {fileID: 1295273489}
-  m_Layer: 0
-  m_Name: ESP32
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1295273488
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1295273487}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1116046171}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1295273489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1295273487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eb874a6a8356994aba88641cfe649f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  upgradeName: ESP32
-  description: Artilugio magico que al entrar en contacto con el jugador incrementa
-    su IQ en 20 puntos
-  icon: {fileID: 0}
-  upgradeType: 1
-  bonusAmount: 20
 --- !u!1 &1313317086
 GameObject:
   m_ObjectHideFlags: 0
@@ -23078,60 +22486,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1317212238}
   m_CullTransparentMesh: 1
---- !u!1 &1317453693
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1317453694}
-  - component: {fileID: 1317453695}
-  m_Layer: 0
-  m_Name: Putrefaccion
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1317453694
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1317453693}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2074575149}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1317453695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1317453693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8766ceed7cca036448b6a9ccc8f53ca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: "PUTREFACCI\xD3N"
-  description: "Contamina al enemigo con agua estancada. Costo de 15 IQ. 15 de da\xF1o
-    base."
-  animationDuration: 0
-  type: 5
-  icon: {fileID: 0}
-  selfinflicted: 0
-  amount: 15
-  cost: 15
-  modType: 0
 --- !u!1 &1324088664
 GameObject:
   m_ObjectHideFlags: 0
@@ -23714,59 +23068,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335662270}
   m_CullTransparentMesh: 1
---- !u!1 &1356063104
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1356063105}
-  - component: {fileID: 1356063106}
-  m_Layer: 0
-  m_Name: Heal
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1356063105
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356063104}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2074575149}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1356063106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356063104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8766ceed7cca036448b6a9ccc8f53ca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: Heal
-  description: Cura 20 HP a cambio de 30 IQ
-  animationDuration: 0
-  type: 4
-  icon: {fileID: 0}
-  selfinflicted: 1
-  amount: 20
-  cost: 30
-  modType: 0
 --- !u!1 &1361543095
 GameObject:
   m_ObjectHideFlags: 0
@@ -24286,7 +23587,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000007394663}
+  m_AnchoredPosition: {x: 0, y: 0.00024857552}
   m_SizeDelta: {x: 0, y: 400}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1417331517
@@ -27512,57 +26813,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 257693705}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1656390920
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1656390921}
-  - component: {fileID: 1656390922}
-  m_Layer: 0
-  m_Name: GalletaOreo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1656390921
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1656390920}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.3586001, y: -0.30948997, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 227102481}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1656390922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1656390920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2b5e47d8acf2bd4eb30f2c65b3e4eba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: Galleta Oreo
-  description: Galleta que te recupera 20 de vida.
-  icon: {fileID: 0}
-  statType: 0
-  modificationAmount: 20
-  modType: 0
-  currentPlayer: {fileID: 1479219018}
 --- !u!1 &1662387934
 GameObject:
   m_ObjectHideFlags: 0
@@ -27918,7 +27168,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2146574155}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.93474996
+  m_Size: 0.9347501
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -32943,59 +32193,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 757512765}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2010849653
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2010849654}
-  - component: {fileID: 2010849655}
-  m_Layer: 0
-  m_Name: Hormigonazo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2010849654
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2010849653}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2074575149}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2010849655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2010849653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8766ceed7cca036448b6a9ccc8f53ca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: HORMIGONAZO
-  description: "Lanza hormigon al enemigo. Costo de 30 IQ. 15 de da\xF1o base."
-  animationDuration: 0
-  type: 1
-  icon: {fileID: 0}
-  selfinflicted: 0
-  amount: 15
-  cost: 30
-  modType: 0
 --- !u!1 &2020889058
 GameObject:
   m_ObjectHideFlags: 0
@@ -33554,6 +32751,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2074575149}
+  - component: {fileID: 2074575150}
   m_Layer: 0
   m_Name: SkillPool
   m_TagString: Untagged
@@ -33573,18 +32771,27 @@ Transform:
   m_LocalPosition: {x: -0.85804, y: -0.8437, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2010849654}
-  - {fileID: 207424213}
-  - {fileID: 552387797}
-  - {fileID: 267562390}
-  - {fileID: 1317453694}
-  - {fileID: 1356063105}
-  - {fileID: 398109883}
-  - {fileID: 1218719162}
-  - {fileID: 739446496}
+  m_Children: []
   m_Father: {fileID: 1007895224}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2074575150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074575148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 134406602a51690498fd3866cb696579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabsFolderPath: Prefabs/Skills
+  autoDetectFolderFromName: 1
+  manualPrefabsToInclude: []
+  autoPopulateOnStart: 1
+  clearBeforePopulate: 1
+  showDebugInfo: 1
 --- !u!1 &2077526516
 GameObject:
   m_ObjectHideFlags: 0
