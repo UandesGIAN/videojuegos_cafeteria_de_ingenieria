@@ -18,6 +18,7 @@ public class CharacterSelection : MonoBehaviour
         public float Health;
         public float IQ;
         public float Attack;
+        public float IQattack;
         public float PhysicalArmor;
         public float IQArmor;
         public Skill baseSkill;
@@ -28,6 +29,7 @@ public class CharacterSelection : MonoBehaviour
             float Health,
             float IQ,
             float Attack,
+            float IQattack,
             float PhysicalArmor,
             float IQArmor,
             Skill baseSkill)
@@ -37,6 +39,7 @@ public class CharacterSelection : MonoBehaviour
             this.Health = Health;
             this.IQ = IQ;
             this.Attack = Attack;
+            this.IQattack = IQattack;
             this.PhysicalArmor = PhysicalArmor;
             this.IQArmor = IQArmor;
             this.baseSkill = baseSkill;
@@ -62,7 +65,7 @@ public class CharacterSelection : MonoBehaviour
                 new CharacterData(
                 "BORJA",
                 ElementType.CEMENTO,
-                220, 70, 10, 1, 1, initialSkills[0]
+                220, 70, 10, 15, 1, 1, initialSkills[0]
                 )
             },
             {
@@ -70,7 +73,7 @@ public class CharacterSelection : MonoBehaviour
                 new CharacterData(
                     "VICE",
                     ElementType.PLANTA,
-                    170, 60, 20, 1, 1, initialSkills[1]
+                    170, 60, 20, 18, 1, 1, initialSkills[1]
                 )
             },
             {
@@ -78,7 +81,7 @@ public class CharacterSelection : MonoBehaviour
                 new CharacterData(
                     "GIAN",
                     ElementType.ELECTRONICO,
-                    150, 30, 20, 1, 1, initialSkills[2]
+                    150, 30, 20, 25, 1, 1, initialSkills[2] 
                 )
             },
             {
@@ -86,7 +89,7 @@ public class CharacterSelection : MonoBehaviour
                 new CharacterData(
                     "PEDE",
                     ElementType.FUEGO,
-                    180, 40, 10, 1, 1, initialSkills[3]
+                    180, 40, 10, 22, 1, 1, initialSkills[3] 
                 )
             },
             {
@@ -94,7 +97,7 @@ public class CharacterSelection : MonoBehaviour
                 new CharacterData(
                     "LUCAS",
                     ElementType.AGUA,
-                    200, 50, 20, 1, 1, initialSkills[4]
+                    200, 50, 20, 20, 1, 1, initialSkills[4] 
                 )
             }
         };
@@ -153,6 +156,7 @@ public class CharacterSelection : MonoBehaviour
             playerStats.IQ = data.IQ;
             playerStats.startIQ = data.IQ;
             playerStats.attack = data.Attack;
+            playerStats.IQattack = data.IQattack;
             playerStats.physicalArmor = data.PhysicalArmor;
             playerStats.IQArmor = data.IQArmor;
             playerStats.img = icon != null ? icon.sprite : null;

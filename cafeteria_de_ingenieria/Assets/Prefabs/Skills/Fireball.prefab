@@ -54,7 +54,7 @@ MonoBehaviour:
   cost: 20
   modType: 0
   useAdvancedDamageFormula: 0
-  attackCategory: 0
+  attackCategory: 1
   skillElementType: 4
   useRandomVariation: 1
   damageMultiplier: 1

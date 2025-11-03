@@ -29,9 +29,6 @@ public class BattleManager : MonoBehaviour
     private bool battleActive = false;
     int selectedOption = 0;
 
-    // Multiplicador de fuerza por preguntas
-    private float currentStrengthMultiplier = 1f;
-
     public void Start()
     {
         Debug.Log("BattleManager GameObject Name: " + gameObject.name);
@@ -84,10 +81,8 @@ public class BattleManager : MonoBehaviour
     {
         if (enemy != null)
         {
-            // Aplicar multiplicador de fuerza
-            float modifiedDamage = damage * currentStrengthMultiplier;
-            Debug.Log($"Daño: {damage} x {currentStrengthMultiplier} = {modifiedDamage}");
-            enemy.ReceiveDamage(modifiedDamage);
+            // Los multiplicadores ahora se aplican directamente en las estadísticas
+            enemy.ReceiveDamage(damage);
         }
     }
 
@@ -101,6 +96,9 @@ public class BattleManager : MonoBehaviour
         }
 
         this.onBattleEnd = onBattleEnd;
+
+        // Resetear multiplicadores del jugador antes de comenzar
+        player.ResetCombatMultipliers();
 
         // Si el sistema de preguntas está activado, actualizar UI, luego mostrar pregunta
         ui.gameObject.SetActive(true);
@@ -124,7 +122,6 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            currentStrengthMultiplier = 1f;
             StartBattleDirectly();
         }
     }
@@ -142,17 +139,8 @@ public class BattleManager : MonoBehaviour
     {
         Debug.Log($"Pregunta respondida: {(correct ? "CORRECTA" : "INCORRECTA")}");
         
-        // Aplicar multiplicador según resultado
-        if (correct)
-        {
-            currentStrengthMultiplier = 1.5f; // +50% de fuerza
-            Debug.Log("¡Bonus de fuerza aplicado! x1.5");
-        }
-        else
-        {
-            currentStrengthMultiplier = 0.5f; // -50% de fuerza
-            Debug.Log("Penalización de fuerza aplicada x0.5");
-        }
+        // Aplicar multiplicadores a las estadísticas del jugador
+        player.ApplyQuestionMultiplier(correct);
 
         // Ahora sí iniciar la batalla
         StartBattleDirectly();
@@ -177,6 +165,9 @@ public class BattleManager : MonoBehaviour
 
     public void ResetBattle()
     {
+        // Resetear multiplicadores del jugador
+        player.ResetCombatMultipliers();
+        
         // Reiniciar enemigo
         enemy.health = enemy.startHealth;
         enemy.UpdateHealthBar();
@@ -341,9 +332,9 @@ public class BattleManager : MonoBehaviour
     {
         if (!battleActive) return;
         battleActive = false;
-
-        // Resetear multiplicador
-        currentStrengthMultiplier = 1f;
+        
+        // Resetear multiplicadores de estadísticas del jugador
+        player.ResetCombatMultipliers();
 
         turnController.BattleEnded();
 

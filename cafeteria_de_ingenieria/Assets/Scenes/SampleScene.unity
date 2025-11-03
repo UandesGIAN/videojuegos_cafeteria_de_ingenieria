@@ -171,10 +171,13 @@ MonoBehaviour:
   startHealth: 200
   startIQ: 50
   attack: 300
+  IQattack: 0
   physicalArmor: 1
   IQArmor: 1
   experience: 0
   level: 1
+  attackMultiplier: 1
+  iqAttackMultiplier: 1
   img: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   fightername: "Mech\xF3n01"
   fighterHierarchy: 0
@@ -2857,8 +2860,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Alumno de apariencia otaku (al\xE9rgico al agua).\nTIPO FUEGO.\nHABILIDAD:
     OTAKUFLAMA. Quema los ojos del enemigo con un dibujo de anime. Costo de 10 IQ.
-    20 de da\xF1o base. Tipo Fuego.\nVida base: 180\nIQ base: 40\nAtaque base: 10\nArmadura
-    f\xEDsica base: 1\nArmadura m\xE1gica base: 1"
+    20 de da\xF1o base. Tipo Fuego.\nVida base: 180\nIQ base: 40\nAtaque base: 10\nAtaque
+    IQ base: 22\nArmadura f\xEDsica base: 1\nArmadura m\xE1gica base: 1"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3605,8 +3608,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Estudiante que controla las plantas.\nTIPO PLANTA.\nHABILIDAD: ESPORA.
     Infecta al enemigo con E. Coli. Costo de 20 IQ. 30 de da\xF1o base. Tipo Planta.\nVida
-    base: 170\nIQ base: 60\nAtaque base: 20\nArmadura f\xEDsica base: 1\nArmadura
-    m\xE1gica base: 1"
+    base: 170\nIQ base: 60\nAtaque base: 20\nAtaque IQ base: 18\nArmadura f\xEDsica
+    base: 1\nArmadura m\xE1gica base: 1"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9889,10 +9892,13 @@ MonoBehaviour:
   startHealth: 200
   startIQ: 50
   attack: 300
+  IQattack: 0
   physicalArmor: 1
   IQArmor: 1
   experience: 0
   level: 1
+  attackMultiplier: 1
+  iqAttackMultiplier: 1
   img: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   fightername: Comercial
   fighterHierarchy: 0
@@ -14061,7 +14067,8 @@ MonoBehaviour:
   m_text: "Alumno alto con lentes y peinado singular. \nTIPO ELECTR\xD3NICO.\nHABILIDAD:
     DISTORSI\xD3N. Modifica el campo magn\xE9tico del enemigo. Costo de 10 IQ. 20
     de da\xF1o base. Tipo Electr\xF3nico.\nVida base: 150\nIQ base: 30\nAtaque base:
-    20\nArmadura f\xEDsica base: 1\nArmadura m\xE1gica base: 1"
+    20\nAtaque IQ base: 25\nArmadura f\xEDsica base: 1\nArmadura m\xE1gica base:
+    1"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14991,10 +14998,13 @@ MonoBehaviour:
   startHealth: 0
   startIQ: 0
   attack: 20
+  IQattack: 0
   physicalArmor: 1
   IQArmor: 1
   experience: 0
   level: 1
+  attackMultiplier: 1
+  iqAttackMultiplier: 1
   img: {fileID: 0}
   fightername: 
   fighterHierarchy: 0
@@ -22140,7 +22150,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1601368262}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999797
+  m_Size: 0.99998707
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -22310,10 +22320,13 @@ MonoBehaviour:
   startHealth: 80
   startIQ: 30
   attack: 10
+  IQattack: 0
   physicalArmor: 1
   IQArmor: 1
   experience: 0
   level: 1
+  attackMultiplier: 1
+  iqAttackMultiplier: 1
   img: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   fightername: "Mech\xF3n02"
   fighterHierarchy: 0
@@ -23587,7 +23600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00024857552}
+  m_AnchoredPosition: {x: 0, y: 0.00013716158}
   m_SizeDelta: {x: 0, y: 400}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1417331517
@@ -25573,8 +25586,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Estudiante que se deja fluir como el agua.\nTIPO AGUA.\nHABILIDAD: PUTREFACCI\xD3N.
     Contamina al enemigo con agua estancada. Costo de 15 IQ. 15 de da\xF1o base.
-    Tipo Agua.\nVida base: 200\nIQ base: 50\nAtaque base: 20\nArmadura f\xEDsica
-    base: 1\nArmadura m\xE1gica base: 1"
+    Tipo Agua.\nVida base: 200\nIQ base: 50\nAtaque base: 20\nAtaque IQ base: 20\nArmadura
+    f\xEDsica base: 1\nArmadura m\xE1gica base: 1"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -27391,10 +27404,13 @@ MonoBehaviour:
   startHealth: 140
   startIQ: 200
   attack: 120
+  IQattack: 0
   physicalArmor: 20
   IQArmor: 20
   experience: 0
   level: 1
+  attackMultiplier: 1
+  iqAttackMultiplier: 1
   img: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   fightername: "Comput\xEDn bomb\xEDn"
   fighterHierarchy: 0
@@ -29300,10 +29316,13 @@ MonoBehaviour:
   startHealth: 0
   startIQ: 0
   attack: 20
+  IQattack: 0
   physicalArmor: 1
   IQArmor: 1
   experience: 0
   level: 1
+  attackMultiplier: 1
+  iqAttackMultiplier: 1
   img: {fileID: 0}
   fightername: 
   fighterHierarchy: 0
@@ -32580,10 +32599,13 @@ MonoBehaviour:
   startHealth: 100
   startIQ: 10
   attack: 200
+  IQattack: 0
   physicalArmor: 20
   IQArmor: 0
   experience: 0
   level: 1
+  attackMultiplier: 1
+  iqAttackMultiplier: 1
   img: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   fightername: "Sr el\xE9ctrico"
   fighterHierarchy: 0
@@ -32974,8 +32996,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Alumno fornido y guapo, de pelo y ojos caf\xE9s.\nTIPO CEMENTO.\nHABILIDAD:
     HORMIGONAZO. Lanza hormigon al enemigo. Costo de 30 IQ. 15 de da\xF1o base. Tipo
-    Cemento.\nVida base: 220\nIQ base: 70\nAtaque base: 10\nArmadura f\xEDsica base:
-    1\nArmadura m\xE1gica base: 1"
+    Cemento.\nVida base: 220\nIQ base: 70\nAtaque base: 10\nAtaque IQ base: 15\nArmadura
+    f\xEDsica base: 1\nArmadura m\xE1gica base: 1"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
