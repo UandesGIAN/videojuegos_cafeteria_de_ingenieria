@@ -178,7 +178,7 @@ MonoBehaviour:
   level: 1
   attackMultiplier: 1
   iqAttackMultiplier: 1
-  img: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  img: {fileID: -9107610676692984975, guid: c97a2d75aeedc1e44a0aae757f59107e, type: 3}
   fightername: "Mech\xF3n01"
   fighterHierarchy: 0
   battleUI: {fileID: 2090108967}
@@ -9899,7 +9899,7 @@ MonoBehaviour:
   level: 1
   attackMultiplier: 1
   iqAttackMultiplier: 1
-  img: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  img: {fileID: -9107610676692984975, guid: c97a2d75aeedc1e44a0aae757f59107e, type: 3}
   fightername: Comercial
   fighterHierarchy: 0
   battleUI: {fileID: 2090108967}
@@ -10187,7 +10187,7 @@ PrefabInstance:
     - target: {fileID: 4491733238892159895, guid: 8ea11c135d3db6b4e86f6294e3368431, type: 3}
       propertyPath: img
       value: 
-      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: -4833555207107527122, guid: 280ce67083f9a1d4db7ccef6c76ec584, type: 3}
     - target: {fileID: 4491733238892159895, guid: 8ea11c135d3db6b4e86f6294e3368431, type: 3}
       propertyPath: health
       value: 280
@@ -22150,7 +22150,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1601368262}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99998707
+  m_Size: 0.9995394
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -22327,7 +22327,7 @@ MonoBehaviour:
   level: 1
   attackMultiplier: 1
   iqAttackMultiplier: 1
-  img: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  img: {fileID: -9107610676692984975, guid: c97a2d75aeedc1e44a0aae757f59107e, type: 3}
   fightername: "Mech\xF3n02"
   fighterHierarchy: 0
   battleUI: {fileID: 2090108967}
@@ -23600,7 +23600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00013716158}
+  m_AnchoredPosition: {x: 0, y: 0.000039496033}
   m_SizeDelta: {x: 0, y: 400}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1417331517
@@ -27411,7 +27411,7 @@ MonoBehaviour:
   level: 1
   attackMultiplier: 1
   iqAttackMultiplier: 1
-  img: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  img: {fileID: 6558186054718601985, guid: fab44ec2851eff046b6211ed386f97ab, type: 3}
   fightername: "Comput\xEDn bomb\xEDn"
   fighterHierarchy: 0
   battleUI: {fileID: 2090108967}
@@ -32606,7 +32606,7 @@ MonoBehaviour:
   level: 1
   attackMultiplier: 1
   iqAttackMultiplier: 1
-  img: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  img: {fileID: 974471990380280646, guid: 0948f26bdcb83f147b56116ac405d8a1, type: 3}
   fightername: "Sr el\xE9ctrico"
   fighterHierarchy: 0
   battleUI: {fileID: 2090108967}
