@@ -116,12 +116,12 @@ public class QuestionUI : MonoBehaviour
             
             if (correct)
             {
-                feedbackText.text = "¡CORRECTO!\n+50% de Fuerza para esta batalla";
+                feedbackText.text = "¡CORRECTO!\n+10% Ataque Físico y Especial para esta batalla";
                 feedbackText.color = Color.green;
             }
             else
             {
-                feedbackText.text = $"INCORRECTO\n\n-50% de Fuerza para esta batalla";
+                feedbackText.text = "INCORRECTO\n-10% Ataque Físico y Especial para esta batalla";
                 feedbackText.color = Color.red;
             }
         }

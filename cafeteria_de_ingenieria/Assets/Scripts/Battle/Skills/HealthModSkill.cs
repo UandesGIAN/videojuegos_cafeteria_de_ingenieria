@@ -71,9 +71,11 @@ public class HealthModSkill : Skill
             return CalculatePokemonStyleDamage();
         }
         
-        // Usar cálculo original para percentage
+        // Usar cálculo original para todos los demás casos
         switch (this.modType)
         {
+            case HealthModType.Flat:
+                return this.amount;
             case HealthModType.Percentage:
                 return this.targetStats.health * (this.amount / 100);
             default:
@@ -88,9 +90,9 @@ public class HealthModSkill : Skill
         // N = Nivel del atacante
         float N = this.userStats.level;
         
-        // A = Ataque (físico o especial según attackCategory)
+        // A = Ataque (físico usa attack con multiplicador, especial usa IQattack con multiplicador)
         float A = (attackCategory == AttackCategory.Physical) ? 
-            this.userStats.attack : this.userStats.IQ;
+            this.userStats.GetEffectiveAttack() : this.userStats.GetEffectiveIQAttack();
         
         // P = Poder de la habilidad
         float P = this.amount;
@@ -117,6 +119,20 @@ public class HealthModSkill : Skill
         
         // Aplicar multiplicador adicional para balanceo
         float finalDamage = baseDamage * damageMultiplier;
+        
+        // Debug para mostrar los valores usados
+        if (attackCategory == AttackCategory.Physical)
+        {
+            float baseA = this.userStats.attack;
+            float multiplier = this.userStats.attackMultiplier;
+            Debug.Log($"=== FÓRMULA POKÉMON (FÍSICO) ===\nAttack Base: {baseA:F1}, Multiplicador: x{multiplier:F2}, Attack Efectivo: {A:F1}\nDaño final: {finalDamage:F1}");
+        }
+        else
+        {
+            float baseA = this.userStats.IQattack;
+            float multiplier = this.userStats.iqAttackMultiplier;
+            Debug.Log($"=== FÓRMULA POKÉMON (ESPECIAL) ===\nIQAttack Base: {baseA:F1}, Multiplicador: x{multiplier:F2}, IQAttack Efectivo: {A:F1}\nDaño final: {finalDamage:F1}");
+        }
         
         // Asegurar que el daño mínimo sea 1
         return Mathf.Max(finalDamage, 1f);

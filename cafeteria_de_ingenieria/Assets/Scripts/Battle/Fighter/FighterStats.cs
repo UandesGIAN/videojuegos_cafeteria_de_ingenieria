@@ -22,10 +22,16 @@ public class FighterStats : MonoBehaviour
     public float startIQ;
 
     public float attack;
+    public float IQattack;
     public float physicalArmor = 1f;
     public float IQArmor = 1f;
     public float experience;
     public int level = 1;
+    
+    [Header("Multiplicadores de Combate (Preguntas)")]
+    [Tooltip("Multiplicadores que se aplican durante el combate actual por responder preguntas")]
+    public float attackMultiplier = 1f;  // Multiplicador para attack
+    public float iqAttackMultiplier = 1f; // Multiplicador para IQattack
     public Sprite img;
     public string fightername;
 
@@ -132,7 +138,8 @@ public class FighterStats : MonoBehaviour
     public float CalculateDamage(FighterStats attacker, FighterStats defender, bool isIQal = false)
     {
         float baseDamage = 1f;
-        float multiplier = isIQal ? attacker.IQ : attacker.attack;
+        // Usar IQattack para ataques especiales y attack para ataques físicos, ambos con sus multiplicadores
+        float multiplier = isIQal ? attacker.GetEffectiveIQAttack() : attacker.GetEffectiveAttack();
         float armor = isIQal ? defender.IQArmor : defender.physicalArmor;
 
         if (armor <= 0) armor = 1f;
@@ -141,9 +148,19 @@ public class FighterStats : MonoBehaviour
         float finalDamage = (baseDamage * (multiplier / armor)) * typeMultiplier;
 
         string effectiveness = TypeEffectiveness.GetEffectivenessMessage(typeMultiplier);
-        string attackTypeText = isIQal ? "MÁGICO" : "FÍSICO";
-
-        Debug.Log($"=== CÁLCULO DE DAÑO ===\nAtacante: {attacker.name} ({attacker.elementType}) - {attackTypeText}\nBase: {baseDamage}, Multiplicador: {multiplier}, Armadura: {armor}\nTipo: {typeMultiplier}x\nFórmula: ({baseDamage} × ({multiplier} ÷ {armor})) × {typeMultiplier} = {finalDamage}\n{effectiveness}");
+        string attackTypeText = isIQal ? "ESPECIAL" : "FÍSICO";
+        
+        // Mostrar valores para debug
+        if (isIQal)
+        {
+            float baseIQAttack = attacker.IQattack;
+            Debug.Log($"=== CÁLCULO DE DAÑO ===\nAtacante: {attacker.name} ({attacker.elementType}) - {attackTypeText}\nBase: {baseDamage}, IQAttack Base: {baseIQAttack}, Multiplicador: x{attacker.iqAttackMultiplier:F2}, IQAttack Efectivo: {multiplier:F1}, Armadura: {armor}\nTipo: {typeMultiplier}x\nFórmula: ({baseDamage} × ({multiplier:F1} ÷ {armor})) × {typeMultiplier} = {finalDamage:F1}\n{effectiveness}");
+        }
+        else
+        {
+            float baseAttack = attacker.attack;
+            Debug.Log($"=== CÁLCULO DE DAÑO ===\nAtacante: {attacker.name} ({attacker.elementType}) - {attackTypeText}\nBase: {baseDamage}, Attack Base: {baseAttack}, Multiplicador: x{attacker.attackMultiplier:F2}, Attack Efectivo: {multiplier:F1}, Armadura: {armor}\nTipo: {typeMultiplier}x\nFórmula: ({baseDamage} × ({multiplier:F1} ÷ {armor})) × {typeMultiplier} = {finalDamage:F1}\n{effectiveness}");
+        }
 
         return Mathf.Max(1f, finalDamage);
     }
@@ -168,6 +185,45 @@ public class FighterStats : MonoBehaviour
         OnIQChanged?.Invoke(IQ, startIQ);
 
         UpdateIQBar();
+    }
+
+    // Aplica multiplicadores de combate por responder preguntas correcta/incorrectamente
+    public void ApplyQuestionMultiplier(bool isCorrect)
+    {
+        if (isCorrect)
+        {
+            // Respuesta correcta: +10% de ataque físico y especial
+            attackMultiplier *= 1.1f;
+            iqAttackMultiplier *= 1.1f;
+            Debug.Log($"{fightername}: ¡Respuesta correcta! Attack x{attackMultiplier:F2}, IQAttack x{iqAttackMultiplier:F2}");
+        }
+        else
+        {
+            // Respuesta incorrecta: -10% de ataque físico y especial
+            attackMultiplier *= 0.9f;
+            iqAttackMultiplier *= 0.9f;
+            Debug.Log($"{fightername}: Respuesta incorrecta. Attack x{attackMultiplier:F2}, IQAttack x{iqAttackMultiplier:F2}");
+        }
+    }
+
+    //Resetea los multiplicadores de combate a valores normales
+    public void ResetCombatMultipliers()
+    {
+        attackMultiplier = 1f;
+        iqAttackMultiplier = 1f;
+        Debug.Log($"{fightername}: Multiplicadores de combate reseteados");
+    }
+
+    //Obtiene el valor efectivo de ataque con multiplicadores aplicados
+    public float GetEffectiveAttack()
+    {
+        return attack * attackMultiplier;
+    }
+
+    //Obtiene el valor efectivo de IQattack con multiplicadores aplicados
+    public float GetEffectiveIQAttack()
+    {
+        return IQattack * iqAttackMultiplier;
     }
 
     public void UpdateHealthBar(bool start = false)
@@ -203,11 +259,13 @@ public class FighterStats : MonoBehaviour
                   $"- Element Type: {elementType}\n" +
                   $"- Health: {health}/{startHealth}\n" +
                   $"- IQ: {IQ}/{startIQ}\n" +
-                  $"- Attack: {attack}\n" +
+                  $"- Attack: {attack} (Efectivo: {GetEffectiveAttack():F1})\n" +
+                  $"- IQAttack: {IQattack} (Efectivo: {GetEffectiveIQAttack():F1})\n" +
                   $"- Physical Armor: {physicalArmor}\n" +
                   $"- IQ Armor: {IQArmor}\n" +
                   $"- Experience: {experience}\n" +
-                  $"- Level: {level}");
+                  $"- Level: {level}\n" +
+                  $"- Multiplicadores: Attack x{attackMultiplier:F2}, IQAttack x{iqAttackMultiplier:F2}");
     }
 
     // para copiar valores desde otra instancia de fighterStats
@@ -220,6 +278,7 @@ public class FighterStats : MonoBehaviour
         this.startHealth = source.startHealth;
         this.startIQ = source.startIQ;
         this.attack = source.attack;
+        this.IQattack = source.IQattack;
         this.physicalArmor = source.physicalArmor;
         this.IQArmor = source.IQArmor;
         this.experience = source.experience;
