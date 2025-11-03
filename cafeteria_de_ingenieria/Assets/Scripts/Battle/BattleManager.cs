@@ -14,6 +14,10 @@ public class BattleManager : MonoBehaviour
     public FighterAction playerAction;
     public ItemManager itemManager;
 
+    [Header("Referencias de Diálogo")]
+    public GameObject dialoguePanel;
+    public TextMeshProUGUI dialogueText;
+
     [Header("Sistema de Preguntas")]
     public QuestionUI questionUI;
     public bool useQuestionSystem = true;
@@ -45,6 +49,11 @@ public class BattleManager : MonoBehaviour
         if (questionUI != null)
         {
             questionUI.OnQuestionAnswered += OnQuestionAnswered;
+        }
+        
+        if (dialoguePanel != null)
+        {
+            dialoguePanel.SetActive(false);
         }
     }
 
@@ -122,7 +131,7 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            StartBattleDirectly();
+            StartCoroutine(StartBattleDirectly());
         }
     }
 
@@ -143,11 +152,13 @@ public class BattleManager : MonoBehaviour
         player.ApplyQuestionMultiplier(correct);
 
         // Ahora sí iniciar la batalla
-        StartBattleDirectly();
+        StartCoroutine(StartBattleDirectly());
     }
 
-    private void StartBattleDirectly()
+    private IEnumerator StartBattleDirectly()
     {
+        yield return StartCoroutine(ShowDialogue(enemy.dialogueOnBattleStart));
+
         battleActive = true;
         turnController.SetBattleActive(battleActive);
 
@@ -167,9 +178,10 @@ public class BattleManager : MonoBehaviour
     {
         // Resetear multiplicadores del jugador
         player.ResetCombatMultipliers();
-        
+
         // Reiniciar enemigo
         enemy.health = enemy.startHealth;
+        enemy.hasSaidMidHealthDialogue = false;
         enemy.UpdateHealthBar();
         enemy.IQ = enemy.startIQ;
         enemy.UpdateIQBar();
@@ -318,13 +330,18 @@ public class BattleManager : MonoBehaviour
 
     private void OnEnemyDeath(FighterStats deadEnemy)
     {
+        StartCoroutine(HandleEnemyDeath(deadEnemy));
+    }
+
+    private IEnumerator HandleEnemyDeath(FighterStats deadEnemy)
+    {
         Debug.Log("Enemigo muerto: " + deadEnemy.fightername);
 
-        // Elimina al enemigo
+        yield return StartCoroutine(ShowDialogue(deadEnemy.dialogueOnDefeat));
+
         deadEnemy.gameObject.SetActive(false);
         Destroy(deadEnemy.gameObject);
 
-        // Termina la batalla
         EndBattle();
     }
 
@@ -363,7 +380,7 @@ public class BattleManager : MonoBehaviour
     {
         turnController.SetBattleMenuState(false);
         turnController.SetCanPlayerAct(false);
-        
+
         StartCoroutine(WaitAndNotify());
 
         IEnumerator WaitAndNotify()
@@ -372,5 +389,26 @@ public class BattleManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             OnPlayerActionCompleted?.Invoke();
         }
+    }
+    
+    public IEnumerator ShowDialogue(string sentence)
+    {
+        if (string.IsNullOrEmpty(sentence) || dialoguePanel == null)
+        {
+            if(dialoguePanel == null) Debug.LogWarning("Dialogue Panel no está asignado en BattleManager.");
+            yield break;
+        }
+
+        dialoguePanel.SetActive(true);
+        dialogueText.text = sentence;
+
+        yield return null; 
+
+        while (!Input.GetKeyDown(KeyCode.Return))
+        {
+            yield return null;
+        }
+
+        dialoguePanel.SetActive(false);
     }
 }

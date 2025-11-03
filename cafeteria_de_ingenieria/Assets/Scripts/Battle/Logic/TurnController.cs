@@ -79,6 +79,15 @@ public class TurnController : MonoBehaviour
             // corutina de ataque del enemigo!
             IEnumerator EnemyWaitsAndActs()
             {
+                if (currentFighterStats.fighterHierarchy == FighterHierarchy.Boss && 
+                    !currentFighterStats.hasSaidMidHealthDialogue &&
+                    (currentFighterStats.health / currentFighterStats.startHealth) <= 0.5f)
+                {
+                    currentFighterStats.hasSaidMidHealthDialogue = true;
+
+                    yield return StartCoroutine(battleManager.ShowDialogue(currentFighterStats.dialogueOnMidHealth));
+                }
+
                 // enemigo waitea y ataca para que no pase de inmediato todo!!
                 yield return new WaitForSeconds(EnemyWaitTime);
                 if (!battleActive || currentFighterStats == null) yield break;
@@ -97,7 +106,7 @@ public class TurnController : MonoBehaviour
                     {
                         float healthPercentage = enemyStats.health / enemyStats.startHealth;
 
-                        if (healthPercentage < 0.3f)
+                        if (healthPercentage < 0.3f) 
                         {
                             Item elixirToUse = enemyStats.GetItems().FirstOrDefault(item => item.itemName == "Elixir");
                             
@@ -134,7 +143,7 @@ public class TurnController : MonoBehaviour
                             }
                         }
                     }
-                    else
+                    else // Lógica de enemigo normal
                     {
                         Debug.Log($"Enemigo {enemyStats.name} usa ataque base.");
                         currentFighterAction.SelectOption(BattleConstants.MenuAttackOptions.Melee.ToString());
