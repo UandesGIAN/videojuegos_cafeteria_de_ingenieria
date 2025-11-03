@@ -176,11 +176,16 @@ MonoBehaviour:
   IQArmor: 1
   experience: 0
   level: 1
+  fighterHierarchy: 0
   attackMultiplier: 1
   iqAttackMultiplier: 1
   img: {fileID: -9107610676692984975, guid: c97a2d75aeedc1e44a0aae757f59107e, type: 3}
   fightername: "Mech\xF3n01"
-  fighterHierarchy: 0
+  dialogueOnBattleStart: A ver si eres tan inteligente como crees pete
+  dialogueOnMidHealth: "Parece q en realidad eres capas de ense\xF1arme"
+  dialogueOnDefeat: "QUE PODEROSO ERESS!!! FUISTE CAPAZ DE ENSE\xD1ARME A MI, EL
+    PETE MAXIMO"
+  hasSaidMidHealthDialogue: 0
   battleUI: {fileID: 2090108967}
   healthBarObject: {fileID: 1190189886}
   IQBarObject: {fileID: 0}
@@ -5771,6 +5776,8 @@ MonoBehaviour:
   player: {fileID: 1479219018}
   playerAction: {fileID: 1786806663}
   itemManager: {fileID: 992811374}
+  dialoguePanel: {fileID: 0}
+  dialogueText: {fileID: 0}
   questionUI: {fileID: 162736383}
   useQuestionSystem: 0
 --- !u!1 &434091238
@@ -9502,6 +9509,8 @@ MonoBehaviour:
   player: {fileID: 1479219018}
   playerAction: {fileID: 1786806663}
   itemManager: {fileID: 992811374}
+  dialoguePanel: {fileID: 1335662270}
+  dialogueText: {fileID: 915543369}
   questionUI: {fileID: 162736383}
   useQuestionSystem: 1
 --- !u!1 &678993260
@@ -9897,11 +9906,15 @@ MonoBehaviour:
   IQArmor: 1
   experience: 0
   level: 1
+  fighterHierarchy: 0
   attackMultiplier: 1
   iqAttackMultiplier: 1
   img: {fileID: -9107610676692984975, guid: c97a2d75aeedc1e44a0aae757f59107e, type: 3}
   fightername: Comercial
-  fighterHierarchy: 0
+  dialogueOnBattleStart: 
+  dialogueOnMidHealth: 
+  dialogueOnDefeat: 
+  hasSaidMidHealthDialogue: 0
   battleUI: {fileID: 2090108967}
   healthBarObject: {fileID: 1190189886}
   IQBarObject: {fileID: 0}
@@ -15003,11 +15016,15 @@ MonoBehaviour:
   IQArmor: 1
   experience: 0
   level: 1
+  fighterHierarchy: 0
   attackMultiplier: 1
   iqAttackMultiplier: 1
   img: {fileID: 0}
   fightername: 
-  fighterHierarchy: 0
+  dialogueOnBattleStart: 
+  dialogueOnMidHealth: 
+  dialogueOnDefeat: 
+  hasSaidMidHealthDialogue: 0
   battleUI: {fileID: 0}
   healthBarObject: {fileID: 0}
   IQBarObject: {fileID: 0}
@@ -21754,6 +21771,8 @@ MonoBehaviour:
   player: {fileID: 1479219018}
   playerAction: {fileID: 1786806663}
   itemManager: {fileID: 992811374}
+  dialoguePanel: {fileID: 1335662270}
+  dialogueText: {fileID: 915543369}
   questionUI: {fileID: 162736383}
   useQuestionSystem: 1
 --- !u!1 &1271007528
@@ -22150,7 +22169,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1601368262}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9995394
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -22325,11 +22344,15 @@ MonoBehaviour:
   IQArmor: 1
   experience: 0
   level: 1
+  fighterHierarchy: 0
   attackMultiplier: 1
   iqAttackMultiplier: 1
   img: {fileID: -9107610676692984975, guid: c97a2d75aeedc1e44a0aae757f59107e, type: 3}
   fightername: "Mech\xF3n02"
-  fighterHierarchy: 0
+  dialogueOnBattleStart: 
+  dialogueOnMidHealth: 
+  dialogueOnDefeat: 
+  hasSaidMidHealthDialogue: 0
   battleUI: {fileID: 2090108967}
   healthBarObject: {fileID: 1190189886}
   IQBarObject: {fileID: 0}
@@ -22992,7 +23015,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1335662271
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23010,7 +23033,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.222989, y: -113.66501}
+  m_AnchoredPosition: {x: 34, y: -213}
   m_SizeDelta: {x: 1200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1335662272
@@ -23056,7 +23079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3075471, g: 0.3417482, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -23600,7 +23623,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000039496033}
+  m_AnchoredPosition: {x: 0, y: 0.0000069711778}
   m_SizeDelta: {x: 0, y: 400}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1417331517
@@ -27180,8 +27203,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2146574156}
   m_HandleRect: {fileID: 2146574155}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9347501
+  m_Value: 0.9999988
+  m_Size: 0.9347499
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -27275,6 +27298,8 @@ MonoBehaviour:
   player: {fileID: 1479219018}
   playerAction: {fileID: 1786806663}
   itemManager: {fileID: 992811374}
+  dialoguePanel: {fileID: 1335662270}
+  dialogueText: {fileID: 915543369}
   questionUI: {fileID: 162736383}
   useQuestionSystem: 0
 --- !u!1 &1703613684
@@ -27409,11 +27434,15 @@ MonoBehaviour:
   IQArmor: 20
   experience: 0
   level: 1
+  fighterHierarchy: 0
   attackMultiplier: 1
   iqAttackMultiplier: 1
   img: {fileID: 6558186054718601985, guid: fab44ec2851eff046b6211ed386f97ab, type: 3}
   fightername: "Comput\xEDn bomb\xEDn"
-  fighterHierarchy: 0
+  dialogueOnBattleStart: 
+  dialogueOnMidHealth: 
+  dialogueOnDefeat: 
+  hasSaidMidHealthDialogue: 0
   battleUI: {fileID: 2090108967}
   healthBarObject: {fileID: 1190189886}
   IQBarObject: {fileID: 0}
@@ -27607,6 +27636,8 @@ MonoBehaviour:
   player: {fileID: 1479219018}
   playerAction: {fileID: 1786806663}
   itemManager: {fileID: 992811374}
+  dialoguePanel: {fileID: 1335662270}
+  dialogueText: {fileID: 915543369}
   questionUI: {fileID: 162736383}
   useQuestionSystem: 1
 --- !u!1 &1716877880
@@ -29321,11 +29352,15 @@ MonoBehaviour:
   IQArmor: 1
   experience: 0
   level: 1
+  fighterHierarchy: 0
   attackMultiplier: 1
   iqAttackMultiplier: 1
   img: {fileID: 0}
   fightername: 
-  fighterHierarchy: 0
+  dialogueOnBattleStart: 
+  dialogueOnMidHealth: 
+  dialogueOnDefeat: 
+  hasSaidMidHealthDialogue: 0
   battleUI: {fileID: 0}
   healthBarObject: {fileID: 0}
   IQBarObject: {fileID: 0}
@@ -30847,6 +30882,8 @@ MonoBehaviour:
   player: {fileID: 1479219018}
   playerAction: {fileID: 1786806663}
   itemManager: {fileID: 992811374}
+  dialoguePanel: {fileID: 1335662270}
+  dialogueText: {fileID: 915543369}
   questionUI: {fileID: 162736383}
   useQuestionSystem: 1
 --- !u!1 &1901595419
@@ -32604,11 +32641,15 @@ MonoBehaviour:
   IQArmor: 0
   experience: 0
   level: 1
+  fighterHierarchy: 0
   attackMultiplier: 1
   iqAttackMultiplier: 1
   img: {fileID: 974471990380280646, guid: 0948f26bdcb83f147b56116ac405d8a1, type: 3}
   fightername: "Sr el\xE9ctrico"
-  fighterHierarchy: 0
+  dialogueOnBattleStart: 
+  dialogueOnMidHealth: 
+  dialogueOnDefeat: 
+  hasSaidMidHealthDialogue: 0
   battleUI: {fileID: 2090108967}
   healthBarObject: {fileID: 1190189886}
   IQBarObject: {fileID: 0}
