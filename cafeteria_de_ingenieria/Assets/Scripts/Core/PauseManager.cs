@@ -202,7 +202,9 @@ public class PauseManager : MonoBehaviour
         {
             enemyStatsText.text =
                 $"Vida: {enemy.health}/{enemy.startHealth}\n" +
-                $"Ataque: {enemy.attack}";
+                $"Ataque: {enemy.attack}\n" +
+                $"Tipo: {enemy.elementType}\n" +
+                $"Número de habilidades: {enemy.GetSkills().Length}\n";
         }
     }
 }
