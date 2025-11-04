@@ -35,7 +35,7 @@ public class TurnController : MonoBehaviour
 
     public void NextTurn()
     {
-        Debug.Log($">>> NextTurn() called by: {new System.Diagnostics.StackTrace().GetFrame(1).GetMethod().DeclaringType}.{new System.Diagnostics.StackTrace().GetFrame(1).GetMethod().Name}");
+        //Debug.Log($">>> NextTurn() called by: {new System.Diagnostics.StackTrace().GetFrame(1).GetMethod().DeclaringType}.{new System.Diagnostics.StackTrace().GetFrame(1).GetMethod().Name}");
         if (!battleActive || fightersTurnOrder.Count == 0) return;
 
         PrintTurnOrder();
@@ -132,7 +132,7 @@ public class TurnController : MonoBehaviour
                             {
                                 int skillIndex = Random.Range(0, attackSkills.Length);
                                 Skill skillToUse = attackSkills[skillIndex];
-                                
+                                Debug.Log($"¡JEFE usa {skillToUse.skillName}!");
                                 skillToUse.SetTargetanduser(enemyStats, playerStats);
                                 skillToUse.Run();
                             }

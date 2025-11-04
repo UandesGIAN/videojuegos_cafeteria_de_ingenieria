@@ -10,16 +10,6 @@ public class FighterAction : MonoBehaviour
     [SerializeField]
     private GameObject meleePrefab;
 
-    [SerializeField]
-    private GameObject abilityPrefab; //para posible futuro uso de habilidades
-
-    private GameObject currentAttack;
-    
-    // propiedades de abilidades (estoy asumiendo weas asi q cambia lo q creas necesario)
-    private GameObject abilityType;
-    private GameObject abilityAttack;
-    private GameObject abilityModifier; //e.g., para una habilidad q sube el ataque
-
     public void Awake()
     {
         player = GameObject.FindGameObjectWithTag(BattleConstants.CharacterRole.Player.ToString());
@@ -44,7 +34,7 @@ public class FighterAction : MonoBehaviour
         {
             meleePrefab.GetComponent<AttackScript>().Attack(target);
             Debug.Log("\t\t" + BattleConstants.MenuAttackOptions.Melee.ToString() + " attack made to " + target.tag);
-        } //else if (###quizas logica de habilidades si te parece!! aunque hay que equilibrarlo con lo q hizo el gian de habilidades en BattleManager
+        }
     }
 
     public GameObject GetEnemy()

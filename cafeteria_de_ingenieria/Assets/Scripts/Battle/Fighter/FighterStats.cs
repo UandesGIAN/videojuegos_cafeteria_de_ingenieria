@@ -27,8 +27,7 @@ public class FighterStats : MonoBehaviour
     public float IQArmor = 1f;
     public float experience;
     public int level = 1;
-    public FighterHierarchy fighterHierarchy = FighterHierarchy.Player; // MODIFICADO!!: Para definir cual es el tipo del Fighter, normal se refiere a "enemigo comun", 
-                                               // tambien puede ser "player" o "boss"
+    public FighterHierarchy fighterHierarchy = FighterHierarchy.Player; // MODIFICADO!!: Para definir cual es el tipo del Fighter, normal se refiere a "enemigo comun"
     
     [Header("Multiplicadores de Combate (Preguntas)")]
     [Tooltip("Multiplicadores que se aplican durante el combate actual por responder preguntas")]
@@ -38,12 +37,13 @@ public class FighterStats : MonoBehaviour
     public string fightername;
 
     [Header("Diálogos del Jefe")]
-    public string dialogueOnBattleStart;
-    public string dialogueOnMidHealth;
-    public string dialogueOnDefeat;
-    
+    public string dialogueOnBattleStart = "";
+    public string dialogueOnMidHealth = "";
+    public string dialogueOnDefeat = "";
+
     [HideInInspector]
     public bool hasSaidMidHealthDialogue = false;
+    public bool HasAttacked { get; set; } = false;
 
     public event Action<float, float> OnHealthChanged;
     public event Action<float, float> OnIQChanged;
