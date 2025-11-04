@@ -292,26 +292,4 @@ public class BattleUI : MonoBehaviour
         SetupSkillButtons(currentPlayer);
         SetupItemList(currentPlayer);
     }
-
-    // asigna nuevos componentes desde enemigo de una room hacia el enemigo "interfaz" de battlehud
-    // me di cuenta que es inutil tener esto pero lo dejo escrito porsiacaso
-    private void AssignEnemyNewComponents(FighterStats enemyStats)
-    {
-        // obtener viejos componentes
-        FighterAction oldEnemyAction = enemySprite.GetComponent<FighterAction>();
-        FighterStats oldEnemyStats = enemySprite.GetComponent<FighterStats>();
-
-        // destruir originales si es que existen
-        if (oldEnemyAction != null) Destroy(oldEnemyAction);
-        if (oldEnemyStats != null) Destroy(oldEnemyStats);
-
-        // asignar nuevos componentes!!
-        FighterStats newEnemyStats = enemySprite.AddComponent<FighterStats>();
-        newEnemyStats.CopyFrom(enemyStats);
-    }
-
-    public FighterStats GetCurrentEnemy()
-    {
-        return currentEnemy;
-    }
 }
