@@ -9,6 +9,7 @@ public class RoomManager : MonoBehaviour
     public List<GameObject> allRoomObjects;
 
     private List<RoomController> visitedRooms = new List<RoomController>();
+    private int currentRoomIndex = 0;
 
     private void Awake()
     {
@@ -29,7 +30,7 @@ public class RoomManager : MonoBehaviour
     {
         if (allRoomObjects == null || allRoomObjects.Count == 0) return;
 
-        // Activar solo la primera sala = SELECCION DE PERSONAJE
+        // Activar solo la primera sala = MAIN MENU
         allRoomObjects[0].SetActive(true);
     }
 
@@ -42,12 +43,23 @@ public class RoomManager : MonoBehaviour
         }
 
         // Desactivar la sala de selección
-        allRoomObjects[0].SetActive(false);
+        allRoomObjects[currentRoomIndex].SetActive(false);
 
-        // Activar la siguiente (la cafeteria)
-        allRoomObjects[1].SetActive(true);
+        // Avanzar al siguiente índic
+        currentRoomIndex++;
 
-        RoomController nextRoom = allRoomObjects[1].GetComponentInChildren<RoomController>(true);
+        if (currentRoomIndex >= allRoomObjects.Count)
+        {
+            Debug.Log("RoomManager: No hay más salas por avanzar.");
+            return;
+        }
+
+        // Activar nueva sala
+        GameObject nextRoomObject = allRoomObjects[currentRoomIndex];
+        nextRoomObject.SetActive(true);
+
+        // Proximo RoomController
+        RoomController nextRoom = nextRoomObject.GetComponentInChildren<RoomController>(true);
         if (nextRoom != null)
         {
             nextRoom.EnterRoom();
@@ -55,7 +67,7 @@ public class RoomManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"La sala '{allRoomObjects[1].name}' no tiene RoomController.");
+            Debug.Log($"La sala '{nextRoomObject.name}' NO tiene RoomController — se activa igual.");
         }
     }
 
