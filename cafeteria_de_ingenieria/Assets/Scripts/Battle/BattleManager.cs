@@ -407,14 +407,16 @@ public class BattleManager : MonoBehaviour
         if (!gameObject.activeInHierarchy)
             gameObject.SetActive(true);
                 
-        StartCoroutine(WaitAndNotify());
+        StartCoroutine(NotifyAsync());
+    }
 
-        IEnumerator WaitAndNotify()
-        {
-            // es necesario agregar este delay para que no se ejecute dos veces el turno del enemigo
-            yield return new WaitForSeconds(0.5f);
-            OnPlayerActionCompleted?.Invoke();
-        }
+    private IEnumerator NotifyAsync()
+    {
+        gameObject.SetActive(true);
+        yield return null; // ESPERA UN FRAME PARA QUE EL OBJETO SE ACTIVE
+
+        yield return new WaitForSeconds(0.5f);
+        OnPlayerActionCompleted?.Invoke();
     }
     
     public IEnumerator ShowDialogue(string sentence)
