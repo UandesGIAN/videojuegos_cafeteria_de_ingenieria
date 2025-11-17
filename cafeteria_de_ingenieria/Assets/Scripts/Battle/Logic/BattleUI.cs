@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 using UnityEngine.EventSystems;
+using System.Diagnostics.Tracing;
 
 public class BattleUI : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class BattleUI : MonoBehaviour
     public Image enemySprite;
     public TMP_Text enemyName;
     public Slider enemyHP;
+    public Slider enemyIQ;
 
     [Header("Mensajes")]
     public TMP_Text message;
@@ -210,6 +212,18 @@ public class BattleUI : MonoBehaviour
         enemyName.text = enemyStats.fightername;
         enemyHP.maxValue = enemyStats.health;
         enemyHP.value = enemyStats.health;
+        
+        if (enemyStats.IQ > 0)
+        {
+            enemyIQ.gameObject.SetActive(true);
+
+            enemyIQ.maxValue = enemyStats.IQ;
+            enemyIQ.value = enemyStats.IQ;
+        }
+        else
+        {
+            enemyIQ.gameObject.SetActive(false);
+        }
 
         // Suscribirse a cambios de vida
         currentEnemy.OnHealthChanged += UpdateEnemyHealth;
@@ -280,6 +294,8 @@ public class BattleUI : MonoBehaviour
         enemyName.text = enemyStats.fightername;
         enemyHP.maxValue = enemyStats.startHealth;
         enemyHP.value = enemyStats.health;
+        enemyIQ.maxValue = enemyStats.startIQ;
+        enemyIQ.value = enemyStats.IQ;
 
         currentEnemy.OnHealthChanged -= UpdateEnemyHealth;
         currentEnemy.OnHealthChanged += UpdateEnemyHealth;
