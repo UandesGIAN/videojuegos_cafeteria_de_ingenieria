@@ -31,10 +31,11 @@ public class FighterAction : MonoBehaviour
 
         // ataque melee (normal)
         if (option_name.CompareTo(BattleConstants.MenuAttackOptions.Melee.ToString()) == 0)
-        {
             meleePrefab.GetComponent<AttackScript>().Attack(target);
-            Debug.Log("\t\t" + BattleConstants.MenuAttackOptions.Melee.ToString() + " attack made to " + target.tag);
-        }
+        
+        // skill (por ahora randomamente)
+        else if (option_name.CompareTo(BattleConstants.MenuAttackOptions.Skill.ToString()) == 0)
+            meleePrefab.GetComponent<AttackScript>().UseSkillRandomly(target);
     }
 
     public GameObject GetEnemy()

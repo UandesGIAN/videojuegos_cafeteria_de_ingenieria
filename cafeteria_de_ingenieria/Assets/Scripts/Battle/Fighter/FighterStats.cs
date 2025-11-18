@@ -274,37 +274,4 @@ public class FighterStats : MonoBehaviour
                   $"- Level: {level}\n" +
                   $"- Multiplicadores: Attack x{attackMultiplier:F2}, IQAttack x{iqAttackMultiplier:F2}");
     }
-
-    // para copiar valores desde otra instancia de fighterStats
-    public void CopyFrom(FighterStats source)
-    {
-        // estadísticas principales
-        this.elementType = source.elementType;
-        this.health = source.health;
-        this.IQ = source.IQ;
-        this.startHealth = source.startHealth;
-        this.startIQ = source.startIQ;
-        this.attack = source.attack;
-        this.IQattack = source.IQattack;
-        this.physicalArmor = source.physicalArmor;
-        this.IQArmor = source.IQArmor;
-        this.experience = source.experience;
-        this.level = source.level;
-        this.img = source.img;
-        this.fightername = source.fightername;
-
-
-        this.battleUI = source.battleUI;
-
-        // copiar el estado de las barras de salud y IQ
-        if (source.healthBarObject != null)
-            this.healthBarObject = source.healthBarObject;
-        if (source.IQBarObject != null)
-            this.IQBarObject = source.IQBarObject;
-
-        // resetear eventos
-        OnHealthChanged = null;
-        OnIQChanged = null;
-        OnDeath = null;
-    }
 }

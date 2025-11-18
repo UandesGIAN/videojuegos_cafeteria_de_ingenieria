@@ -1,6 +1,5 @@
-using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
+
 
 public class AttackScript : MonoBehaviour
 {
@@ -47,5 +46,43 @@ public class AttackScript : MonoBehaviour
     
     	// NUEVO SISTEMA - usar el cálculo de daño con tipos
     	targetStats.ReceiveDamageWithType(attackerStats, false); // false = ataque físico
+
+        Debug.Log("\t\t" + BattleConstants.MenuAttackOptions.Melee.ToString() + " attack made to " + target.tag);
+    }
+
+    public void UseSkillRandomly(GameObject target)
+    {
+        // obtener estadisticas de atacante y target desde el componente fighterstats de cada uno
+        attackerStats = owner.GetComponent<FighterStats>();
+        targetStats = target.GetComponent<FighterStats>();
+
+        Skill[] attackSkills = attackerStats.GetSkills();
+
+        // Si no hay skills, hacer ataque normal
+        if (attackSkills.Length == 0)
+        {
+            Debug.LogWarning("No skills available, performing MELEE attack instead.");
+            Attack(target);
+            return;
+        }
+
+        // usar alguna skill aleatoria del atacante
+        int skillIndex = Random.Range(0, attackSkills.Length);
+        Skill skillToUse = attackSkills[skillIndex];
+
+        UseSkill(skillToUse, target);
+    }
+
+    public void UseSkill(Skill skill, GameObject target)
+    {
+        // obtener estadisticas de atacante y target desde el componente fighterstats de cada uno
+        attackerStats = owner.GetComponent<FighterStats>();
+        targetStats = target.GetComponent<FighterStats>();
+
+        // usar skill
+        skill.SetTargetanduser(attackerStats, targetStats);
+        skill.Run();
+        
+        Debug.Log("\t\tSkill: " + skill.skillName + " used on " + target.tag);
     }
 }
