@@ -79,6 +79,7 @@ public class TurnController : MonoBehaviour
             // corutina de ataque del enemigo!
             IEnumerator EnemyWaitsAndActs()
             {
+                // no entiendo pq este if esta situado aca!!!!!!!!!!
                 if (currentFighterStats.fighterHierarchy == FighterHierarchy.Boss && 
                     !currentFighterStats.hasSaidMidHealthDialogue &&
                     (currentFighterStats.health / currentFighterStats.startHealth) <= 0.5f)
@@ -91,48 +92,23 @@ public class TurnController : MonoBehaviour
                 yield return new WaitForSeconds(EnemyWaitTime);
                 if (!battleActive || currentFighterStats == null) yield break;
 
-                // 
+                // accion que toma enemigo/jefe
                 if (currentFighterObject.TryGetComponent<FighterAction>(out var currentFighterAction))
                 {
-                    FighterStats enemyStats = currentFighterStats;   // stats del enemigo actual (el que ataca)   
-                    FighterStats playerStats = battleManager.player; // stats del jugador (el objetivo)
-
-                    bool turnUsed = false;
-
-                    // Si es jefe, se reemplaza la lógica de ataque simple por la IA del Jefe
-                    if (enemyStats.fighterHierarchy == FighterHierarchy.Boss)
+                    // Si es jefe, se usa la IA del Jefe!!
+                    if (currentFighterStats.fighterHierarchy == FighterHierarchy.Boss)
                     {
-                        float healthPercentage = enemyStats.health / enemyStats.startHealth;
-
-                        if (healthPercentage < 0.3f)
-                        {
-                            Item elixirToUse = enemyStats.GetItems().FirstOrDefault(item => item.itemName == "Elixir");
-                            
-                            if (elixirToUse != null)
-                            {
-                                Debug.Log($"¡JEFE {enemyStats.name} está bajo de vida! Usando Elixir.");
-                                
-                                elixirToUse.Run(); 
-                                enemyStats.RemoveItem(elixirToUse);
-
-                                turnUsed = true;
-                            }
-                        }
-
-                        if (!turnUsed)
-                        {
-                            // se selecciona una skill aleatoriamente. Si no hay skills, se hace ataque base (todo eso lo maneja FighterAction.SelectOption)
-                            currentFighterAction.SelectOption(BattleConstants.MenuAttackOptions.Skill.ToString());
-                            turnUsed = true;
-                        }
+                        // por ahora, solo elige entre usar elixir bajo 30% de vida; e.o.c, usa skill, o ataca si no tiene skill
+                            // es decir, literal lo mismo que estaba antes, pero refactorizado.
+                        currentFighterAction.EvaluateDecisionTree();
                     }
                     else // Lógica de enemigo normal
                     {
-                        Debug.Log($"Enemigo {enemyStats.name} usa ataque base.");
                         currentFighterAction.SelectOption(BattleConstants.MenuAttackOptions.Melee.ToString());
                     }
                 }
 
+                // enemigo waitea de nuevo
                 yield return new WaitForSeconds(EnemyWaitTime);
                 if (battleActive) NextTurn();
             }

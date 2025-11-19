@@ -12,6 +12,7 @@ public static class BattleConstants
     public enum MenuAttackOptions
     {
         Melee,
-        Skill
+        Skill,
+        Item
     }
 }
