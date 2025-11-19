@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public static class BattleConstants
 {
     // para evitar magic strings xd
@@ -14,6 +12,7 @@ public static class BattleConstants
     public enum MenuAttackOptions
     {
         Melee,
-        Ability
+        Skill,
+        Item
     }
 }
