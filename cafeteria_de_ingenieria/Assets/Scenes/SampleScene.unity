@@ -243,7 +243,7 @@ PrefabInstance:
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: img
       value: 
-      objectReference: {fileID: -9107610676692984975, guid: c97a2d75aeedc1e44a0aae757f59107e, type: 3}
+      objectReference: {fileID: -2502095640950293308, guid: 75656f4381a1eb64982559f104b671ca, type: 3}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: attack
       value: 30
@@ -545,7 +545,7 @@ PrefabInstance:
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: img
       value: 
-      objectReference: {fileID: -9107610676692984975, guid: c97a2d75aeedc1e44a0aae757f59107e, type: 3}
+      objectReference: {fileID: -3271193679842419918, guid: e4e6002ca4970fd4e849e22d20057c4f, type: 3}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: attack
       value: 30
@@ -3006,7 +3006,7 @@ PrefabInstance:
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: img
       value: 
-      objectReference: {fileID: -9107610676692984975, guid: c97a2d75aeedc1e44a0aae757f59107e, type: 3}
+      objectReference: {fileID: 2001164444788678079, guid: 7b4ce39b1e0803c42a6d38cd6e038020, type: 3}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: attack
       value: 50
@@ -3525,7 +3525,7 @@ PrefabInstance:
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: img
       value: 
-      objectReference: {fileID: -7790598095794505107, guid: 9f0458f7c7b0d4c4988564892cedd718, type: 3}
+      objectReference: {fileID: -7717754430870544301, guid: 49e7976a535d8194c98106482a029630, type: 3}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: startIQ
       value: 0
@@ -5094,7 +5094,7 @@ PrefabInstance:
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: img
       value: 
-      objectReference: {fileID: 974471990380280646, guid: 0948f26bdcb83f147b56116ac405d8a1, type: 3}
+      objectReference: {fileID: 6388894698153106391, guid: 8c37e71587483f04dabdb27c09aac5bf, type: 3}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: attack
       value: 30
@@ -6563,7 +6563,7 @@ MonoBehaviour:
   fighterHierarchy: 1
   attackMultiplier: 1
   iqAttackMultiplier: 1
-  img: {fileID: -6201301430866062438, guid: 0e32bd3474ef98e45bac976a16b9b081, type: 3}
+  img: {fileID: 4428599566569178196, guid: 0bb19e5d57ae149499485d7d3bca15d9, type: 3}
   fightername: Jorge Gomez
   dialogueOnBattleStart: A ver si eres tan inteligente como crees pete
   dialogueOnMidHealth: "Parece q en realidad eres capas de ense\xF1arme"
@@ -9584,7 +9584,7 @@ PrefabInstance:
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: img
       value: 
-      objectReference: {fileID: -9107610676692984975, guid: c97a2d75aeedc1e44a0aae757f59107e, type: 3}
+      objectReference: {fileID: -6893022649382802737, guid: e4ef795e437dc5442a4a377590bd0a3c, type: 3}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: attack
       value: 50
@@ -11564,7 +11564,7 @@ PrefabInstance:
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: img
       value: 
-      objectReference: {fileID: -7790598095794505107, guid: 9f0458f7c7b0d4c4988564892cedd718, type: 3}
+      objectReference: {fileID: -6083532255705336351, guid: 56ec171bbe1f47640a6716308cefdc63, type: 3}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: health
       value: 150
@@ -13681,7 +13681,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1601368262}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9931728
+  m_Size: 0.99996525
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -14761,7 +14761,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000014754643}
+  m_AnchoredPosition: {x: 0, y: 0.000040689913}
   m_SizeDelta: {x: 0, y: 400}
   m_Pivot: {x: 0, y: 1}
 --- !u!1001 &1413692439
@@ -14856,7 +14856,7 @@ PrefabInstance:
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: img
       value: 
-      objectReference: {fileID: -9107610676692984975, guid: c97a2d75aeedc1e44a0aae757f59107e, type: 3}
+      objectReference: {fileID: -7411640322267208130, guid: e7e27b425dc7e3141aa0f2bc05b1603a, type: 3}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: attack
       value: 30
@@ -16043,7 +16043,7 @@ PrefabInstance:
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: img
       value: 
-      objectReference: {fileID: -9107610676692984975, guid: c97a2d75aeedc1e44a0aae757f59107e, type: 3}
+      objectReference: {fileID: 7074447374885318651, guid: acdfc5e90f7ee794ab8b87017e454ba7, type: 3}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: attack
       value: 30
@@ -18180,7 +18180,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2146574155}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.93474996
+  m_Size: 0.9347501
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
