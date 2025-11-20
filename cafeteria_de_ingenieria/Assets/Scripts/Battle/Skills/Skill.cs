@@ -37,9 +37,9 @@ public abstract class Skill : MonoBehaviour
     protected FighterStats userStats;
     protected FighterStats targetStats;
 
-    // Offsets fijos definidos en el código
-    private readonly Vector3 effectOffsetToEnemy = new Vector3(4.5f, 1f, 0f);
-    private readonly Vector3 effectOffsetToPlayer = new Vector3(-4f, 0f, 0f);
+    // Offsets fijos definidos en el código (Z negativo para que esté delante)
+    private readonly Vector3 effectOffsetToEnemy = new Vector3(4.5f, 1f, -5f);
+    private readonly Vector3 effectOffsetToPlayer = new Vector3(-4.5f, 1f, -5f);
 
     /// <summary>
     /// Reproduce el efecto visual de la habilidad
@@ -54,10 +54,18 @@ public abstract class Skill : MonoBehaviour
             // Instanciar el efecto
             GameObject effectInstance = Instantiate(effectPrefab, selectedOffset, Quaternion.identity);
             
+            // Configurar sorting layers para todos los Particle System Renderers
+            ParticleSystemRenderer[] renderers = effectInstance.GetComponentsInChildren<ParticleSystemRenderer>();
+            foreach (var renderer in renderers)
+            {
+                renderer.sortingLayerName = "Default";
+                renderer.sortingOrder = 100; // Orden alto para estar por encima de todo
+            }
+            
             // Destruir después de la duración de la animación
             Destroy(effectInstance, animationDuration);
             
-            Debug.Log($"🎨 Efecto visual '{effectPrefab.name}' reproducido en posición {selectedOffset} para {skillName}");
+            Debug.Log($"🎨 Efecto visual '{effectPrefab.name}' reproducido en posición {selectedOffset} para {skillName} (Z={selectedOffset.z})");
         }
     }
 

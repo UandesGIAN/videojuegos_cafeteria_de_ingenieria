@@ -46,13 +46,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: ESPORA
   description: "Infecta al enemigo con E. Coli. Costo de 20 IQ. 30 de da\xF1o base."
-  animationDuration: 1
+  animationDuration: 2
   animationDelay: 0
   type: 5
   icon: {fileID: 0}
   selfinflicted: 0
-  effectPrefab: {fileID: 4367466542359643468, guid: c92836c3a8e05ad4494f15363d4534b8, type: 3}
-  skillSound: {fileID: 8300000, guid: 76b4398d8af35dd48b132dde156f064f, type: 3}
+  effectPrefab: {fileID: 4425129568585013132, guid: bbeeb0ddc21369746aaaae5c5c1c09cf, type: 3}
+  skillSound: {fileID: 8300000, guid: 003c7a4404e2ad047967f09b2ba3a5a1, type: 3}
   soundVolume: 1
   useImpactFrame: 0
   impactFrameDuration: 0.1
