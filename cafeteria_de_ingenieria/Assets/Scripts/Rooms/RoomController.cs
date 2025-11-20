@@ -79,6 +79,12 @@ public class RoomController : MonoBehaviour
         if (battle != null)
         {
             Debug.Log($"[RoomController: {transform.parent.gameObject}] Iniciando batalla...");
+            
+            // Cambiar a música de batalla en la primera room con combate
+            if (MusicManager.Instance != null)
+            {
+                MusicManager.Instance.PlayBattleMusic();
+            }
 
             battle.Start(); // para que agarre bien el enemy y player
 

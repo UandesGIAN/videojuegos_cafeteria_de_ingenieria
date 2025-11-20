@@ -46,14 +46,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Fireball
   description: 
-  animationDuration: 0
+  animationDuration: 1
+  animationDelay: 2
   type: 3
   icon: {fileID: 0}
   selfinflicted: 0
+  effectPrefab: {fileID: 85941164691198867, guid: bad3cf055489f0e4e9cd51bd9cdb7008, type: 3}
+  skillSound: {fileID: 8300000, guid: 101146547cb2c9448aeb4de4310a4f10, type: 3}
+  soundVolume: 1
+  useImpactFrame: 0
+  impactFrameDuration: 0.1
   amount: 60
   cost: 20
   modType: 0
-  useAdvancedDamageFormula: 0
   attackCategory: 1
   skillElementType: 4
   useRandomVariation: 1

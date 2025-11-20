@@ -22,9 +22,6 @@ public class HealthModSkill : Skill
     public HealthModType modType;
     
     [Header("Advanced Damage Calculation")]
-    [Tooltip("Usar cálculo avanzado tipo Pokémon (solo para ataques, no auto-heal)")]
-    public bool useAdvancedDamageFormula = false;
-    
     [Tooltip("Tipo de ataque: Físico usa attack vs armor, Especial usa IQ vs IQArmor")]
     public AttackCategory attackCategory = AttackCategory.Physical;
     
@@ -40,6 +37,8 @@ public class HealthModSkill : Skill
     public override void onRun()
     {
         float amount = this.GetModification();
+        
+        Debug.Log($"💊 onRun ejecutado | Amount calculado: {amount:F1} | User: {userStats.fightername} | Target: {targetStats.fightername}");
 
         if (this.userStats.IQ >= this.cost)
         {
@@ -47,10 +46,12 @@ public class HealthModSkill : Skill
             
             if(this.selfinflicted)
             {
+                Debug.Log($"   ↳ HEAL aplicado a {targetStats.fightername}: +{amount:F1} HP");
                 this.targetStats.Heal(amount);
             }
             else
             {
+                Debug.Log($"   ↳ DAÑO aplicado a {targetStats.fightername}: {amount:F1} HP");
                 this.targetStats.ReceiveDamage(amount);
             }
         }
@@ -62,16 +63,15 @@ public class HealthModSkill : Skill
 
     public float GetModification()
     {
-        // Aplicar fórmula avanzada solo si:
-        // 1. Está activada la fórmula avanzada
-        // 2. NO es self-inflicted (no es heal)
-        // 3. Es daño flat (no percentage)
-        if (useAdvancedDamageFormula && !this.selfinflicted && this.modType == HealthModType.Flat)
+        // Aplicar fórmula avanzada automáticamente si:
+        // 1. NO es self-inflicted (no es heal)
+        // 2. Es daño flat (no percentage)
+        if (!this.selfinflicted && this.modType == HealthModType.Flat)
         {
             return CalculatePokemonStyleDamage();
         }
         
-        // Usar cálculo original para todos los demás casos
+        // Usar cálculo original para heals y porcentajes
         switch (this.modType)
         {
             case HealthModType.Flat:
@@ -87,6 +87,12 @@ public class HealthModSkill : Skill
     /// Daño = 0.01 × B × E × V × ((0.2 × N + 1) × A × P / (25 × D) + 2)
     private float CalculatePokemonStyleDamage()
     {
+        Debug.Log($"🔍 Iniciando cálculo Pokémon para {skillName}");
+        Debug.Log($"📌 STATS ANTES DEL CÁLCULO:");
+        Debug.Log($"   User: {userStats.fightername} | Attack: {userStats.attack} | IQattack: {userStats.IQattack} | AttackMult: {userStats.attackMultiplier:F2} | IQAttackMult: {userStats.iqAttackMultiplier:F2}");
+        Debug.Log($"   Target: {targetStats.fightername} | PhysArmor: {targetStats.physicalArmor} | IQArmor: {targetStats.IQArmor}");
+        Debug.Log($"   Skill: AttackCategory={attackCategory}, SkillElement={skillElementType}, Amount={amount}");
+        
         // N = Nivel del atacante
         float N = this.userStats.level;
         
@@ -114,25 +120,19 @@ public class HealthModSkill : Skill
         // V = Variación aleatoria (85-100%)
         float V = useRandomVariation ? Random.Range(85, 101) / 100f : 1.0f;
         
-        // Aplicar fórmula Pokémon
-        float baseDamage = 0.01f * B * E * V * ((0.2f * N + 1) * A * P / (25f * D) + 2);
+        Debug.Log($"📊 Valores: N={N}, A={A:F1}, P={P}, D={D}, B={B}, E={E}, V={V:F2}");
+        
+        // Aplicar fórmula Pokémon (sin el 0.01 para que funcione mejor con stats bajos)
+        float innerCalc = (0.2f * N + 1) * A * P / (25f * D) + 2;
+        Debug.Log($"📐 Cálculo interno: ((0.2×{N}+1) × {A:F1} × {P} / (25×{D}) + 2) = {innerCalc:F2}");
+        
+        float baseDamage = B * E * V * innerCalc;
+        Debug.Log($"💥 Daño base: {B} × {E} × {V:F2} × {innerCalc:F2} = {baseDamage:F2}");
         
         // Aplicar multiplicador adicional para balanceo
         float finalDamage = baseDamage * damageMultiplier;
         
-        // Debug para mostrar los valores usados
-        if (attackCategory == AttackCategory.Physical)
-        {
-            float baseA = this.userStats.attack;
-            float multiplier = this.userStats.attackMultiplier;
-            Debug.Log($"=== FÓRMULA POKÉMON (FÍSICO) ===\nAttack Base: {baseA:F1}, Multiplicador: x{multiplier:F2}, Attack Efectivo: {A:F1}\nDaño final: {finalDamage:F1}");
-        }
-        else
-        {
-            float baseA = this.userStats.IQattack;
-            float multiplier = this.userStats.iqAttackMultiplier;
-            Debug.Log($"=== FÓRMULA POKÉMON (ESPECIAL) ===\nIQAttack Base: {baseA:F1}, Multiplicador: x{multiplier:F2}, IQAttack Efectivo: {A:F1}\nDaño final: {finalDamage:F1}");
-        }
+        Debug.Log($"✅ DAÑO FINAL (con multiplicador {damageMultiplier}): {finalDamage:F1}");
         
         // Asegurar que el daño mínimo sea 1
         return Mathf.Max(finalDamage, 1f);
