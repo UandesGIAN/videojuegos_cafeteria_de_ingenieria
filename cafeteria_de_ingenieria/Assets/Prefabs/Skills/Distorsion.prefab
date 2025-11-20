@@ -52,7 +52,7 @@ MonoBehaviour:
   type: 2
   icon: {fileID: 0}
   selfinflicted: 0
-  effectPrefab: {fileID: 3042519775331041172, guid: 841004c4c6a39e244abe2257394de913, type: 3}
+  effectPrefab: {fileID: 9027514048236820045, guid: effb650189dc5714e9e9801b1cfb3991, type: 3}
   skillSound: {fileID: 8300000, guid: 1ce48c6a315fd374b9cb49f215bfe1a0, type: 3}
   soundVolume: 1
   useImpactFrame: 0
