@@ -46,10 +46,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: HORMIGONAZO
   description: "Lanza hormigon al enemigo. Costo de 30 IQ. 15 de da\xF1o base."
-  animationDuration: 0
+  animationDuration: 1
   type: 1
   icon: {fileID: 0}
   selfinflicted: 0
+  effectPrefab: {fileID: 3022102558446658867, guid: cd3d579a2d65b3241a1812f639db37ec, type: 3}
+  skillSound: {fileID: 8300000, guid: ea08e11d2b98d72488c61d114373b047, type: 3}
+  soundVolume: 1
+  useImpactFrame: 0
+  impactFrameDuration: 0.1
   amount: 15
   cost: 30
   modType: 0
+  attackCategory: 0
+  skillElementType: 4
+  useRandomVariation: 1
+  damageMultiplier: 1

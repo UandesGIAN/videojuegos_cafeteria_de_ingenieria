@@ -228,6 +228,13 @@ public class BattleManager : MonoBehaviour
         if (player != null && player.IsDead())
         {
             Debug.Log("GAME OVER. Reiniciando juego...");
+            
+            // Reproducir música de Game Over
+            if (MusicManager.Instance != null)
+            {
+                MusicManager.Instance.PlayGameOverMusic();
+            }
+            
             if (!gameObject.activeInHierarchy)
                 gameObject.SetActive(true);
             StartCoroutine(RestartGame());

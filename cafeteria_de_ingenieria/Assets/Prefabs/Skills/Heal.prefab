@@ -46,10 +46,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Heal
   description: Cura 20 HP a cambio de 30 IQ
-  animationDuration: 0
+  animationDuration: 2
   type: 4
   icon: {fileID: 0}
   selfinflicted: 1
+  effectPrefab: {fileID: 5631927496442371602, guid: 6c52ee79710704a4dab242c5ba8e0408, type: 3}
+  effectOffset: {x: 4.5, y: 1, z: 0}
+  skillSound: {fileID: 8300000, guid: 9596c471f295348e2900a1a33670a1c2, type: 3}
+  soundVolume: 1
+  useImpactFrame: 0
+  impactFrameDuration: 0.1
   amount: 20
   cost: 30
   modType: 0
+  useAdvancedDamageFormula: 0
+  attackCategory: 0
+  skillElementType: 4
+  useRandomVariation: 1
+  damageMultiplier: 1

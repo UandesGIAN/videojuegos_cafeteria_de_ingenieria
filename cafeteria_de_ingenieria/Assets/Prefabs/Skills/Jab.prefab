@@ -46,17 +46,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Jab
   description: small damage, low cost jab
-  animationDuration: 0
+  animationDuration: 1
+  animationDelay: 0
   type: 4
   icon: {fileID: 0}
   selfinflicted: 0
+  effectPrefab: {fileID: 8782009059513614302, guid: 171dda363e9efd94ca9bc63e38ca9658, type: 3}
+  skillSound: {fileID: 8300000, guid: 7b37bf3dabfc543b8acaa4d998fb94bf, type: 3}
+  soundVolume: 1
+  useImpactFrame: 0
+  impactFrameDuration: 0.1
   amount: 25
   cost: 5
   modType: 0
-  useAdvancedDamageFormula: 0
   attackCategory: 0
   skillElementType: 4
-  overrideAttackType: 0
-  customAttackType: 4
   useRandomVariation: 1
   damageMultiplier: 1

@@ -47,14 +47,19 @@ MonoBehaviour:
   skillName: "DISTORSI\xD3N"
   description: "Modifica el campo magn\xE9tico del enemigo. Costo de 10 IQ. 20 de
     da\xF1o base."
-  animationDuration: 0
+  animationDuration: 1
+  animationDelay: 0
   type: 2
   icon: {fileID: 0}
   selfinflicted: 0
+  effectPrefab: {fileID: 3042519775331041172, guid: 841004c4c6a39e244abe2257394de913, type: 3}
+  skillSound: {fileID: 8300000, guid: 1ce48c6a315fd374b9cb49f215bfe1a0, type: 3}
+  soundVolume: 1
+  useImpactFrame: 0
+  impactFrameDuration: 0
   amount: 20
   cost: 10
   modType: 0
-  useAdvancedDamageFormula: 0
   attackCategory: 1
   skillElementType: 4
   useRandomVariation: 1

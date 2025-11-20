@@ -27,6 +27,12 @@ public class MainMenuController : MonoBehaviour
             t.color = normalColor;
 
         HighlightSelected();
+        
+        // Iniciar música del menú
+        if (MusicManager.Instance != null)
+        {
+            MusicManager.Instance.PlayMenuMusic();
+        }
     }
 
     private void Update()

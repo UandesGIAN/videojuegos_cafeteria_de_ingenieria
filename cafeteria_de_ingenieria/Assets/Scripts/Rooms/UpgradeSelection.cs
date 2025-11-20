@@ -126,16 +126,31 @@ public class UpgradeSelection : MonoBehaviour
         // Filtrar las que el jugador ya tiene (para skills)
         List<Reward> availableRewards = FilterAvailableRewards(allPossibleRewards);
         
-        // Seleccionar aleatoriamente
-        int rewardsToSelect = Mathf.Min(numberOfRewardsToShow, availableRewards.Count);
+        // Separar por tipo
+        List<Reward> skillRewards = availableRewards.Where(r => r.type == Reward.RewardType.Skill).ToList();
+        List<Reward> nonSkillRewards = availableRewards.Where(r => r.type != Reward.RewardType.Skill).ToList();
         
-        for (int i = 0; i < rewardsToSelect; i++)
+        // Seleccionar máximo 1 skill
+        int skillsToAdd = Mathf.Min(1, skillRewards.Count);
+        for (int i = 0; i < skillsToAdd; i++)
         {
-            if (availableRewards.Count > 0)
+            if (skillRewards.Count > 0)
             {
-                int randomIndex = Random.Range(0, availableRewards.Count);
-                selectedRewards.Add(availableRewards[randomIndex]);
-                availableRewards.RemoveAt(randomIndex); // Evitar duplicados
+                int randomIndex = Random.Range(0, skillRewards.Count);
+                selectedRewards.Add(skillRewards[randomIndex]);
+                skillRewards.RemoveAt(randomIndex);
+            }
+        }
+        
+        // Completar con items/upgrades hasta llegar a numberOfRewardsToShow
+        int remainingSlots = numberOfRewardsToShow - selectedRewards.Count;
+        for (int i = 0; i < remainingSlots; i++)
+        {
+            if (nonSkillRewards.Count > 0)
+            {
+                int randomIndex = Random.Range(0, nonSkillRewards.Count);
+                selectedRewards.Add(nonSkillRewards[randomIndex]);
+                nonSkillRewards.RemoveAt(randomIndex);
             }
         }
     }

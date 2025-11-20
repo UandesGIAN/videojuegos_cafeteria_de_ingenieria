@@ -160,6 +160,9 @@ public class CharacterSelection : MonoBehaviour
             playerStats.physicalArmor = data.PhysicalArmor;
             playerStats.IQArmor = data.IQArmor;
             playerStats.img = icon != null ? icon.sprite : null;
+            
+            Debug.Log($"📋 Stats asignadas: Attack={data.Attack}, IQattack={data.IQattack}");
+            
             // Habilidad base
             if (data.baseSkill != null)
             {
