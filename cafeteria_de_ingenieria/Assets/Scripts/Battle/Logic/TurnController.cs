@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq; // <-- MODIFICADO: Añadido para usar FirstOrDefault y Where en la IA
 
 
 public class TurnController : MonoBehaviour
@@ -85,7 +84,7 @@ public class TurnController : MonoBehaviour
                     (currentFighterStats.health / currentFighterStats.startHealth) <= 0.5f)
                 {
                     currentFighterStats.hasSaidMidHealthDialogue = true;
-                    yield return StartCoroutine(battleManager.ShowDialogue(currentFighterStats.dialogueOnMidHealth));
+                    battleManager.ShowDialogue(currentFighterStats.dialogueOnMidHealth);
                 }
 
                 // enemigo waitea para que no pase de inmediato todo
