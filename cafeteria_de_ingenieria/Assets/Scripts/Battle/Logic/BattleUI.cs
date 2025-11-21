@@ -132,6 +132,13 @@ public class BattleUI : MonoBehaviour
         Skill[] skills = fighter.GetSkills();
         for (int i = 0; i < skillButtons.Length; i++)
         {
+            // Agregar componente de sonido a botones de habilidad si no existe
+            if (skillButtons[i].GetComponent<UIButtonSound>() == null)
+            {
+                UIButtonSound buttonSound = skillButtons[i].gameObject.AddComponent<UIButtonSound>();
+                buttonSound.soundType = UIButtonSound.ButtonSoundType.Skill;
+            }
+            
             if (i < skills.Length)
             {
                 skillButtons[i].gameObject.SetActive(true);
@@ -174,10 +181,17 @@ public class BattleUI : MonoBehaviour
 
             // Uso del prefab para hacer la lista
             GameObject itemButton = Instantiate(itemButtonPrefab, itemListContainer.transform);
+            
+            // Agregar componente de sonido al botón de item
+            Button button = itemButton.GetComponent<Button>();
+            if (button != null && button.GetComponent<UIButtonSound>() == null)
+            {
+                UIButtonSound buttonSound = button.gameObject.AddComponent<UIButtonSound>();
+                buttonSound.soundType = UIButtonSound.ButtonSoundType.Normal;
+            }
 
             TextMeshProUGUI nameText = itemButton.transform.Find("Name").GetComponent<TextMeshProUGUI>();
             TextMeshProUGUI amountText = itemButton.transform.Find("Amount").GetComponent<TextMeshProUGUI>();
-            Button button = itemButton.GetComponent<Button>();
             if (nameText == null || amountText == null || button == null)
             {
                 Debug.LogError($"[BattleUI] El prefab '{itemButton.name}' no tiene los componentes esperados (Name, Amount, Button).");

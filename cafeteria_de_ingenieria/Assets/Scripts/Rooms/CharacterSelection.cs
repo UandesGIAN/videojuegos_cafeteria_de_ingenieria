@@ -107,6 +107,13 @@ public class CharacterSelection : MonoBehaviour
     {
         foreach (var button in characterButtons)
         {
+            // Agregar componente de sonido si no existe
+            if (button.GetComponent<UIButtonSound>() == null)
+            {
+                UIButtonSound buttonSound = button.gameObject.AddComponent<UIButtonSound>();
+                buttonSound.soundType = UIButtonSound.ButtonSoundType.Confirm;
+            }
+            
             // Buscar los elementos hijos "Title" y "Icon" en el botón
             TMP_Text titleText = button.transform.Find("title")?.GetComponent<TMP_Text>();
             Image iconImage = button.transform.Find("Icon")?.GetComponent<Image>();
