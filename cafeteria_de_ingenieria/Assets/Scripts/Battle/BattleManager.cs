@@ -319,6 +319,9 @@ public class BattleManager : MonoBehaviour
     {
         if (item == null) return;
 
+        // Establecer usuario del item
+        item.SetUser(player);
+        
         // Ejecuta el efecto del item
         item.Run();
 
