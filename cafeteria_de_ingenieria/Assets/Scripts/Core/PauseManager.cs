@@ -166,6 +166,16 @@ public class PauseManager : MonoBehaviour
         foreach (var item in items)
         {
             GameObject itemButton = Instantiate(itemButtonPrefab, itemListContainer);
+            
+            // Agregar componente de sonido (aunque el botón sea solo visual)
+            Button btn = itemButton.GetComponent<Button>();
+            if (btn != null && btn.GetComponent<UIButtonSound>() == null)
+            {
+                UIButtonSound buttonSound = btn.gameObject.AddComponent<UIButtonSound>();
+                buttonSound.soundType = UIButtonSound.ButtonSoundType.Normal;
+                buttonSound.playClickSound = false; // No hace nada al hacer clic
+            }
+            
             TextMeshProUGUI[] texts = itemButton.GetComponentsInChildren<TextMeshProUGUI>();
             if (texts.Length >= 2)
             {

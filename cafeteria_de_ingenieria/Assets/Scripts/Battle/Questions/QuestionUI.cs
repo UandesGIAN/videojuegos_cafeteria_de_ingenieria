@@ -39,6 +39,13 @@ public class QuestionUI : MonoBehaviour
 
         for (int i = 0; i < answerButtons.Length; i++)
         {
+            // Agregar componente de sonido si no existe
+            if (answerButtons[i].GetComponent<UIButtonSound>() == null)
+            {
+                UIButtonSound buttonSound = answerButtons[i].gameObject.AddComponent<UIButtonSound>();
+                buttonSound.soundType = UIButtonSound.ButtonSoundType.Normal;
+            }
+            
             int index = i; 
             answerButtons[i].onClick.AddListener(() => OnAnswerButtonClicked(index));
         }

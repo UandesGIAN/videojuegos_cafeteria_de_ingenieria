@@ -148,6 +148,13 @@ public class RoomController : MonoBehaviour
 
         for (int i = 0; i < roomButtons.Length; i++)
         {
+            // Agregar componente de sonido si no existe
+            if (roomButtons[i].GetComponent<UIButtonSound>() == null)
+            {
+                UIButtonSound buttonSound = roomButtons[i].gameObject.AddComponent<UIButtonSound>();
+                buttonSound.soundType = UIButtonSound.ButtonSoundType.Confirm;
+            }
+            
             if (i < validRooms.Count)
             {
                 roomButtons[i].gameObject.SetActive(true);

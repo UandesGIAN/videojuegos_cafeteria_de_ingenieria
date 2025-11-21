@@ -101,6 +101,13 @@ public class UpgradeSelection : MonoBehaviour
             Button button = upgradeButtons[i].GetComponent<Button>();
             if (button != null)
             {
+                // Agregar componente de sonido si no existe
+                if (button.GetComponent<UIButtonSound>() == null)
+                {
+                    UIButtonSound buttonSound = button.gameObject.AddComponent<UIButtonSound>();
+                    buttonSound.soundType = UIButtonSound.ButtonSoundType.Confirm;
+                }
+                
                 //remover los listeners previos para evitar duplicados
                 button.onClick.RemoveAllListeners();
 
