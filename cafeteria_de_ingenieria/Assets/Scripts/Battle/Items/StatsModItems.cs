@@ -24,14 +24,13 @@ public class StatsModItems : Item
     public float modificationAmount;
     [Tooltip("De que manera se aplica la modificación")]
     public StatsModType modType;
-
-    public FighterStats currentPlayer;
     
     public override void onRun()
     {
-        if (currentPlayer == null)
+        // Usar userStats (establecido con SetUser) en lugar de currentPlayer
+        if (userStats == null)
         {
-            Debug.LogError("No se encontro un fighterstat");
+            Debug.LogError($"StatsModItems: userStats es null para item {itemName}. Asegúrate de llamar SetUser() antes de Run().");
             return;
         }
 
@@ -44,11 +43,11 @@ public class StatsModItems : Item
         {
             case StatsType.Health:
                 if (modificationAmount > 0)
-                    currentPlayer.Heal(modificationAmount);
+                    userStats.Heal(modificationAmount);
                 break;
 
             case StatsType.IQ:
-                currentPlayer.ModifyIQ(modificationAmount);
+                userStats.ModifyIQ(modificationAmount);
                 break;
 
             case StatsType.Attack:
@@ -65,6 +64,6 @@ public class StatsModItems : Item
                 
         }
         
-        Debug.Log($"{currentPlayer.fightername} usó {itemName}, modificando {statType} en {modificationAmount} ({modType}).");
+        Debug.Log($"{userStats.fightername} usó {itemName}, modificando {statType} en {modificationAmount} ({modType}).");
     }
 }

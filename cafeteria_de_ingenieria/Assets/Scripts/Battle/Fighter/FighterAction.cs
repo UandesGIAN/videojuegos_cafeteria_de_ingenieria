@@ -104,6 +104,9 @@ public class FighterAction : MonoBehaviour
 
         Item item = ownerStats.GetItems().FirstOrDefault(item => item.itemName == itemName);
 
+        // Establecer usuario del item
+        item.SetUser(ownerStats);
+        
         item.Run(); 
         ownerStats.RemoveItem(item);
     }
