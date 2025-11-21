@@ -52,9 +52,11 @@ public class BattleManager : MonoBehaviour
             questionUI.OnQuestionAnswered += OnQuestionAnswered;
         }
         
+        // Configurar dialogo
         if (dialoguePanel != null)
         {
             dialoguePanel.SetActive(true);
+            Debug.Log("DIALOGUE PANEL ACTIVATED IN START() OF BATTLEMANAGER");
         }
     }
 
@@ -135,7 +137,7 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(StartBattleDirectly());
+            StartBattleDirectly();
         }
     }
 
@@ -159,28 +161,37 @@ public class BattleManager : MonoBehaviour
             gameObject.SetActive(true);
                 
         // Ahora sí iniciar la batalla
-        StartCoroutine(StartBattleDirectly());
+        StartBattleDirectly();
     }
 
-    private IEnumerator StartBattleDirectly()
+    private void StartBattleDirectly()
     {
         if (!gameObject.activeInHierarchy)
             gameObject.SetActive(true);
                 
-        yield return StartCoroutine(ShowDialogue(enemy.dialogueOnBattleStart));
+        //yield return StartCoroutine(ShowDialogue(enemy.dialogueOnBattleStart));
 
+        Debug.Log("VOLVIENDO A START BATTLE DIRECTLY");
+
+        // activando la batalla
         battleActive = true;
         turnController.SetBattleActive(battleActive);
 
+        // se obtiene enemigo
         FighterStats newEnemy = playerAction.GetEnemy().GetComponent<FighterStats>();
         SetEnemy(newEnemy);
 
         Debug.Log("Enemy in BattleManager after StartBattle: ");
         enemy.PrintStats();
 
+        // activando el menu
         ui.gameObject.SetActive(true);
         ResetBattle();
 
+        // mostrando dialogo inicial
+        ShowDialogue(enemy.dialogueOnBattleStart);
+
+        // se disponen los turnos y se espera que el jugador ataque
         turnController.SetupTurnOrder(player, enemy);
     }
 
@@ -364,12 +375,14 @@ public class BattleManager : MonoBehaviour
         if (!gameObject.activeInHierarchy)
             gameObject.SetActive(true);
                 
-        yield return StartCoroutine(ShowDialogue(deadEnemy.dialogueOnDefeat));
+        //yield return StartCoroutine(ShowDialogue(deadEnemy.dialogueOnDefeat));
 
         deadEnemy.gameObject.SetActive(false);
         Destroy(deadEnemy.gameObject);
 
         EndBattle();
+
+        yield return null;
     }
 
     public void EndBattle()
@@ -429,24 +442,29 @@ public class BattleManager : MonoBehaviour
         OnPlayerActionCompleted?.Invoke();
     }
     
-    public IEnumerator ShowDialogue(string sentence)
+    public void ShowDialogue(string sentence)
     {
-        if (string.IsNullOrEmpty(sentence) || dialoguePanel == null)
+        if (!dialoguePanel) 
         {
-            if (dialoguePanel == null) Debug.LogWarning("Dialogue Panel no está asignado en BattleManager.");
-            dialogueText.text = "";
-            yield break;
+            Debug.LogWarning("Dialogue Panel no está asignado en BattleManager.");
+            return;
         }
 
+        if (string.IsNullOrEmpty(sentence))
+            sentence = "FALTA PONER DIÁLOGO ACÁ";
+
+        // mostrar dialogo!!!
         dialoguePanel.SetActive(true);
         dialogueText.text = sentence;
+        Debug.Log("MOSTRANDO DIALOGO: " + sentence);
 
-        while (!player.HasAttacked)
-        {
-            yield return null; // Espera un frame
-        }
+        //while (!player.HasAttacked)
+        //{
+        //    Debug.Log("Esperando a que el jugador ataque para continuar el diálogo...");
+        //    yield return null; // Espera un frame
+        //}
 
         // Ocultar el diálogo una vez que atacó
-        dialogueText.text = "";
+        //dialogueText.text = "";
     }
 }

@@ -3595,6 +3595,18 @@ PrefabInstance:
       propertyPath: healthBarObject
       value: 
       objectReference: {fileID: 1190189886}
+    - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
+      propertyPath: dialogueOnDefeat
+      value: "Te la ver\xE1s con la Jefa!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
+      propertyPath: dialogueOnMidHealth
+      value: "No podr\xE1s con mi super-ataque."
+      objectReference: {fileID: 0}
+    - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
+      propertyPath: dialogueOnBattleStart
+      value: Eres un menso!
+      objectReference: {fileID: 0}
     - target: {fileID: 1209084754498474680, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: owner
       value: 
@@ -9788,7 +9800,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dialogo de texto
+  m_text: '       '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11891,6 +11903,18 @@ PrefabInstance:
       propertyPath: healthBarObject
       value: 
       objectReference: {fileID: 1190189886}
+    - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
+      propertyPath: dialogueOnDefeat
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
+      propertyPath: dialogueOnMidHealth
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
+      propertyPath: dialogueOnBattleStart
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1209084754498474680, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: owner
       value: 
@@ -13979,7 +14003,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1601368262}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999607
+  m_Size: 0.99999714
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15092,7 +15116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000014945753}
+  m_AnchoredPosition: {x: 0, y: 0.000027574995}
   m_SizeDelta: {x: 0, y: 400}
   m_Pivot: {x: 0, y: 1}
 --- !u!1001 &1413692439
