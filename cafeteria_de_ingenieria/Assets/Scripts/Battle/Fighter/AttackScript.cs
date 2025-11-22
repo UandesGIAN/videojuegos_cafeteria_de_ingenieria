@@ -67,9 +67,54 @@ public class AttackScript : MonoBehaviour
     	// Reproducir efectos visuales y de audio
     	StartCoroutine(ExecuteAttackWithEffects(target));
 
+        // dialogo cosas
         Debug.Log("\t\t" + BattleConstants.MenuAttackOptions.Melee.ToString() + " attack made to " + target.tag);
+        if (owner.CompareTag("Player"))
+            DialogueManager.Instance.ShowDialogue("Atacaste a " + targetStats.fightername + "!");
+        else DialogueManager.Instance.ShowDialogue(attackerStats.fightername + " atacó a " + targetStats.fightername + "!");
     }
     
+    public void UseSkillRandomly(GameObject target)
+    {
+        // obtener estadisticas de atacante y target desde el componente fighterstats de cada uno
+        attackerStats = owner.GetComponent<FighterStats>();
+        targetStats = target.GetComponent<FighterStats>();
+
+        Skill[] attackSkills = attackerStats.GetSkills();
+
+        // Si no hay skills, hacer ataque normal
+        if (attackSkills.Length == 0)
+        {
+            Debug.LogWarning("No skills available, performing MELEE attack instead.");
+            Attack(target);
+            return;
+        }
+
+        // usar alguna skill aleatoria del atacante
+        int skillIndex = Random.Range(0, attackSkills.Length);
+        Skill skillToUse = attackSkills[skillIndex];
+
+        UseSkill(skillToUse, target);
+    }
+
+    public void UseSkill(Skill skill, GameObject target)
+    {
+        // obtener estadisticas de atacante y target desde el componente fighterstats de cada uno
+        attackerStats = owner.GetComponent<FighterStats>();
+        targetStats = target.GetComponent<FighterStats>();
+
+        // usar skill
+        skill.SetTargetanduser(attackerStats, targetStats);
+        skill.Run();
+        
+        // dialogo cosas
+        Debug.Log("\t\tSkill: " + skill.skillName + " used on " + target.tag);
+
+        if (owner.CompareTag("Player"))
+            DialogueManager.Instance.ShowDialogue("Usaste " + skill.skillName + " en " + targetStats.fightername + "!");
+        else DialogueManager.Instance.ShowDialogue(attackerStats.fightername + " usó " + skill.skillName + " en " + targetStats.fightername + "!");
+    }
+
     /// <summary>
     /// Ejecuta el ataque melee con efectos visuales y de sonido
     /// </summary>
@@ -178,41 +223,5 @@ public class AttackScript : MonoBehaviour
             
             Debug.Log($"⏸️ Impact frame de {impactFrameDuration}s aplicado en ataque melee");
         }
-    }
-
-    public void UseSkillRandomly(GameObject target)
-    {
-        // obtener estadisticas de atacante y target desde el componente fighterstats de cada uno
-        attackerStats = owner.GetComponent<FighterStats>();
-        targetStats = target.GetComponent<FighterStats>();
-
-        Skill[] attackSkills = attackerStats.GetSkills();
-
-        // Si no hay skills, hacer ataque normal
-        if (attackSkills.Length == 0)
-        {
-            Debug.LogWarning("No skills available, performing MELEE attack instead.");
-            Attack(target);
-            return;
-        }
-
-        // usar alguna skill aleatoria del atacante
-        int skillIndex = Random.Range(0, attackSkills.Length);
-        Skill skillToUse = attackSkills[skillIndex];
-
-        UseSkill(skillToUse, target);
-    }
-
-    public void UseSkill(Skill skill, GameObject target)
-    {
-        // obtener estadisticas de atacante y target desde el componente fighterstats de cada uno
-        attackerStats = owner.GetComponent<FighterStats>();
-        targetStats = target.GetComponent<FighterStats>();
-
-        // usar skill
-        skill.SetTargetanduser(attackerStats, targetStats);
-        skill.Run();
-        
-        Debug.Log("\t\tSkill: " + skill.skillName + " used on " + target.tag);
     }
 }
