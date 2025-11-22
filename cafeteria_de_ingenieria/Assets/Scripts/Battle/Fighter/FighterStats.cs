@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using System.Linq;
-using Unity.VisualScripting;
+
 
 public enum FighterHierarchy // MODIFICADO!!
 {

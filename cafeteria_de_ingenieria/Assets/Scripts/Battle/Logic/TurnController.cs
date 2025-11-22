@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq; // <-- MODIFICADO: Añadido para usar FirstOrDefault y Where en la IA
 
 
 public class TurnController : MonoBehaviour
@@ -79,13 +78,13 @@ public class TurnController : MonoBehaviour
             // corutina de ataque del enemigo!
             IEnumerator EnemyWaitsAndActs()
             {
-                // no entiendo pq este if esta situado aca!!!!!!!!!!
+                // no entiendo pq este if esta situado aca!!!!!!!!!! pero me da lata sacarlo!!
                 if (currentFighterStats.fighterHierarchy == FighterHierarchy.Boss && 
                     !currentFighterStats.hasSaidMidHealthDialogue &&
                     (currentFighterStats.health / currentFighterStats.startHealth) <= 0.5f)
                 {
                     currentFighterStats.hasSaidMidHealthDialogue = true;
-                    yield return StartCoroutine(battleManager.ShowDialogue(currentFighterStats.dialogueOnMidHealth));
+                    DialogueManager.Instance.ShowDialogue(currentFighterStats.dialogueOnMidHealth);
                 }
 
                 // enemigo waitea para que no pase de inmediato todo

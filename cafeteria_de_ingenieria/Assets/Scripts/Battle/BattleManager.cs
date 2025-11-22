@@ -1,8 +1,8 @@
 using UnityEngine;
-using TMPro;
 using System;
 using System.Collections;
 using UnityEngine.SceneManagement;
+
 
 public class BattleManager : MonoBehaviour
 {
@@ -13,10 +13,6 @@ public class BattleManager : MonoBehaviour
     public FighterStats player;
     public FighterAction playerAction;
     public ItemManager itemManager;
-
-    [Header("Referencias de Diálogo")]
-    public GameObject dialoguePanel;
-    public TextMeshProUGUI dialogueText;
 
     [Header("Sistema de Preguntas")]
     public QuestionUI questionUI;
@@ -52,10 +48,11 @@ public class BattleManager : MonoBehaviour
             questionUI.OnQuestionAnswered += OnQuestionAnswered;
         }
         
-        if (dialoguePanel != null)
-        {
-            dialoguePanel.SetActive(true);
-        }
+        // Configurar dialogo
+        DialogueManager.Instance.ActivateDialoguePanel();
+
+        // Empezar dialogo con un string vacio
+        DialogueManager.Instance.ShowDialogue(sentence: "");
     }
 
     private void SetupUI()
@@ -92,7 +89,7 @@ public class BattleManager : MonoBehaviour
         if (enemy != null)
         {
             // Los multiplicadores ahora se aplican directamente en las estadísticas
-            enemy.ReceiveDamage(damage);
+            enemy.ReceiveDamage(damage); // daño no elemental
         }
     }
 
@@ -135,7 +132,7 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(StartBattleDirectly());
+            StartBattleDirectly();
         }
     }
 
@@ -159,28 +156,35 @@ public class BattleManager : MonoBehaviour
             gameObject.SetActive(true);
                 
         // Ahora sí iniciar la batalla
-        StartCoroutine(StartBattleDirectly());
+        StartBattleDirectly();
     }
 
-    private IEnumerator StartBattleDirectly()
+    private void StartBattleDirectly()
     {
         if (!gameObject.activeInHierarchy)
             gameObject.SetActive(true);
                 
-        yield return StartCoroutine(ShowDialogue(enemy.dialogueOnBattleStart));
+        Debug.Log("VOLVIENDO A START BATTLE DIRECTLY");
 
+        // activando la batalla
         battleActive = true;
         turnController.SetBattleActive(battleActive);
 
+        // se obtiene enemigo
         FighterStats newEnemy = playerAction.GetEnemy().GetComponent<FighterStats>();
         SetEnemy(newEnemy);
 
         Debug.Log("Enemy in BattleManager after StartBattle: ");
         enemy.PrintStats();
 
+        // activando el menu
         ui.gameObject.SetActive(true);
         ResetBattle();
 
+        // mostrando dialogo inicial
+        DialogueManager.Instance.ShowDialogue(enemy.dialogueOnBattleStart);
+
+        // se disponen los turnos y se espera que el jugador ataque
         turnController.SetupTurnOrder(player, enemy);
     }
 
@@ -299,10 +303,15 @@ public class BattleManager : MonoBehaviour
 
             if (index < playerSkills.Length)
             {
+                // obtener habilidad seleccionada
                 Skill skillSelected = playerSkills[index];
-                // enemy por alguna razon no esta synceado con el UI enemy, pero el enemy de playerAction si
-                skillSelected.SetTargetanduser(player, playerAction.GetEnemy().GetComponent<FighterStats>());
-                skillSelected.Run();
+
+                // ejecutar habilidad
+                playerAction.SelectOption(
+                    option_name: BattleConstants.MenuAttackOptions.Skill.ToString(), 
+                    playerSkill: skillSelected
+                );
+
                 ShowSkills();
             }
             player.HasAttacked = true;
@@ -361,20 +370,27 @@ public class BattleManager : MonoBehaviour
     private IEnumerator HandleEnemyDeath(FighterStats deadEnemy)
     {
         Debug.Log("Enemigo muerto: " + deadEnemy.fightername);
+
+        // mostrar dialogo de muerte del enemigo (no aparece xd)
+        DialogueManager.Instance.ShowDialogue(deadEnemy.dialogueOnDefeat);
+
         if (!gameObject.activeInHierarchy)
             gameObject.SetActive(true);
-                
-        yield return StartCoroutine(ShowDialogue(deadEnemy.dialogueOnDefeat));
 
+        // desactivar y destruir enemigo
         deadEnemy.gameObject.SetActive(false);
         Destroy(deadEnemy.gameObject);
 
+        // terminar batalla
         EndBattle();
+
+        yield return null;
     }
 
     public void EndBattle()
     {
         if (!battleActive) return;
+
         battleActive = false;
         
         // Resetear multiplicadores de estadísticas del jugador
@@ -390,7 +406,6 @@ public class BattleManager : MonoBehaviour
 
         // Desactivar UI de batalla
         ui.gameObject.SetActive(false);
-
 
         // Avisar a RoomController
         onBattleEnd?.Invoke();
@@ -427,26 +442,5 @@ public class BattleManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         OnPlayerActionCompleted?.Invoke();
-    }
-    
-    public IEnumerator ShowDialogue(string sentence)
-    {
-        if (string.IsNullOrEmpty(sentence) || dialoguePanel == null)
-        {
-            if (dialoguePanel == null) Debug.LogWarning("Dialogue Panel no está asignado en BattleManager.");
-            dialogueText.text = "";
-            yield break;
-        }
-
-        dialoguePanel.SetActive(true);
-        dialogueText.text = sentence;
-
-        while (!player.HasAttacked)
-        {
-            yield return null; // Espera un frame
-        }
-
-        // Ocultar el diálogo una vez que atacó
-        dialogueText.text = "";
     }
 }
