@@ -1,8 +1,8 @@
 using UnityEngine;
-using TMPro;
 using System;
 using System.Collections;
 using UnityEngine.SceneManagement;
+
 
 public class BattleManager : MonoBehaviour
 {
@@ -13,10 +13,6 @@ public class BattleManager : MonoBehaviour
     public FighterStats player;
     public FighterAction playerAction;
     public ItemManager itemManager;
-
-    [Header("Referencias de Diálogo")]
-    public GameObject dialoguePanel;
-    public TextMeshProUGUI dialogueText;
 
     [Header("Sistema de Preguntas")]
     public QuestionUI questionUI;
@@ -53,11 +49,10 @@ public class BattleManager : MonoBehaviour
         }
         
         // Configurar dialogo
-        if (dialoguePanel != null)
-        {
-            dialoguePanel.SetActive(true);
-            Debug.Log("DIALOGUE PANEL ACTIVATED IN START() OF BATTLEMANAGER");
-        }
+        DialogueManager.Instance.ActivateDialoguePanel();
+
+        // Empezar dialogo con un string vacio
+        DialogueManager.Instance.ShowDialogue(sentence: "");
     }
 
     private void SetupUI()
@@ -94,7 +89,7 @@ public class BattleManager : MonoBehaviour
         if (enemy != null)
         {
             // Los multiplicadores ahora se aplican directamente en las estadísticas
-            enemy.ReceiveDamage(damage);
+            enemy.ReceiveDamage(damage); // daño no elemental
         }
     }
 
@@ -169,8 +164,6 @@ public class BattleManager : MonoBehaviour
         if (!gameObject.activeInHierarchy)
             gameObject.SetActive(true);
                 
-        //yield return StartCoroutine(ShowDialogue(enemy.dialogueOnBattleStart));
-
         Debug.Log("VOLVIENDO A START BATTLE DIRECTLY");
 
         // activando la batalla
@@ -189,7 +182,7 @@ public class BattleManager : MonoBehaviour
         ResetBattle();
 
         // mostrando dialogo inicial
-        ShowDialogue(enemy.dialogueOnBattleStart);
+        DialogueManager.Instance.ShowDialogue(enemy.dialogueOnBattleStart);
 
         // se disponen los turnos y se espera que el jugador ataque
         turnController.SetupTurnOrder(player, enemy);
@@ -310,10 +303,15 @@ public class BattleManager : MonoBehaviour
 
             if (index < playerSkills.Length)
             {
+                // obtener habilidad seleccionada
                 Skill skillSelected = playerSkills[index];
-                // enemy por alguna razon no esta synceado con el UI enemy, pero el enemy de playerAction si
-                skillSelected.SetTargetanduser(player, playerAction.GetEnemy().GetComponent<FighterStats>());
-                skillSelected.Run();
+
+                // ejecutar habilidad
+                playerAction.SelectOption(
+                    option_name: BattleConstants.MenuAttackOptions.Skill.ToString(), 
+                    playerSkill: skillSelected
+                );
+
                 ShowSkills();
             }
             player.HasAttacked = true;
@@ -372,14 +370,18 @@ public class BattleManager : MonoBehaviour
     private IEnumerator HandleEnemyDeath(FighterStats deadEnemy)
     {
         Debug.Log("Enemigo muerto: " + deadEnemy.fightername);
+
+        // mostrar dialogo de muerte del enemigo (no aparece xd)
+        DialogueManager.Instance.ShowDialogue(deadEnemy.dialogueOnDefeat);
+
         if (!gameObject.activeInHierarchy)
             gameObject.SetActive(true);
-                
-        //yield return StartCoroutine(ShowDialogue(deadEnemy.dialogueOnDefeat));
 
+        // desactivar y destruir enemigo
         deadEnemy.gameObject.SetActive(false);
         Destroy(deadEnemy.gameObject);
 
+        // terminar batalla
         EndBattle();
 
         yield return null;
@@ -388,6 +390,7 @@ public class BattleManager : MonoBehaviour
     public void EndBattle()
     {
         if (!battleActive) return;
+
         battleActive = false;
         
         // Resetear multiplicadores de estadísticas del jugador
@@ -403,7 +406,6 @@ public class BattleManager : MonoBehaviour
 
         // Desactivar UI de batalla
         ui.gameObject.SetActive(false);
-
 
         // Avisar a RoomController
         onBattleEnd?.Invoke();
@@ -440,31 +442,5 @@ public class BattleManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         OnPlayerActionCompleted?.Invoke();
-    }
-    
-    public void ShowDialogue(string sentence)
-    {
-        if (!dialoguePanel) 
-        {
-            Debug.LogWarning("Dialogue Panel no está asignado en BattleManager.");
-            return;
-        }
-
-        if (string.IsNullOrEmpty(sentence))
-            sentence = "FALTA PONER DIÁLOGO ACÁ";
-
-        // mostrar dialogo!!!
-        dialoguePanel.SetActive(true);
-        dialogueText.text = sentence;
-        Debug.Log("MOSTRANDO DIALOGO: " + sentence);
-
-        //while (!player.HasAttacked)
-        //{
-        //    Debug.Log("Esperando a que el jugador ataque para continuar el diálogo...");
-        //    yield return null; // Espera un frame
-        //}
-
-        // Ocultar el diálogo una vez que atacó
-        //dialogueText.text = "";
     }
 }
