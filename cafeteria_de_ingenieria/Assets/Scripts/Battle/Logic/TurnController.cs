@@ -78,13 +78,13 @@ public class TurnController : MonoBehaviour
             // corutina de ataque del enemigo!
             IEnumerator EnemyWaitsAndActs()
             {
-                // no entiendo pq este if esta situado aca!!!!!!!!!!
+                // no entiendo pq este if esta situado aca!!!!!!!!!! pero me da lata sacarlo!!
                 if (currentFighterStats.fighterHierarchy == FighterHierarchy.Boss && 
                     !currentFighterStats.hasSaidMidHealthDialogue &&
                     (currentFighterStats.health / currentFighterStats.startHealth) <= 0.5f)
                 {
                     currentFighterStats.hasSaidMidHealthDialogue = true;
-                    battleManager.ShowDialogue(currentFighterStats.dialogueOnMidHealth);
+                    DialogueManager.Instance.ShowDialogue(currentFighterStats.dialogueOnMidHealth);
                 }
 
                 // enemigo waitea para que no pase de inmediato todo
