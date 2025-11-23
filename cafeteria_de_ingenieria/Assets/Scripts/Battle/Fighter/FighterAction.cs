@@ -31,7 +31,7 @@ public class FighterAction : MonoBehaviour
         }
     }
 
-    public void SelectOption(string option_name)
+    public void SelectOption(string option_name, Skill playerSkill = null)
     {
         // recibe el nombre de la opcion elegida en el ActionMenu desde los metodos llamados por BattleManager.ActivateOption()
         GameObject target = gameObject.CompareTag(BattleConstants.CharacterRole.Player.ToString()) ? enemy : player;
@@ -47,11 +47,17 @@ public class FighterAction : MonoBehaviour
 
         // ataque melee (normal)
         if (option_name.CompareTo(BattleConstants.MenuAttackOptions.Melee.ToString()) == 0)
-            meleePrefab.GetComponent<AttackScript>().Attack(target);
+            meleePrefab.GetComponent<AttackScript>().Attack(target: target);
         
         // skill (por ahora randomamente)
         else if (option_name.CompareTo(BattleConstants.MenuAttackOptions.Skill.ToString()) == 0)
-            meleePrefab.GetComponent<AttackScript>().UseSkillRandomly(target);
+        {
+            // si target es el jugador, entonces enemigo (solo boss xd) usa una skill al azar
+            if (target.CompareTag("Player"))
+                meleePrefab.GetComponent<AttackScript>().UseSkillRandomly(target: target);
+            else // e.o.c., jugador esta usando habilidad; skill no es nulo
+                meleePrefab.GetComponent<AttackScript>().UseSkill(skill: playerSkill, target: target);
+        }
     }
 
     // por ahora, no existen Decision Trees especificos para jefes; solo hay uno global! pero hacerlos especificos es parte del balanceo ejejeje
@@ -104,6 +110,9 @@ public class FighterAction : MonoBehaviour
 
         Item item = ownerStats.GetItems().FirstOrDefault(item => item.itemName == itemName);
 
+        // Establecer usuario del item
+        item.SetUser(ownerStats);
+        
         item.Run(); 
         ownerStats.RemoveItem(item);
     }

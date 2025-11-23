@@ -45,7 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
-  minAttackMult: 0.8
-  maxAttackMult: 1.2
-  minDefenseMult: 0.9
-  maxDefenseMult: 1.1
+  meleeEffectPrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
+  meleeAttackSound: {fileID: 8300000, guid: 34d3ada67fb15472b92010a725464969, type: 3}
+  soundVolume: 1
+  animationDuration: 1.5
+  animationDelay: 0
+  useImpactFrame: 0
+  impactFrameDuration: 0.1
