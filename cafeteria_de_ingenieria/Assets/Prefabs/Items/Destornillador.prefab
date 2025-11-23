@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5705380943823984020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5140112366275348123}
+  - component: {fileID: 1318619513904897886}
+  m_Layer: 0
+  m_Name: Destornillador
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5140112366275348123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5705380943823984020}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.3586001, y: -0.30948997, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1318619513904897886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5705380943823984020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b5e47d8acf2bd4eb30f2c65b3e4eba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: CALCULADORA CIENTIFICA
+  description: "Calcula el \xE1ngulo exacto del golpe. Aumenta tu ataque."
+  icon: {fileID: 0}
+  effectPrefab: {fileID: 3022102558446658867, guid: cd3d579a2d65b3241a1812f639db37ec, type: 3}
+  itemSound: {fileID: 8300000, guid: 0ca5c266f92a547528dea0432492af13, type: 3}
+  soundVolume: 1
+  animationDuration: 0.5
+  animationDelay: 0
+  useImpactFrame: 0
+  impactFrameDuration: 0.1
+  statType: 2
+  modificationAmount: 5
+  modType: 0
