@@ -115,9 +115,7 @@ public class AttackScript : MonoBehaviour
         else DialogueManager.Instance.ShowDialogue(attackerStats.fightername + " usó " + skill.skillName + " en " + targetStats.fightername + "!");
     }
 
-    /// <summary>
     /// Ejecuta el ataque melee con efectos visuales y de sonido
-    /// </summary>
     private IEnumerator ExecuteAttackWithEffects(GameObject target)
     {
         // 1. Reproducir sonido al inicio
