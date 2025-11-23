@@ -47,7 +47,13 @@ MonoBehaviour:
   itemName: Monster
   description: "Bebida que recupera 10 de IQ por alg\xFAn motivo"
   icon: {fileID: 0}
+  effectPrefab: {fileID: 5824670795371433373, guid: 7beabc7d02ee1614caaa124face3a433, type: 3}
+  itemSound: {fileID: 8300000, guid: e782816f6b95e4b2ea3eff9678a91cf4, type: 3}
+  soundVolume: 1
+  animationDuration: 0.5
+  animationDelay: 0
+  useImpactFrame: 0
+  impactFrameDuration: 0.1
   statType: 1
   modificationAmount: 10
   modType: 0
-  currentPlayer: {fileID: 0}

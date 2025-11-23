@@ -47,7 +47,13 @@ MonoBehaviour:
   itemName: Galleta Oreo
   description: Galleta que te recupera 20 de vida.
   icon: {fileID: 0}
+  effectPrefab: {fileID: 5824670795371433373, guid: f6fd568b816c64943a44efc3add3a881, type: 3}
+  itemSound: {fileID: 8300000, guid: 9596c471f295348e2900a1a33670a1c2, type: 3}
+  soundVolume: 1
+  animationDuration: 0.5
+  animationDelay: 0
+  useImpactFrame: 0
+  impactFrameDuration: 0.1
   statType: 0
   modificationAmount: 20
   modType: 0
-  currentPlayer: {fileID: 0}
