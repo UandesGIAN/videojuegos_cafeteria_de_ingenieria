@@ -47,6 +47,7 @@ MonoBehaviour:
   skillName: HORMIGONAZO
   description: "Lanza hormigon al enemigo. Costo de 30 IQ. 15 de da\xF1o base."
   animationDuration: 1
+  animationDelay: 0
   type: 1
   icon: {fileID: 0}
   selfinflicted: 0
@@ -55,8 +56,8 @@ MonoBehaviour:
   soundVolume: 1
   useImpactFrame: 0
   impactFrameDuration: 0.1
-  amount: 15
-  cost: 30
+  amount: 20
+  cost: 10
   modType: 0
   attackCategory: 0
   skillElementType: 4
