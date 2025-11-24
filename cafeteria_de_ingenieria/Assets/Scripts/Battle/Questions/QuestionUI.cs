@@ -23,7 +23,10 @@ public class QuestionUI : MonoBehaviour
     [Header("Question Pool")]
     public QuestionPool questionPool;
     
-    // Eventos
+    [Header("Room Category")]
+    [Tooltip("Categoría de esta sala: Civil, Computacion, Ambiental, Obras, PlanComun")]
+    public string roomCategory = "PlanComun";
+    
     public Action<bool> OnQuestionAnswered; 
     
     private Question currentQuestion;
@@ -32,14 +35,11 @@ public class QuestionUI : MonoBehaviour
     
     void Awake()
     {
-
         if (questionPanel != null) questionPanel.SetActive(false);
         if (feedbackPanel != null) feedbackPanel.SetActive(false);
         
-
         for (int i = 0; i < answerButtons.Length; i++)
         {
-            // Agregar componente de sonido si no existe
             if (answerButtons[i].GetComponent<UIButtonSound>() == null)
             {
                 UIButtonSound buttonSound = answerButtons[i].gameObject.AddComponent<UIButtonSound>();
@@ -51,6 +51,12 @@ public class QuestionUI : MonoBehaviour
         }
     }
     
+    public void SetRoomCategory(string category)
+    {
+        roomCategory = category;
+        Debug.Log("Categoría de sala establecida: " + category);
+    }
+    
     public void ShowQuestion()
     {
         if (questionPool == null)
@@ -60,8 +66,16 @@ public class QuestionUI : MonoBehaviour
             return;
         }
         
-        // Obtener pregunta aleatoria
-        currentQuestion = questionPool.GetRandomQuestion();
+        if (!string.IsNullOrEmpty(roomCategory))
+        {
+            currentQuestion = questionPool.GetRandomQuestionByCategory(roomCategory);
+            Debug.Log("Mostrando pregunta de categoría: " + roomCategory);
+        }
+        else
+        {
+            Debug.LogWarning("No hay categoría asignada, usando pregunta aleatoria");
+            currentQuestion = questionPool.GetRandomQuestion();
+        }
         
         if (currentQuestion == null)
         {
@@ -71,16 +85,15 @@ public class QuestionUI : MonoBehaviour
         }
         
         isAnswered = false;
-        
-        // Mostrar panel
         questionPanel.SetActive(true);
         
-        // Configurar UI
-        if (categoryText != null) categoryText.text = "Categoría: " + currentQuestion.category;
+        if (categoryText != null) 
+        {
+            categoryText.text = "Categoría: " + currentQuestion.category;
+        }
         questionText.text = currentQuestion.questionText;
         correctAnswer = currentQuestion.correctAnswerIndex;
         
-        // Configurar respuestas
         for (int i = 0; i < answerButtons.Length; i++)
         {
             if (i < currentQuestion.answers.Length)
@@ -103,15 +116,12 @@ public class QuestionUI : MonoBehaviour
         if (isAnswered) return; 
         isAnswered = true;
         
-        // Deshabilitar todos los botones
         foreach (var btn in answerButtons)
         {
             btn.interactable = false;
         }
         
         bool isCorrect = (selectedIndex == correctAnswer);
-        
-        // Mostrar feedback y continuar
         StartCoroutine(ShowFeedbackAndContinue(isCorrect, selectedIndex));
     }
     
@@ -136,8 +146,6 @@ public class QuestionUI : MonoBehaviour
         yield return new WaitForSeconds(feedbackDuration);
         
         HideQuestion();
-        
-        // Notificar resultado
         OnQuestionAnswered?.Invoke(correct);
     }
     
