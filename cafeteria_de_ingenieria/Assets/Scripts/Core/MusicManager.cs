@@ -19,11 +19,19 @@ public class MusicManager : MonoBehaviour
     [Range(0f, 1f)]
     public float volume = 0.7f;
     
+    [Range(0f, 1f)]
+    [Tooltip("Volumen de la música cuando el juego está pausado")]
+    public float pausedVolume = 0.3f;
+    
     [Tooltip("Duración del fade entre canciones (segundos)")]
     public float fadeDuration = 1f;
     
+    [Tooltip("Duración del fade al pausar/despausar (segundos)")]
+    public float pauseFadeDuration = 0.5f;
+    
     private AudioSource audioSource;
     private Coroutine fadeCoroutine;
+    private bool isPaused = false;
     
     void Awake()
     {
@@ -183,6 +191,57 @@ public class MusicManager : MonoBehaviour
     public void SetVolume(float newVolume)
     {
         volume = Mathf.Clamp01(newVolume);
-        audioSource.volume = volume;
+        if (audioSource != null && !isPaused)
+        {
+            audioSource.volume = volume;
+        }
+    }
+    
+    /// <summary>
+    /// Baja el volumen de la música cuando el juego se pausa
+    /// </summary>
+    public void SetPausedState(bool paused)
+    {
+        if (isPaused == paused) return; // Ya está en ese estado
+        
+        isPaused = paused;
+        
+        // Detener fade anterior si existe
+        if (fadeCoroutine != null)
+        {
+            StopCoroutine(fadeCoroutine);
+        }
+        
+        if (paused)
+        {
+            // Bajar volumen gradualmente
+            fadeCoroutine = StartCoroutine(FadeToVolume(pausedVolume, pauseFadeDuration));
+            Debug.Log($"🎵 Música pausada - bajando volumen a {pausedVolume}");
+        }
+        else
+        {
+            // Restaurar volumen normal
+            fadeCoroutine = StartCoroutine(FadeToVolume(volume, pauseFadeDuration));
+            Debug.Log($"🎵 Música reanudada - restaurando volumen a {volume}");
+        }
+    }
+    
+    /// <summary>
+    /// Hace fade del volumen actual a un volumen objetivo
+    /// </summary>
+    private IEnumerator FadeToVolume(float targetVolume, float duration)
+    {
+        float startVolume = audioSource.volume;
+        float timer = 0f;
+        
+        while (timer < duration)
+        {
+            timer += Time.unscaledDeltaTime; // Usar unscaledDeltaTime para que funcione durante la pausa
+            audioSource.volume = Mathf.Lerp(startVolume, targetVolume, timer / duration);
+            yield return null;
+        }
+        
+        audioSource.volume = targetVolume;
+        fadeCoroutine = null;
     }
 }

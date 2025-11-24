@@ -69,6 +69,12 @@ public class PauseManager : MonoBehaviour
             UpdatePauseMenu();
         }
 
+        // Bajar volumen de la música
+        if (MusicManager.Instance != null)
+        {
+            MusicManager.Instance.SetPausedState(true);
+        }
+
         TogglePlayerInputs(false);
     }
 
@@ -78,6 +84,12 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 1f;
         if (pauseMenuUI != null)
             pauseMenuUI.SetActive(false);
+
+        // Restaurar volumen de la música
+        if (MusicManager.Instance != null)
+        {
+            MusicManager.Instance.SetPausedState(false);
+        }
 
         TogglePlayerInputs(true);
     }
