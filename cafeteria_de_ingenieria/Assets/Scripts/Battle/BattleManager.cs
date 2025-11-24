@@ -14,7 +14,7 @@ public class BattleManager : MonoBehaviour
     public ItemManager itemManager;
 
     [Header("Sistema de Preguntas")]
-    public QuestionUI questionUI;
+    public GameObject questionUIObject; // Arrastra aquí el GameObject QuestionUI_Civil, QuestionUI_Ambiental, etc.
     public bool useQuestionSystem = true;
 
     // Flag para saber si un popup está activo
@@ -43,11 +43,57 @@ public class BattleManager : MonoBehaviour
         turnController.SetBattleManager(this);
         SetupUI();
 
-        // Configurar evento de preguntas
-        if (questionUI != null)
+        // Configurar evento de preguntas - detecta automáticamente cuál QuestionUI es
+        if (questionUIObject != null)
         {
-            questionUI.OnQuestionAnswered -= OnQuestionAnswered;
-            questionUI.OnQuestionAnswered += OnQuestionAnswered;
+            QuestionUI questionUI = questionUIObject.GetComponent<QuestionUI>();
+            if (questionUI != null)
+            {
+                questionUI.OnQuestionAnswered -= OnQuestionAnswered;
+                questionUI.OnQuestionAnswered += OnQuestionAnswered;
+            }
+            
+            QuestionUI_Civil questionUI_Civil = questionUIObject.GetComponent<QuestionUI_Civil>();
+            if (questionUI_Civil != null)
+            {
+                questionUI_Civil.OnQuestionAnswered -= OnQuestionAnswered;
+                questionUI_Civil.OnQuestionAnswered += OnQuestionAnswered;
+            }
+            
+            QuestionUI_Computacion questionUI_Computacion = questionUIObject.GetComponent<QuestionUI_Computacion>();
+            if (questionUI_Computacion != null)
+            {
+                questionUI_Computacion.OnQuestionAnswered -= OnQuestionAnswered;
+                questionUI_Computacion.OnQuestionAnswered += OnQuestionAnswered;
+            }
+            
+            QuestionUI_Ambiental questionUI_Ambiental = questionUIObject.GetComponent<QuestionUI_Ambiental>();
+            if (questionUI_Ambiental != null)
+            {
+                questionUI_Ambiental.OnQuestionAnswered -= OnQuestionAnswered;
+                questionUI_Ambiental.OnQuestionAnswered += OnQuestionAnswered;
+            }
+            
+            QuestionUI_Obras questionUI_Obras = questionUIObject.GetComponent<QuestionUI_Obras>();
+            if (questionUI_Obras != null)
+            {
+                questionUI_Obras.OnQuestionAnswered -= OnQuestionAnswered;
+                questionUI_Obras.OnQuestionAnswered += OnQuestionAnswered;
+            }
+            
+            QuestionUI_Electrica questionUI_Electrica = questionUIObject.GetComponent<QuestionUI_Electrica>();
+            if (questionUI_Electrica != null)
+            {
+                questionUI_Electrica.OnQuestionAnswered -= OnQuestionAnswered;
+                questionUI_Electrica.OnQuestionAnswered += OnQuestionAnswered;
+            }
+            
+            QuestionUI_PlanComun questionUI_PlanComun = questionUIObject.GetComponent<QuestionUI_PlanComun>();
+            if (questionUI_PlanComun != null)
+            {
+                questionUI_PlanComun.OnQuestionAnswered -= OnQuestionAnswered;
+                questionUI_PlanComun.OnQuestionAnswered += OnQuestionAnswered;
+            }
         }
         
         // Configurar dialogo
@@ -155,7 +201,7 @@ public class BattleManager : MonoBehaviour
             gameObject.SetActive(true);
                 
         // Ahora la pregunta
-        if (useQuestionSystem && questionUI != null)
+        if (useQuestionSystem && questionUIObject != null)
         {
             Debug.Log("Cargando UI y mostrando pregunta antes de la batalla...");
             CoroutineRunner.Instance.StartCoroutine(ShowQuestionAfterUIReady());
@@ -171,8 +217,58 @@ public class BattleManager : MonoBehaviour
         // Espera un frame para que Unity actualice visualmente la UI
         yield return null;
 
-        // Ahora muestra la pregunta sobre la UI ya cargada
-        questionUI.ShowQuestion();
+        // Ahora muestra la pregunta - detecta automáticamente cuál QuestionUI usar
+        if (questionUIObject != null)
+        {
+            QuestionUI questionUI = questionUIObject.GetComponent<QuestionUI>();
+            if (questionUI != null)
+            {
+                questionUI.ShowQuestion();
+                yield break;
+            }
+            
+            QuestionUI_Civil questionUI_Civil = questionUIObject.GetComponent<QuestionUI_Civil>();
+            if (questionUI_Civil != null)
+            {
+                questionUI_Civil.ShowQuestion();
+                yield break;
+            }
+            
+            QuestionUI_Computacion questionUI_Computacion = questionUIObject.GetComponent<QuestionUI_Computacion>();
+            if (questionUI_Computacion != null)
+            {
+                questionUI_Computacion.ShowQuestion();
+                yield break;
+            }
+            
+            QuestionUI_Ambiental questionUI_Ambiental = questionUIObject.GetComponent<QuestionUI_Ambiental>();
+            if (questionUI_Ambiental != null)
+            {
+                questionUI_Ambiental.ShowQuestion();
+                yield break;
+            }
+            
+            QuestionUI_Obras questionUI_Obras = questionUIObject.GetComponent<QuestionUI_Obras>();
+            if (questionUI_Obras != null)
+            {
+                questionUI_Obras.ShowQuestion();
+                yield break;
+            }
+            
+            QuestionUI_Electrica questionUI_Electrica = questionUIObject.GetComponent<QuestionUI_Electrica>();
+            if (questionUI_Electrica != null)
+            {
+                questionUI_Electrica.ShowQuestion();
+                yield break;
+            }
+            
+            QuestionUI_PlanComun questionUI_PlanComun = questionUIObject.GetComponent<QuestionUI_PlanComun>();
+            if (questionUI_PlanComun != null)
+            {
+                questionUI_PlanComun.ShowQuestion();
+                yield break;
+            }
+        }
     }
 
     private void OnQuestionAnswered(bool correct)
@@ -399,10 +495,36 @@ public class BattleManager : MonoBehaviour
 
         turnController.BattleEnded();
         
-        // Desuscribirse
-        if (questionUI != null)
+        // Desuscribirse - detecta automáticamente cuál QuestionUI es
+        if (questionUIObject != null)
         {
-            questionUI.OnQuestionAnswered -= OnQuestionAnswered;
+            QuestionUI questionUI = questionUIObject.GetComponent<QuestionUI>();
+            if (questionUI != null)
+                questionUI.OnQuestionAnswered -= OnQuestionAnswered;
+            
+            QuestionUI_Civil questionUI_Civil = questionUIObject.GetComponent<QuestionUI_Civil>();
+            if (questionUI_Civil != null)
+                questionUI_Civil.OnQuestionAnswered -= OnQuestionAnswered;
+            
+            QuestionUI_Computacion questionUI_Computacion = questionUIObject.GetComponent<QuestionUI_Computacion>();
+            if (questionUI_Computacion != null)
+                questionUI_Computacion.OnQuestionAnswered -= OnQuestionAnswered;
+            
+            QuestionUI_Ambiental questionUI_Ambiental = questionUIObject.GetComponent<QuestionUI_Ambiental>();
+            if (questionUI_Ambiental != null)
+                questionUI_Ambiental.OnQuestionAnswered -= OnQuestionAnswered;
+            
+            QuestionUI_Obras questionUI_Obras = questionUIObject.GetComponent<QuestionUI_Obras>();
+            if (questionUI_Obras != null)
+                questionUI_Obras.OnQuestionAnswered -= OnQuestionAnswered;
+            
+            QuestionUI_Electrica questionUI_Electrica = questionUIObject.GetComponent<QuestionUI_Electrica>();
+            if (questionUI_Electrica != null)
+                questionUI_Electrica.OnQuestionAnswered -= OnQuestionAnswered;
+            
+            QuestionUI_PlanComun questionUI_PlanComun = questionUIObject.GetComponent<QuestionUI_PlanComun>();
+            if (questionUI_PlanComun != null)
+                questionUI_PlanComun.OnQuestionAnswered -= OnQuestionAnswered;
         }
 
         // Desactivar UI de batalla
@@ -420,9 +542,35 @@ public class BattleManager : MonoBehaviour
             ui.OnItemSelected -= ExecuteItem;
         }
 
-        if (questionUI != null)
+        if (questionUIObject != null)
         {
-            questionUI.OnQuestionAnswered -= OnQuestionAnswered;
+            QuestionUI questionUI = questionUIObject.GetComponent<QuestionUI>();
+            if (questionUI != null)
+                questionUI.OnQuestionAnswered -= OnQuestionAnswered;
+            
+            QuestionUI_Civil questionUI_Civil = questionUIObject.GetComponent<QuestionUI_Civil>();
+            if (questionUI_Civil != null)
+                questionUI_Civil.OnQuestionAnswered -= OnQuestionAnswered;
+            
+            QuestionUI_Computacion questionUI_Computacion = questionUIObject.GetComponent<QuestionUI_Computacion>();
+            if (questionUI_Computacion != null)
+                questionUI_Computacion.OnQuestionAnswered -= OnQuestionAnswered;
+            
+            QuestionUI_Ambiental questionUI_Ambiental = questionUIObject.GetComponent<QuestionUI_Ambiental>();
+            if (questionUI_Ambiental != null)
+                questionUI_Ambiental.OnQuestionAnswered -= OnQuestionAnswered;
+            
+            QuestionUI_Obras questionUI_Obras = questionUIObject.GetComponent<QuestionUI_Obras>();
+            if (questionUI_Obras != null)
+                questionUI_Obras.OnQuestionAnswered -= OnQuestionAnswered;
+            
+            QuestionUI_Electrica questionUI_Electrica = questionUIObject.GetComponent<QuestionUI_Electrica>();
+            if (questionUI_Electrica != null)
+                questionUI_Electrica.OnQuestionAnswered -= OnQuestionAnswered;
+            
+            QuestionUI_PlanComun questionUI_PlanComun = questionUIObject.GetComponent<QuestionUI_PlanComun>();
+            if (questionUI_PlanComun != null)
+                questionUI_PlanComun.OnQuestionAnswered -= OnQuestionAnswered;
         }
     }
 

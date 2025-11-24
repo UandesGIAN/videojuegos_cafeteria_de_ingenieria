@@ -14,87 +14,1936 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allQuestions:
   - category: Civil
-    questionText: "\xBFCu\xE1l es la funci\xF3n principal de las vigas en una estructura?"
+    questionText: "\xBFCu\xE1l es el m\xF3dulo de elasticidad del acero?"
     answers:
-    - Resistir cargas verticales y transmitirlas a las columnas
-    - Decorar el edificio
-    - Almacenar agua
-    - "Aislar t\xE9rmicamente"
+    - 200 GPa
+    - 100 GPa
+    - 300 GPa
+    - 150 GPa
     correctAnswerIndex: 0
   - category: Civil
-    questionText: "\xBFQu\xE9 material se obtiene de la mezcla de cemento, arena,
-      grava y agua?"
+    questionText: "\xBFQu\xE9 tipo de carga es el peso propio de una estructura?"
     answers:
-    - Asfalto
-    - "Hormig\xF3n/Concreto"
-    - Acero
-    - Yeso
-    correctAnswerIndex: 1
+    - Carga muerta
+    - Carga viva
+    - "Carga din\xE1mica"
+    - Carga de viento
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFCu\xE1l es la resistencia caracter\xEDstica del hormig\xF3n
+      H30?"
+    answers:
+    - 30 MPa
+    - 20 MPa
+    - 40 MPa
+    - 25 MPa
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFQu\xE9 elemento estructural trabaja principalmente a flexi\xF3n?"
+    answers:
+    - Viga
+    - Columna
+    - Muro
+    - Zapata
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFCu\xE1l es la funci\xF3n principal de una viga?"
+    answers:
+    - Soportar cargas transversales
+    - Soportar cargas axiales
+    - Transmitir momentos
+    - "Resistir torsi\xF3n"
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFQu\xE9 tipo de suelo es m\xE1s adecuado para cimentaciones?"
+    answers:
+    - Suelo rocoso
+    - Suelo arcilloso
+    - "Suelo org\xE1nico"
+    - Suelo arenoso suelto
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFCu\xE1l es el esfuerzo que soporta una columna?"
+    answers:
+    - "Compresi\xF3n"
+    - "Tensi\xF3n"
+    - "Flexi\xF3n"
+    - "Torsi\xF3n"
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFQu\xE9 es el momento flector?"
+    answers:
+    - "Momento producido por fuerzas que causan flexi\xF3n"
+    - Fuerza cortante
+    - Esfuerzo axial
+    - Carga puntual
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFCu\xE1l es la diferencia entre una viga simplemente apoyada
+      y una empotrada?"
+    answers:
+    - La empotrada no puede rotar en los apoyos
+    - "La empotrada es m\xE1s corta"
+    - No hay diferencia
+    - "La apoyada es m\xE1s resistente"
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFQu\xE9 es la fatiga en materiales?"
+    answers:
+    - "Da\xF1o por cargas c\xEDclicas"
+    - "Deformaci\xF3n pl\xE1stica"
+    - "Fractura fr\xE1gil"
+    - "Corrosi\xF3n"
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFCu\xE1l es el factor de seguridad t\xEDpico en estructuras
+      de acero?"
+    answers:
+    - 2.0 a 3.0
+    - 1.0 a 1.5
+    - 4.0 a 5.0
+    - 0.5 a 1.0
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFQu\xE9 es un diagrama de corte y momento?"
+    answers:
+    - "Representaci\xF3n gr\xE1fica de esfuerzos internos"
+    - Diagrama de cargas
+    - Mapa de tensiones
+    - "Gr\xE1fico de deformaciones"
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFCu\xE1l es la funci\xF3n de los estribos en una viga de hormig\xF3n?"
+    answers:
+    - Resistir esfuerzo cortante
+    - "Aumentar la flexi\xF3n"
+    - Decorar
+    - Reducir peso
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFQu\xE9 es la fluencia del hormig\xF3n?"
+    answers:
+    - "Deformaci\xF3n a largo plazo bajo carga constante"
+    - Fractura inmediata
+    - Aumento de resistencia
+    - Cambio de color
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFCu\xE1l es el m\xF3dulo de Poisson del acero aproximadamente?"
+    answers:
+    - 0.3
+    - 0.5
+    - 0.1
+    - 0.7
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFQu\xE9 es una carga puntual?"
+    answers:
+    - "Carga aplicada en un punto espec\xEDfico"
+    - Carga distribuida
+    - Carga en toda la superficie
+    - Carga de viento
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFCu\xE1l es la diferencia entre tensi\xF3n y compresi\xF3n?"
+    answers:
+    - "Tensi\xF3n estira, compresi\xF3n comprime"
+    - Son iguales
+    - "Tensi\xF3n comprime"
+    - No hay diferencia
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFQu\xE9 es el pandeo en columnas?"
+    answers:
+    - "Inestabilidad lateral por compresi\xF3n"
+    - "Rotura por tensi\xF3n"
+    - "Deformaci\xF3n el\xE1stica"
+    - "Corrosi\xF3n"
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFCu\xE1l es la unidad de medida del momento flector?"
+    answers:
+    - "Newton-metro (N\xB7m)"
+    - Newton (N)
+    - Pascal (Pa)
+    - Kilogramo (kg)
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFQu\xE9 es una estructura isost\xE1tica?"
+    answers:
+    - "Sistema est\xE1ticamente determinado"
+    - "Sistema hiperst\xE1tico"
+    - Sistema inestable
+    - "Sistema din\xE1mico"
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFQu\xE9 estructura de datos usa el principio LIFO?"
+    answers:
+    - Pila (Stack)
+    - Cola (Queue)
+    - "\xC1rbol"
+    - Grafo
+    correctAnswerIndex: 0
   - category: Computacion
     questionText: "\xBFCu\xE1l es la complejidad temporal de la b\xFAsqueda binaria?"
     answers:
+    - O(log n)
     - O(n)
     - "O(n\xB2)"
-    - O(log n)
     - O(1)
-    correctAnswerIndex: 2
+    correctAnswerIndex: 0
   - category: Computacion
-    questionText: "\xBFQu\xE9 capa del modelo OSI se encarga del enrutamiento?"
+    questionText: "\xBFQu\xE9 significa SQL?"
     answers:
-    - "Capa F\xEDsica"
-    - Capa de Enlace
-    - Capa de Red
-    - "Capa de Aplicaci\xF3n"
-    correctAnswerIndex: 2
+    - Structured Query Language
+    - Simple Question Language
+    - System Quality Language
+    - Standard Query List
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFCu\xE1l es el protocolo de transferencia de hipertexto?"
+    answers:
+    - HTTP
+    - FTP
+    - SMTP
+    - TCP
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFQu\xE9 paradigma usa Python principalmente?"
+    answers:
+    - Multiparadigma
+    - Solo POO
+    - Solo funcional
+    - Solo procedural
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFCu\xE1l es la diferencia entre GET y POST?"
+    answers:
+    - "GET obtiene datos, POST env\xEDa datos"
+    - "Son id\xE9nticos"
+    - "GET es m\xE1s seguro"
+    - "POST es m\xE1s r\xE1pido"
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFQu\xE9 es un algoritmo recursivo?"
+    answers:
+    - "Un algoritmo que se llama a s\xED mismo"
+    - Un algoritmo iterativo
+    - Un algoritmo sin fin
+    - Un algoritmo lineal
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFCu\xE1l es la complejidad del algoritmo QuickSort en promedio?"
+    answers:
+    - O(n log n)
+    - "O(n\xB2)"
+    - O(n)
+    - O(log n)
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFQu\xE9 es una variable global?"
+    answers:
+    - Variable accesible desde cualquier parte del programa
+    - Variable local
+    - Variable constante
+    - Variable temporal
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFCu\xE1l es el resultado de 5 // 2 en Python?"
+    answers:
+    - 2
+    - 2.5
+    - Error
+    - 0
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFQu\xE9 es un array?"
+    answers:
+    - Estructura de datos con elementos del mismo tipo
+    - "Funci\xF3n matem\xE1tica"
+    - Variable simple
+    - Algoritmo
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFCu\xE1l es la funci\xF3n de un compilador?"
+    answers:
+    - "Traducir c\xF3digo fuente a c\xF3digo m\xE1quina"
+    - "Ejecutar c\xF3digo"
+    - Depurar errores
+    - Guardar archivos
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFQu\xE9 es Git?"
+    answers:
+    - Sistema de control de versiones
+    - "Lenguaje de programaci\xF3n"
+    - Base de datos
+    - Framework web
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFCu\xE1l es el puerto por defecto de HTTP?"
+    answers:
+    - 80
+    - 443
+    - 8080
+    - 3000
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFQu\xE9 es una API?"
+    answers:
+    - "Interfaz de Programaci\xF3n de Aplicaciones"
+    - "Algoritmo de programaci\xF3n"
+    - "Aplicaci\xF3n web"
+    - Protocolo de red
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFCu\xE1l es la diferencia entre Java y JavaScript?"
+    answers:
+    - "Son lenguajes diferentes para distintos prop\xF3sitos"
+    - Son el mismo lenguaje
+    - "Java es versi\xF3n nueva"
+    - "JavaScript es m\xE1s antiguo"
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFQu\xE9 es una base de datos relacional?"
+    answers:
+    - Base de datos con tablas relacionadas
+    - Base de datos no estructurada
+    - Base de datos en memoria
+    - Base de datos de grafos
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFCu\xE1l es el resultado de '2' + 2 en JavaScript?"
+    answers:
+    - '''22'' (string)'
+    - 4
+    - Error
+    - undefined
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFQu\xE9 es el Big O notation?"
+    answers:
+    - "Notaci\xF3n de complejidad algor\xEDtmica"
+    - Tipo de variable
+    - "Lenguaje de programaci\xF3n"
+    - Sistema operativo
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFCu\xE1l es la funci\xF3n de un IDE?"
+    answers:
+    - Entorno de desarrollo integrado
+    - Sistema operativo
+    - Base de datos
+    - Servidor web
+    correctAnswerIndex: 0
   - category: Ambiental
-    questionText: "\xBFQu\xE9 es la DBO en tratamiento de aguas?"
+    questionText: "\xBFQu\xE9 gas es el principal responsable del efecto invernadero?"
+    answers:
+    - "CO\u2082 (Di\xF3xido de carbono)"
+    - "O\u2082 (Ox\xEDgeno)"
+    - "N\u2082 (Nitr\xF3geno)"
+    - "H\u2082 (Hidr\xF3geno)"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es el tratamiento primario en una planta de aguas
+      residuales?"
+    answers:
+    - "Sedimentaci\xF3n"
+    - "Desinfecci\xF3n"
+    - "Filtraci\xF3n avanzada"
+    - "Oxidaci\xF3n qu\xEDmica"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFQu\xE9 significa DBO?"
     answers:
     - "Demanda Bioqu\xEDmica de Ox\xEDgeno"
-    - "Densidad B\xE1sica Org\xE1nica"
-    - "Distribuci\xF3n de Bacterias Ordinarias"
-    - "Depuraci\xF3n Biol\xF3gica Oxidativa"
+    - "Densidad Biol\xF3gica Org\xE1nica"
+    - "Degradaci\xF3n Bacterial \xD3ptima"
+    - "Depuraci\xF3n de Biomas"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es la capa de la atm\xF3sfera que contiene el ozono?"
+    answers:
+    - Estratosfera
+    - Troposfera
+    - Mesosfera
+    - Termosfera
     correctAnswerIndex: 0
   - category: Ambiental
     questionText: "\xBFQu\xE9 es la eutrofizaci\xF3n?"
     answers:
-    - "Exceso de nutrientes que causa proliferaci\xF3n de algas"
-    - "Falta de agua en los r\xEDos"
-    - "Contaminaci\xF3n por metales pesados"
-    - Aumento de la salinidad
+    - Exceso de nutrientes en agua
+    - "Falta de ox\xEDgeno"
+    - "Contaminaci\xF3n por metales"
+    - "Erosi\xF3n del suelo"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es el pH neutral del agua?"
+    answers:
+    - 7
+    - 5
+    - 9
+    - 1
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFQu\xE9 es un bioindicador?"
+    answers:
+    - Organismo que indica calidad ambiental
+    - Tipo de bacteria
+    - "Instrumento de medici\xF3n"
+    - "Qu\xEDmico degradable"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es la principal fuente de contaminaci\xF3n del agua?"
+    answers:
+    - Actividades industriales y urbanas
+    - Lluvia
+    - "Evaporaci\xF3n"
+    - "Fotos\xEDntesis"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFQu\xE9 es la huella de carbono?"
+    answers:
+    - Cantidad total de GEI emitidos
+    - Marca en el suelo
+    - "Tipo de contaminaci\xF3n"
+    - Medida de temperatura
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es el objetivo del desarrollo sostenible?"
+    answers:
+    - Satisfacer necesidades sin comprometer futuras generaciones
+    - "Crecer econ\xF3micamente"
+    - "Aumentar poblaci\xF3n"
+    - "Desarrollar tecnolog\xEDa"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFQu\xE9 es la biodegradabilidad?"
+    answers:
+    - Capacidad de descomponerse naturalmente
+    - Resistencia a bacterias
+    - Toxicidad
+    - Durabilidad
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es la funci\xF3n de un humedal?"
+    answers:
+    - "Filtrar agua y proporcionar h\xE1bitat"
+    - "Generar energ\xEDa"
+    - Producir alimentos
+    - Almacenar gases
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFQu\xE9 es el compostaje?"
+    answers:
+    - "Descomposici\xF3n de materia org\xE1nica"
+    - Quema de residuos
+    - "Reciclaje de pl\xE1stico"
+    - "Filtraci\xF3n de agua"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es la diferencia entre reciclaje y reutilizaci\xF3n?"
+    answers:
+    - "Reciclaje transforma, reutilizaci\xF3n mantiene uso"
+    - Son lo mismo
+    - Reciclaje es mejor
+    - "Reutilizaci\xF3n es industrial"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFQu\xE9 es la lluvia \xE1cida?"
+    answers:
+    - "Precipitaci\xF3n con contaminantes \xE1cidos"
+    - Lluvia muy fuerte
+    - Lluvia tropical
+    - Lluvia con minerales
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es el protocolo internacional sobre cambio clim\xE1tico?"
+    answers:
+    - "Acuerdo de Par\xEDs"
+    - Protocolo HTTP
+    - Tratado de Versalles
+    - Acuerdo NAFTA
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFQu\xE9 es un ecosistema?"
+    answers:
+    - Sistema de organismos y su ambiente
+    - Tipo de bioma
+    - "Clima espec\xEDfico"
+    - "Regi\xF3n geogr\xE1fica"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es la importancia de la capa de ozono?"
+    answers:
+    - "Protege de radiaci\xF3n UV"
+    - "Produce ox\xEDgeno"
+    - Genera lluvia
+    - Controla temperatura
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFQu\xE9 es la contaminaci\xF3n ac\xFAstica?"
+    answers:
+    - "Exceso de ruido da\xF1ino"
+    - Falta de sonido
+    - "M\xFAsica alta"
+    - Vibraciones del suelo
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es la energ\xEDa renovable m\xE1s utilizada?"
+    answers:
+    - "Hidroel\xE9ctrica"
+    - Nuclear
+    - "Carb\xF3n"
+    - Gas natural
     correctAnswerIndex: 0
   - category: Obras
-    questionText: "\xBFCu\xE1l es el EPP b\xE1sico en una obra?"
+    questionText: "\xBFQu\xE9 es un diagrama de Gantt?"
     answers:
-    - Traje formal
-    - Casco, zapatos de seguridad, chaleco reflectante
-    - Ropa deportiva
-    - "Uniforme m\xE9dico"
-    correctAnswerIndex: 1
+    - "Herramienta de programaci\xF3n temporal"
+    - Tipo de contrato
+    - Documento legal
+    - Plano estructural
+    correctAnswerIndex: 0
   - category: Obras
-    questionText: "\xBFQu\xE9 es el replanteo en construcci\xF3n?"
+    questionText: "\xBFCu\xE1l es la ruta cr\xEDtica en un proyecto?"
     answers:
-    - Cambiar el proyecto
-    - "Marcar en terreno la ubicaci\xF3n de elementos seg\xFAn planos"
-    - Demoler estructuras
+    - "Secuencia m\xE1s larga de actividades"
+    - "Actividad m\xE1s cara"
+    - Primera actividad
+    - "\xDAltima tarea"
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFQu\xE9 significa CPM?"
+    answers:
+    - Critical Path Method
+    - Construction Planning Model
+    - Cost Production Management
+    - Contract Process Manual
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFCu\xE1l es la funci\xF3n de un contratista general?"
+    answers:
+    - Coordinar y ejecutar la obra completa
+    - Solo proveer materiales
+    - "Dise\xF1ar el proyecto"
+    - Supervisar contabilidad
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFQu\xE9 es el presupuesto de obra?"
+    answers:
+    - "Estimaci\xF3n de costos del proyecto"
+    - Plan de trabajo
+    - Lista de trabajadores
+    - Cronograma
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFCu\xE1l es la diferencia entre obra gruesa y terminaciones?"
+    answers:
+    - Gruesa es estructura, terminaciones son acabados
+    - Son lo mismo
+    - "Gruesa es m\xE1s cara"
+    - Terminaciones van primero
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFQu\xE9 es un cronograma de obra?"
+    answers:
+    - "Programaci\xF3n temporal de actividades"
+    - Lista de materiales
+    - Presupuesto detallado
+    - Plano de obra
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFCu\xE1l es el objetivo de la planificaci\xF3n de obra?"
+    answers:
+    - Optimizar recursos y tiempo
+    - Aumentar costos
+    - Contratar personal
     - Comprar materiales
-    correctAnswerIndex: 1
-  - category: Industrial
-    questionText: "El takt time en una l\xEDnea de producci\xF3n se define como:"
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFQu\xE9 es el control de calidad en obra?"
     answers:
-    - "El tiempo m\xE1ximo permitido para fabricar un producto completo.\r"
-    - "El tiempo de ciclo m\xE1s corto entre dos unidades consecutivas.\r\n"
-    - "El ritmo de producci\xF3n necesario para satisfacer la demanda del cliente.\r\n"
-    - 'El tiempo promedio de espera entre operaciones consecutivas.
-
-'
-    correctAnswerIndex: 2
-  - category: Industrial
-    questionText: "El principio de \u201CJidoka\u201D en el sistema de producci\xF3n
-      Toyota se refiere principalmente a:"
+    - "Verificaci\xF3n de cumplimiento de est\xE1ndares"
+    - Contabilidad de costos
+    - "Programaci\xF3n de tareas"
+    - "Dise\xF1o estructural"
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFCu\xE1l es la funci\xF3n de un inspector t\xE9cnico de obra?"
     answers:
-    - "La estandarizaci\xF3n de tareas repetitivas para reducir variabilidad.\r"
-    - "El dise\xF1o de procesos que se detienen autom\xE1ticamente cuando ocurre
-      un defecto.\r\n"
-    - "La implementaci\xF3n de flujos de trabajo continuos sin interrupciones.\r\n"
-    - "La reducci\xF3n del inventario en proceso para eliminar desperdicios."
-    correctAnswerIndex: 1
+    - Supervisar cumplimiento de planos y normas
+    - Ejecutar la obra
+    - "Dise\xF1ar"
+    - Pagar a trabajadores
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFQu\xE9 es una partida presupuestaria?"
+    answers:
+    - "\xCDtem espec\xEDfico del presupuesto"
+    - Documento legal
+    - Tipo de material
+    - "Herramienta de construcci\xF3n"
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFCu\xE1l es la importancia del plan de seguridad?"
+    answers:
+    - Prevenir accidentes y proteger trabajadores
+    - Aumentar velocidad
+    - Reducir costos
+    - Mejorar calidad
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFQu\xE9 es el libro de obra?"
+    answers:
+    - Registro oficial de la obra
+    - Libro de contabilidad
+    - Manual de procedimientos
+    - "Cat\xE1logo de materiales"
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFCu\xE1l es la diferencia entre subcontratista y proveedor?"
+    answers:
+    - Subcontratista ejecuta trabajos, proveedor suministra
+    - Son lo mismo
+    - Proveedor ejecuta
+    - Subcontratista solo vende
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFQu\xE9 es el flujo de caja en un proyecto?"
+    answers:
+    - Entradas y salidas de dinero
+    - Diagrama de red
+    - "Ruta cr\xEDtica"
+    - Lista de tareas
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFCu\xE1l es la funci\xF3n del ingeniero residente?"
+    answers:
+    - "Dirigir ejecuci\xF3n diaria de la obra"
+    - "Dise\xF1ar el proyecto"
+    - Aprobar pagos
+    - Vender materiales
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFQu\xE9 es una carta Gantt?"
+    answers:
+    - "Diagrama de barras para programaci\xF3n"
+    - Tipo de contrato
+    - Documento legal
+    - "Plano arquitect\xF3nico"
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFCu\xE1l es el objetivo de la gesti\xF3n de riesgos?"
+    answers:
+    - Identificar y mitigar problemas potenciales
+    - Aumentar riesgos
+    - Eliminar seguros
+    - Acelerar obra
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFQu\xE9 es el avance de obra?"
+    answers:
+    - Porcentaje de trabajo completado
+    - Cantidad de trabajadores
+    - Costo total
+    - Tiempo transcurrido
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFCu\xE1l es la importancia de las especificaciones t\xE9cnicas?"
+    answers:
+    - "Definen requisitos t\xE9cnicos detallados"
+    - Son opcionales
+    - Solo para presupuesto
+    - Reemplazan planos
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es la ley de Ohm?"
+    answers:
+    - "V = I \xD7 R"
+    - "P = V \xD7 I"
+    - "E = m \xD7 c\xB2"
+    - "F = m \xD7 a"
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es la corriente alterna (AC)?"
+    answers:
+    - "Corriente que cambia de direcci\xF3n peri\xF3dicamente"
+    - Corriente constante
+    - Corriente negativa
+    - Corriente sin voltaje
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es la unidad de resistencia el\xE9ctrica?"
+    answers:
+    - "Ohmio (\u03A9)"
+    - Voltio (V)
+    - Amperio (A)
+    - Watt (W)
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es un transformador?"
+    answers:
+    - Dispositivo que cambia niveles de voltaje
+    - Generador de corriente
+    - "Medidor el\xE9ctrico"
+    - "Interruptor autom\xE1tico"
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es la diferencia entre voltaje y corriente?"
+    answers:
+    - Voltaje es diferencia de potencial, corriente es flujo de carga
+    - Son lo mismo
+    - "Voltaje es m\xE1s peligroso"
+    - "Corriente es est\xE1tica"
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es la potencia el\xE9ctrica?"
+    answers:
+    - "P = V \xD7 I"
+    - "P = I \xD7 R"
+    - P = V / R
+    - P = I + V
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es la frecuencia de la red el\xE9ctrica en Chile?"
+    answers:
+    - 50 Hz
+    - 60 Hz
+    - 100 Hz
+    - 120 Hz
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es un cortocircuito?"
+    answers:
+    - "Conexi\xF3n directa entre fase y neutro/tierra"
+    - "Interrupci\xF3n del circuito"
+    - Exceso de voltaje
+    - Falta de corriente
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es la funci\xF3n de un fusible?"
+    answers:
+    - Proteger contra sobrecorriente
+    - Generar voltaje
+    - Medir corriente
+    - "Almacenar energ\xEDa"
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es la puesta a tierra?"
+    answers:
+    - "Conexi\xF3n de seguridad a tierra"
+    - Cable de fase
+    - "Aislante el\xE9ctrico"
+    - Generador de voltaje
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es la ley de Kirchhoff de corrientes?"
+    answers:
+    - La suma de corrientes entrantes = suma de salientes
+    - "V = I \xD7 R"
+    - La corriente es constante
+    - El voltaje se conserva
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es un capacitor?"
+    answers:
+    - "Componente que almacena carga el\xE9ctrica"
+    - Generador de corriente
+    - Resistor variable
+    - Interruptor
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es la unidad de capacitancia?"
+    answers:
+    - Faradio (F)
+    - "Ohmio (\u03A9)"
+    - Henrio (H)
+    - Voltio (V)
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es un inductor?"
+    answers:
+    - "Componente que almacena energ\xEDa en campo magn\xE9tico"
+    - Capacitor
+    - Resistor
+    - Diodo
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es la diferencia entre AC y DC?"
+    answers:
+    - "AC cambia direcci\xF3n, DC fluye en una direcci\xF3n"
+    - Son lo mismo
+    - "AC es m\xE1s peligrosa"
+    - "DC es m\xE1s moderna"
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es la impedancia?"
+    answers:
+    - "Oposici\xF3n total al flujo de corriente AC"
+    - Solo resistencia
+    - Solo capacitancia
+    - Voltaje total
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es el c\xF3digo de colores de resistencias?"
+    answers:
+    - Sistema de bandas de colores para identificar valor
+    - Medidor de temperatura
+    - Indicador de voltaje
+    - Sistema de seguridad
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es un diodo?"
+    answers:
+    - "Componente que permite corriente en una direcci\xF3n"
+    - Resistor variable
+    - Generador
+    - Interruptor
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es la funci\xF3n de un interruptor diferencial?"
+    answers:
+    - Detectar fugas de corriente a tierra
+    - Medir voltaje
+    - Generar corriente
+    - Regular temperatura
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es la potencia aparente?"
+    answers:
+    - Producto de voltaje y corriente (VA)
+    - Solo potencia activa
+    - Potencia perdida
+    - "Voltaje m\xE1ximo"
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1l es la derivada de x\xB2?"
+    answers:
+    - 2x
+    - x
+    - "x\xB2"
+    - 2
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1nto es la ra\xEDz cuadrada de 144?"
+    answers:
+    - 12
+    - 11
+    - 13
+    - 14
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1l es la f\xF3rmula del \xE1rea de un c\xEDrculo?"
+    answers:
+    - "\u03C0r\xB2"
+    - "2\u03C0r"
+    - "\u03C0d"
+    - "r\xB2"
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFQu\xE9 es la segunda ley de Newton?"
+    answers:
+    - F = ma
+    - "E = mc\xB2"
+    - V = IR
+    - PV = nRT
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1l es la velocidad de la luz en el vac\xEDo?"
+    answers:
+    - 300,000 km/s
+    - 150,000 km/s
+    - 450,000 km/s
+    - 200,000 km/s
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFQu\xE9 es un vector?"
+    answers:
+    - "Magnitud con direcci\xF3n"
+    - Solo magnitud
+    - Unidad de medida
+    - Tipo de fuerza
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1l es la unidad de fuerza en el SI?"
+    answers:
+    - Newton (N)
+    - Joule (J)
+    - Watt (W)
+    - Pascal (Pa)
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFQu\xE9 es la integral?"
+    answers:
+    - "Antiderivada de una funci\xF3n"
+    - Derivada
+    - "Multiplicaci\xF3n"
+    - "Divisi\xF3n"
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1nto es sen(90\xB0)?"
+    answers:
+    - 1
+    - 0
+    - -1
+    - 0.5
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1l es la f\xF3rmula de la energ\xEDa cin\xE9tica?"
+    answers:
+    - "\xBDmv\xB2"
+    - mgh
+    - mv
+    - ma
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFQu\xE9 es un n\xFAmero primo?"
+    answers:
+    - "N\xFAmero divisible solo por 1 y s\xED mismo"
+    - "N\xFAmero par"
+    - "N\xFAmero impar"
+    - "N\xFAmero negativo"
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1l es el teorema de Pit\xE1goras?"
+    answers:
+    - "a\xB2 + b\xB2 = c\xB2"
+    - a + b = c
+    - ab = c
+    - a/b = c
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFQu\xE9 es la aceleraci\xF3n?"
+    answers:
+    - Cambio de velocidad en el tiempo
+    - Velocidad constante
+    - Distancia recorrida
+    - Fuerza aplicada
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1nto es log\u2081\u2080(100)?"
+    answers:
+    - 2
+    - 1
+    - 10
+    - 100
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1l es la primera ley de la termodin\xE1mica?"
+    answers:
+    - "La energ\xEDa se conserva"
+    - "La energ\xEDa se crea"
+    - "La energ\xEDa se destruye"
+    - "No hay energ\xEDa"
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFQu\xE9 es una funci\xF3n lineal?"
+    answers:
+    - f(x) = mx + b
+    - "f(x) = x\xB2"
+    - f(x) = 1/x
+    - "f(x) = e\u02E3"
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1l es la f\xF3rmula de la velocidad?"
+    answers:
+    - v = d/t
+    - v = at
+    - v = ft
+    - "v = d\xB7t"
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFQu\xE9 es un \xE1ngulo recto?"
+    answers:
+    - 90 grados
+    - 45 grados
+    - 180 grados
+    - 60 grados
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1nto es la suma de \xE1ngulos internos de un tri\xE1ngulo?"
+    answers:
+    - "180\xB0"
+    - "360\xB0"
+    - "90\xB0"
+    - "270\xB0"
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFQu\xE9 es la gravedad en la Tierra aproximadamente?"
+    answers:
+    - "9.8 m/s\xB2"
+    - "10 m/s\xB2"
+    - "8 m/s\xB2"
+    - "12 m/s\xB2"
+    correctAnswerIndex: 0
+  civilQuestions:
+  - category: Civil
+    questionText: "\xBFCu\xE1l es el m\xF3dulo de elasticidad del acero?"
+    answers:
+    - 200 GPa
+    - 100 GPa
+    - 300 GPa
+    - 150 GPa
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFQu\xE9 tipo de carga es el peso propio de una estructura?"
+    answers:
+    - Carga muerta
+    - Carga viva
+    - "Carga din\xE1mica"
+    - Carga de viento
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFCu\xE1l es la resistencia caracter\xEDstica del hormig\xF3n
+      H30?"
+    answers:
+    - 30 MPa
+    - 20 MPa
+    - 40 MPa
+    - 25 MPa
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFQu\xE9 elemento estructural trabaja principalmente a flexi\xF3n?"
+    answers:
+    - Viga
+    - Columna
+    - Muro
+    - Zapata
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFCu\xE1l es la funci\xF3n principal de una viga?"
+    answers:
+    - Soportar cargas transversales
+    - Soportar cargas axiales
+    - Transmitir momentos
+    - "Resistir torsi\xF3n"
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFQu\xE9 tipo de suelo es m\xE1s adecuado para cimentaciones?"
+    answers:
+    - Suelo rocoso
+    - Suelo arcilloso
+    - "Suelo org\xE1nico"
+    - Suelo arenoso suelto
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFCu\xE1l es el esfuerzo que soporta una columna?"
+    answers:
+    - "Compresi\xF3n"
+    - "Tensi\xF3n"
+    - "Flexi\xF3n"
+    - "Torsi\xF3n"
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFQu\xE9 es el momento flector?"
+    answers:
+    - "Momento producido por fuerzas que causan flexi\xF3n"
+    - Fuerza cortante
+    - Esfuerzo axial
+    - Carga puntual
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFCu\xE1l es la diferencia entre una viga simplemente apoyada
+      y una empotrada?"
+    answers:
+    - La empotrada no puede rotar en los apoyos
+    - "La empotrada es m\xE1s corta"
+    - No hay diferencia
+    - "La apoyada es m\xE1s resistente"
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFQu\xE9 es la fatiga en materiales?"
+    answers:
+    - "Da\xF1o por cargas c\xEDclicas"
+    - "Deformaci\xF3n pl\xE1stica"
+    - "Fractura fr\xE1gil"
+    - "Corrosi\xF3n"
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFCu\xE1l es el factor de seguridad t\xEDpico en estructuras
+      de acero?"
+    answers:
+    - 2.0 a 3.0
+    - 1.0 a 1.5
+    - 4.0 a 5.0
+    - 0.5 a 1.0
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFQu\xE9 es un diagrama de corte y momento?"
+    answers:
+    - "Representaci\xF3n gr\xE1fica de esfuerzos internos"
+    - Diagrama de cargas
+    - Mapa de tensiones
+    - "Gr\xE1fico de deformaciones"
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFCu\xE1l es la funci\xF3n de los estribos en una viga de hormig\xF3n?"
+    answers:
+    - Resistir esfuerzo cortante
+    - "Aumentar la flexi\xF3n"
+    - Decorar
+    - Reducir peso
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFQu\xE9 es la fluencia del hormig\xF3n?"
+    answers:
+    - "Deformaci\xF3n a largo plazo bajo carga constante"
+    - Fractura inmediata
+    - Aumento de resistencia
+    - Cambio de color
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFCu\xE1l es el m\xF3dulo de Poisson del acero aproximadamente?"
+    answers:
+    - 0.3
+    - 0.5
+    - 0.1
+    - 0.7
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFQu\xE9 es una carga puntual?"
+    answers:
+    - "Carga aplicada en un punto espec\xEDfico"
+    - Carga distribuida
+    - Carga en toda la superficie
+    - Carga de viento
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFCu\xE1l es la diferencia entre tensi\xF3n y compresi\xF3n?"
+    answers:
+    - "Tensi\xF3n estira, compresi\xF3n comprime"
+    - Son iguales
+    - "Tensi\xF3n comprime"
+    - No hay diferencia
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFQu\xE9 es el pandeo en columnas?"
+    answers:
+    - "Inestabilidad lateral por compresi\xF3n"
+    - "Rotura por tensi\xF3n"
+    - "Deformaci\xF3n el\xE1stica"
+    - "Corrosi\xF3n"
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFCu\xE1l es la unidad de medida del momento flector?"
+    answers:
+    - "Newton-metro (N\xB7m)"
+    - Newton (N)
+    - Pascal (Pa)
+    - Kilogramo (kg)
+    correctAnswerIndex: 0
+  - category: Civil
+    questionText: "\xBFQu\xE9 es una estructura isost\xE1tica?"
+    answers:
+    - "Sistema est\xE1ticamente determinado"
+    - "Sistema hiperst\xE1tico"
+    - Sistema inestable
+    - "Sistema din\xE1mico"
+    correctAnswerIndex: 0
+  computacionQuestions:
+  - category: Computacion
+    questionText: "\xBFQu\xE9 estructura de datos usa el principio LIFO?"
+    answers:
+    - Pila (Stack)
+    - Cola (Queue)
+    - "\xC1rbol"
+    - Grafo
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFCu\xE1l es la complejidad temporal de la b\xFAsqueda binaria?"
+    answers:
+    - O(log n)
+    - O(n)
+    - "O(n\xB2)"
+    - O(1)
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFQu\xE9 significa SQL?"
+    answers:
+    - Structured Query Language
+    - Simple Question Language
+    - System Quality Language
+    - Standard Query List
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFCu\xE1l es el protocolo de transferencia de hipertexto?"
+    answers:
+    - HTTP
+    - FTP
+    - SMTP
+    - TCP
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFQu\xE9 paradigma usa Python principalmente?"
+    answers:
+    - Multiparadigma
+    - Solo POO
+    - Solo funcional
+    - Solo procedural
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFCu\xE1l es la diferencia entre GET y POST?"
+    answers:
+    - "GET obtiene datos, POST env\xEDa datos"
+    - "Son id\xE9nticos"
+    - "GET es m\xE1s seguro"
+    - "POST es m\xE1s r\xE1pido"
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFQu\xE9 es un algoritmo recursivo?"
+    answers:
+    - "Un algoritmo que se llama a s\xED mismo"
+    - Un algoritmo iterativo
+    - Un algoritmo sin fin
+    - Un algoritmo lineal
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFCu\xE1l es la complejidad del algoritmo QuickSort en promedio?"
+    answers:
+    - O(n log n)
+    - "O(n\xB2)"
+    - O(n)
+    - O(log n)
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFQu\xE9 es una variable global?"
+    answers:
+    - Variable accesible desde cualquier parte del programa
+    - Variable local
+    - Variable constante
+    - Variable temporal
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFCu\xE1l es el resultado de 5 // 2 en Python?"
+    answers:
+    - 2
+    - 2.5
+    - Error
+    - 0
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFQu\xE9 es un array?"
+    answers:
+    - Estructura de datos con elementos del mismo tipo
+    - "Funci\xF3n matem\xE1tica"
+    - Variable simple
+    - Algoritmo
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFCu\xE1l es la funci\xF3n de un compilador?"
+    answers:
+    - "Traducir c\xF3digo fuente a c\xF3digo m\xE1quina"
+    - "Ejecutar c\xF3digo"
+    - Depurar errores
+    - Guardar archivos
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFQu\xE9 es Git?"
+    answers:
+    - Sistema de control de versiones
+    - "Lenguaje de programaci\xF3n"
+    - Base de datos
+    - Framework web
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFCu\xE1l es el puerto por defecto de HTTP?"
+    answers:
+    - 80
+    - 443
+    - 8080
+    - 3000
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFQu\xE9 es una API?"
+    answers:
+    - "Interfaz de Programaci\xF3n de Aplicaciones"
+    - "Algoritmo de programaci\xF3n"
+    - "Aplicaci\xF3n web"
+    - Protocolo de red
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFCu\xE1l es la diferencia entre Java y JavaScript?"
+    answers:
+    - "Son lenguajes diferentes para distintos prop\xF3sitos"
+    - Son el mismo lenguaje
+    - "Java es versi\xF3n nueva"
+    - "JavaScript es m\xE1s antiguo"
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFQu\xE9 es una base de datos relacional?"
+    answers:
+    - Base de datos con tablas relacionadas
+    - Base de datos no estructurada
+    - Base de datos en memoria
+    - Base de datos de grafos
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFCu\xE1l es el resultado de '2' + 2 en JavaScript?"
+    answers:
+    - '''22'' (string)'
+    - 4
+    - Error
+    - undefined
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFQu\xE9 es el Big O notation?"
+    answers:
+    - "Notaci\xF3n de complejidad algor\xEDtmica"
+    - Tipo de variable
+    - "Lenguaje de programaci\xF3n"
+    - Sistema operativo
+    correctAnswerIndex: 0
+  - category: Computacion
+    questionText: "\xBFCu\xE1l es la funci\xF3n de un IDE?"
+    answers:
+    - Entorno de desarrollo integrado
+    - Sistema operativo
+    - Base de datos
+    - Servidor web
+    correctAnswerIndex: 0
+  ambientalQuestions:
+  - category: Ambiental
+    questionText: "\xBFQu\xE9 gas es el principal responsable del efecto invernadero?"
+    answers:
+    - "CO\u2082 (Di\xF3xido de carbono)"
+    - "O\u2082 (Ox\xEDgeno)"
+    - "N\u2082 (Nitr\xF3geno)"
+    - "H\u2082 (Hidr\xF3geno)"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es el tratamiento primario en una planta de aguas
+      residuales?"
+    answers:
+    - "Sedimentaci\xF3n"
+    - "Desinfecci\xF3n"
+    - "Filtraci\xF3n avanzada"
+    - "Oxidaci\xF3n qu\xEDmica"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFQu\xE9 significa DBO?"
+    answers:
+    - "Demanda Bioqu\xEDmica de Ox\xEDgeno"
+    - "Densidad Biol\xF3gica Org\xE1nica"
+    - "Degradaci\xF3n Bacterial \xD3ptima"
+    - "Depuraci\xF3n de Biomas"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es la capa de la atm\xF3sfera que contiene el ozono?"
+    answers:
+    - Estratosfera
+    - Troposfera
+    - Mesosfera
+    - Termosfera
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFQu\xE9 es la eutrofizaci\xF3n?"
+    answers:
+    - Exceso de nutrientes en agua
+    - "Falta de ox\xEDgeno"
+    - "Contaminaci\xF3n por metales"
+    - "Erosi\xF3n del suelo"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es el pH neutral del agua?"
+    answers:
+    - 7
+    - 5
+    - 9
+    - 1
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFQu\xE9 es un bioindicador?"
+    answers:
+    - Organismo que indica calidad ambiental
+    - Tipo de bacteria
+    - "Instrumento de medici\xF3n"
+    - "Qu\xEDmico degradable"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es la principal fuente de contaminaci\xF3n del agua?"
+    answers:
+    - Actividades industriales y urbanas
+    - Lluvia
+    - "Evaporaci\xF3n"
+    - "Fotos\xEDntesis"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFQu\xE9 es la huella de carbono?"
+    answers:
+    - Cantidad total de GEI emitidos
+    - Marca en el suelo
+    - "Tipo de contaminaci\xF3n"
+    - Medida de temperatura
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es el objetivo del desarrollo sostenible?"
+    answers:
+    - Satisfacer necesidades sin comprometer futuras generaciones
+    - "Crecer econ\xF3micamente"
+    - "Aumentar poblaci\xF3n"
+    - "Desarrollar tecnolog\xEDa"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFQu\xE9 es la biodegradabilidad?"
+    answers:
+    - Capacidad de descomponerse naturalmente
+    - Resistencia a bacterias
+    - Toxicidad
+    - Durabilidad
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es la funci\xF3n de un humedal?"
+    answers:
+    - "Filtrar agua y proporcionar h\xE1bitat"
+    - "Generar energ\xEDa"
+    - Producir alimentos
+    - Almacenar gases
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFQu\xE9 es el compostaje?"
+    answers:
+    - "Descomposici\xF3n de materia org\xE1nica"
+    - Quema de residuos
+    - "Reciclaje de pl\xE1stico"
+    - "Filtraci\xF3n de agua"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es la diferencia entre reciclaje y reutilizaci\xF3n?"
+    answers:
+    - "Reciclaje transforma, reutilizaci\xF3n mantiene uso"
+    - Son lo mismo
+    - Reciclaje es mejor
+    - "Reutilizaci\xF3n es industrial"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFQu\xE9 es la lluvia \xE1cida?"
+    answers:
+    - "Precipitaci\xF3n con contaminantes \xE1cidos"
+    - Lluvia muy fuerte
+    - Lluvia tropical
+    - Lluvia con minerales
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es el protocolo internacional sobre cambio clim\xE1tico?"
+    answers:
+    - "Acuerdo de Par\xEDs"
+    - Protocolo HTTP
+    - Tratado de Versalles
+    - Acuerdo NAFTA
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFQu\xE9 es un ecosistema?"
+    answers:
+    - Sistema de organismos y su ambiente
+    - Tipo de bioma
+    - "Clima espec\xEDfico"
+    - "Regi\xF3n geogr\xE1fica"
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es la importancia de la capa de ozono?"
+    answers:
+    - "Protege de radiaci\xF3n UV"
+    - "Produce ox\xEDgeno"
+    - Genera lluvia
+    - Controla temperatura
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFQu\xE9 es la contaminaci\xF3n ac\xFAstica?"
+    answers:
+    - "Exceso de ruido da\xF1ino"
+    - Falta de sonido
+    - "M\xFAsica alta"
+    - Vibraciones del suelo
+    correctAnswerIndex: 0
+  - category: Ambiental
+    questionText: "\xBFCu\xE1l es la energ\xEDa renovable m\xE1s utilizada?"
+    answers:
+    - "Hidroel\xE9ctrica"
+    - Nuclear
+    - "Carb\xF3n"
+    - Gas natural
+    correctAnswerIndex: 0
+  obrasQuestions:
+  - category: Obras
+    questionText: "\xBFQu\xE9 es un diagrama de Gantt?"
+    answers:
+    - "Herramienta de programaci\xF3n temporal"
+    - Tipo de contrato
+    - Documento legal
+    - Plano estructural
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFCu\xE1l es la ruta cr\xEDtica en un proyecto?"
+    answers:
+    - "Secuencia m\xE1s larga de actividades"
+    - "Actividad m\xE1s cara"
+    - Primera actividad
+    - "\xDAltima tarea"
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFQu\xE9 significa CPM?"
+    answers:
+    - Critical Path Method
+    - Construction Planning Model
+    - Cost Production Management
+    - Contract Process Manual
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFCu\xE1l es la funci\xF3n de un contratista general?"
+    answers:
+    - Coordinar y ejecutar la obra completa
+    - Solo proveer materiales
+    - "Dise\xF1ar el proyecto"
+    - Supervisar contabilidad
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFQu\xE9 es el presupuesto de obra?"
+    answers:
+    - "Estimaci\xF3n de costos del proyecto"
+    - Plan de trabajo
+    - Lista de trabajadores
+    - Cronograma
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFCu\xE1l es la diferencia entre obra gruesa y terminaciones?"
+    answers:
+    - Gruesa es estructura, terminaciones son acabados
+    - Son lo mismo
+    - "Gruesa es m\xE1s cara"
+    - Terminaciones van primero
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFQu\xE9 es un cronograma de obra?"
+    answers:
+    - "Programaci\xF3n temporal de actividades"
+    - Lista de materiales
+    - Presupuesto detallado
+    - Plano de obra
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFCu\xE1l es el objetivo de la planificaci\xF3n de obra?"
+    answers:
+    - Optimizar recursos y tiempo
+    - Aumentar costos
+    - Contratar personal
+    - Comprar materiales
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFQu\xE9 es el control de calidad en obra?"
+    answers:
+    - "Verificaci\xF3n de cumplimiento de est\xE1ndares"
+    - Contabilidad de costos
+    - "Programaci\xF3n de tareas"
+    - "Dise\xF1o estructural"
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFCu\xE1l es la funci\xF3n de un inspector t\xE9cnico de obra?"
+    answers:
+    - Supervisar cumplimiento de planos y normas
+    - Ejecutar la obra
+    - "Dise\xF1ar"
+    - Pagar a trabajadores
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFQu\xE9 es una partida presupuestaria?"
+    answers:
+    - "\xCDtem espec\xEDfico del presupuesto"
+    - Documento legal
+    - Tipo de material
+    - "Herramienta de construcci\xF3n"
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFCu\xE1l es la importancia del plan de seguridad?"
+    answers:
+    - Prevenir accidentes y proteger trabajadores
+    - Aumentar velocidad
+    - Reducir costos
+    - Mejorar calidad
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFQu\xE9 es el libro de obra?"
+    answers:
+    - Registro oficial de la obra
+    - Libro de contabilidad
+    - Manual de procedimientos
+    - "Cat\xE1logo de materiales"
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFCu\xE1l es la diferencia entre subcontratista y proveedor?"
+    answers:
+    - Subcontratista ejecuta trabajos, proveedor suministra
+    - Son lo mismo
+    - Proveedor ejecuta
+    - Subcontratista solo vende
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFQu\xE9 es el flujo de caja en un proyecto?"
+    answers:
+    - Entradas y salidas de dinero
+    - Diagrama de red
+    - "Ruta cr\xEDtica"
+    - Lista de tareas
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFCu\xE1l es la funci\xF3n del ingeniero residente?"
+    answers:
+    - "Dirigir ejecuci\xF3n diaria de la obra"
+    - "Dise\xF1ar el proyecto"
+    - Aprobar pagos
+    - Vender materiales
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFQu\xE9 es una carta Gantt?"
+    answers:
+    - "Diagrama de barras para programaci\xF3n"
+    - Tipo de contrato
+    - Documento legal
+    - "Plano arquitect\xF3nico"
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFCu\xE1l es el objetivo de la gesti\xF3n de riesgos?"
+    answers:
+    - Identificar y mitigar problemas potenciales
+    - Aumentar riesgos
+    - Eliminar seguros
+    - Acelerar obra
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFQu\xE9 es el avance de obra?"
+    answers:
+    - Porcentaje de trabajo completado
+    - Cantidad de trabajadores
+    - Costo total
+    - Tiempo transcurrido
+    correctAnswerIndex: 0
+  - category: Obras
+    questionText: "\xBFCu\xE1l es la importancia de las especificaciones t\xE9cnicas?"
+    answers:
+    - "Definen requisitos t\xE9cnicos detallados"
+    - Son opcionales
+    - Solo para presupuesto
+    - Reemplazan planos
+    correctAnswerIndex: 0
+  electricaQuestions:
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es la ley de Ohm?"
+    answers:
+    - "V = I \xD7 R"
+    - "P = V \xD7 I"
+    - "E = m \xD7 c\xB2"
+    - "F = m \xD7 a"
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es la corriente alterna (AC)?"
+    answers:
+    - "Corriente que cambia de direcci\xF3n peri\xF3dicamente"
+    - Corriente constante
+    - Corriente negativa
+    - Corriente sin voltaje
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es la unidad de resistencia el\xE9ctrica?"
+    answers:
+    - "Ohmio (\u03A9)"
+    - Voltio (V)
+    - Amperio (A)
+    - Watt (W)
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es un transformador?"
+    answers:
+    - Dispositivo que cambia niveles de voltaje
+    - Generador de corriente
+    - "Medidor el\xE9ctrico"
+    - "Interruptor autom\xE1tico"
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es la diferencia entre voltaje y corriente?"
+    answers:
+    - Voltaje es diferencia de potencial, corriente es flujo de carga
+    - Son lo mismo
+    - "Voltaje es m\xE1s peligroso"
+    - "Corriente es est\xE1tica"
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es la potencia el\xE9ctrica?"
+    answers:
+    - "P = V \xD7 I"
+    - "P = I \xD7 R"
+    - P = V / R
+    - P = I + V
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es la frecuencia de la red el\xE9ctrica en Chile?"
+    answers:
+    - 50 Hz
+    - 60 Hz
+    - 100 Hz
+    - 120 Hz
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es un cortocircuito?"
+    answers:
+    - "Conexi\xF3n directa entre fase y neutro/tierra"
+    - "Interrupci\xF3n del circuito"
+    - Exceso de voltaje
+    - Falta de corriente
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es la funci\xF3n de un fusible?"
+    answers:
+    - Proteger contra sobrecorriente
+    - Generar voltaje
+    - Medir corriente
+    - "Almacenar energ\xEDa"
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es la puesta a tierra?"
+    answers:
+    - "Conexi\xF3n de seguridad a tierra"
+    - Cable de fase
+    - "Aislante el\xE9ctrico"
+    - Generador de voltaje
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es la ley de Kirchhoff de corrientes?"
+    answers:
+    - La suma de corrientes entrantes = suma de salientes
+    - "V = I \xD7 R"
+    - La corriente es constante
+    - El voltaje se conserva
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es un capacitor?"
+    answers:
+    - "Componente que almacena carga el\xE9ctrica"
+    - Generador de corriente
+    - Resistor variable
+    - Interruptor
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es la unidad de capacitancia?"
+    answers:
+    - Faradio (F)
+    - "Ohmio (\u03A9)"
+    - Henrio (H)
+    - Voltio (V)
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es un inductor?"
+    answers:
+    - "Componente que almacena energ\xEDa en campo magn\xE9tico"
+    - Capacitor
+    - Resistor
+    - Diodo
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es la diferencia entre AC y DC?"
+    answers:
+    - "AC cambia direcci\xF3n, DC fluye en una direcci\xF3n"
+    - Son lo mismo
+    - "AC es m\xE1s peligrosa"
+    - "DC es m\xE1s moderna"
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es la impedancia?"
+    answers:
+    - "Oposici\xF3n total al flujo de corriente AC"
+    - Solo resistencia
+    - Solo capacitancia
+    - Voltaje total
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es el c\xF3digo de colores de resistencias?"
+    answers:
+    - Sistema de bandas de colores para identificar valor
+    - Medidor de temperatura
+    - Indicador de voltaje
+    - Sistema de seguridad
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es un diodo?"
+    answers:
+    - "Componente que permite corriente en una direcci\xF3n"
+    - Resistor variable
+    - Generador
+    - Interruptor
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFCu\xE1l es la funci\xF3n de un interruptor diferencial?"
+    answers:
+    - Detectar fugas de corriente a tierra
+    - Medir voltaje
+    - Generar corriente
+    - Regular temperatura
+    correctAnswerIndex: 0
+  - category: Electrica
+    questionText: "\xBFQu\xE9 es la potencia aparente?"
+    answers:
+    - Producto de voltaje y corriente (VA)
+    - Solo potencia activa
+    - Potencia perdida
+    - "Voltaje m\xE1ximo"
+    correctAnswerIndex: 0
+  planComunQuestions:
+  - category: PlanComun
+    questionText: "\xBFCu\xE1l es la derivada de x\xB2?"
+    answers:
+    - 2x
+    - x
+    - "x\xB2"
+    - 2
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1nto es la ra\xEDz cuadrada de 144?"
+    answers:
+    - 12
+    - 11
+    - 13
+    - 14
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1l es la f\xF3rmula del \xE1rea de un c\xEDrculo?"
+    answers:
+    - "\u03C0r\xB2"
+    - "2\u03C0r"
+    - "\u03C0d"
+    - "r\xB2"
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFQu\xE9 es la segunda ley de Newton?"
+    answers:
+    - F = ma
+    - "E = mc\xB2"
+    - V = IR
+    - PV = nRT
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1l es la velocidad de la luz en el vac\xEDo?"
+    answers:
+    - 300,000 km/s
+    - 150,000 km/s
+    - 450,000 km/s
+    - 200,000 km/s
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFQu\xE9 es un vector?"
+    answers:
+    - "Magnitud con direcci\xF3n"
+    - Solo magnitud
+    - Unidad de medida
+    - Tipo de fuerza
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1l es la unidad de fuerza en el SI?"
+    answers:
+    - Newton (N)
+    - Joule (J)
+    - Watt (W)
+    - Pascal (Pa)
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFQu\xE9 es la integral?"
+    answers:
+    - "Antiderivada de una funci\xF3n"
+    - Derivada
+    - "Multiplicaci\xF3n"
+    - "Divisi\xF3n"
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1nto es sen(90\xB0)?"
+    answers:
+    - 1
+    - 0
+    - -1
+    - 0.5
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1l es la f\xF3rmula de la energ\xEDa cin\xE9tica?"
+    answers:
+    - "\xBDmv\xB2"
+    - mgh
+    - mv
+    - ma
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFQu\xE9 es un n\xFAmero primo?"
+    answers:
+    - "N\xFAmero divisible solo por 1 y s\xED mismo"
+    - "N\xFAmero par"
+    - "N\xFAmero impar"
+    - "N\xFAmero negativo"
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1l es el teorema de Pit\xE1goras?"
+    answers:
+    - "a\xB2 + b\xB2 = c\xB2"
+    - a + b = c
+    - ab = c
+    - a/b = c
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFQu\xE9 es la aceleraci\xF3n?"
+    answers:
+    - Cambio de velocidad en el tiempo
+    - Velocidad constante
+    - Distancia recorrida
+    - Fuerza aplicada
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1nto es log\u2081\u2080(100)?"
+    answers:
+    - 2
+    - 1
+    - 10
+    - 100
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1l es la primera ley de la termodin\xE1mica?"
+    answers:
+    - "La energ\xEDa se conserva"
+    - "La energ\xEDa se crea"
+    - "La energ\xEDa se destruye"
+    - "No hay energ\xEDa"
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFQu\xE9 es una funci\xF3n lineal?"
+    answers:
+    - f(x) = mx + b
+    - "f(x) = x\xB2"
+    - f(x) = 1/x
+    - "f(x) = e\u02E3"
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1l es la f\xF3rmula de la velocidad?"
+    answers:
+    - v = d/t
+    - v = at
+    - v = ft
+    - "v = d\xB7t"
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFQu\xE9 es un \xE1ngulo recto?"
+    answers:
+    - 90 grados
+    - 45 grados
+    - 180 grados
+    - 60 grados
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFCu\xE1nto es la suma de \xE1ngulos internos de un tri\xE1ngulo?"
+    answers:
+    - "180\xB0"
+    - "360\xB0"
+    - "90\xB0"
+    - "270\xB0"
+    correctAnswerIndex: 0
+  - category: PlanComun
+    questionText: "\xBFQu\xE9 es la gravedad en la Tierra aproximadamente?"
+    answers:
+    - "9.8 m/s\xB2"
+    - "10 m/s\xB2"
+    - "8 m/s\xB2"
+    - "12 m/s\xB2"
+    correctAnswerIndex: 0
