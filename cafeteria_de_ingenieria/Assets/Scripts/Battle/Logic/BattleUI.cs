@@ -17,6 +17,8 @@ public class BattleUI : MonoBehaviour
     [Header("Popups")]
     public GameObject skillPopup;
     public GameObject itemPopup;
+    public GameObject skillReplacementPopup;
+    public TMP_Text skillReplacementText;
 
     public GameObject itemListContainer;
     public GameObject itemButtonPrefab;
@@ -24,6 +26,8 @@ public class BattleUI : MonoBehaviour
     // Se llenan automáticamente desde los popups
     [HideInInspector] public Button[] skillButtons;
     [HideInInspector] public TextMeshProUGUI[] skillButtonLabels;
+    [HideInInspector] public Button[] skillReplacementButtons;
+    [HideInInspector] public TextMeshProUGUI[] skillReplacementButtonLabels;
 
     [Header("HUD del jugador")]
     public Image playerSprite;
@@ -51,6 +55,8 @@ public class BattleUI : MonoBehaviour
 
     // Enemigo actual
     private FighterStats currentEnemy;
+    
+    public int selectedReplaceIndex = -1;
 
     void Awake()
     {
@@ -89,6 +95,21 @@ public class BattleUI : MonoBehaviour
             if (label != null) skillButtonLabels[i] = label;
         }
 
+        skillReplacementButtons = skillReplacementPopup.GetComponentsInChildren<Button>(true);
+        skillReplacementButtonLabels = new TextMeshProUGUI[skillReplacementButtons.Length];
+
+        for (int i = 0; i < skillReplacementButtons.Length; i++)
+        {
+            var label = skillReplacementButtons[i].GetComponentInChildren<TextMeshProUGUI>();
+            if (label != null) skillReplacementButtonLabels[i] = label;
+        }
+
+        if (skillReplacementPopup != null)
+        skillReplacementPopup.SetActive(false);
+
+        if (skillReplacementText != null)
+            skillReplacementText.gameObject.SetActive(false);
+
         // Para items, buscamos el contenedor donde pondremos la lista
         itemListContainer = itemPopup.transform.Find("ItemListContainer")?.gameObject;
 
@@ -126,9 +147,39 @@ public class BattleUI : MonoBehaviour
         }
     }
 
+    // Pop up habilidades para reemplazar
+    public void ShowSkillReplacePopup(Skill[] currentSkills)
+    {
+        skillReplacementPopup.SetActive(true);
+        skillReplacementText.gameObject.SetActive(true);
+        selectedReplaceIndex = -1;
+
+        for (int i = 0; i < skillReplacementButtons.Length; i++)
+        {
+            if (i < currentSkills.Length)
+            {
+                skillReplacementButtons[i].gameObject.SetActive(true);
+                skillReplacementButtonLabels[i].text = currentSkills[i].skillName;
+
+                int index = i;
+                skillReplacementButtons[i].onClick.RemoveAllListeners();
+                skillReplacementButtons[i].onClick.AddListener(() =>
+                {
+                    selectedReplaceIndex = index;
+                    skillReplacementPopup.SetActive(false);
+                });
+            }
+            else
+            {
+                skillReplacementButtons[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
     // Habilidades
     public void SetupSkillButtons(FighterStats fighter)
     {
+        fighter.RefreshSkills();
         Skill[] skills = fighter.GetSkills();
         for (int i = 0; i < skillButtons.Length; i++)
         {

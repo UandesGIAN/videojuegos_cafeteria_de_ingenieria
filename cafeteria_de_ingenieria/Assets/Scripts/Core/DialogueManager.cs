@@ -16,8 +16,6 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("INICIANDO DIALOGUE MANAGER...");
         if (!Instance) Instance = this;
-        
-        DontDestroyOnLoad(this.gameObject);
 
         // getteo de paneles porsiacaso
         if (!dialoguePanel) GameObject.Find("DialogueBox");

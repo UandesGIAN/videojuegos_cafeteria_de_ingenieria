@@ -87,4 +87,26 @@ public class RoomManager : MonoBehaviour
         if (!visitedRooms.Contains(room))
             visitedRooms.Add(room);
     }
+
+    public void GoToGameOverRoom()
+    {
+        int gameOverIndex = allRoomObjects.FindIndex(room => room.name == "GameOverScreen");
+        
+        if (gameOverIndex == -1)
+        {
+            Debug.LogError("RoomManager: No se encontró una sala llamada 'GameOverScreen'");
+            return;
+        }
+
+        // Apagar TODAS las salas
+        for (int i = 0; i < allRoomObjects.Count; i++)
+        {
+            allRoomObjects[i].SetActive(i == gameOverIndex);
+        }
+
+        // Actualizar índice
+        currentRoomIndex = gameOverIndex;
+
+        Debug.Log("RoomManager: Cargando sala de GAME OVER.");
+    }
 }

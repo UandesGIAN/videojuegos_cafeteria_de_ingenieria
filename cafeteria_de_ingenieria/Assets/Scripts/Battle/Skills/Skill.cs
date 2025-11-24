@@ -133,16 +133,18 @@ public abstract class Skill : MonoBehaviour
         }
     }
 
-    //private void Animate()
-    //{
-    //    var go = Instantiate(this.effectPrfb, this.targetStats.transform.position, Quaternion.identity);
-    //    Destroy(go, this.animationDuration);
-    //}
-
     public void Run()
     {
         Debug.Log($"🎯 SKILL RUN: {skillName} | User: {userStats?.fightername ?? "NULL"} | Target: {targetStats?.fightername ?? "NULL"} | SelfInflicted: {selfinflicted}");
-        
+        if (userStats == null)
+        {
+            Debug.LogError($"⚠️ ERROR: {skillName} se ejecutó SIN userStats asignado!");
+        }
+        if (targetStats == null)
+        {
+            Debug.LogError($"⚠️ ERROR: {skillName} se ejecutó SIN targetStats asignado!");
+        }
+
         if (this.selfinflicted)
         {
             this.targetStats = this.userStats;
@@ -180,10 +182,10 @@ public abstract class Skill : MonoBehaviour
         }
     }
 
-    public void SetTargetanduser(FighterStats _user, FighterStats _target)
+    public void SetTargetanduser(FighterStats user, FighterStats target)
     {
-        this.userStats = _user;
-        this.targetStats = _target;
+        this.userStats = user;
+        this.targetStats = target;
     }
 
     public abstract void onRun();

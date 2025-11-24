@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 
 public class BattleManager : MonoBehaviour
@@ -23,11 +22,14 @@ public class BattleManager : MonoBehaviour
 
     public Action OnPlayerActionCompleted; // para decirle a TurnController que llame al siguiente turno
     private bool isHandlingSkill = false;
+    
+    private int selectedOption = 0;
 
     // Al terminar la batalla
     private Action onBattleEnd;
     private bool battleActive = false;
-    int selectedOption = 0;
+    private bool gameOverTriggered = false;
+    
 
     public void Start()
     {
@@ -53,6 +55,34 @@ public class BattleManager : MonoBehaviour
 
         // Empezar dialogo con un string vacio
         DialogueManager.Instance.ShowDialogue(sentence: "");
+    }
+
+    void Update()
+    {
+        // Cerrar popup con ESC
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (ui.skillPopup.activeSelf)
+                ui.skillPopup.SetActive(false);
+            if (ui.itemPopup.activeSelf)
+                ui.itemPopup.SetActive(false);
+        }
+        if (!gameOverTriggered && player != null && player.IsDead())
+        {
+            gameOverTriggered = true;
+            if (battleActive)
+            {
+                Debug.Log("Deteniendo batalla porque el jugador murió.");
+                EndBattle();
+            }
+
+            Debug.Log("GAME OVER...");
+
+            if (MusicManager.Instance != null)
+                MusicManager.Instance.PlayGameOverMusic();
+
+            RoomManager.Instance.GoToGameOverRoom();
+        }
     }
 
     private void SetupUI()
@@ -128,7 +158,7 @@ public class BattleManager : MonoBehaviour
         if (useQuestionSystem && questionUI != null)
         {
             Debug.Log("Cargando UI y mostrando pregunta antes de la batalla...");
-            StartCoroutine(ShowQuestionAfterUIReady());
+            CoroutineRunner.Instance.StartCoroutine(ShowQuestionAfterUIReady());
         }
         else
         {
@@ -219,38 +249,6 @@ public class BattleManager : MonoBehaviour
         selectedOption = 0;
     }
 
-    void Update()
-    {
-        // Cerrar popup con ESC
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (ui.skillPopup.activeSelf)
-                ui.skillPopup.SetActive(false);
-            if (ui.itemPopup.activeSelf)
-                ui.itemPopup.SetActive(false);
-        }
-        if (player != null && player.IsDead())
-        {
-            Debug.Log("GAME OVER. Reiniciando juego...");
-            
-            // Reproducir música de Game Over
-            if (MusicManager.Instance != null)
-            {
-                MusicManager.Instance.PlayGameOverMusic();
-            }
-            
-            if (!gameObject.activeInHierarchy)
-                gameObject.SetActive(true);
-            StartCoroutine(RestartGame());
-        }
-    }
-
-    private IEnumerator RestartGame()
-    {
-        yield return new WaitForSeconds(1f); // pequeña pausa antes del reinicio
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.name); // recarga la escena actual
-    }
 
     // Manejo del mouse
     void OnClickOption(int index)
@@ -299,6 +297,7 @@ public class BattleManager : MonoBehaviour
             if (index < 0 || index >= ui.skillButtons.Length) return;
             Debug.Log("Ejecutar habilidad: " + ui.skillButtonLabels[index].text);
 
+            player.RefreshSkills();
             Skill[] playerSkills = player.GetSkills();
 
             if (index < playerSkills.Length)
@@ -306,9 +305,11 @@ public class BattleManager : MonoBehaviour
                 // obtener habilidad seleccionada
                 Skill skillSelected = playerSkills[index];
 
-                // ejecutar habilidad
+                // Asignar player y enemigo
+                skillSelected.SetTargetanduser(player, enemy);
+
                 playerAction.SelectOption(
-                    option_name: BattleConstants.MenuAttackOptions.Skill.ToString(), 
+                    option_name: BattleConstants.MenuAttackOptions.Skill.ToString(),
                     playerSkill: skillSelected
                 );
 
@@ -364,7 +365,7 @@ public class BattleManager : MonoBehaviour
     {
         if (!gameObject.activeInHierarchy)
             gameObject.SetActive(true); 
-        StartCoroutine(HandleEnemyDeath(deadEnemy));
+        CoroutineRunner.Instance.StartCoroutine(HandleEnemyDeath(deadEnemy));
     }
 
     private IEnumerator HandleEnemyDeath(FighterStats deadEnemy)
@@ -432,7 +433,7 @@ public class BattleManager : MonoBehaviour
         if (!gameObject.activeInHierarchy)
             gameObject.SetActive(true);
                 
-        StartCoroutine(NotifyAsync());
+        CoroutineRunner.Instance.StartCoroutine(NotifyAsync());
     }
 
     private IEnumerator NotifyAsync()

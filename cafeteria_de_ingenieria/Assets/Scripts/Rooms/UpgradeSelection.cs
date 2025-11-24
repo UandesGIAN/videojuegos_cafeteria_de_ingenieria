@@ -27,6 +27,7 @@ public class UpgradeSelection : MonoBehaviour
 
     [Header("Configuración")]
     public int numberOfRewardsToShow = 3;
+    private bool waitingForSkillReplace = false;
 
     private List<Reward> selectedRewards = new List<Reward>();
 
@@ -38,6 +39,7 @@ public class UpgradeSelection : MonoBehaviour
         public Skill skill;
         public Item item;
         public Upgrade upgrade;
+
         
          public string GetName()
         {
@@ -81,6 +83,58 @@ public class UpgradeSelection : MonoBehaviour
                     return upgrade != null ? upgrade.icon : null;
                 default:
                     return null;
+            }
+        }
+    }
+
+    private void Update()
+    {
+        // Si estamos esperando reemplazo de skill bloquear interacción con los botones
+        if (waitingForSkillReplace)
+        {
+            foreach (var btn in upgradeButtons)
+            {
+                if (btn != null)
+                {
+                    var buttonComp = btn.GetComponent<Button>();
+                    if (buttonComp != null)
+                        buttonComp.interactable = false;
+                }
+            }
+
+            // Cancelar con ESC
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Debug.Log("UpgradeSelection: reemplazo cancelado por ESC");
+                waitingForSkillReplace = false;
+
+                // Habilitar botones de nuevo
+                foreach (var btn in upgradeButtons)
+                {
+                    if (btn != null)
+                    {
+                        var buttonComp = btn.GetComponent<Button>();
+                        if (buttonComp != null)
+                            buttonComp.interactable = true;
+                    }
+                }
+
+                // Cerrar popup de reemplazo si existe
+                if (skillManager != null && skillManager.battleUI != null)
+                    skillManager.battleUI.skillReplacementPopup.SetActive(false);
+            }
+        }
+        else
+        {
+            // Botones interactuables
+            foreach (var btn in upgradeButtons)
+            {
+                if (btn != null)
+                {
+                    var buttonComp = btn.GetComponent<Button>();
+                    if (buttonComp != null)
+                        buttonComp.interactable = true;
+                }
             }
         }
     }
@@ -296,7 +350,15 @@ public class UpgradeSelection : MonoBehaviour
         // Aplicar la recompensa según su tipo
         if (chosenReward.type == Reward.RewardType.Skill)
         {
+            waitingForSkillReplace = false;
             ApplySkillReward(chosenReward.skill);
+
+            if (waitingForSkillReplace)
+            {
+                // IMPORTANTE: NO cerrar UI TODAVÍA
+                Debug.Log("UpgradeSelection: esperando reemplazo, NO se cierra la UI ni se avanza de sala.");
+                return;
+            }
         }
         else if (chosenReward.type == Reward.RewardType.Item)
         {
@@ -322,13 +384,20 @@ public class UpgradeSelection : MonoBehaviour
 
     private void ApplySkillReward(Skill skill)
     {
-        if (skillManager != null)
-        {
-            skillManager.AddSkillToPlayer(skill.skillName);
-        }
-        else
+        if (skillManager == null)
         {
             Debug.LogError("UpgradeSelection: SkillManager no asignado, no se puede agregar skill");
+            return;
+        }
+
+        bool needsReplacement = player.GetSkills().Length >= 4;
+
+        skillManager.AddSkillToPlayer(skill.skillName, this);
+
+        if (needsReplacement)
+        {
+            Debug.Log("UpgradeSelection: Skill requiere reemplazo, esperando elección del jugador.");
+            waitingForSkillReplace = true;
         }
     }
 
@@ -354,6 +423,17 @@ public class UpgradeSelection : MonoBehaviour
         {
             Debug.LogError("UpgradeSelection: Player no asignado, no se puede aplicar upgrade");
         }
+    }
+
+    public void OnSkillReplaced()
+    {
+        Debug.Log("UpgradeSelection: Reemplazo de skill completo, continuando flujo.");
+
+        // Ahora sí cerramos el panel de upgrades
+        gameObject.SetActive(false);
+
+        if (currentRoom != null)
+            currentRoom.OnUpgradeSelected();
     }
 }
 

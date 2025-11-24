@@ -1,38 +1,30 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
-public class MainMenuController : MonoBehaviour
+public class GameOverScreenController : MonoBehaviour
 {
     [Header("Textos del menú")]
-    public TextMeshProUGUI comenzar_text;
-    public TextMeshProUGUI manual_text;
+    public TextMeshProUGUI reiniciar_text;
     public TextMeshProUGUI salir_text;
 
     [Header("Colores")]
     public Color normalColor = Color.white;
     public Color hoverColor = Color.yellow;
 
-    [Header("URL del Manual de Instrucciones")]
-    public string manualURL = "url";
-
     private int selectedIndex = 0;
     private TextMeshProUGUI[] options;
 
     private void Start()
     {
-        options = new TextMeshProUGUI[] { comenzar_text, manual_text, salir_text };
+        options = new TextMeshProUGUI[] { reiniciar_text, salir_text };
 
         // Colores iniciales
         foreach (var t in options)
             t.color = normalColor;
 
         HighlightSelected();
-        
-        // Iniciar música del menú
-        if (MusicManager.Instance != null)
-        {
-            MusicManager.Instance.PlayMenuMusic();
-        }
     }
 
     private void Update()
@@ -84,21 +76,24 @@ public class MainMenuController : MonoBehaviour
     {
         switch (index)
         {
-            case 0: // Comenzar
-                RoomManager.Instance.GoToNextRoom();
+            case 0: // Reiniciar
+                CoroutineRunner.Instance.StartCoroutine(RestartGame());
                 break;
 
-            case 1: // Manual
-                Application.OpenURL(manualURL);
-                break;
-
-            case 2: // Salir
+            case 1: // Salir
                 #if UNITY_EDITOR
                                 UnityEditor.EditorApplication.isPlaying = false;
                 #else
                                 Application.Quit();
                 #endif
                                 break;
-                        }
-                    }
-                }
+        }
+    }
+    
+    private IEnumerator RestartGame()
+    {
+        yield return new WaitForSeconds(1f); // pequeña pausa antes del reinicio
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name); // recarga la escena actual
+    }
+}
