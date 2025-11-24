@@ -45,8 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: Headbutt
-  description: "30 Da\xF1o "
+  description: "El usuario usa su gran cabez paea inflingir 30 de da\xF1o al enemigo
+    por el coste de 10 IQ"
   animationDuration: 1
+  animationDelay: 0
   type: 4
   icon: {fileID: 0}
   selfinflicted: 0

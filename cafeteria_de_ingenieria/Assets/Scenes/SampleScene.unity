@@ -2188,6 +2188,7 @@ MonoBehaviour:
   feedbackPanel: {fileID: 1877876416}
   feedbackDuration: 2.5
   questionPool: {fileID: 11400000, guid: 5dbc629e06b93d7cab145eeb4dbec8be, type: 2}
+  roomCategory: PlanComun
 --- !u!114 &162736384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6441,7 +6442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuMusic: {fileID: 8300000, guid: 07e437ceee4cf0548916ee17f33a4be3, type: 3}
   battleMusic: {fileID: 8300000, guid: 9fad72a768ef87c41a43e3695b892b6a, type: 3}
-  gameOverMusic: {fileID: 0}
+  gameOverMusic: {fileID: 8300000, guid: aa4e226f4ddbf5d47900ac09bef565c4, type: 3}
   volume: 0.7
   fadeDuration: 1
 --- !u!4 &424754297
@@ -15685,7 +15686,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1601368262}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9997989
+  m_Size: 0.99731094
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -16798,7 +16799,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0009890678}
+  m_AnchoredPosition: {x: 0, y: 0.00039959926}
   m_SizeDelta: {x: 0, y: 400}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1377491344
@@ -20501,7 +20502,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2146574155}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.93474996
+  m_Size: 0.9347501
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

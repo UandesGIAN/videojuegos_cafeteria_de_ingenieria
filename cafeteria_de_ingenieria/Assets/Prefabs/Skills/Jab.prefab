@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: Jab
-  description: small damage, low cost jab
+  description: "Ataque fisico de poco da\xF1o y coste bajo (5 IQ)"
   animationDuration: 1
   animationDelay: 0
   type: 4
