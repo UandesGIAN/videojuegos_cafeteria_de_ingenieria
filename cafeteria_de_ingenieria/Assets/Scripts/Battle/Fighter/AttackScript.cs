@@ -71,7 +71,8 @@ public class AttackScript : MonoBehaviour
         Debug.Log("\t\t" + BattleConstants.MenuAttackOptions.Melee.ToString() + " attack made to " + target.tag);
         if (owner.CompareTag("Player"))
             DialogueManager.Instance.ShowDialogue("Atacaste a " + targetStats.fightername + "!");
-        else DialogueManager.Instance.ShowDialogue(attackerStats.fightername + " atacó a " + targetStats.fightername + "!");
+        else 
+            DialogueManager.Instance.ShowDialogue(attackerStats.fightername + " atacó a " + targetStats.fightername + "!");
     }
     
     public void UseSkillRandomly(GameObject target)
@@ -94,7 +95,7 @@ public class AttackScript : MonoBehaviour
         int skillIndex = Random.Range(0, attackSkills.Length);
         Skill skillToUse = attackSkills[skillIndex];
 
-        UseSkill(skillToUse, target);
+        UseSkill(skill: skillToUse, target: target);
     }
 
     public void UseSkill(Skill skill, GameObject target)
@@ -103,6 +104,23 @@ public class AttackScript : MonoBehaviour
         attackerStats = owner.GetComponent<FighterStats>();
         targetStats = target.GetComponent<FighterStats>();
 
+        bool isPlayerAttacking = owner.CompareTag("Player");
+
+        // determinar si attacker tiene IQ suficiente
+        if (attackerStats.IQ < ((HealthModSkill)skill).cost)
+        {
+            Debug.Log("No hay IQ suficiente para usar la skill: " + skill.skillName);
+
+            // si jugador uso skill sin darse cuenta que no le alcanza el IQ, entonces pierde el turno
+            if (isPlayerAttacking) 
+                return;
+            else {  // si enemigo esta usando skill y no hay IQ, entonces este ataca con melee
+                Debug.Log("\tPor lo que se usa Ataque Melee en su lugar!");
+                Attack(target: target);
+                return;
+            }
+        }
+
         // usar skill
         skill.SetTargetanduser(attackerStats, targetStats);
         skill.Run();
@@ -110,9 +128,10 @@ public class AttackScript : MonoBehaviour
         // dialogo cosas
         Debug.Log("\t\tSkill: " + skill.skillName + " used on " + target.tag);
 
-        if (owner.CompareTag("Player"))
+        if (isPlayerAttacking)
             DialogueManager.Instance.ShowDialogue("Usaste " + skill.skillName + " en " + targetStats.fightername + "!");
-        else DialogueManager.Instance.ShowDialogue(attackerStats.fightername + " usó " + skill.skillName + " en " + targetStats.fightername + "!");
+        else 
+            DialogueManager.Instance.ShowDialogue(attackerStats.fightername + " usó " + skill.skillName + " en " + targetStats.fightername + "!");
     }
 
     /// Ejecuta el ataque melee con efectos visuales y de sonido
