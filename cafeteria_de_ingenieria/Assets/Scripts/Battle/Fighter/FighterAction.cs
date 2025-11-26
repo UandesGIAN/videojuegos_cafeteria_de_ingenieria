@@ -60,27 +60,44 @@ public class FighterAction : MonoBehaviour
         }
     }
 
-    // por ahora, no existen Decision Trees especificos para jefes; solo hay uno global! pero hacerlos especificos es parte del balanceo ejejeje
+    // no existen Decision Trees especificos para jefes; solo hay uno global!
     private void InitializeDecisionTree()
     {
         // evaluadores
         IsBossHealthBelowXPercentEvaluator ownerHealthEvaluator = new IsBossHealthBelowXPercentEvaluator(targetHealthPercent: 0.3f);
         DoesBossHaveElixirEvaluator ownerElixirEvaluator = new DoesBossHaveElixirEvaluator();
 
+        IsBossIQMeterBelowXPercentEvaluator ownerIQMeterEvaluator = new IsBossIQMeterBelowXPercentEvaluator(targetIQPercent: 0.3f);
+        DoesBossHaveItemOfTypeEvaluator ownerIQItemEvaluator = new DoesBossHaveItemOfTypeEvaluator(itemType: StatsType.IQ);
+
+
         // decisiones
         ObjectDecisionNode isOwnerHealthBelow30Percent = new ObjectDecisionNode(evaluator: ownerHealthEvaluator);
         ObjectDecisionNode doesOwnerHaveElixir = new ObjectDecisionNode(evaluator: ownerElixirEvaluator);
 
+        ObjectDecisionNode isOwnerIQBelow30Percent = new ObjectDecisionNode(evaluator: ownerIQMeterEvaluator);
+        ObjectDecisionNode doesOwnerHaveIQItem = new ObjectDecisionNode(evaluator: ownerIQItemEvaluator);
+
+
         // acciones
         ActionNode skillAction = new ActionNode(name: BattleConstants.MenuAttackOptions.Skill.ToString());
         ActionNode elixirItemAction = new ActionNode(name: "Elixir");
+        ActionNode iQItemAction = new ActionNode(name: "IQ Item");
+
 
         // construccion del arbol!!
-        isOwnerHealthBelow30Percent.NoNode = skillAction;
+        isOwnerHealthBelow30Percent.NoNode = isOwnerIQBelow30Percent;
         isOwnerHealthBelow30Percent.YesNode = doesOwnerHaveElixir;
 
-        doesOwnerHaveElixir.NoNode = skillAction;
+        doesOwnerHaveElixir.NoNode = isOwnerIQBelow30Percent;
         doesOwnerHaveElixir.YesNode = elixirItemAction;
+
+        isOwnerIQBelow30Percent.NoNode = skillAction;
+        isOwnerIQBelow30Percent.YesNode = doesOwnerHaveIQItem;
+
+        doesOwnerHaveIQItem.NoNode = skillAction;
+        doesOwnerHaveIQItem.YesNode = iQItemAction;
+
 
         // definir root
         rootNode = isOwnerHealthBelow30Percent;
@@ -93,27 +110,47 @@ public class FighterAction : MonoBehaviour
 
         switch (resultNode.name)
         {
-            case "Skill":
-                SelectOption(BattleConstants.MenuAttackOptions.Skill.ToString());
-                break;
-
             case "Elixir":
                 UseItem(itemName: "Elixir");
                 break;
+            
+            case "IQ Item":
+                UseItemOfType(itemType: StatsType.IQ);
+                break;
+            
+            case "Skill":
+                SelectOption(BattleConstants.MenuAttackOptions.Skill.ToString());
+                break;            
         }
     }
 
     private void UseItem(string itemName)
     {
         // no es necesario chequear si el item es null, porque el evaluador del Decision Tree ya lo hizo
-        Debug.Log($"{ownerStats.name} está bajo de vida! Usando Elixir.");
-
+        Debug.Log($"{ownerStats.name} está bajo de vida! Usando {itemName}.");
+        
         Item item = ownerStats.GetItems().FirstOrDefault(item => item.itemName == itemName);
 
         // Establecer usuario del item
         item.SetUser(ownerStats);
         
         item.Run(); 
+
+        DialogueManager.Instance.ShowDialogue($"{ownerStats.fightername} usó {itemName}!");
+        ownerStats.RemoveItem(item);
+    }
+
+    private void UseItemOfType(StatsType itemType)
+    {
+        Debug.Log($"{ownerStats.name} está bajo de IQ! Usando item de {itemType}.");
+
+        Item item = ownerStats.GetItems().FirstOrDefault(item => item is StatsModItems statsModItem && statsModItem.statType == itemType);
+
+        // Establecer usuario del item
+        item.SetUser(ownerStats);
+        item.Run(); 
+
+        DialogueManager.Instance.ShowDialogue($"{ownerStats.fightername} usó {item.itemName}!");
         ownerStats.RemoveItem(item);
     }
 

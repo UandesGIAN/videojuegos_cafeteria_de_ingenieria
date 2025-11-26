@@ -103,7 +103,7 @@ public class BattleManager : MonoBehaviour
         DialogueManager.Instance.ActivateDialoguePanel();
 
         // Empezar dialogo con un string vacio
-        DialogueManager.Instance.ShowDialogue(sentence: "");
+        //DialogueManager.Instance.ShowDialogue(sentence: "");
     }
 
     void Update()
