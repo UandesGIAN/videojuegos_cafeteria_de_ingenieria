@@ -188,9 +188,7 @@ public class BattleManager : MonoBehaviour
         SetupUI();
         ui.ResetUI(player, enemy);
 
-        // Reiniciar estados del jugador y enemigo
-        player.health = player.startHealth;
-        player.IQ = player.startIQ;
+        // Reiniciar estados enemigo
         enemy.health = enemy.startHealth;
         enemy.IQ = enemy.startIQ;
         bool start = true;

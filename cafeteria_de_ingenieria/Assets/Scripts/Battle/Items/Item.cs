@@ -38,9 +38,8 @@ public abstract class Item : MonoBehaviour
     private readonly Vector3 effectOffsetPlayer = new Vector3(-4.5f, 1f, -5f);  // Jugador usando item
     private readonly Vector3 effectOffsetEnemy = new Vector3(4.5f, 1f, -5f);    // Enemigo usando item
 
-    /// <summary>
+
     /// Reproduce el efecto visual del item
-    /// </summary>
     private void PlayVisualEffect()
     {
         if (effectPrefab != null && userStats != null)
@@ -62,13 +61,11 @@ public abstract class Item : MonoBehaviour
             // Destruir después de la duración de la animación
             Destroy(effectInstance, animationDuration);
             
-            Debug.Log($"🎨 Efecto visual '{effectPrefab.name}' reproducido en posición {selectedOffset} para item {itemName}");
+            Debug.Log($"Efecto visual '{effectPrefab.name}' reproducido en posición {selectedOffset} para item {itemName}");
         }
     }
 
-    /// <summary>
     /// Determina qué offset usar según quién usa el item
-    /// </summary>
     private Vector3 GetEffectOffset()
     {
         // Verificar si el usuario es el jugador
@@ -77,20 +74,18 @@ public abstract class Item : MonoBehaviour
         if (isPlayer)
         {
             // Jugador usando item: efecto en posición del jugador
-            Debug.Log($"📍 Jugador usando item, usando effectOffsetPlayer");
+            Debug.Log($"Jugador usando item, usando effectOffsetPlayer");
             return effectOffsetPlayer;
         }
         else
         {
             // Enemigo usando item: efecto en posición del enemigo
-            Debug.Log($"📍 Enemigo usando item, usando effectOffsetEnemy");
+            Debug.Log($"Enemigo usando item, usando effectOffsetEnemy");
             return effectOffsetEnemy;
         }
     }
 
-    /// <summary>
     /// Reproduce el sonido del item
-    /// </summary>
     private void PlaySound()
     {
         if (itemSound != null)
@@ -98,13 +93,11 @@ public abstract class Item : MonoBehaviour
             // Buscar o crear un AudioSource temporal
             AudioSource.PlayClipAtPoint(itemSound, Camera.main.transform.position, soundVolume);
             
-            Debug.Log($"🔊 Sonido '{itemSound.name}' reproducido para item {itemName}");
+            Debug.Log($"Sonido '{itemSound.name}' reproducido para item {itemName}");
         }
     }
 
-    /// <summary>
     /// Crea un impact frame (pausa breve para enfatizar el uso del item)
-    /// </summary>
     private IEnumerator ImpactFrame()
     {
         if (useImpactFrame && impactFrameDuration > 0)
@@ -119,13 +112,11 @@ public abstract class Item : MonoBehaviour
             // Restaurar el tiempo
             Time.timeScale = originalTimeScale;
             
-            Debug.Log($"⏸️ Impact frame de {impactFrameDuration}s aplicado al usar item");
+            Debug.Log($"Impact frame de {impactFrameDuration}s aplicado al usar item");
         }
     }
 
-    /// <summary>
     /// Establece quién usa el item
-    /// </summary>
     public void SetUser(FighterStats user)
     {
         this.userStats = user;
@@ -133,15 +124,13 @@ public abstract class Item : MonoBehaviour
 
     public void Run()
     {
-        Debug.Log($"🎯 ITEM RUN: {itemName} | User: {userStats?.fightername ?? "NULL"}");
+        Debug.Log($"ITEM RUN: {itemName} | User: {userStats?.fightername ?? "NULL"}");
         
         // Reproducir efectos audiovisuales
         StartCoroutine(ExecuteItemWithEffects());
     }
 
-    /// <summary>
     /// Ejecuta el item con todos los efectos
-    /// </summary>
     private IEnumerator ExecuteItemWithEffects()
     {
         // 1. Reproducir sonido al inicio

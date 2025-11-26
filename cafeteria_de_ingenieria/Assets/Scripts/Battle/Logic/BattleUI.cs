@@ -110,9 +110,6 @@ public class BattleUI : MonoBehaviour
         if (skillReplacementText != null)
             skillReplacementText.gameObject.SetActive(false);
 
-        // Para items, buscamos el contenedor donde pondremos la lista
-        itemListContainer = itemPopup.transform.Find("ItemListContainer")?.gameObject;
-
         // Para el jugador
         playerSprite.sprite = currentPlayer.img;
         playerName.text = currentPlayer.fightername;

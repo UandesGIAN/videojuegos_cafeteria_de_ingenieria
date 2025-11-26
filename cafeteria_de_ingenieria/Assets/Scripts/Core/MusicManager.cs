@@ -50,7 +50,7 @@ public class MusicManager : MonoBehaviour
             audioSource.loop = true;
             audioSource.volume = volume;
             
-            Debug.Log("🎵 MusicManager inicializado");
+            Debug.Log("MusicManager inicializado");
         }
         else
         {
@@ -58,33 +58,25 @@ public class MusicManager : MonoBehaviour
         }
     }
     
-    /// <summary>
     /// Reproduce la música del menú principal y selección de personaje
-    /// </summary>
     public void PlayMenuMusic()
     {
         PlayMusic(menuMusic, "Menu Music");
     }
     
-    /// <summary>
     /// Reproduce la música de batalla
-    /// </summary>
     public void PlayBattleMusic()
     {
         PlayMusic(battleMusic, "Battle Music");
     }
     
-    /// <summary>
     /// Reproduce la música de Game Over
-    /// </summary>
     public void PlayGameOverMusic()
     {
         PlayMusic(gameOverMusic, "Game Over Music");
     }
     
-    /// <summary>
     /// Detiene la música con fade out
-    /// </summary>
     public void StopMusic()
     {
         if (fadeCoroutine != null)
@@ -95,9 +87,7 @@ public class MusicManager : MonoBehaviour
         fadeCoroutine = StartCoroutine(FadeOut());
     }
     
-    /// <summary>
     /// Cambia la música con fade
-    /// </summary>
     private void PlayMusic(AudioClip newClip, string trackName)
     {
         if (newClip == null)
@@ -109,11 +99,11 @@ public class MusicManager : MonoBehaviour
         // Si ya está sonando el mismo clip, no hacer nada
         if (audioSource != null && audioSource.clip == newClip && audioSource.isPlaying)
         {
-            Debug.Log($"🎵 {trackName} ya está sonando (clip={newClip.name}, isPlaying={audioSource.isPlaying})");
+            Debug.Log($"{trackName} ya está sonando (clip={newClip.name}, isPlaying={audioSource.isPlaying})");
             return;
         }
         
-        Debug.Log($"🎵 Cambiando a: {trackName} (clip actual={audioSource?.clip?.name}, nuevo={newClip.name})");
+        Debug.Log($"Cambiando a: {trackName} (clip actual={audioSource?.clip?.name}, nuevo={newClip.name})");
         
         // Detener fade anterior si existe
         if (fadeCoroutine != null)
@@ -125,9 +115,7 @@ public class MusicManager : MonoBehaviour
         fadeCoroutine = StartCoroutine(CrossFade(newClip, trackName));
     }
     
-    /// <summary>
     /// Hace crossfade entre la música actual y la nueva
-    /// </summary>
     private IEnumerator CrossFade(AudioClip newClip, string trackName)
     {
         float timer = 0f;
@@ -148,7 +136,7 @@ public class MusicManager : MonoBehaviour
         audioSource.clip = newClip;
         audioSource.Play();
         
-        Debug.Log($"🎵 Reproduciendo: {trackName}");
+        Debug.Log($"Reproduciendo: {trackName}");
         
         // Fade in de la nueva música
         timer = 0f;
@@ -163,9 +151,7 @@ public class MusicManager : MonoBehaviour
         fadeCoroutine = null;
     }
     
-    /// <summary>
     /// Hace fade out sin cambiar de canción
-    /// </summary>
     private IEnumerator FadeOut()
     {
         float timer = 0f;
@@ -182,12 +168,10 @@ public class MusicManager : MonoBehaviour
         audioSource.volume = volume;
         fadeCoroutine = null;
         
-        Debug.Log("🎵 Música detenida");
+        Debug.Log("Música detenida");
     }
     
-    /// <summary>
     /// Cambia el volumen global de la música
-    /// </summary>
     public void SetVolume(float newVolume)
     {
         volume = Mathf.Clamp01(newVolume);
@@ -196,10 +180,8 @@ public class MusicManager : MonoBehaviour
             audioSource.volume = volume;
         }
     }
-    
-    /// <summary>
+
     /// Baja el volumen de la música cuando el juego se pausa
-    /// </summary>
     public void SetPausedState(bool paused)
     {
         if (isPaused == paused) return; // Ya está en ese estado
@@ -216,19 +198,17 @@ public class MusicManager : MonoBehaviour
         {
             // Bajar volumen gradualmente
             fadeCoroutine = StartCoroutine(FadeToVolume(pausedVolume, pauseFadeDuration));
-            Debug.Log($"🎵 Música pausada - bajando volumen a {pausedVolume}");
+            Debug.Log($"Música pausada - bajando volumen a {pausedVolume}");
         }
         else
         {
             // Restaurar volumen normal
             fadeCoroutine = StartCoroutine(FadeToVolume(volume, pauseFadeDuration));
-            Debug.Log($"🎵 Música reanudada - restaurando volumen a {volume}");
+            Debug.Log($"Música reanudada - restaurando volumen a {volume}");
         }
     }
     
-    /// <summary>
     /// Hace fade del volumen actual a un volumen objetivo
-    /// </summary>
     private IEnumerator FadeToVolume(float targetVolume, float duration)
     {
         float startVolume = audioSource.volume;

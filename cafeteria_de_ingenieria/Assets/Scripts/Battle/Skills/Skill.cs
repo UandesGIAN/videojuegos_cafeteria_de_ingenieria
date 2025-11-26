@@ -41,9 +41,7 @@ public abstract class Skill : MonoBehaviour
     private readonly Vector3 effectOffsetToEnemy = new Vector3(4.5f, 1f, -5f);
     private readonly Vector3 effectOffsetToPlayer = new Vector3(-4.5f, 1f, -5f);
 
-    /// <summary>
     /// Reproduce el efecto visual de la habilidad
-    /// </summary>
     private void PlayVisualEffect()
     {
         if (effectPrefab != null && targetStats != null)
@@ -65,19 +63,17 @@ public abstract class Skill : MonoBehaviour
             // Destruir después de la duración de la animación
             Destroy(effectInstance, animationDuration);
             
-            Debug.Log($"🎨 Efecto visual '{effectPrefab.name}' reproducido en posición {selectedOffset} para {skillName} (Z={selectedOffset.z})");
+            Debug.Log($"Efecto visual '{effectPrefab.name}' reproducido en posición {selectedOffset} para {skillName} (Z={selectedOffset.z})");
         }
     }
 
-    /// <summary>
     /// Determina qué offset usar según el atacante y el objetivo
-    /// </summary>
     private Vector3 GetEffectOffset()
     {
         // Si es auto-infligida, usar offset del jugador
         if (selfinflicted)
         {
-            Debug.Log($"📍 Habilidad auto-infligida, usando effectOffsetToPlayer");
+            Debug.Log($"Habilidad auto-infligida, usando effectOffsetToPlayer");
             return effectOffsetToPlayer;
         }
 
@@ -87,20 +83,18 @@ public abstract class Skill : MonoBehaviour
         if (isPlayerAttacking)
         {
             // Jugador atacando enemigo: usar offset hacia enemigo
-            Debug.Log($"📍 Jugador atacando enemigo, usando effectOffsetToEnemy");
+            Debug.Log($"Jugador atacando enemigo, usando effectOffsetToEnemy");
             return effectOffsetToEnemy;
         }
         else
         {
             // Enemigo atacando jugador: usar offset hacia jugador
-            Debug.Log($"📍 Enemigo atacando jugador, usando effectOffsetToPlayer");
+            Debug.Log($"Enemigo atacando jugador, usando effectOffsetToPlayer");
             return effectOffsetToPlayer;
         }
     }
 
-    /// <summary>
     /// Reproduce el sonido de la habilidad
-    /// </summary>
     private void PlaySound()
     {
         if (skillSound != null)
@@ -112,9 +106,7 @@ public abstract class Skill : MonoBehaviour
         }
     }
 
-    /// <summary>
     /// Crea un impact frame (pausa breve para enfatizar el impacto)
-    /// </summary>
     private IEnumerator ImpactFrame()
     {
         if (useImpactFrame && impactFrameDuration > 0)
@@ -129,35 +121,33 @@ public abstract class Skill : MonoBehaviour
             // Restaurar el tiempo
             Time.timeScale = originalTimeScale;
             
-            Debug.Log($"⏸️ Impact frame de {impactFrameDuration}s aplicado");
+            Debug.Log($"⏸Impact frame de {impactFrameDuration}s aplicado");
         }
     }
 
     public void Run()
     {
-        Debug.Log($"🎯 SKILL RUN: {skillName} | User: {userStats?.fightername ?? "NULL"} | Target: {targetStats?.fightername ?? "NULL"} | SelfInflicted: {selfinflicted}");
+        Debug.Log($"SKILL RUN: {skillName} | User: {userStats?.fightername ?? "NULL"} | Target: {targetStats?.fightername ?? "NULL"} | SelfInflicted: {selfinflicted}");
         if (userStats == null)
         {
-            Debug.LogError($"⚠️ ERROR: {skillName} se ejecutó SIN userStats asignado!");
+            Debug.LogError($"ERROR: {skillName} se ejecutó SIN userStats asignado!");
         }
         if (targetStats == null)
         {
-            Debug.LogError($"⚠️ ERROR: {skillName} se ejecutó SIN targetStats asignado!");
+            Debug.LogError($"ERROR: {skillName} se ejecutó SIN targetStats asignado!");
         }
 
         if (this.selfinflicted)
         {
             this.targetStats = this.userStats;
-            Debug.Log($"   ↳ SelfInflicted activado, target cambiado a: {targetStats?.fightername}");
+            Debug.Log($" SelfInflicted activado, target cambiado a: {targetStats?.fightername}");
         }
 
         // Reproducir efectos audiovisuales
         StartCoroutine(ExecuteSkillWithEffects());
     }
 
-    /// <summary>
     /// Ejecuta la habilidad con todos los efectos
-    /// </summary>
     private IEnumerator ExecuteSkillWithEffects()
     {
         // 1. Reproducir sonido al inicio

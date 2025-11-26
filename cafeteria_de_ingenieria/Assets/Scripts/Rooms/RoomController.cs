@@ -19,6 +19,11 @@ public class RoomController : MonoBehaviour
     private Button[] roomButtons = new Button[0];
     private bool nextRoomsInitialized = false;
 
+
+    // para cheats
+    private string cheatBuffer = "";
+    private bool cheatModeActive = false;
+
     private void Awake()
     {
         if (battleHUD != null)
@@ -31,6 +36,49 @@ public class RoomController : MonoBehaviour
     private void Start()
     {
         RoomManager.Instance.MarkRoomVisited(this);
+    }
+
+    private void Update()
+    {
+        DetectRoomCheat();
+    }
+
+    private void DetectRoomCheat()
+    {
+        // SHIFT + CTRL presionados
+        bool mods = (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) &&
+                    (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl));
+
+        if (!mods)
+        {
+            // Si se sueltan SHIFT/CTRL y había número → ejecutar cheat
+            if (cheatModeActive && cheatBuffer.Length > 0)
+            {
+                int roomNumber = int.Parse(cheatBuffer);
+                cheatBuffer = "";
+                cheatModeActive = false;
+                TeleportToRoom(roomNumber);
+            }
+            return;
+        }
+
+        cheatModeActive = true;
+
+        // Leer números del 0 al 9 (teclado normal + numpad)
+        for (int i = 0; i <= 9; i++)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha0 + i) ||
+                Input.GetKeyDown(KeyCode.Keypad0 + i))
+            {
+                cheatBuffer += i.ToString();
+
+                // Limitar a 2 dígitos
+                if (cheatBuffer.Length > 2)
+                    cheatBuffer = cheatBuffer.Substring(1);
+
+                Debug.Log("[CHEAT] Sala ingresada: " + cheatBuffer);
+            }
+        }
     }
 
     private void InitializeNextRooms()
@@ -106,6 +154,12 @@ public class RoomController : MonoBehaviour
         Debug.Log($"[RoomController: {transform.parent.gameObject}] Batalla finalizada.");
         if (battleHUD != null)
             battleHUD.SetActive(false);
+
+        // Cambiar a música de batalla en la primera room con combate
+        if (MusicManager.Instance != null)
+        {
+            MusicManager.Instance.PlayMenuMusic();
+        }
         
         // Activar selección de mejoras
         if (upgradeSelection != null)
@@ -179,5 +233,61 @@ public class RoomController : MonoBehaviour
 
         nextRoom.transform.parent.gameObject.SetActive(true);
         nextRoom.EnterRoom();
+    }
+
+    private void TeleportToRoom(int inputNumber)
+    {
+        var rooms = RoomManager.Instance.allRoomObjects;
+        int total = rooms.Count;
+
+        // Salas jugables están entre índice 2 y total - 3
+        int firstPlayableIndex = 2;
+        int lastPlayableIndex = total - 3;
+
+        int playableCount = lastPlayableIndex - firstPlayableIndex + 1;
+
+        // El jugador NO está ingresando el índice real
+        // Está ingresando el número "humano" que corresponde a las salas jugables (del 0 al XX)
+        // Entonces convertimos:
+        int targetIndex = firstPlayableIndex + inputNumber;
+
+        // Validación: si se pasa del límite, no hace nada
+        if (inputNumber <= 0 || targetIndex > lastPlayableIndex)
+        {
+            Debug.LogWarning($"[CHEAT] Sala inválida. Solo hay {playableCount} salas jugables.");
+            return;
+        }
+
+        Debug.Log($"[CHEAT] Teletransportando a la sala #{inputNumber} (índice real {targetIndex}).");
+
+        // Detener batalla actual si existe
+        if (battle != null)
+        {
+            try { battle.EndBattle(); } 
+            catch { Debug.LogWarning("Error al terminar batalla"); }
+        }
+
+        // Cerrar upgrade selection si está abierta
+        if (upgradeSelection != null)
+            upgradeSelection.gameObject.SetActive(false);
+
+        // Apagar sala actual
+        transform.parent.gameObject.SetActive(false);
+
+        // Activar la sala destino
+        GameObject targetObj = rooms[targetIndex];
+        targetObj.SetActive(true);
+
+        RoomController rc = targetObj.GetComponentInChildren<RoomController>(true);
+
+        if (rc != null)
+        {
+            RoomManager.Instance.MarkRoomVisited(rc);
+            rc.EnterRoom();
+        }
+        else
+        {
+            Debug.LogError("[CHEAT] La sala destino no tiene RoomController");
+        }
     }
 }
