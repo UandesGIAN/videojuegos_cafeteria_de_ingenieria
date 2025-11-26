@@ -45,8 +45,8 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        if (string.IsNullOrEmpty(sentence))
-            sentence = "FALTA PONER DIÁLOGO ACÁ...";
+        //if (string.IsNullOrEmpty(sentence))
+            //sentence = "FALTA PONER DIÁLOGO ACÁ...";
 
         // mostrar dialogo!!! 
             // en batalla, siempre habrá un dialogo que mostrar, por lo que no es necesario que texto sea vacío

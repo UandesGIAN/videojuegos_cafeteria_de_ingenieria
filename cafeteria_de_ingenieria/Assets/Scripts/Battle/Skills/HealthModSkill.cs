@@ -36,29 +36,30 @@ public class HealthModSkill : Skill
 
     public override void onRun()
     {
+        // si no se tiene IQ, entonces no se realiza el calculo de amount
+        if (this.userStats.IQ < this.cost)
+        {
+            Debug.Log("No hay IQ suficiente para usar la skill: " + this.skillName);
+            return;
+        }
+
         float amount = this.GetModification();
-        
         Debug.Log($"💊 onRun ejecutado | Amount calculado: {amount:F1} | User: {userStats.fightername} | Target: {targetStats.fightername}");
 
-        if (this.userStats.IQ >= this.cost)
-        {
-            this.userStats.ModifyIQ(-this.cost);
+        // si se tiene IQ, se descuenta el costo de la habilidad a la barra de IQ del usuario
+        this.userStats.ModifyIQ(-this.cost);
             
-            if(this.selfinflicted)
-            {
-                Debug.Log($"   ↳ HEAL aplicado a {targetStats.fightername}: +{amount:F1} HP");
-                this.targetStats.Heal(amount);
-            }
-            else
-            {
-                Debug.Log($"   ↳ DAÑO aplicado a {targetStats.fightername}: {amount:F1} HP");
-                this.targetStats.ReceiveDamage(amount);
-            }
+        if(this.selfinflicted)
+        {
+            Debug.Log($"   ↳ HEAL aplicado a {targetStats.fightername}: +{amount:F1} HP");
+            this.targetStats.Heal(amount);
         }
         else
         {
-            Debug.Log("No hay IQ suficiente para usar la skill: " + this.skillName);
+            Debug.Log($"   ↳ DAÑO aplicado a {targetStats.fightername}: {amount:F1} HP");
+            this.targetStats.ReceiveDamage(amount);
         }
+        
     }
 
     public float GetModification()
@@ -83,15 +84,15 @@ public class HealthModSkill : Skill
         }
     }
     
-    /// Calcula el daño usando la fórmula estilo Pokémon
-    /// Daño = 0.01 × B × E × V × ((0.2 × N + 1) × A × P / (25 × D) + 2)
+    // Calcula el daño usando la fórmula estilo Pokémon
+    // Daño = 0.01 × B × E × V × ((0.2 × N + 1) × A × P / (25 × D) + 2)
     private float CalculatePokemonStyleDamage()
     {
-        Debug.Log($"🔍 Iniciando cálculo Pokémon para {skillName}");
-        Debug.Log($"📌 STATS ANTES DEL CÁLCULO:");
-        Debug.Log($"   User: {userStats.fightername} | Attack: {userStats.attack} | IQattack: {userStats.IQattack} | AttackMult: {userStats.attackMultiplier:F2} | IQAttackMult: {userStats.iqAttackMultiplier:F2}");
-        Debug.Log($"   Target: {targetStats.fightername} | PhysArmor: {targetStats.physicalArmor} | IQArmor: {targetStats.IQArmor}");
-        Debug.Log($"   Skill: AttackCategory={attackCategory}, SkillElement={skillElementType}, Amount={amount}");
+        Debug.Log($"Iniciando cálculo Pokémon para {skillName}");
+        Debug.Log($"STATS ANTES DEL CÁLCULO:");
+        Debug.Log($"\t\tUser: {userStats.fightername} | Attack: {userStats.attack} | IQattack: {userStats.IQattack} | AttackMult: {userStats.attackMultiplier:F2} | IQAttackMult: {userStats.iqAttackMultiplier:F2}");
+        Debug.Log($"\t\tTarget: {targetStats.fightername} | PhysArmor: {targetStats.physicalArmor} | IQArmor: {targetStats.IQArmor}");
+        Debug.Log($"\t\tSkill: AttackCategory={attackCategory}, SkillElement={skillElementType}, Amount={amount}");
         
         // N = Nivel del atacante
         float N = this.userStats.level;
@@ -120,19 +121,19 @@ public class HealthModSkill : Skill
         // V = Variación aleatoria (85-100%)
         float V = useRandomVariation ? Random.Range(85, 101) / 100f : 1.0f;
         
-        Debug.Log($"📊 Valores: N={N}, A={A:F1}, P={P}, D={D}, B={B}, E={E}, V={V:F2}");
+        Debug.Log($"\t\tValores: N={N}, A={A:F1}, P={P}, D={D}, B={B}, E={E}, V={V:F2}");
         
         // Aplicar fórmula Pokémon (sin el 0.01 para que funcione mejor con stats bajos)
         float innerCalc = (0.2f * N + 1) * A * P / (25f * D) + 2;
-        Debug.Log($"📐 Cálculo interno: ((0.2×{N}+1) × {A:F1} × {P} / (25×{D}) + 2) = {innerCalc:F2}");
+        Debug.Log($"\t\tCálculo interno: ((0.2×{N}+1) × {A:F1} × {P} / (25×{D}) + 2) = {innerCalc:F2}");
         
         float baseDamage = B * E * V * innerCalc;
-        Debug.Log($"💥 Daño base: {B} × {E} × {V:F2} × {innerCalc:F2} = {baseDamage:F2}");
+        Debug.Log($"\t\tDaño base: {B} × {E} × {V:F2} × {innerCalc:F2} = {baseDamage:F2}");
         
         // Aplicar multiplicador adicional para balanceo
         float finalDamage = baseDamage * damageMultiplier;
         
-        Debug.Log($"✅ DAÑO FINAL (con multiplicador {damageMultiplier}): {finalDamage:F1}");
+        Debug.Log($"\t\tDAÑO FINAL (con multiplicador {damageMultiplier}): {finalDamage:F1}");
         
         // Asegurar que el daño mínimo sea 1
         return Mathf.Max(finalDamage, 1f);
