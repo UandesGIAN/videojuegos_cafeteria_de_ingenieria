@@ -45,8 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: System Power 11 750W
-  description: Fuente de poder que magicamente incrementa la vida del jugador en
-    30 puntos
+  description: 'Fuente de poder que magico. Sube 30 de Vida Maxima '
   icon: {fileID: 0}
   upgradeType: 0
   bonusAmount: 30

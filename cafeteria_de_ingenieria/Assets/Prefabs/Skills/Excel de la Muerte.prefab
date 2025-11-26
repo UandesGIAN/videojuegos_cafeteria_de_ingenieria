@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: EXCEL DE LA MUERTE
-  description: "Aburre al enemigo con tablas din\xE1micas. Da\xF1o bajo pero muy
-    barato."
+  description: "Aburre al enemigo con tablas din\xE1micas. 15 de Da\xF1o por 5 IQ
+    de Costo. Tipo Normal"
   animationDuration: 1
   animationDelay: 0
   type: 4
@@ -58,7 +58,7 @@ MonoBehaviour:
   useImpactFrame: 0
   impactFrameDuration: 0.1
   amount: 15
-  cost: 2
+  cost: 5
   modType: 0
   attackCategory: 0
   skillElementType: 4

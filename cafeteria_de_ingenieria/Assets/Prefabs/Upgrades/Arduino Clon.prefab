@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: Arduino Clon
-  description: "Versi\xF3n china y barata, pero funciona igual."
+  description: "Versi\xF3n china y barata, pero funciona igual. Sube 15 de IQ"
   icon: {fileID: 0}
   upgradeType: 1
   bonusAmount: 15

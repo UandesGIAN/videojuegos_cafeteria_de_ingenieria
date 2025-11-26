@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb874a6a8356994aba88641cfe649f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeName: "Poler\xF3n de Generaci\xF3n"
+  upgradeName: Silla Gamer
   description: Soporte lumbar de calidad para aguantar largas sesiones de combate.
+    Sube 30 de Defensa Fisica
   icon: {fileID: 0}
   upgradeType: 5
-  bonusAmount: 15
+  bonusAmount: 30

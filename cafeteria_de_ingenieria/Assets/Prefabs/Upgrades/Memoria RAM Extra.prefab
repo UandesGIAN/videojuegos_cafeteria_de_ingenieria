@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: Memoria RAM Extra
-  description: Ahora puedes procesar dos pensamientos a la vez.
+  description: Ahora puedes procesar dos pensamientos a la vez. Sube 25 de IQ
   icon: {fileID: 0}
   upgradeType: 1
   bonusAmount: 25

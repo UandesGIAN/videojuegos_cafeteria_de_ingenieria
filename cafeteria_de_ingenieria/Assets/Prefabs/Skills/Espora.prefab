@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: ESPORA
-  description: "Infecta al enemigo con E. Coli. Costo de 20 IQ. 30 de da\xF1o base."
+  description: "Infecta al enemigo con E. Coli. Costo de 20 IQ. 30 de da\xF1o base.
+    Tipo Planta"
   animationDuration: 2
   animationDelay: 0
   type: 5

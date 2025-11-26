@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "PUTREFACCI\xD3N"
   description: "Contamina al enemigo con agua estancada. Costo de 15 IQ. 15 de da\xF1o
-    base."
+    base. Tipo Agua."
   animationDuration: 1
   animationDelay: 0
   type: 0

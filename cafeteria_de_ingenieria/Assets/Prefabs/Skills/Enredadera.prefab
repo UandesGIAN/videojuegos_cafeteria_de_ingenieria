@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: ENREDADERA
-  description: Las plantas del patio cobran venganza por falta de riego. Apreta fuerte.
+  description: "Las plantas del patio cobran venganza por falta de riego. Apreta
+    fuerte. 35 de Da\xF1o por 15 IQ de Costo. Tipo Planta"
   animationDuration: 2
   animationDelay: 0
   type: 5

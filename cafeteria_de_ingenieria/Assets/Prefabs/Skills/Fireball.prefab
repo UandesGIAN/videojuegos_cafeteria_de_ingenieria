@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: Fireball
-  description: 
+  description: "Lanza una bola de fuego. 60 de Da\xF1o por 20 IQ de Costo. Tipo Fuego"
   animationDuration: 1
   animationDelay: 2
   type: 3

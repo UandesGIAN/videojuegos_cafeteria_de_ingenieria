@@ -56,4 +56,4 @@ MonoBehaviour:
   impactFrameDuration: 0.1
   statType: 0
   modificationAmount: 100
-  modType: 0
+  modType: 1

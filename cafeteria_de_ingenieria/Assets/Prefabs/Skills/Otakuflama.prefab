@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: OTAKUFLAMA
   description: "Quema los ojos del enemigo con un dibujo de anime. Costo de 10 IQ.
-    20 de da\xF1o base."
+    20 de da\xF1o base. Tipo Fuego"
   animationDuration: 1
   animationDelay: 2
   type: 3

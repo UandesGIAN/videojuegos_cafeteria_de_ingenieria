@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: Mochila Ergonomica
-  description: Distribuye mejor el peso de los libros. Tu espalda lo agradece.
+  description: Distribuye mejor el peso de los libros. Tu espalda lo agradece. Sube
+    20 la Vida Maxima
   icon: {fileID: 0}
   upgradeType: 0
   bonusAmount: 20

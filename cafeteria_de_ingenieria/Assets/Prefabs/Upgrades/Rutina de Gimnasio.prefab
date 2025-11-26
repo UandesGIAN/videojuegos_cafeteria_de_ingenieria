@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: Rutina de Gimnasio
-  description: Decidiste dejar de ser sedentario. Te sientes rocoso.
+  description: Decidiste dejar de ser sedentario. Te sientes rocoso. Sube 25 de Vida
+    Maxima
   icon: {fileID: 0}
   upgradeType: 0
   bonusAmount: 25

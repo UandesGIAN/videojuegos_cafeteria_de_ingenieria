@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: DERRAME QUIMICO
-  description: "Se rompi\xF3 una probeta con un l\xEDquido sospechoso de color ne\xF3n."
+  description: "Se rompi\xF3 una probeta con un l\xEDquido sospechoso de color ne\xF3n.
+    40 de Da\xF1o por 15 IQ de Costo. Tipo Agua"
   animationDuration: 1
   animationDelay: 0
   type: 0

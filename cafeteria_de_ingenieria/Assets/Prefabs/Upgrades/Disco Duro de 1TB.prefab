@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Disco Duro de 1TB
   description: Espacio de sobra para respaldar trabajos y "material de estudio".
+    Sube 20 de IQ
   icon: {fileID: 0}
   upgradeType: 1
   bonusAmount: 20

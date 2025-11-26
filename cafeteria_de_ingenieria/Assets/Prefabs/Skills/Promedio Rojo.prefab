@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8766ceed7cca036448b6a9ccc8f53ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: EXCEL DE LA MUERTE
-  description: "Aburre al enemigo con tablas din\xE1micas. Da\xF1o bajo pero muy
-    barato."
+  skillName: PROMEDIO ROJO
+  description: "Invoca el p\xE1nico de fin de semestre. Lanza una lluvia de notas
+    3.0 que desmoralizan al oponente. 50 de Da\xF1o por 25 IQ de Costo. Tipo Normal."
   animationDuration: 1
   animationDelay: 0
   type: 4

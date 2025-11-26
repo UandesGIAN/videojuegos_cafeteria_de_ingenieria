@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: Zapatillas de Running
-  description: Ideales para correr entre clases (o huir de los problemas).
+  description: Ideales para correr entre clases (o huir de los problemas). Sube 28
+    de Defensa
   icon: {fileID: 0}
   upgradeType: 3
-  bonusAmount: 7
+  bonusAmount: 28

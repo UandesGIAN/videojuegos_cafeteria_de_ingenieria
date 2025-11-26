@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: PENDRIVE CON LA TESIS
-  description: "Contiene todo tu conocimiento. Potencia tu mente al m\xE1ximo."
+  description: "Contiene todo tu conocimiento. Potencia tu mente al m\xE1ximo. Te
+    devuelve el 50% de tu IQ"
   icon: {fileID: 0}
   effectPrefab: {fileID: 5824670795371433373, guid: 7beabc7d02ee1614caaa124face3a433, type: 3}
   itemSound: {fileID: 8300000, guid: e782816f6b95e4b2ea3eff9678a91cf4, type: 3}

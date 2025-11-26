@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: Portaminas 0.5mm
-  description: "Precisi\xF3n letal para pinchar enemigos."
+  description: "Precisi\xF3n letal para pinchar enemigos. Sube 10 de Ataque"
   icon: {fileID: 0}
   upgradeType: 2
-  bonusAmount: 5
+  bonusAmount: 10

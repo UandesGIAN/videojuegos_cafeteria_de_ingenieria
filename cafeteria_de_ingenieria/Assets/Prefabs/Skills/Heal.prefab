@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: Heal
-  description: Cura 20 HP a cambio de 30 IQ
+  description: Cura 20 HP a cambio de 15 IQ. Tipo Normal
   animationDuration: 1
   animationDelay: 0
   type: 4

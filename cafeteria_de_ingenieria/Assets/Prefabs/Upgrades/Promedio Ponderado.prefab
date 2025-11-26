@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: Promedio Ponderado
-  description: "Un buen promedio te protege de la eliminaci\xF3n acad\xE9mica y f\xEDsica."
+  description: "Un buen promedio te protege de la eliminaci\xF3n acad\xE9mica y f\xEDsica.
+    Sube 16 de Defensa"
   icon: {fileID: 0}
   upgradeType: 3
-  bonusAmount: 8
+  bonusAmount: 16
