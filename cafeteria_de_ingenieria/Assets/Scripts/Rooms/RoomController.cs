@@ -19,6 +19,8 @@ public class RoomController : MonoBehaviour
     private Button[] roomButtons = new Button[0];
     private bool nextRoomsInitialized = false;
 
+    [Header("Música exclusiva de la batalla")]
+    public AudioClip customBattleMusic;
 
     // para cheats
     private string cheatBuffer = "";
@@ -131,7 +133,10 @@ public class RoomController : MonoBehaviour
             // Cambiar a música de batalla en la primera room con combate
             if (MusicManager.Instance != null)
             {
-                MusicManager.Instance.PlayBattleMusic();
+                if (customBattleMusic != null)
+                    MusicManager.Instance.PlayCustomMusic(customBattleMusic, "Custom Battle Music");
+                else
+                    MusicManager.Instance.PlayBattleMusic();
             }
 
             battle.Start(); // para que agarre bien el enemy y player
@@ -160,6 +165,16 @@ public class RoomController : MonoBehaviour
         {
             MusicManager.Instance.PlayMenuMusic();
         }
+
+        int roomIndex = RoomManager.Instance.allRoomObjects.IndexOf(transform.parent.gameObject);
+
+        if (roomIndex == 18)  // Si es la sala final, entonces muestra el final
+        {
+            Debug.Log("[ROOM] Completaste la sala 18, enviando a la FINAL.");
+            RoomManager.Instance.ShowFinalScene();
+            return;
+        }
+
         
         // Activar selección de mejoras
         if (upgradeSelection != null)

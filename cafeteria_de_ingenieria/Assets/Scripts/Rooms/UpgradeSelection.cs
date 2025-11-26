@@ -102,10 +102,10 @@ public class UpgradeSelection : MonoBehaviour
                 }
             }
 
-            // Cancelar con ESC
-            if (Input.GetKeyDown(KeyCode.Escape))
+            // Cancelar con ESC o click derecho
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
             {
-                Debug.Log("UpgradeSelection: reemplazo cancelado por ESC");
+                Debug.Log("UpgradeSelection: reemplazo cancelado por ");
                 waitingForSkillReplace = false;
 
                 // Habilitar botones de nuevo

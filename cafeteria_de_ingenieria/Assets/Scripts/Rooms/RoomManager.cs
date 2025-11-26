@@ -109,4 +109,20 @@ public class RoomManager : MonoBehaviour
 
         Debug.Log("RoomManager: Cargando sala de GAME OVER.");
     }
+
+    public void ShowFinalScene()
+    {
+        int finalSceneIndex = allRoomObjects.Count -1;
+
+        // Apagar TODAS las salas
+        for (int i = 0; i < allRoomObjects.Count; i++)
+        {
+            allRoomObjects[i].SetActive(i == finalSceneIndex);
+        }
+
+        // Actualizar índice
+        currentRoomIndex = finalSceneIndex;
+
+        Debug.Log("RoomManager: Cargando ESCENA FINAL.");
+    }
 }

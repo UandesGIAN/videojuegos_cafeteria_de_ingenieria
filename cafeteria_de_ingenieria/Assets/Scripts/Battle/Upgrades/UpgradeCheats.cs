@@ -33,14 +33,14 @@ public class StatCheats : MonoBehaviour
         if (Input.GetKey(KeyCode.I) &&
             Input.GetKeyDown(KeyCode.A))
         {
-            AddIQArmor(20);
+            AddIQArmor(1);
         }
 
         // PhysicalArmor +20 → A + R
         if (Input.GetKey(KeyCode.R) &&
             Input.GetKeyDown(KeyCode.A))
         {
-            AddPhysicalArmor(20);
+            AddPhysicalArmor(1);
         }
     }
 

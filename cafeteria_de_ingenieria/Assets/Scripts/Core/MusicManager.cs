@@ -75,6 +75,11 @@ public class MusicManager : MonoBehaviour
     {
         PlayMusic(gameOverMusic, "Game Over Music");
     }
+
+    public void PlayCustomMusic(AudioClip customClip, string name = "Custom Music")
+    {
+        PlayMusic(customClip, name);
+    }
     
     /// Detiene la música con fade out
     public void StopMusic()

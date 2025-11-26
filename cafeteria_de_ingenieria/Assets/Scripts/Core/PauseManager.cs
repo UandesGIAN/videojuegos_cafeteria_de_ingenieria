@@ -200,7 +200,7 @@ public class PauseManager : MonoBehaviour
     private void UpdateEnemyInfo()
     {
         // Busca el BattleManager activo
-        BattleManager activeBattle = FindObjectsOfType<BattleManager>().FirstOrDefault(b => b.isActiveAndEnabled && b.gameObject.activeInHierarchy);
+        BattleManager activeBattle = FindObjectsByType<BattleManager>(FindObjectsSortMode.None).FirstOrDefault(b => b.isActiveAndEnabled && b.gameObject.activeInHierarchy);
 
         if (activeBattle == null || activeBattle.enemy == null)
         {

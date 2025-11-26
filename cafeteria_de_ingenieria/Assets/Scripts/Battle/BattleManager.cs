@@ -29,6 +29,9 @@ public class BattleManager : MonoBehaviour
     private Action onBattleEnd;
     private bool battleActive = false;
     private bool gameOverTriggered = false;
+
+    // Para batalla final
+    public bool blockHandleEnemyDeath = false;
     
 
     public void Start()
@@ -105,11 +108,12 @@ public class BattleManager : MonoBehaviour
 
     void Update()
     {
-        // Cerrar popup con ESC
-        if (Input.GetKeyDown(KeyCode.Escape))
+        // Cerrar popup con ESC o click derecho
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
         {
             if (ui.skillPopup.activeSelf)
                 ui.skillPopup.SetActive(false);
+
             if (ui.itemPopup.activeSelf)
                 ui.itemPopup.SetActive(false);
         }
@@ -131,7 +135,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private void SetupUI()
+    public void SetupUI()
     {
         // quitar suscripciones previas porsiacaso
         ui.OnSkillSelected -= ExecuteSkill;
@@ -455,14 +459,21 @@ public class BattleManager : MonoBehaviour
             ui.skillPopup.SetActive(false);
     }
 
-    private void OnEnemyDeath(FighterStats deadEnemy)
+    public virtual void OnEnemyDeath(FighterStats deadEnemy)
     {
+        if (blockHandleEnemyDeath)
+        {
+            Debug.Log("[BattleManager] EnemyDeath bloqueado (fase especial)");
+            return;
+        }
+
         if (!gameObject.activeInHierarchy)
-            gameObject.SetActive(true); 
+            gameObject.SetActive(true);
+
         CoroutineRunner.Instance.StartCoroutine(HandleEnemyDeath(deadEnemy));
     }
 
-    private IEnumerator HandleEnemyDeath(FighterStats deadEnemy)
+    protected IEnumerator HandleEnemyDeath(FighterStats deadEnemy)
     {
         Debug.Log("Enemigo muerto: " + deadEnemy.fightername);
 
