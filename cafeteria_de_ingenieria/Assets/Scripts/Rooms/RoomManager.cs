@@ -122,6 +122,13 @@ public class RoomManager : MonoBehaviour
 
         // Actualizar índice
         currentRoomIndex = finalSceneIndex;
+        
+        // Reproducir música de victoria
+        if (MusicManager.Instance != null)
+        {
+            MusicManager.Instance.PlayVictoryMusic();
+            Debug.Log("RoomManager: Reproduciendo música de victoria");
+        }
 
         Debug.Log("RoomManager: Cargando ESCENA FINAL.");
     }

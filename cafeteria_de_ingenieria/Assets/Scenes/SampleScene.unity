@@ -9215,6 +9215,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuMusic: {fileID: 8300000, guid: 07e437ceee4cf0548916ee17f33a4be3, type: 3}
   battleMusic: {fileID: 8300000, guid: 9fad72a768ef87c41a43e3695b892b6a, type: 3}
+  finalBattlePhase1Music: {fileID: 8300000, guid: fbdfed13aca617a4fb154225353e3e8c, type: 3}
+  finalBattlePhase2Music: {fileID: 8300000, guid: 31dbba80b64517a449341a8b65fd58d9, type: 3}
+  victoryMusic: {fileID: 8300000, guid: 005e499802a783848bf612c1db9904ea, type: 3}
   gameOverMusic: {fileID: 8300000, guid: aa4e226f4ddbf5d47900ac09bef565c4, type: 3}
   volume: 0.7
   pausedVolume: 0.3
@@ -36669,7 +36672,6 @@ MonoBehaviour:
   blockHandleEnemyDeath: 0
   phase1Enemy: {fileID: 923456241}
   phase2Enemy: {fileID: 336147995}
-  customBattleMusic: {fileID: 8300000, guid: 9fad72a768ef87c41a43e3695b892b6a, type: 3}
 --- !u!1 &2104489491
 GameObject:
   m_ObjectHideFlags: 0

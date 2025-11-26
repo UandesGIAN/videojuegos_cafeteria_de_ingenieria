@@ -130,13 +130,28 @@ public class RoomController : MonoBehaviour
         {
             Debug.Log($"[RoomController: {transform.parent.gameObject}] Iniciando batalla...");
             
-            // Cambiar a música de batalla en la primera room con combate
+            // Obtener índice de la sala actual
+            int roomIndex = RoomManager.Instance.allRoomObjects.IndexOf(transform.parent.gameObject);
+            
+            // Cambiar música de batalla según la sala
             if (MusicManager.Instance != null)
             {
-                if (customBattleMusic != null)
+                // Si es la sala 18 (batalla final), usar música de batalla final Fase 1
+                if (roomIndex == 18)
+                {
+                    MusicManager.Instance.PlayFinalBattlePhase1Music();
+                    Debug.Log("[RoomController] Reproduciendo música de batalla final - Fase 1");
+                }
+                // Si tiene música personalizada asignada, usarla
+                else if (customBattleMusic != null)
+                {
                     MusicManager.Instance.PlayCustomMusic(customBattleMusic, "Custom Battle Music");
+                }
+                // Si no, usar música de batalla normal
                 else
+                {
                     MusicManager.Instance.PlayBattleMusic();
+                }
             }
 
             battle.Start(); // para que agarre bien el enemy y player
