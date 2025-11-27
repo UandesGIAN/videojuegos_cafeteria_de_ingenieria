@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2060144229594482321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2044263133746410286}
+  - component: {fileID: 2198032776083643941}
+  m_Layer: 0
+  m_Name: Distorsion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2044263133746410286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060144229594482321}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2198032776083643941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060144229594482321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8766ceed7cca036448b6a9ccc8f53ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: "DISTORSI\xD3N"
+  description: "Modifica el campo magn\xE9tico del enemigo. 20 de Da\xF1o por 10
+    IQ de Costo. Tipo Electronico"
+  animationDuration: 1
+  animationDelay: 0
+  type: 2
+  icon: {fileID: 0}
+  selfinflicted: 0
+  effectPrefab: {fileID: 9027514048236820045, guid: effb650189dc5714e9e9801b1cfb3991, type: 3}
+  skillSound: {fileID: 8300000, guid: 1ce48c6a315fd374b9cb49f215bfe1a0, type: 3}
+  soundVolume: 1
+  useImpactFrame: 0
+  impactFrameDuration: 0
+  amount: 20
+  cost: 10
+  modType: 0
+  attackCategory: 1
+  skillElementType: 4
+  useRandomVariation: 1
+  damageMultiplier: 1
