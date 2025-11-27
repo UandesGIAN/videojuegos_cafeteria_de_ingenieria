@@ -45,8 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: "Beca de Alimentaci\xF3n"
-  description: "Comida casera con amor que fortalece el coraz\xF3n. Sube 15 de Vida
-    Maxima"
+  description: Comida mediocre que logra llenarte el estomago. Sube 50 de Vida Maxima
   icon: {fileID: 0}
   upgradeType: 0
-  bonusAmount: 15
+  bonusAmount: 50
