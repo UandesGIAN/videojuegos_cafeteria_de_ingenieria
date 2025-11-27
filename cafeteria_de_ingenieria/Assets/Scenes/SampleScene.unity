@@ -35549,7 +35549,7 @@ MonoBehaviour:
   salir_text: {fileID: 1520056149}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  manualURL: url
+  manualURL: https://drive.google.com/file/d/1bM8ky6atnD07V7dYeDOKUOBehE-2rx4I/view
 --- !u!1 &2054857570
 GameObject:
   m_ObjectHideFlags: 0
