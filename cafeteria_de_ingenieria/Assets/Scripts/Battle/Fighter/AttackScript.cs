@@ -183,7 +183,7 @@ public class AttackScript : MonoBehaviour
             // Destruir después de la duración de la animación
             Destroy(effectInstance, animationDuration);
             
-            Debug.Log($"🎨 Efecto visual melee '{meleeEffectPrefab.name}' reproducido en posición {selectedOffset}");
+            Debug.Log($"Efecto visual melee '{meleeEffectPrefab.name}' reproducido en posición {selectedOffset}");
         }
     }
     
@@ -217,7 +217,7 @@ public class AttackScript : MonoBehaviour
             // Reproducir sonido en la posición de la cámara
             AudioSource.PlayClipAtPoint(meleeAttackSound, Camera.main.transform.position, soundVolume);
             
-            Debug.Log($"🔊 Sonido melee '{meleeAttackSound.name}' reproducido");
+            Debug.Log($"Sonido melee '{meleeAttackSound.name}' reproducido");
         }
     }
     
@@ -238,7 +238,7 @@ public class AttackScript : MonoBehaviour
             // Restaurar el tiempo
             Time.timeScale = originalTimeScale;
             
-            Debug.Log($"⏸️ Impact frame de {impactFrameDuration}s aplicado en ataque melee");
+            Debug.Log($"Impact frame de {impactFrameDuration}s aplicado en ataque melee");
         }
     }
 }

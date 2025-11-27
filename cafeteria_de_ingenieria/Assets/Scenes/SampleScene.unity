@@ -9218,7 +9218,7 @@ MonoBehaviour:
   finalBattlePhase1Music: {fileID: 8300000, guid: fbdfed13aca617a4fb154225353e3e8c, type: 3}
   finalBattlePhase2Music: {fileID: 8300000, guid: 31dbba80b64517a449341a8b65fd58d9, type: 3}
   victoryMusic: {fileID: 8300000, guid: 005e499802a783848bf612c1db9904ea, type: 3}
-  gameOverMusic: {fileID: 8300000, guid: aa4e226f4ddbf5d47900ac09bef565c4, type: 3}
+  gameOverMusic: {fileID: 8300000, guid: 38768fd31e6781e46b0e94547d2a70fc, type: 3}
   volume: 0.7
   pausedVolume: 0.3
   fadeDuration: 1
@@ -27340,7 +27340,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6480746518047023025, guid: 92f78a2749e188546bcb16f38d6e938c, type: 3}
+  m_Sprite: {fileID: -3885872257570108716, guid: f99db04016f20264a9692f320218b062, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

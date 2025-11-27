@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class StatCheats : MonoBehaviour
 {
@@ -7,6 +9,19 @@ public class StatCheats : MonoBehaviour
     void Update()
     {
         if (player == null) return;
+
+        // BACKSPACE = Reiniciar juego
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            StartCoroutine(RestartGame());
+        }
+
+        // SHIFT + X = Cerrar juego
+        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) &&
+            Input.GetKeyDown(KeyCode.X))
+        {
+            QuitGame();
+        }
 
         // Health +20: Ctrl + H
         if (Input.GetKey(KeyCode.LeftControl) &&
@@ -87,4 +102,23 @@ public class StatCheats : MonoBehaviour
         Debug.Log($"CHEAT: +{amount} armadura física");
         player.PrintStats();
     }
+
+    // VOLVER AL MENU PRINCIPAL
+    private IEnumerator RestartGame()
+    {
+        yield return null;
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
+    }
+
+    // SALIR DEL JUEGO
+    private void QuitGame()
+    {
+    #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+    #else
+            Application.Quit();
+    #endif
+        }
 }
+

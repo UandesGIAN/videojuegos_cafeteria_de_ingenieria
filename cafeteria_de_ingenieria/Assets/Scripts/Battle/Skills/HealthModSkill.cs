@@ -44,19 +44,19 @@ public class HealthModSkill : Skill
         }
 
         float amount = this.GetModification();
-        Debug.Log($"💊 onRun ejecutado | Amount calculado: {amount:F1} | User: {userStats.fightername} | Target: {targetStats.fightername}");
+        Debug.Log($"onRun ejecutado | Amount calculado: {amount:F1} | User: {userStats.fightername} | Target: {targetStats.fightername}");
 
         // si se tiene IQ, se descuenta el costo de la habilidad a la barra de IQ del usuario
         this.userStats.ModifyIQ(-this.cost);
             
         if(this.selfinflicted)
         {
-            Debug.Log($"   ↳ HEAL aplicado a {targetStats.fightername}: +{amount:F1} HP");
+            Debug.Log($"   HEAL aplicado a {targetStats.fightername}: +{amount:F1} HP");
             this.targetStats.Heal(amount);
         }
         else
         {
-            Debug.Log($"   ↳ DAÑO aplicado a {targetStats.fightername}: {amount:F1} HP");
+            Debug.Log($"   DAÑO aplicado a {targetStats.fightername}: {amount:F1} HP");
             this.targetStats.ReceiveDamage(amount);
         }
         
