@@ -367,7 +367,7 @@ PrefabInstance:
       objectReference: {fileID: -2502095640950293308, guid: 75656f4381a1eb64982559f104b671ca, type: 3}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: attack
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: health
@@ -885,7 +885,7 @@ PrefabInstance:
       objectReference: {fileID: -3271193679842419918, guid: e4e6002ca4970fd4e849e22d20057c4f, type: 3}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: attack
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: health
@@ -2396,7 +2396,7 @@ PrefabInstance:
       objectReference: {fileID: -9107610676692984975, guid: c97a2d75aeedc1e44a0aae757f59107e, type: 3}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: attack
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: health
@@ -4938,7 +4938,7 @@ PrefabInstance:
       objectReference: {fileID: 2001164444788678079, guid: 7b4ce39b1e0803c42a6d38cd6e038020, type: 3}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: attack
-      value: 50
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: health
@@ -5776,6 +5776,10 @@ PrefabInstance:
       propertyPath: img
       value: 
       objectReference: {fileID: -7717754430870544301, guid: 49e7976a535d8194c98106482a029630, type: 3}
+    - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
+      propertyPath: attack
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: startIQ
       value: 0
@@ -7004,12 +7008,12 @@ MonoBehaviour:
   elementType: 6
   health: 280
   IQ: 50
-  startHealth: 280
-  startIQ: 50
+  startHealth: 500
+  startIQ: 500
   attack: 40
-  IQattack: 0
+  IQattack: 30
   physicalArmor: 20
-  IQArmor: 2
+  IQArmor: 10
   experience: 0
   level: 1
   fighterHierarchy: 1
@@ -8075,7 +8079,7 @@ PrefabInstance:
       objectReference: {fileID: 6388894698153106391, guid: 8c37e71587483f04dabdb27c09aac5bf, type: 3}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: attack
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: health
@@ -10416,11 +10420,11 @@ MonoBehaviour:
   health: 280
   IQ: 50
   startHealth: 280
-  startIQ: 50
-  attack: 40
-  IQattack: 0
-  physicalArmor: 20
-  IQArmor: 2
+  startIQ: 160
+  attack: 60
+  IQattack: 20
+  physicalArmor: 15
+  IQArmor: 6
   experience: 0
   level: 1
   fighterHierarchy: 1
@@ -15959,7 +15963,7 @@ PrefabInstance:
       objectReference: {fileID: -6893022649382802737, guid: e4ef795e437dc5442a4a377590bd0a3c, type: 3}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: attack
-      value: 50
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: health
@@ -16310,12 +16314,12 @@ MonoBehaviour:
   elementType: 6
   health: 280
   IQ: 50
-  startHealth: 280
-  startIQ: 50
-  attack: 40
-  IQattack: 0
+  startHealth: 300
+  startIQ: 200
+  attack: 60
+  IQattack: 30
   physicalArmor: 20
-  IQArmor: 2
+  IQArmor: 10
   experience: 0
   level: 1
   fighterHierarchy: 1
@@ -18834,6 +18838,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -6083532255705336351, guid: 56ec171bbe1f47640a6716308cefdc63, type: 3}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
+      propertyPath: attack
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: health
       value: 150
       objectReference: {fileID: 0}
@@ -19405,11 +19413,11 @@ MonoBehaviour:
   health: 280
   IQ: 50
   startHealth: 280
-  startIQ: 50
-  attack: 40
-  IQattack: 0
+  startIQ: 200
+  attack: 70
+  IQattack: 30
   physicalArmor: 20
-  IQArmor: 2
+  IQArmor: 8
   experience: 0
   level: 1
   fighterHierarchy: 1
@@ -24367,7 +24375,7 @@ PrefabInstance:
       objectReference: {fileID: -2683128020985967336, guid: e7e27b425dc7e3141aa0f2bc05b1603a, type: 3}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: attack
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: health
@@ -26089,7 +26097,7 @@ PrefabInstance:
       objectReference: {fileID: 7074447374885318651, guid: acdfc5e90f7ee794ab8b87017e454ba7, type: 3}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: attack
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: health
@@ -32018,11 +32026,11 @@ MonoBehaviour:
   health: 280
   IQ: 50
   startHealth: 280
-  startIQ: 50
-  attack: 40
-  IQattack: 0
-  physicalArmor: 20
-  IQArmor: 2
+  startIQ: 150
+  attack: 50
+  IQattack: 10
+  physicalArmor: 10
+  IQArmor: 6
   experience: 0
   level: 1
   fighterHierarchy: 1
@@ -33166,7 +33174,7 @@ PrefabInstance:
       objectReference: {fileID: 6558186054718601985, guid: fab44ec2851eff046b6211ed386f97ab, type: 3}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: attack
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: health
