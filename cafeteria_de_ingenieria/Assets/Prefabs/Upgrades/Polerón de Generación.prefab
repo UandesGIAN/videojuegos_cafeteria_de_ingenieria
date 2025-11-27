@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: "Poler\xF3n de Generaci\xF3n"
   description: Te da sentido de pertenencia y una capa extra de tela barata. Sube
-    16 de Defensa Fisica
+    10 de Defensa Fisica
   icon: {fileID: 0}
   upgradeType: 5
-  bonusAmount: 16
+  bonusAmount: 10

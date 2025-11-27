@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: "T\xE9cnica Pomodoro"
   description: Estudiar 25 minutos, descansar 5. Optimiza tu resistencia mental.
-    Sube 12 de Defensa de IQ
+    Sube 5 de Defensa de IQ
   icon: {fileID: 0}
   upgradeType: 4
-  bonusAmount: 12
+  bonusAmount: 5

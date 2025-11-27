@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: "Aud\xEDfonos Noise Cancelling"
   description: "Te a\xEDsla del ruido ambiente y de las quejas de los mechones. Sube
-    10 de Defensa IQ"
+    4 de Defensa IQ"
   icon: {fileID: 0}
   upgradeType: 4
-  bonusAmount: 10
+  bonusAmount: 4
