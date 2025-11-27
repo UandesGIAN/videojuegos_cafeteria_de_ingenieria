@@ -13,7 +13,7 @@ public class MainMenuController : MonoBehaviour
     public Color hoverColor = Color.yellow;
 
     [Header("URL del Manual de Instrucciones")]
-    public string manualURL = "url";
+    public string manualURL = "https://drive.google.com/file/d/1bM8ky6atnD07V7dYeDOKUOBehE-2rx4I/view?usp=sharing";
 
     private int selectedIndex = 0;
     private TextMeshProUGUI[] options;
