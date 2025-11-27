@@ -1,8 +1,22 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Linq;
+
 
 public class MouseDebug : MonoBehaviour
 {
+    public UpgradeSelection upgradeSelection;
+
+    void Awake()
+    {
+        if (upgradeSelection == null)
+        {
+            upgradeSelection = FindObjectOfType<UpgradeSelection>();
+            if (upgradeSelection == null)
+                Debug.LogWarning("⚠ No se encontró UpgradeSelection en la escena.");
+        }
+    }
+    
     void OnGUI()
     {
         // Crea un estilo de texto grande para verlo bien en el build
@@ -41,6 +55,27 @@ public class MouseDebug : MonoBehaviour
             message += "Hit: NADA (o Raycast bloqueado)";
         }
 
+        message += GetRewardsDebug();
+
         GUI.Label(new Rect(20, 20, 500, 500), message, style);
+    }
+
+    string GetRewardsDebug()
+    {
+        if (upgradeSelection == null)
+            return "\n(UpgradeSelection no asignado)\n";
+
+        var all = upgradeSelection.GetAllPossibleRewards().ToList();
+
+        int skillCount = all.Count(r => r.type == UpgradeSelection.Reward.RewardType.Skill);
+        int itemCount = all.Count(r => r.type == UpgradeSelection.Reward.RewardType.Item);
+        int upgradeCount = all.Count(r => r.type == UpgradeSelection.Reward.RewardType.Upgrade);
+
+        return
+            "\n--- Rewards Disponibles ---\n" +
+            $"Skills: {skillCount}\n" +
+            $"Items: {itemCount}\n" +
+            $"Upgrades: {upgradeCount}\n" +
+            $"Total: {all.Count}\n";
     }
 }

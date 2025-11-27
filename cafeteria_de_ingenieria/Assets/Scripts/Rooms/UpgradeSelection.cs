@@ -216,7 +216,7 @@ public class UpgradeSelection : MonoBehaviour
         }
     }
 
-    private List<Reward> GetAllPossibleRewards()
+    public List<Reward> GetAllPossibleRewards()
     {
         List<Reward> allRewards = new List<Reward>();
 
