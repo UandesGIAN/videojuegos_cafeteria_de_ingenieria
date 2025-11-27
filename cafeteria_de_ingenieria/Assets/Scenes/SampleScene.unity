@@ -5866,6 +5866,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 2406891601877397321, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1810333061
+      objectReference: {fileID: 0}
     - target: {fileID: 2728234973657754203, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: m_text
       value: 'Exterior frontal
@@ -5888,6 +5892,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 3406682972649612554, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -783553519
+      objectReference: {fileID: 0}
     - target: {fileID: 4000519326411055831, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: ui
       value: 
@@ -17454,6 +17462,50 @@ MonoBehaviour:
   itemPoolContainer: {fileID: 227102480}
   player: {fileID: 1479219018}
   battleUI: {fileID: 2090108967}
+--- !u!1 &1006855981
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1006855983}
+  - component: {fileID: 1006855982}
+  m_Layer: 0
+  m_Name: MouseDebugger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1006855982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006855981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3308f729d2389489ddc81d02de6e97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1006855983
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006855981}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.03987, y: 0.52487, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1007895223
 GameObject:
   m_ObjectHideFlags: 0
@@ -18959,6 +19011,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 2406891601877397321, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1810333061
+      objectReference: {fileID: 0}
     - target: {fileID: 2728234973657754203, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: m_text
       value: 'Pasillo
@@ -18989,6 +19045,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 3406682972649612554, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -783553519
+      objectReference: {fileID: 0}
     - target: {fileID: 4000519326411055831, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: ui
       value: 
@@ -25122,7 +25182,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1165920743
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1 &1458889322
@@ -36333,7 +36393,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1411298671
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1 &2090108965
@@ -36997,7 +37057,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -783553519
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1 &2107433846
@@ -37580,3 +37640,4 @@ SceneRoots:
   - {fileID: 779209902}
   - {fileID: 1007895224}
   - {fileID: 1337864684}
+  - {fileID: 1006855983}
