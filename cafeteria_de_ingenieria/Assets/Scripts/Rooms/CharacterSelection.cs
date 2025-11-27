@@ -65,7 +65,7 @@ public class CharacterSelection : MonoBehaviour
                 new CharacterData(
                 "BORJA",
                 ElementType.CEMENTO,
-                220, 150, 10, 15, 8, 4, initialSkills[0]
+                220, 110, 10, 15, 8, 4, initialSkills[0]
                 )
             },
             {
@@ -73,7 +73,7 @@ public class CharacterSelection : MonoBehaviour
                 new CharacterData(
                     "VICE",
                     ElementType.PLANTA,
-                    170, 140, 20, 18, 6, 3, initialSkills[1]
+                    170, 120, 20, 18, 6, 3, initialSkills[1]
                 )
             },
             {
@@ -81,7 +81,7 @@ public class CharacterSelection : MonoBehaviour
                 new CharacterData(
                     "GIAN",
                     ElementType.ELECTRONICO,
-                    150, 110, 20, 25, 5, 7, initialSkills[2] 
+                    150, 150, 20, 25, 5, 7, initialSkills[2] 
                 )
             },
             {
@@ -97,7 +97,7 @@ public class CharacterSelection : MonoBehaviour
                 new CharacterData(
                     "LUCAS",
                     ElementType.AGUA,
-                    200, 120, 20, 20, 4, 6, initialSkills[4] 
+                    200, 140, 20, 20, 4, 6, initialSkills[4] 
                 )
             }
         };
