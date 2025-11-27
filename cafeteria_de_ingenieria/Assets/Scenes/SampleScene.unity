@@ -5801,101 +5801,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 779209902}
     m_Modifications:
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: IQ
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: img
-      value: 
-      objectReference: {fileID: -7717754430870544301, guid: 49e7976a535d8194c98106482a029630, type: 3}
-    - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: attack
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: startIQ
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: battleUI
       value: 
       objectReference: {fileID: 2090108967}
     - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: elementType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: fightername
-      value: Ambiental fumao
-      objectReference: {fileID: 0}
-    - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: healthBarObject
       value: 
       objectReference: {fileID: 1190189886}
-    - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: dialogueOnDefeat
-      value: "Te la ver\xE1s con la Jefa!"
-      objectReference: {fileID: 0}
-    - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: dialogueOnMidHealth
-      value: "No podr\xE1s con mi super-ataque."
-      objectReference: {fileID: 0}
-    - target: {fileID: 59557652743169958, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: dialogueOnBattleStart
-      value: Eres un menso!
-      objectReference: {fileID: 0}
-    - target: {fileID: 1209084754498474680, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: owner
-      value: 
-      objectReference: {fileID: 1613364969}
-    - target: {fileID: 1935856933810403488, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_text
-      value: 'Exterior frontal
-
-        -1'
-      objectReference: {fileID: 0}
     - target: {fileID: 1959512461701105877, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: m_Name
       value: 01_exterior_trasero_menosuno
       objectReference: {fileID: 0}
-    - target: {fileID: 1959512461701105877, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2406891601877397321, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 330585545}
-    - target: {fileID: 2406891601877397321, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1810333061
-      objectReference: {fileID: 0}
-    - target: {fileID: 2728234973657754203, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_text
-      value: 'Exterior frontal
-
-        1'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3334668964740832443, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3334668964740832443, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_Color.g
-      value: 0.47058824
-      objectReference: {fileID: 0}
-    - target: {fileID: 3334668964740832443, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_Color.r
-      value: 0.47058824
-      objectReference: {fileID: 0}
     - target: {fileID: 3406682972649612554, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 330585545}
-    - target: {fileID: 3406682972649612554, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -783553519
-      objectReference: {fileID: 0}
     - target: {fileID: 4000519326411055831, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: ui
       value: 
@@ -5905,29 +5829,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1479219018}
     - target: {fileID: 4000519326411055831, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: questionUI
-      value: 
-      objectReference: {fileID: 162736383}
-    - target: {fileID: 4000519326411055831, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: battleMusic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000519326411055831, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: itemManager
       value: 
       objectReference: {fileID: 992811374}
     - target: {fileID: 4000519326411055831, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: dialogueText
-      value: 
-      objectReference: {fileID: 915543369}
-    - target: {fileID: 4000519326411055831, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: playerAction
       value: 
       objectReference: {fileID: 1479219019}
-    - target: {fileID: 4000519326411055831, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: dialoguePanel
-      value: 
-      objectReference: {fileID: 1335662270}
     - target: {fileID: 4000519326411055831, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: turnController
       value: 
@@ -5936,38 +5844,6 @@ PrefabInstance:
       propertyPath: questionUIObject
       value: 
       objectReference: {fileID: 231606065}
-    - target: {fileID: 4886640434615485055, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4886640434615485055, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_Color.b
-      value: 0.6666667
-      objectReference: {fileID: 0}
-    - target: {fileID: 4886640434615485055, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_Color.g
-      value: 0.6666667
-      objectReference: {fileID: 0}
-    - target: {fileID: 4886640434615485055, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_Color.r
-      value: 0.6666667
-      objectReference: {fileID: 0}
-    - target: {fileID: 5146591415562900897, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_Name
-      value: Ambiental fumao
-      objectReference: {fileID: 0}
-    - target: {fileID: 5257120383079217034, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5257120383079217034, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5257120383079217034, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5257120383079217034, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.0590901
@@ -6008,22 +5884,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5472623078119077213, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5472623078119077213, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_Color.b
-      value: 0.6666667
-      objectReference: {fileID: 0}
-    - target: {fileID: 5472623078119077213, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5472623078119077213, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_Color.r
-      value: 0.6666667
-      objectReference: {fileID: 0}
     - target: {fileID: 5513294221121427962, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: battleHUD
       value: 
@@ -6040,18 +5900,6 @@ PrefabInstance:
       propertyPath: 'nextRoomObjects.Array.data[2]'
       value: 
       objectReference: {fileID: 1532368749}
-    - target: {fileID: 6787721718109544142, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6787721718109544142, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_Color.b
-      value: 0.6666667
-      objectReference: {fileID: 0}
-    - target: {fileID: 6787721718109544142, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_Color.r
-      value: 0.6666667
-      objectReference: {fileID: 0}
     - target: {fileID: 6911745872565979961, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
       propertyPath: m_Camera
       value: 
@@ -6080,12 +5928,6 @@ PrefabInstance:
       propertyPath: UpgradePoolContainer
       value: 
       objectReference: {fileID: 1116046170}
-    - target: {fileID: 8183648130530926681, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-      propertyPath: m_text
-      value: 'Pasillo
-
-        -1'
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28393,11 +28235,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613351676}
   m_CullTransparentMesh: 1
---- !u!1 &1613364969 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5146591415562900897, guid: 21fcd9b9a16961046a759f76487d9e6b, type: 3}
-  m_PrefabInstance: {fileID: 285694656}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1613654525
 GameObject:
   m_ObjectHideFlags: 0
