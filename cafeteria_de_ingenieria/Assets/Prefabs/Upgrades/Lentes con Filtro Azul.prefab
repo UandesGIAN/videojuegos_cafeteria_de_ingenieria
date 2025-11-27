@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: Lentes con Filtro Azul
-  description: Protegen tus ojos de pasar 12 horas programando seguidas. Sube 24
-    de Defensa de IQ
+  description: Protegen tus ojos de pasar 12 horas programando seguidas. Sube 8 de
+    Defensa de IQ
   icon: {fileID: 0}
   upgradeType: 4
-  bonusAmount: 12
+  bonusAmount: 8

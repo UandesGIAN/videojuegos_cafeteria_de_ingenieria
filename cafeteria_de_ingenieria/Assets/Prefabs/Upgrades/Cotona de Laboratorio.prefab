@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: Cotona de Laboratorio
-  description: "Protege tu ropa y tu piel de manchas y rasgu\xF1os. Sube 10 de Defensa
+  description: "Protege tu ropa y tu piel de manchas y rasgu\xF1os. Sube 7 de Defensa
     Fisica"
   icon: {fileID: 0}
   upgradeType: 5
-  bonusAmount: 10
+  bonusAmount: 7

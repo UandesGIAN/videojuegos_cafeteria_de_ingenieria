@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Silla Gamer
   description: Soporte lumbar de calidad para aguantar largas sesiones de combate.
-    Sube 30 de Defensa Fisica
+    Sube 8 de Defensa Fisica
   icon: {fileID: 0}
   upgradeType: 5
-  bonusAmount: 30
+  bonusAmount: 8
