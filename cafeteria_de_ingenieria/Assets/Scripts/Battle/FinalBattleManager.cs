@@ -7,10 +7,6 @@ public class FinalBattleManager : BattleManager
     public FighterStats phase1Enemy;
     public FighterStats phase2Enemy;
 
-    
-    [Header("Música fase 2")]
-    public AudioClip customBattleMusic;
-
     private int currentPhase = 1;
 
     public override void OnEnemyDeath(FighterStats deadEnemy)
@@ -29,9 +25,10 @@ public class FinalBattleManager : BattleManager
 
     private IEnumerator StartPhase2(FighterStats deadEnemy)
     {
-        if (MusicManager.Instance != null && customBattleMusic != null)
+        if (MusicManager.Instance != null)
         {
-            MusicManager.Instance.PlayCustomMusic(customBattleMusic, "Phase 2 Final Boss Music");
+            MusicManager.Instance.PlayFinalBattlePhase2Music();
+            Debug.Log("[FinalBattleManager] Reproduciendo música de batalla final - Fase 2");
         }
 
         currentPhase = 2;

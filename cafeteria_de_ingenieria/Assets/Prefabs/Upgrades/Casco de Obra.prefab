@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: Casco de Obra
-  description: Indispensable para entrar a la faena (o al combate).
+  description: Indispensable para entrar a la faena (o al combate). Sube 20 de Defensa
+    Fisica
   icon: {fileID: 0}
   upgradeType: 5
-  bonusAmount: 10
+  bonusAmount: 20

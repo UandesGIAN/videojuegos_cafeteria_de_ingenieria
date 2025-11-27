@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: CALCULADORA CIENTIFICA
-  description: "Calcula el \xE1ngulo exacto del golpe. Aumenta tu ataque."
+  description: "Calcula el \xE1ngulo exacto del golpe. Aumenta en 5 tu ataque."
   icon: {fileID: 0}
   effectPrefab: {fileID: 3022102558446658867, guid: cd3d579a2d65b3241a1812f639db37ec, type: 3}
   itemSound: {fileID: 8300000, guid: 0ca5c266f92a547528dea0432492af13, type: 3}
@@ -55,5 +55,5 @@ MonoBehaviour:
   useImpactFrame: 0
   impactFrameDuration: 0.1
   statType: 2
-  modificationAmount: 10
+  modificationAmount: 5
   modType: 0

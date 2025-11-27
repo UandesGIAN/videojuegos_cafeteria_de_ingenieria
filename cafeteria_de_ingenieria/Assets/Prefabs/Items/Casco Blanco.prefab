@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: CASCO BLANCO
-  description: De jefe de obra. Protege la cabeza de ideas tontas y golpes.
+  description: De jefe de obra. Protege la cabeza de ideas tontas y golpes. Aumenta
+    en 5 tu Defensa Fisica
   icon: {fileID: 0}
   effectPrefab: {fileID: 4364062416287365583, guid: fe2205740225ab04bb07d3c6308b7c8b, type: 3}
   itemSound: {fileID: 8300000, guid: d8de330a54f504db79ea9205dee19401, type: 3}

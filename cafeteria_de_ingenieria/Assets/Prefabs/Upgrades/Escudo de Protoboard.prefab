@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Escudo de Protoboard
   description: "Un trozo de pl\xE1stico lleno de cables que bloquea golpes por pura
-    confusi\xF3n."
+    confusi\xF3n. Sube 10 de Defensa"
   icon: {fileID: 0}
   upgradeType: 3
-  bonusAmount: 5
+  bonusAmount: 10

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: SOPAIPILLA DEL CARRITO
-  description: Con mucha mostaza. Grasosa pero efectiva.
+  description: Con mucha mostaza. Grasosa pero efectiva. Te da 35 de Vida
   icon: {fileID: 0}
   effectPrefab: {fileID: 5824670795371433373, guid: f6fd568b816c64943a44efc3add3a881, type: 3}
   itemSound: {fileID: 8300000, guid: b29cacd6057ed934bb5d0ea63fba15ca, type: 3}

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: "Suscripci\xF3n a ChatGPT"
-  description: La inteligencia artificial piensa por ti.
+  description: La inteligencia artificial piensa por ti. Sube 30 de IQ
   icon: {fileID: 0}
   upgradeType: 1
   bonusAmount: 35

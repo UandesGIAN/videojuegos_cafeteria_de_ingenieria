@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: "Mult\xEDmetro Fluke"
-  description: Mide la resistencia del enemigo y la rompe.
+  description: Mide la resistencia del enemigo y la rompe. Sube 12 de Ataque
   icon: {fileID: 0}
   upgradeType: 2
   bonusAmount: 12

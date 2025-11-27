@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Bisturi de Medicina
   description: Aunque eres ingeniero, robaste esto para usarlo como espada a dos
-    manos.
+    manos. Sube 18 de ataque
   icon: {fileID: 0}
   upgradeType: 2
   bonusAmount: 18

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: NULL POINTER
   description: "Error cr\xEDtico en la realidad del enemigo. Da\xF1o masivo pero
-    alto costo de procesamiento."
+    alto costo de procesamiento. 70 de Da\xF1o por 35 IQ de Costo. Tipo Computacion."
   animationDuration: 1
   animationDelay: 0
   type: 6

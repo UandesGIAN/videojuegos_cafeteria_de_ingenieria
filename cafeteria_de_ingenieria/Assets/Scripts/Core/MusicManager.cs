@@ -12,6 +12,15 @@ public class MusicManager : MonoBehaviour
     [Tooltip("Música durante el combate")]
     public AudioClip battleMusic;
     
+    [Tooltip("Música de la batalla final - Fase 1")]
+    public AudioClip finalBattlePhase1Music;
+    
+    [Tooltip("Música de la batalla final - Fase 2")]
+    public AudioClip finalBattlePhase2Music;
+    
+    [Tooltip("Música de la pantalla de victoria")]
+    public AudioClip victoryMusic;
+    
     [Tooltip("Música de Game Over")]
     public AudioClip gameOverMusic;
     
@@ -68,6 +77,24 @@ public class MusicManager : MonoBehaviour
     public void PlayBattleMusic()
     {
         PlayMusic(battleMusic, "Battle Music");
+    }
+    
+    /// Reproduce la música de la batalla final - Fase 1
+    public void PlayFinalBattlePhase1Music()
+    {
+        PlayMusic(finalBattlePhase1Music, "Final Battle Phase 1 Music");
+    }
+    
+    /// Reproduce la música de la batalla final - Fase 2
+    public void PlayFinalBattlePhase2Music()
+    {
+        PlayMusic(finalBattlePhase2Music, "Final Battle Phase 2 Music");
+    }
+    
+    /// Reproduce la música de victoria
+    public void PlayVictoryMusic()
+    {
+        PlayMusic(victoryMusic, "Victory Music");
     }
     
     /// Reproduce la música de Game Over

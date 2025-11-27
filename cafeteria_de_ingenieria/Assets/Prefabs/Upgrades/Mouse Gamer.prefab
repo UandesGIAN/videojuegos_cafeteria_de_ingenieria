@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: Mouse Gamer
-  description: Aumenta los DPI de tus golpes. RGB incluido.
+  description: Aumenta los DPI de tus golpes. RGB incluido. Sube 15 de Ataque
   icon: {fileID: 0}
   upgradeType: 2
   bonusAmount: 15

@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: PRESION HIDRAULICA
-  description: "Chorro de agua a alta presi\xF3n que corta hasta el presupuesto."
+  description: "Chorro de agua a alta presi\xF3n que corta hasta el presupuesto.
+    50 de Da\xF1o por 20 IQ de Costo. Tipo Agua"
   animationDuration: 1
   animationDelay: 0
   type: 0

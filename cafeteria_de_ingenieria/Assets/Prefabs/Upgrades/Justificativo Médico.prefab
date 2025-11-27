@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: "Justificativo M\xE9dico"
-  description: "Un papel m\xE1gico que te exime de responsabilidades (y de da\xF1o)."
+  description: "Un papel m\xE1gico que te exime de responsabilidades (y de da\xF1o).
+    Sube 24 de Defensa"
   icon: {fileID: 0}
   upgradeType: 3
-  bonusAmount: 12
+  bonusAmount: 24

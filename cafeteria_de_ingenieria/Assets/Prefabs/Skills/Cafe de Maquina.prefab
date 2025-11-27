@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: CAFE DE MAQUINA
-  description: "Sabe a tierra y az\xFAcar, pero te mantiene despierto."
+  description: "Sabe a tierra y az\xFAcar, pero te mantiene despierto. Sube 40 de
+    Vida por 20 IQ de Costo. Tipo Fuego"
   animationDuration: 1
   animationDelay: 0
   type: 3

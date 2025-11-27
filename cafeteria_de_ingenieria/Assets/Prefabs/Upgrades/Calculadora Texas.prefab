@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: Calculadora Texas
-  description: El arma definitiva. Calcula trayectorias de dolor.
+  description: El arma definitiva. Calcula trayectorias de dolor. Sube 25 de ataque
   icon: {fileID: 0}
   upgradeType: 2
   bonusAmount: 25

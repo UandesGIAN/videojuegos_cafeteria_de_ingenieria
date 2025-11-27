@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: Disco Duro de 1TB
-  description: "El resumen con todas las f\xF3rmulas. Aumenta tu eficiencia letal."
+  description: "El resumen con todas las f\xF3rmulas. Aumenta tu eficiencia letal.
+    Sube 15 en Ataque"
   icon: {fileID: 0}
   upgradeType: 2
-  bonusAmount: 8
+  bonusAmount: 15

@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: Apuntes del Mate
-  description: "Los apuntes legendarios del alumno que s\xED va a clases."
+  description: "Los apuntes legendarios del alumno que s\xED va a clases. Sube 10
+    de IQ"
   icon: {fileID: 0}
   upgradeType: 1
   bonusAmount: 10

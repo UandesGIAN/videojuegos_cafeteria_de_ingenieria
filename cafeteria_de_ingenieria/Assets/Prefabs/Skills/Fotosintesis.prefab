@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: FOTOSINTESIS
-  description: Recupera vida absorbiendo la luz de la ventana
+  description: Recupera vida absorbiendo la luz de la ventana. Aumenta 50 de Vida
+    por 25 de Costo. Tipo Planta
   animationDuration: 2
   animationDelay: 0
   type: 5

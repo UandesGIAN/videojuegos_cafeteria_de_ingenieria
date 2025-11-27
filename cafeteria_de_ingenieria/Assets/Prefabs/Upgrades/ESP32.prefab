@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: ESP32
   description: Artilugio magico que al entrar en contacto con el jugador incrementa
-    su IQ en 20 puntos
+    su IQ en 20 puntos. Sube 20 de IQ
   icon: {fileID: 0}
   upgradeType: 1
   bonusAmount: 20

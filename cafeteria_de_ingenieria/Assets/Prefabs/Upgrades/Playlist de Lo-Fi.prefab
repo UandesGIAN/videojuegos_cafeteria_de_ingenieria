@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeName: Playlist de Lo-Fi
-  description: "Beats relajantes para estudiar y resistir el estr\xE9s."
+  description: "Beats relajantes para estudiar y resistir el estr\xE9s. Sube 10 de
+    Defensa de IQ"
   icon: {fileID: 0}
   upgradeType: 4
-  bonusAmount: 5
+  bonusAmount: 10
