@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8766ceed7cca036448b6a9ccc8f53ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Fireball
+  skillName: Pantallazo Azul
   description: "Error fatal en el sistema nervioso del enemigo. Requiere reinicio.
     65 de Da\xF1o por 30 IQ de Costo. Tipo Computacion."
   animationDuration: 1
@@ -61,6 +61,6 @@ MonoBehaviour:
   cost: 30
   modType: 0
   attackCategory: 1
-  skillElementType: 4
+  skillElementType: 6
   useRandomVariation: 1
   damageMultiplier: 1
