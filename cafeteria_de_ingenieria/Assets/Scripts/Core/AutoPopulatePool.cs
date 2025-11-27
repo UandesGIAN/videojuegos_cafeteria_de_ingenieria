@@ -4,7 +4,7 @@ public class AutoPopulatePool : MonoBehaviour
 {
     [Header("Configuración Automática")]
     [Tooltip("Carpeta donde buscar prefabs (ej: Prefabs/Items, Prefabs/Skills, Prefabs/Upgrades)")]
-    public string prefabsFolderPath = "Prefabs/Items";
+    public string prefabsFolderPath = "Resources/Resources/Prefabs/Items";
     
     [Tooltip("Usar detección automática de carpeta basada en el nombre del GameObject")]
     public bool autoDetectFolderFromName = true;
@@ -36,15 +36,15 @@ public class AutoPopulatePool : MonoBehaviour
         
         if (objectName.Contains("item"))
         {
-            prefabsFolderPath = "Prefabs/Items";
+            prefabsFolderPath = "Resources/Prefabs/Items";
         }
         else if (objectName.Contains("skill"))
         {
-            prefabsFolderPath = "Prefabs/Skills";
+            prefabsFolderPath = "Resources/Prefabs/Skills";
         }
         else if (objectName.Contains("upgrade"))
         {
-            prefabsFolderPath = "Prefabs/Upgrades";
+            prefabsFolderPath = "Resources/Prefabs/Upgrades";
         }
         
         if (showDebugInfo)

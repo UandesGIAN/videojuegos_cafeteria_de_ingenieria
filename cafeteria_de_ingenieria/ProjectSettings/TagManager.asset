@@ -43,6 +43,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: RoomSelection
+    uniqueID: 3511413777
+    locked: 0
+  - name: UpgradeSelection
+    uniqueID: 1810333061
+    locked: 0
+  - name: BattleMenu
+    uniqueID: 1676649733
+    locked: 0
+  - name: CharacterScreen
+    uniqueID: 1411298671
+    locked: 0
+  - name: MainMenu
+    uniqueID: 1165920743
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1

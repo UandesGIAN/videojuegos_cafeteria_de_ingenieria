@@ -216,14 +216,27 @@ public class UpgradeSelection : MonoBehaviour
         }
     }
 
-    private List<Reward> GetAllPossibleRewards()
+    public List<Reward> GetAllPossibleRewards()
     {
         List<Reward> allRewards = new List<Reward>();
+
+        // DEBUGGING
+        if (SkillPoolContainer == null) Debug.LogError("FATAL: SkillPoolContainer es NULL en el Build!");
+        else Debug.Log($"Pool Container encontrado. Nombre: {SkillPoolContainer.name}");
+
+        if (ItemsPoolContainer == null) Debug.LogError("FATAL: ItemsPoolContainer es NULL en el Build!");
+        else Debug.Log($"Pool Container encontrado. Nombre: {ItemsPoolContainer.name}");
+
+        if (UpgradePoolContainer == null) Debug.LogError("FATAL: UpgradePoolContainer es NULL en el Build!");
+        else Debug.Log($"Pool Container encontrado. Nombre: {UpgradePoolContainer.name}");
 
         // Obtener todas las skills del pool
         if (SkillPoolContainer != null)
         {
             Skill[] allSkills = SkillPoolContainer.GetComponentsInChildren<Skill>(true);
+            
+            Debug.Log($"LOG BUILD: Se encontraron {allSkills.Length} skills en el container.");
+
             foreach (Skill skill in allSkills)
             {
                 allRewards.Add(new Reward
@@ -238,6 +251,9 @@ public class UpgradeSelection : MonoBehaviour
         if (ItemsPoolContainer != null)
         {
             Item[] allItems = ItemsPoolContainer.GetComponentsInChildren<Item>(true);
+
+            Debug.Log($"LOG BUILD: Se encontraron {allItems.Length} items en el container.");
+
             foreach (Item it in allItems)
             {
                 allRewards.Add(new Reward 
@@ -252,6 +268,9 @@ public class UpgradeSelection : MonoBehaviour
         if (UpgradePoolContainer != null)
         {
             Upgrade[] allUpgrades = UpgradePoolContainer.GetComponentsInChildren<Upgrade>(true);
+
+            Debug.Log($"LOG BUILD: Se encontraron {allUpgrades.Length} upgrades en el container.");
+            
             foreach (Upgrade upgrade in allUpgrades)
             {
                 allRewards.Add(new Reward 
@@ -262,6 +281,7 @@ public class UpgradeSelection : MonoBehaviour
             }
         }
         
+        Debug.Log($"LOG BUILD: Total rewards generados: {allRewards.Count}");
         return allRewards;
     }
 
