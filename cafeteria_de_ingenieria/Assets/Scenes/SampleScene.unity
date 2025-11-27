@@ -7053,10 +7053,10 @@ MonoBehaviour:
   iqAttackMultiplier: 1
   img: {fileID: -4833555207107527122, guid: 280ce67083f9a1d4db7ccef6c76ec584, type: 3}
   fightername: "Mat\xEDas Recabarren"
-  dialogueOnBattleStart: A ver si eres tan inteligente como crees pete
-  dialogueOnMidHealth: "Parece q en realidad eres capas de ense\xF1arme"
-  dialogueOnDefeat: "QUE PODEROSO ERESS!!! FUISTE CAPAZ DE ENSE\xD1ARME A MI, EL
-    PETE MAXIMO"
+  dialogueOnBattleStart: "Veo que han causado mucho esc\xE1ndalo, no se los permitir\xE9."
+  dialogueOnMidHealth: "Parece que realmente son capaces de ense\xF1arme A M\xCD."
+  dialogueOnDefeat: "\xA1\xA1\xA1QUE PODEROSO ERESS!!! FUISTE CAPAZ DE ENSE\xD1ARME
+    A MI, EL JEFE."
   hasSaidMidHealthDialogue: 0
   battleUI: {fileID: 2090108967}
   healthBarObject: {fileID: 1190189886}
@@ -10472,10 +10472,9 @@ MonoBehaviour:
   iqAttackMultiplier: 1
   img: {fileID: 4428599566569178196, guid: 0bb19e5d57ae149499485d7d3bca15d9, type: 3}
   fightername: Jorge Gomez
-  dialogueOnBattleStart: A ver si eres tan inteligente como crees pete
-  dialogueOnMidHealth: "Parece q en realidad eres capas de ense\xF1arme"
-  dialogueOnDefeat: "QUE PODEROSO ERESS!!! FUISTE CAPAZ DE ENSE\xD1ARME A MI, EL
-    PETE MAXIMO"
+  dialogueOnBattleStart: Veremos si toleras mi ESP 32...
+  dialogueOnMidHealth: "\xA1Voy a cuantizarte!"
+  dialogueOnDefeat: Aprendiste bien por lo que veo...
   hasSaidMidHealthDialogue: 0
   battleUI: {fileID: 2090108967}
   healthBarObject: {fileID: 1190189886}
@@ -16375,10 +16374,11 @@ MonoBehaviour:
   iqAttackMultiplier: 1
   img: {fileID: 3694033039284588323, guid: 437470eeba91ad34698a88dd1d99d5f3, type: 3}
   fightername: Jaime Echeverria
-  dialogueOnBattleStart: A ver si eres tan inteligente como crees pete
-  dialogueOnMidHealth: "Parece q en realidad eres capas de ense\xF1arme"
-  dialogueOnDefeat: "QUE PODEROSO ERESS!!! FUISTE CAPAZ DE ENSE\xD1ARME A MI, EL
-    PETE MAXIMO"
+  dialogueOnBattleStart: "As\xED que al fin han llegado, \xBFYa tienen la entrega
+    9 de su juego listo?"
+  dialogueOnMidHealth: "\xA1No lo hacen mal, pero a ver c\xF3mo les va con nuevos
+    Design Patterns!"
+  dialogueOnDefeat: "Maldici\xF3n, no me dejan de otra... "
   hasSaidMidHealthDialogue: 0
   battleUI: {fileID: 2090108967}
   healthBarObject: {fileID: 1190189886}
@@ -19481,10 +19481,10 @@ MonoBehaviour:
   iqAttackMultiplier: 1
   img: {fileID: 469779163614834793, guid: 5ee6e0cf6c7bf6c43b0aee42dfde2f49, type: 3}
   fightername: "Claudio \xC1lvarez"
-  dialogueOnBattleStart: A ver si eres tan inteligente como crees pete
-  dialogueOnMidHealth: "Parece q en realidad eres capas de ense\xF1arme"
-  dialogueOnDefeat: "QUE PODEROSO ERESS!!! FUISTE CAPAZ DE ENSE\xD1ARME A MI, EL
-    PETE MAXIMO"
+  dialogueOnBattleStart: Mi sistema de seguridad indica que debo mitigar la amenaza.
+  dialogueOnMidHealth: Round-Robin y vuelvo como nuevo.
+  dialogueOnDefeat: Puede que hayas ganado hoy, pero en otro ramo nos volveremos
+    a ver.
   hasSaidMidHealthDialogue: 0
   battleUI: {fileID: 2090108967}
   healthBarObject: {fileID: 1190189886}
@@ -23249,10 +23249,9 @@ MonoBehaviour:
   iqAttackMultiplier: 1
   img: {fileID: -6201301430866062438, guid: 0e32bd3474ef98e45bac976a16b9b081, type: 3}
   fightername: Carla Vairetti
-  dialogueOnBattleStart: A ver si eres tan inteligente como crees pete
-  dialogueOnMidHealth: "Parece q en realidad eres capas de ense\xF1arme"
-  dialogueOnDefeat: "QUE PODEROSO ERESS!!! FUISTE CAPAZ DE ENSE\xD1ARME A MI, EL
-    PETE MAXIMO"
+  dialogueOnBattleStart: "Lo siento chicos, pero la IA los reemplazar\xE1."
+  dialogueOnMidHealth: "Tendr\xE9 que usar back propagation..."
+  dialogueOnDefeat: Son buenos ingenieros, no dependen de chatGPT...
   hasSaidMidHealthDialogue: 0
   battleUI: {fileID: 2090108967}
   healthBarObject: {fileID: 1190189886}
@@ -32110,10 +32109,10 @@ MonoBehaviour:
   iqAttackMultiplier: 1
   img: {fileID: 974471990380280646, guid: 0948f26bdcb83f147b56116ac405d8a1, type: 3}
   fightername: "Jefe el\xE9ctrica"
-  dialogueOnBattleStart: A ver si eres tan inteligente como crees pete
-  dialogueOnMidHealth: "Parece q en realidad eres capas de ense\xF1arme"
-  dialogueOnDefeat: "QUE PODEROSO ERESS!!! FUISTE CAPAZ DE ENSE\xD1ARME A MI, EL
-    PETE MAXIMO"
+  dialogueOnBattleStart: "\xA1No te dejar\xE9 pasar t\xE1n f\xE1cilmente!"
+  dialogueOnMidHealth: "Eres m\xE1s fuerte de lo que cre\xED, pero usar\xE9 ley dee
+    kirchhoff en ti."
+  dialogueOnDefeat: "Maldici\xF3n, supongo que puedes pasar..."
   hasSaidMidHealthDialogue: 0
   battleUI: {fileID: 2090108967}
   healthBarObject: {fileID: 1190189886}
